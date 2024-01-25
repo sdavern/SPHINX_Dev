@@ -1,0 +1,287 @@
+#include "Item.h"
+#include "Term.h"
+#include "Area.h"
+
+UItem::UItem()
+{
+    Name = TEXT("NewItem");
+    
+}
+
+bool UItem::Equals(const UObject* Other) const
+{
+    // Safely cast the UObject to UItem
+    const UItem* OtherItem = Cast<UItem>(Other);
+
+    // If the cast is successful and the names are equal, return true
+    return OtherItem != nullptr && OtherItem->Name == Name;
+}
+
+bool UItem::PropertyExists(const FString& PropertyName) const
+{
+    for (const UItemProperty* Prop : Properties)
+    {
+        if (Prop && Prop->Name.Equals(PropertyName, ESearchCase::IgnoreCase))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+TArray<UItemProperty*> UItem::GetPropertiesWithName(const FString& PropertyName) const
+{
+    TArray<UItemProperty*> PropertiesToReturn;
+
+    for (UItemProperty* Property : Properties)
+    {
+        if (Property && Property->Name.Equals(PropertyName, ESearchCase::IgnoreCase))
+        {
+            PropertiesToReturn.Add(Property);
+        }
+    }
+
+    return PropertiesToReturn;
+}
+
+UItemProperty* UItem::GetPropertyWithName(const FString& PropertyName) const
+{
+    for (UItemProperty* Property : Properties)
+    {
+        if (Property && Property->Name.Equals(PropertyName, ESearchCase::IgnoreCase))
+        {
+            return Property;
+        }
+    }
+    return nullptr;
+}
+
+bool UItem::HasProperty(UItemProperty* PropertyToCheck)
+{
+    if (!PropertyToCheck)
+    {
+        return false;
+    }
+    for (UItemProperty* Prop : Properties)
+    {
+        if (Prop && Prop->Name == PropertyToCheck->Name)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void UItem::AddPropertyOfType(EItemProperty Type)
+{
+    UItemProperty* NewProperty = NewObject<UItemProperty>(this, UItemProperty::StaticClass());
+    if (NewProperty)
+    {
+        NewProperty->Type = Type;
+        Properties.Add(NewProperty);
+    }
+}
+
+void UItem::DeleteProperty(int32 Index)
+{
+    if (Properties.IsValidIndex(Index))
+    {
+        Properties.RemoveAt(Index);
+    }
+
+}
+
+TArray<FString> UItem::GetSuperTypes()
+{
+    TArray<FString> Types;
+    Types.Add("Item");
+
+    TArray<UItemProperty*> IsaProperties = GetPropertiesWithName("isa");
+    for (UItemProperty* Prop : IsaProperties)
+    {
+        Types.Add(Prop->Value);
+    }
+    return Types;
+}
+
+bool UItem::Matches(UTerm* Term)
+{
+    if (Term->Name != this->Name)
+    {
+        bool Found = false;
+        for (FString Type : this->GetSuperTypes())
+        {
+            if (Type == Term->Name)
+            {
+                Found = true;
+            }
+        }
+    }
+    for (UItemProperty* Property : Term->Properties)
+    {
+        if (!this->HasProperty(Property))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool UItem::IsOfType(UTerm* Term)
+{
+    if (Term->Name != this->Name)
+    {
+        bool Found = false;
+        for (FString Type : this->GetSuperTypes())
+        {
+            if(Type == Term->Name)
+            {
+                Found = true;
+            }
+        }
+        if (!Found)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool UItem::IsAccessible(TArray<UArea*> Areas, TArray<UItem*> ItemsInScene)
+{
+    if (Name == TEXT("Player"))
+    {
+        return true;
+    }
+
+    TArray<UItemProperty*> AreaProperties = this->GetPropertiesWithName("Area");
+
+    if (AreaProperties.Num() == 0)
+    {
+        if(IsSpawnable() || ItemsInScene.Contains(this))
+        {
+            return true;
+        }
+        else if (GetPropertyWithName("InInventory") != nullptr && GetPropertyWithName("InInventory")->Value == TEXT("True"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    for (UItemProperty* AreaProp : AreaProperties)
+    {
+        for (UArea* Area : Areas)
+        {
+            if (AreaProp->Value == Area->Name && (IsSpawnable() || ItemsInScene.Contains(this)))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool UItem::IsCarryable()
+{
+    UItemProperty* Carryable = GetPropertyWithName("carryable");
+    if (Carryable == nullptr)
+    {
+        return false;
+    }
+    if (Carryable->Value == "False")
+    {
+        return false;
+    }
+    return true;
+}
+
+bool UItem::IsCopyable()
+{
+    UItemProperty* Copyable = GetPropertyWithName("copyable");
+    if (Copyable == nullptr)
+    {
+        return false;
+    }
+    if (Copyable->Value == "False")
+    {
+        return false;
+    }
+    return true;
+}
+
+bool UItem::IsSpawnable()
+{
+    if (GetPropertyWithName("spawnable") == nullptr)
+    {
+        return true;
+    }
+
+    if (GetPropertyWithName("spawnable")->Value =="True")
+    {
+        return true;
+    }
+    return false;
+}
+
+bool UItem::IsInspectable()
+{
+    TArray<UItemProperty*> InspectableProperties = GetPropertiesWithName("inspectable");
+    if (InspectableProperties.Num() > 0 && InspectableProperties[0]->Value == "True")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+FString UItem::ToString() const
+{
+    return Name;
+}
+
+
+FVector UItem::GetNextSpawnPt()
+{
+    if (SpawnPoints.Num() == 0)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Item: %s - No spawn points."), *Name);
+        return FVector::ZeroVector; // Return a default FVector if no spawn points are available
+    }
+
+    _index = FMath::RandRange(0, SpawnPoints.Num() - 1);
+    
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("Item: %s - Spawn point %d: %s"), *Name, _index, *SpawnPoints[_index].ToString()));
+    }
+
+    return SpawnPoints[_index];
+}
+
+
+
+//Overriden function from UObject, called after object (item) has been constructed and properties (from Item.h) of item have been initialised. 
+//Done as UE5 doesn't allow a UObject to create a new UObject if first UObject has not yet been initialised because the ability to create the 
+//new UObject can only be used once the original UObject has been initialised. Using the method below createss the new UObject after.
+//Item and ItemProperty initialized first then new ItemProperty can be created within Item.
+
+void UItem::PostInitProperties()
+{
+    Super::PostInitProperties();
+
+    if (!HasAnyFlags(RF_ClassDefaultObject | RF_NeedLoad))
+    {
+        UItemProperty* Inspectable = NewObject<UItemProperty>(this, UItemProperty::StaticClass());
+        if (Inspectable)
+        {
+            Properties.Add(Inspectable);
+        }
+    }
+}
+

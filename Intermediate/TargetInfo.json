@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "SPHINX_Dev",
+			"Path": "..\\Source\\SPHINX_Dev.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "SPHINX_DevEditor",
+			"Path": "..\\Source\\SPHINX_DevEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

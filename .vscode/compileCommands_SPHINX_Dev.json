@@ -1,0 +1,122 @@
+[
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_Dev.Build.cs",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_Dev.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_Dev.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_DevCharacter.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_DevCharacter.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_DevGameMode.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_DevGameMode.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_DevPlayerController.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_DevPlayerController.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_DevProjectile.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_DevProjectile.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\TP_PickUpComponent.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\TP_PickUpComponent.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\TP_WeaponComponent.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\TP_WeaponComponent.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	}
+]
