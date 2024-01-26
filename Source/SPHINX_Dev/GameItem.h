@@ -13,6 +13,8 @@
 #include "Term.h"
 #include "GameItem.generated.h"
 
+class UInventoryManager;
+
 UCLASS()
 class SPHINX_DEV_API AGameItem : public AActor
 {

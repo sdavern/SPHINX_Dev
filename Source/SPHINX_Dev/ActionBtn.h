@@ -9,7 +9,7 @@
 #include "Rule.h"
 #include "ActionBtn.generated.h"
 
-class UActionBtn;
+class UGameItem;
 
 
 UCLASS()

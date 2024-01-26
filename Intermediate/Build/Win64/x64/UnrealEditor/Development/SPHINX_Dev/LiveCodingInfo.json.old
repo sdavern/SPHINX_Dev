@@ -10,7 +10,6 @@
 			"ItemProperty.gen.cpp.obj",
 			"PuzzleManager.gen.cpp.obj",
 			"Rule.gen.cpp.obj",
-			"SPHINX_Dev.init.gen.cpp.obj",
 			"SPHINX_DevCharacter.gen.cpp.obj",
 			"SPHINX_DevGameMode.gen.cpp.obj",
 			"SPHINX_DevPlayerController.gen.cpp.obj",
@@ -21,7 +20,6 @@
 			"ActionBtn.cpp.obj",
 			"Area.cpp.obj",
 			"ConditionalObject.cpp.obj",
-			"GameItem.cpp.obj",
 			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
 			"PuzzleManager.cpp.obj",
@@ -33,7 +31,11 @@
 			"SPHINX_DevProjectile.cpp.obj",
 			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
-			"TP_WeaponComponent.cpp.obj"
+			"TP_WeaponComponent.cpp.obj",
+			"InventoryManager.gen.cpp.obj",
+			"SPHINX_Dev.init.gen.cpp.obj",
+			"GameItem.cpp.obj",
+			"InventoryManager.cpp.obj"
 		]
 	}
 }

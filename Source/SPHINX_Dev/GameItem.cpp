@@ -3,6 +3,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
 #include "Components/WidgetComponent.h"
+#include "InventoryManager.h"
 #include "GameItem.h"
 
 
