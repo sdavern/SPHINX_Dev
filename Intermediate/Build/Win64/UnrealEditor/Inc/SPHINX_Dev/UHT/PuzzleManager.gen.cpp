@@ -38,9 +38,6 @@ void EmptyLinkFunctionForGeneratedCodePuzzleManager() {}
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzleManager_Statics::DependentSingletons) < 16);
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UPuzzleManager_Statics::Class_MetaDataParams[] = {
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "/**\n * \n */" },
-#endif
 		{ "IncludePath", "PuzzleManager.h" },
 		{ "ModuleRelativePath", "PuzzleManager.h" },
 	};
@@ -82,9 +79,9 @@ void EmptyLinkFunctionForGeneratedCodePuzzleManager() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UPuzzleManager, UPuzzleManager::StaticClass, TEXT("UPuzzleManager"), &Z_Registration_Info_UClass_UPuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPuzzleManager), 2173599623U) },
+		{ Z_Construct_UClass_UPuzzleManager, UPuzzleManager::StaticClass, TEXT("UPuzzleManager"), &Z_Registration_Info_UClass_UPuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPuzzleManager), 263006429U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_3197696508(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_3101814993(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

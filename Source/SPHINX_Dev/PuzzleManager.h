@@ -5,11 +5,13 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "Item.h"
+#include "Rule.h"
+#include "Area.h"
 #include "PuzzleManager.generated.h"
 
-/**
- * 
- */
+
+class AGameItem;
+
 UCLASS()
 class SPHINX_DEV_API UPuzzleManager : public UGameInstance
 {
@@ -23,8 +25,14 @@ public:
 
 	UItem* GetObject(FString ItemName);
 
+	TArray<URule*> RulesFor(AGameItem* GameItem, UArea* Area);
+
+	UArea* GetCurrentArea();
+
 private:
 
 	static UPuzzleManager* Instance;
 	
+	UArea* CurrentArea;
+
 };

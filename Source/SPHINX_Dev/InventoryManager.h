@@ -19,7 +19,7 @@ class SPHINX_DEV_API UInventoryManager : public UGameInstance
 
 public:
 
-	UInventoryManager();
+	static UInventoryManager* GetInstance();
 
 	UFUNCTION(BlueprintCallable)
 	void AddItemToInventory(AGameItem* Item);
@@ -49,6 +49,10 @@ public:
 
 private:
 
+	static UInventoryManager* Instance;
+	
+	UInventoryManager();
+
 	UPROPERTY(EditAnywhere)
 	TArray<AGameItem*> Inventory;
 
@@ -61,9 +65,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	AGameItem* SelectedItem;
 
-
-
-
-
+	
 	
 };

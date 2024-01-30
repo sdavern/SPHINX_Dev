@@ -3,6 +3,18 @@
 
 #include "InventoryManager.h"
 
+UInventoryManager* UInventoryManager::Instance = nullptr;
+
+UInventoryManager* UInventoryManager::GetInstance()
+{
+    if (!Instance)
+    {
+        Instance = NewObject<UInventoryManager>();
+    }
+
+    return Instance;
+}
+
 UInventoryManager::UInventoryManager()
 {
 

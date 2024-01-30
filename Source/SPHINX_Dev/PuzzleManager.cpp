@@ -2,6 +2,7 @@
 
 
 #include "PuzzleManager.h"
+#include "GameItem.h"
 
 UPuzzleManager* UPuzzleManager::Instance = nullptr;
 
@@ -23,4 +24,15 @@ UPuzzleManager* UPuzzleManager::GetInstance()
 UItem* UPuzzleManager::GetObject(FString ItemName)
 {
     return nullptr;
+}
+
+TArray<URule*> UPuzzleManager::RulesFor(AGameItem* GameItem, UArea* Area)
+{
+    TArray<URule*> Rules;
+    return Rules;
+}
+
+UArea* UPuzzleManager::GetCurrentArea()
+{
+    return CurrentArea;
 }
