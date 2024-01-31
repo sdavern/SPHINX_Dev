@@ -32,6 +32,17 @@ TArray<URule*> UPuzzleManager::RulesFor(AGameItem* GameItem, UArea* Area)
     return Rules;
 }
 
+void  UPuzzleManager::UpdatePlayerProperties(UItemProperty* Property)
+{
+    return;
+}
+
+
+AGameItem* UPuzzleManager::GetPlayer()
+{
+    return Player;
+}
+
 UArea* UPuzzleManager::GetCurrentArea()
 {
     return CurrentArea;

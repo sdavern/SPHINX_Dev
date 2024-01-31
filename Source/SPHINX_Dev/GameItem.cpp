@@ -327,32 +327,181 @@ void AGameItem::ExecuteRule(URule* Rule)
 
 void AGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 {
+	TArray<AActor*> ObjectsToDestroy;
+	UInventoryManager* Inventory = UInventoryManager::GetInstance();
+
+	for (int32 i = 0; i < Rule->Inputs.Num(); i++)
+	{
+		bool Found = true;
+		for (UTerm* Output : Rule->Outputs)
+		{
+			if (Output->Name == Rule->Inputs[i]->Name)
+			{
+				Found = true;
+				Output->GameItem = Rule->Inputs[i]->GameItem;
+				break;
+			}
+			else if (Output->GetPropertyWithName("Contains") != nullptr)
+			{
+				if (Output->GetPropertyWithName("Contains")->Value == Rule->Inputs[i]->Name)
+				{
+					if (Rule->Inputs[i]->Name == Inventory->GetSelectedItem()->Name)
+					{
+						Output->GameItem->ContainedValue = Inventory->GetSelectedItem();
+						Inventory->RemoveSelectedItemFromInventory();
+						Output->GameItem->ContainedValue->SetActorHiddenInGame(true);
+						Output->GameItem->ContainedValue->SetActorEnableCollision(false);
+						Output->GameItem->ContainedValue->SetActorTickEnabled(false);
+					}
+					else
+					{
+						Output->GameItem->ContainedValue = Rule->Inputs[i]->GameItem;
+						Output->GameItem->ContainedValue->SetActorHiddenInGame(true);
+						Output->GameItem->ContainedValue->SetActorEnableCollision(false);
+						Output->GameItem->ContainedValue->SetActorTickEnabled(false);
+					}
+					Found = true;
+					break;
+				}
+			}
+		}
+
+		UE_LOG(LogTemp, Display, TEXT("Input Item at %d : %s of rule %s"), i, *Rule->Inputs[i]->ToString(), *Rule->ToString());
+		if (!Found && Rule->Inputs[i]->GameItem->IsDestrutible())
+		{
+			UE_LOG(LogTemp, Display, TEXT("Destroying: %s"), *Rule->Inputs[i]->Name);
+			if (i == 0)
+			{
+				ObjectsToDestroy.Add(GameI);
+			}
+			else
+			{
+				if (!Inventory->DeleteItemFromInventory(Rule->Inputs[i]->GameItem))
+				{
+					ObjectsToDestroy.Add(Rule->Inputs[i]->GameItem);
+				}
+			}
+		}
+	}
+	int32 SpawnIndex = 0;
+	bool FirstOutput = true;
+	for (UTerm* Output : Rule->Outputs)
+	{
+		bool Found = false;
+		for (UTerm* Input : Rule->Inputs)
+		{
+			if (Output->Name == TEXT("Player"))
+			{
+				for (UItemProperty* OutputProperty : Output->Properties)
+				{
+					UPuzzleManager::GetInstance()->UpdatePlayerProperties(OutputProperty);
+				}
+			}
+			if (Output->Name == Input->Name)
+			{
+				Found = true;
+				for (UItemProperty* OutputProperty : Output->Properties)
+				{
+					UItemProperty* Property = Input->GameItem->GetProperty(OutputProperty->Name);
+					if (Property != nullptr && Property->Name != TEXT("Contains"))
+					{
+						Property->Value = OutputProperty->Value;
+						UE_LOG(LogTemp, Display, TEXT("Property to change: %s"), *Property->Name);
+						break;
+					}
+					else
+					{
+						Input->GameItem->Properties.Add(OutputProperty);
+					}
+				}
+			}
+		}
+		if (!Found)
+		{
+			if (Output->DbItem != nullptr)
+			{
+				return;
+
+			}
+		}
+	}
+
 	return;
 }
 
 bool AGameItem::RuleFulfilled(URule* Rule)
 {
-	return true;
+	if (Rule != nullptr)
+	{
+		Rule->Inputs[0]->GameItem = this;
+		if (!this->FulfillsProperties(Rule->Inputs[0]))
+		{
+			return false;
+		}
+
+		if (Rule->Inputs.Num() > 1)
+		{
+			int32 i = 1;
+			if (!Rule->bSelectedInput)
+			{
+				AGameItem* SelectedItem = UInventoryManager::GetInstance()->GetSelectedItem();
+				if (SelectedItem != nullptr)
+				{
+					if (SelectedItem->Name == Rule->Inputs[1]->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[1]->Name))
+					{
+						if (SelectedItem->FulfillsProperties(Rule->Inputs[1]))
+						{
+							Rule->Inputs[1]->GameItem = SelectedItem;
+							i = 2;
+						}
+					}
+					else
+					{
+						return false;
+					}
+				}
+				else 
+				{
+					return false;
+				}
+			}
+			TArray<AGameItem*> Inventory = UInventoryManager::GetInstance()->Inventory;
+			if (Inventory.Num() == 0 && !Rule->HasPlayerInput())
+			{
+				return false;
+			}
+			for (; i < Rule->Inputs.Num(; i++))
+			{
+				bool Found = false;
+				if (Rule->Inputs[i]->Name == TEXT("Player"))
+				{
+					if (UPuzzleManager::GetInstance()->GetPlayer()->FulfillsProperties(Rule->Inputs[1]))
+					{
+						Found = true;
+						Rule->Inputs[i]->GameItem = UPuzzleManager::GetInstance()->GetPlayer();
+					}
+				}
+				for (AGameItem* InventoryItem : Inventory)
+				{
+					if (InventoryItem->Name == Rule->Inputs[i]->Name || InventoryItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[i]->Name))
+					{
+						if(InventoryItem->FulfillsProperties(Rule->Inputs[i]))
+						{
+							Found = true;
+							Rule->Inputs[i]->GameItem = InventoryItem;
+						}
+					}
+				}
+				if (!Found)
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	return false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 bool AGameItem::FulfillsProperties(UTerm* Input)
 {

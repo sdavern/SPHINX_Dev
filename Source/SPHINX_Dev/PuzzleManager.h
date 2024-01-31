@@ -21,11 +21,17 @@ public:
 
 	UPuzzleManager();
 
+	AGameItem* Player;
+
 	static UPuzzleManager* GetInstance();
 
 	UItem* GetObject(FString ItemName);
 
+	void UpdatePlayerProperties(UItemProperty* Property);
+
 	TArray<URule*> RulesFor(AGameItem* GameItem, UArea* Area);
+
+	AGameItem* GetPlayer();
 
 	UArea* GetCurrentArea();
 

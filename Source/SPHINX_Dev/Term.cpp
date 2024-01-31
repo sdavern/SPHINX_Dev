@@ -3,6 +3,7 @@
 
 #include "Term.h"
 #include "Item.h"
+#include "GameItem.h"
 
 UTerm::UTerm()
 {
@@ -107,4 +108,9 @@ FString UTerm::GetTermAsString()
     }
 
     return TermAsString;
+}
+
+FString UTerm::ToString()
+{
+    return this->GetTermAsString();
 }

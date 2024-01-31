@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
-//#include "GameItem.h" 
 #include "ItemProperty.h"
 #include "Term.generated.h"
 
 class UItem;
+class AGameItem;
 
 
 UCLASS()
@@ -27,6 +27,9 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     UItem* DbItem;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    AGameItem* GameItem;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString Description;
@@ -51,7 +54,7 @@ public:
 
 	FString GetTermAsString();
 
-	FString ToString() const;
+	FString ToString();
 
 
 };

@@ -10,6 +10,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeTerm() {}
 // Cross Module References
 	COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
+	SPHINX_DEV_API UClass* Z_Construct_UClass_AGameItem_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UItem_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UItemProperty_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UTerm();
@@ -43,6 +44,10 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_DbItem_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_DbItem;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_GameItem_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_GameItem;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Description_MetaData[];
 #endif
@@ -89,6 +94,13 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTerm_Statics::NewProp_DbItem = { "DbItem", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTerm, DbItem), Z_Construct_UClass_UItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UTerm_Statics::NewProp_DbItem_MetaData), Z_Construct_UClass_UTerm_Statics::NewProp_DbItem_MetaData) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTerm_Statics::NewProp_GameItem_MetaData[] = {
+		{ "Category", "Term" },
+		{ "ModuleRelativePath", "Term.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTerm_Statics::NewProp_GameItem = { "GameItem", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTerm, GameItem), Z_Construct_UClass_AGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UTerm_Statics::NewProp_GameItem_MetaData), Z_Construct_UClass_UTerm_Statics::NewProp_GameItem_MetaData) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTerm_Statics::NewProp_Description_MetaData[] = {
 		{ "Category", "Term" },
 		{ "ModuleRelativePath", "Term.h" },
@@ -107,6 +119,7 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_Properties_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_Properties,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_DbItem,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_GameItem,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_Description,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_Hint,
 	};
@@ -148,9 +161,9 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UTerm, UTerm::StaticClass, TEXT("UTerm"), &Z_Registration_Info_UClass_UTerm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTerm), 681888662U) },
+		{ Z_Construct_UClass_UTerm, UTerm::StaticClass, TEXT("UTerm"), &Z_Registration_Info_UClass_UTerm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTerm), 194238021U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_600608427(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_1922414437(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
