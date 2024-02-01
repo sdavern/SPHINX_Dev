@@ -10,7 +10,7 @@
 class UTerm;
 
 
-UCLASS()
+UCLASS(Blueprintable)
 class SPHINX_DEV_API UItem : public UObject
 {
 	GENERATED_BODY()

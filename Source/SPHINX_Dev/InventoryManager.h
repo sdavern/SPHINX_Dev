@@ -19,8 +19,6 @@ class SPHINX_DEV_API UInventoryManager : public UGameInstance
 
 public:
 
-	static UInventoryManager* Instance;
-
 	static UInventoryManager* GetInstance();
 
 	UFUNCTION(BlueprintCallable)
@@ -51,7 +49,7 @@ public:
 
 private:
 
-	
+	static UInventoryManager* Instance;
 	
 	UInventoryManager();
 

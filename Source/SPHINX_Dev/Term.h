@@ -11,7 +11,7 @@ class UItem;
 class AGameItem;
 
 
-UCLASS()
+UCLASS(Blueprintable)
 class SPHINX_DEV_API UTerm : public UObject
 {
 	GENERATED_BODY()

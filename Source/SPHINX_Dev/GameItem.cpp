@@ -420,8 +420,26 @@ void AGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 		{
 			if (Output->DbItem != nullptr)
 			{
-				return;
-
+				AGameItem* ItemGO;
+				FActorSpawnParameters SpawnParams;
+    			SpawnParams.Owner = this;
+    			SpawnParams.Instigator = GetInstigator();
+				
+				if (ObjectsToDestroy.Num() > SpawnIndex)
+				{
+					FTransform Transform = ObjectsToDestroy[SpawnIndex]->GetTransform();
+					Transform.SetLocation(Transform.GetLocation() + FVector (0, 0, 100));
+					ItemGO = GetWorld()->SpawnActor<AGameItem>(Output->DbItem->ItemPrefab, Transform, SpawnParams);
+        			SpawnIndex++;
+				}
+				else
+				{
+					//Logic for moving location of item relative to player
+					//FVector Position = APlayer::GetInstance()->GetTransform->GetLocation() + FVector (0, 20, 0);
+					//Position.Z = 0;
+					//ItemGO = GetWorld()->SpawnActor<AActor>(Output->DbItem->ItemPrefab, Position, FQuat::Identity);
+				}
+				ItemGO->Setup(Output->DbItem->Name, Output->DbItem);
 			}
 		}
 	}
@@ -465,12 +483,14 @@ bool AGameItem::RuleFulfilled(URule* Rule)
 					return false;
 				}
 			}
-			TArray<AGameItem*> Inventory = UInventoryManager::GetInstance()->Inventory;
+			UInventoryManager* InventoryManager = UInventoryManager::GetInstance();
+			TArray<AGameItem*> Inventory = InventoryManager->GetInventory();
+
 			if (Inventory.Num() == 0 && !Rule->HasPlayerInput())
 			{
 				return false;
 			}
-			for (; i < Rule->Inputs.Num(; i++))
+			for (; i < Rule->Inputs.Num(); i++)
 			{
 				bool Found = false;
 				if (Rule->Inputs[i]->Name == TEXT("Player"))

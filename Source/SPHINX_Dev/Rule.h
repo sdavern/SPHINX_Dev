@@ -10,7 +10,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class SPHINX_DEV_API URule : public UObject
 {
 	GENERATED_BODY()

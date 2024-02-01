@@ -15,7 +15,7 @@
 
 class UInventoryManager;
 
-UCLASS()
+UCLASS(Blueprintable)
 class SPHINX_DEV_API AGameItem : public AActor
 {
 	GENERATED_BODY()
@@ -51,7 +51,7 @@ public:
 
 	void ExecuteRule(URule* Rule);
 
-	static void ExecuteRule(URule* Rule, bool Full, AActor* GameI);
+	void ExecuteRule(URule* Rule, bool Full, AActor* GameI);
 
 	bool HasProperty(UItemProperty* PropertyToCheck);
 
