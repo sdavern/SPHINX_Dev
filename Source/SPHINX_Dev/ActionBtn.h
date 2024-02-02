@@ -9,7 +9,7 @@
 #include "Rule.h"
 #include "ActionBtn.generated.h"
 
-class AGameItem;
+class UGameItem;
 
 
 UCLASS()
@@ -25,13 +25,13 @@ public:
     UTextBlock* ActionText;
 
     UFUNCTION(BlueprintCallable)
-    void InitializeButton(AGameItem* GameItem, URule* Rule);
+    void InitializeButton(UGameItem* GameItem, URule* Rule);
 
 	FString AddSpacesBeforeCaps(const FString& InString);
 
 private:
     UPROPERTY()
-    AGameItem* LinkedGameItem;
+    UGameItem* LinkedGameItem;
 
     UPROPERTY()
     URule* LinkedRule;

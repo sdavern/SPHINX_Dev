@@ -10,7 +10,7 @@
 #include "PuzzleManager.generated.h"
 
 
-class AGameItem;
+class UGameItem;
 
 UCLASS()
 class SPHINX_DEV_API UPuzzleManager : public UGameInstance
@@ -21,7 +21,7 @@ public:
 
 	UPuzzleManager();
 
-	AGameItem* Player;
+	UGameItem* Player;
 
 	static UPuzzleManager* GetInstance();
 
@@ -29,9 +29,9 @@ public:
 
 	void UpdatePlayerProperties(UItemProperty* Property);
 
-	TArray<URule*> RulesFor(AGameItem* GameItem, UArea* Area);
+	TArray<URule*> RulesFor(UGameItem* GameItem, UArea* Area);
 
-	AGameItem* GetPlayer();
+	UGameItem* GetPlayer();
 
 	UArea* GetCurrentArea();
 

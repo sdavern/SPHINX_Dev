@@ -21,23 +21,23 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_21_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_21_INCLASS_NO_PURE_DECLS \
 private: \
-	static void StaticRegisterNativesAGameItem(); \
-	friend struct Z_Construct_UClass_AGameItem_Statics; \
+	static void StaticRegisterNativesUGameItem(); \
+	friend struct Z_Construct_UClass_UGameItem_Statics; \
 public: \
-	DECLARE_CLASS(AGameItem, AActor, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/SPHINX_Dev"), NO_API) \
-	DECLARE_SERIALIZER(AGameItem)
+	DECLARE_CLASS(UGameItem, UActorComponent, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/SPHINX_Dev"), NO_API) \
+	DECLARE_SERIALIZER(UGameItem)
 
 
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_21_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
-	NO_API AGameItem(AGameItem&&); \
-	NO_API AGameItem(const AGameItem&); \
+	NO_API UGameItem(UGameItem&&); \
+	NO_API UGameItem(const UGameItem&); \
 public: \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, AGameItem); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AGameItem); \
-	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AGameItem) \
-	NO_API virtual ~AGameItem();
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UGameItem); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UGameItem); \
+	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UGameItem) \
+	NO_API virtual ~UGameItem();
 
 
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_18_PROLOG
@@ -55,7 +55,7 @@ private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> SPHINX_DEV_API UClass* StaticClass<class AGameItem>();
+template<> SPHINX_DEV_API UClass* StaticClass<class UGameItem>();
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h

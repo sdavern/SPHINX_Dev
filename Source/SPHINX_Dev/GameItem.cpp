@@ -8,15 +8,15 @@
 
 
 // Sets default values
-AGameItem::AGameItem()
+UGameItem::UGameItem()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	
 
 }
 
 // Called when the game starts or when spawned
-void AGameItem::BeginPlay()
+void UGameItem::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -31,14 +31,7 @@ void AGameItem::BeginPlay()
 	
 }
 
-// Called every frame
-void AGameItem::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
-void AGameItem::Setup(FString NewName, UItem* NewDbItem)
+void UGameItem::Setup(FString NewName, UItem* NewDbItem)
 {
 	this->Name = NewName;
 	this->DbItem = NewDbItem;
@@ -46,7 +39,7 @@ void AGameItem::Setup(FString NewName, UItem* NewDbItem)
 }
 
 
-void AGameItem::OnGameItemMouseOver(UTextBlock* UITextRef)
+void UGameItem::OnGameItemMouseOver(UTextBlock* UITextRef)
 {
     if (Name != "Player" && DbItem != nullptr && UITextRef != nullptr)
     {
@@ -54,14 +47,14 @@ void AGameItem::OnGameItemMouseOver(UTextBlock* UITextRef)
     }
 }
 
-AGameItem* AGameItem::Copy(AGameItem* Original, UObject* Outer)
+UGameItem* UGameItem::Copy(UGameItem* Original, UObject* Outer)
 {
     if (Original == nullptr || Outer == nullptr)
     {
         return nullptr;
     }
 
-    AGameItem* CopiedItem = NewObject<AGameItem>(Outer, Original->GetClass());
+    UGameItem* CopiedItem = NewObject<UGameItem>(Outer, Original->GetClass());
     if (CopiedItem)
     {
         CopiedItem->Setup(Original->Name, Original->DbItem);
@@ -70,21 +63,22 @@ AGameItem* AGameItem::Copy(AGameItem* Original, UObject* Outer)
     return CopiedItem;
 }
 
-void AGameItem::Spawn(AGameItem* Item)
+void UGameItem::Spawn(UGameItem* Item)
 {
+	
 	if (Item != nullptr)
 	{
+		AActor* OwnerActor = Item->GetOwner();
 		FActorSpawnParameters SpawnParams;
-		SpawnParams.Owner = this;
-  	  	SpawnParams.Instigator = GetInstigator();
-
-		AActor* SpawnedActor = GetWorld()->SpawnActor<AActor>(Item->DbItem->ItemPrefab, GetActorLocation(), GetActorRotation(), SpawnParams);
+		SpawnParams.Owner = OwnerActor;
+  	  	SpawnParams.Instigator = OwnerActor->GetInstigator();
+		AActor* SpawnedActor = GetWorld()->SpawnActor<AActor>(OwnerActor->GetClass(), OwnerActor->GetActorLocation(), OwnerActor->GetActorRotation(), SpawnParams);
 
 	}
 	
 }
 
-void AGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, bool Inventory)
+void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, bool Inventory)
 {
 	if (!Inventory)
 	{
@@ -123,7 +117,7 @@ void AGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTex
 
 }
 
-void AGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader)
+void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader)
 {
 	ActionHeader->SetText(FText::FromString(this->DbItem->Description));
 	FText CurrentText = ActionHeader->GetText();
@@ -283,7 +277,7 @@ void AGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTex
 
 }
 
-void AGameItem::ExecuteRule(URule* Rule)
+void UGameItem::ExecuteRule(URule* Rule)
 {
 	UInventoryManager* Inventory = UInventoryManager::GetInstance();
 	
@@ -314,18 +308,18 @@ void AGameItem::ExecuteRule(URule* Rule)
 
 	if (Rule->Action == TEXT("TakeOut"))
 	{
-		this->ContainedValue->SetActorHiddenInGame(false);
-		this->ContainedValue->SetActorEnableCollision(true);
-		this->ContainedValue->SetActorTickEnabled(true);
+		this->ContainedValue->GetOwner()->SetActorHiddenInGame(false);
+		this->ContainedValue->GetOwner()->SetActorEnableCollision(true);
+		this->ContainedValue->GetOwner()->SetActorTickEnabled(true);
 		this->ContainedValue = nullptr;
 		this->GetProperty("Contains")->RemoveProperty();
 	}
 
-	ExecuteRule(Rule, true, this);
+	ExecuteRule(Rule, true, this->GetOwner());
 	
 }
 
-void AGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
+void UGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 {
 	TArray<AActor*> ObjectsToDestroy;
 	UInventoryManager* Inventory = UInventoryManager::GetInstance();
@@ -349,16 +343,16 @@ void AGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 					{
 						Output->GameItem->ContainedValue = Inventory->GetSelectedItem();
 						Inventory->RemoveSelectedItemFromInventory();
-						Output->GameItem->ContainedValue->SetActorHiddenInGame(true);
-						Output->GameItem->ContainedValue->SetActorEnableCollision(false);
-						Output->GameItem->ContainedValue->SetActorTickEnabled(false);
+						Output->GameItem->ContainedValue->GetOwner()->SetActorHiddenInGame(true);
+						Output->GameItem->ContainedValue->GetOwner()->SetActorEnableCollision(false);
+						Output->GameItem->ContainedValue->GetOwner()->SetActorTickEnabled(false);
 					}
 					else
 					{
 						Output->GameItem->ContainedValue = Rule->Inputs[i]->GameItem;
-						Output->GameItem->ContainedValue->SetActorHiddenInGame(true);
-						Output->GameItem->ContainedValue->SetActorEnableCollision(false);
-						Output->GameItem->ContainedValue->SetActorTickEnabled(false);
+						Output->GameItem->ContainedValue->GetOwner()->SetActorHiddenInGame(true);
+						Output->GameItem->ContainedValue->GetOwner()->SetActorEnableCollision(false);
+						Output->GameItem->ContainedValue->GetOwner()->SetActorTickEnabled(false);
 					}
 					Found = true;
 					break;
@@ -378,7 +372,7 @@ void AGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 			{
 				if (!Inventory->DeleteItemFromInventory(Rule->Inputs[i]->GameItem))
 				{
-					ObjectsToDestroy.Add(Rule->Inputs[i]->GameItem);
+					ObjectsToDestroy.Add(Rule->Inputs[i]->GameItem->GetOwner());
 				}
 			}
 		}
@@ -420,16 +414,16 @@ void AGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 		{
 			if (Output->DbItem != nullptr)
 			{
-				AGameItem* ItemGO;
+				AActor* ItemGO;
 				FActorSpawnParameters SpawnParams;
-    			SpawnParams.Owner = this;
-    			SpawnParams.Instigator = GetInstigator();
+    			SpawnParams.Owner = ItemGO;
+    			SpawnParams.Instigator = ItemGO->GetInstigator();
 				
 				if (ObjectsToDestroy.Num() > SpawnIndex)
 				{
 					FTransform Transform = ObjectsToDestroy[SpawnIndex]->GetTransform();
 					Transform.SetLocation(Transform.GetLocation() + FVector (0, 0, 100));
-					ItemGO = GetWorld()->SpawnActor<AGameItem>(Output->DbItem->ItemPrefab, Transform, SpawnParams);
+					ItemGO = GetWorld()->SpawnActor<AActor>(Output->DbItem->ItemPrefab, Transform, SpawnParams);
         			SpawnIndex++;
 				}
 				else
@@ -439,15 +433,15 @@ void AGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 					//Position.Z = 0;
 					//ItemGO = GetWorld()->SpawnActor<AActor>(Output->DbItem->ItemPrefab, Position, FQuat::Identity);
 				}
-				ItemGO->Setup(Output->DbItem->Name, Output->DbItem);
+				//ItemGO->GameItemComp->Setup(Output->DbItem->Name, Output->DbItem);
 			}
 		}
 	}
 
-	return;
+	
 }
 
-bool AGameItem::RuleFulfilled(URule* Rule)
+bool UGameItem::RuleFulfilled(URule* Rule)
 {
 	if (Rule != nullptr)
 	{
@@ -462,7 +456,7 @@ bool AGameItem::RuleFulfilled(URule* Rule)
 			int32 i = 1;
 			if (!Rule->bSelectedInput)
 			{
-				AGameItem* SelectedItem = UInventoryManager::GetInstance()->GetSelectedItem();
+				UGameItem* SelectedItem = UInventoryManager::GetInstance()->GetSelectedItem();
 				if (SelectedItem != nullptr)
 				{
 					if (SelectedItem->Name == Rule->Inputs[1]->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[1]->Name))
@@ -484,7 +478,7 @@ bool AGameItem::RuleFulfilled(URule* Rule)
 				}
 			}
 			UInventoryManager* InventoryManager = UInventoryManager::GetInstance();
-			TArray<AGameItem*> Inventory = InventoryManager->GetInventory();
+			TArray<UGameItem*> Inventory = InventoryManager->GetInventory();
 
 			if (Inventory.Num() == 0 && !Rule->HasPlayerInput())
 			{
@@ -501,7 +495,7 @@ bool AGameItem::RuleFulfilled(URule* Rule)
 						Rule->Inputs[i]->GameItem = UPuzzleManager::GetInstance()->GetPlayer();
 					}
 				}
-				for (AGameItem* InventoryItem : Inventory)
+				for (UGameItem* InventoryItem : Inventory)
 				{
 					if (InventoryItem->Name == Rule->Inputs[i]->Name || InventoryItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[i]->Name))
 					{
@@ -523,7 +517,7 @@ bool AGameItem::RuleFulfilled(URule* Rule)
 	return false;
 }
 
-bool AGameItem::FulfillsProperties(UTerm* Input)
+bool UGameItem::FulfillsProperties(UTerm* Input)
 {
 	for (UItemProperty* Property : Input->Properties)
 	{
@@ -535,7 +529,7 @@ bool AGameItem::FulfillsProperties(UTerm* Input)
 	return true;
 }
 
-bool AGameItem::HasProperty(UItemProperty* PropertyToCheck)
+bool UGameItem::HasProperty(UItemProperty* PropertyToCheck)
 {
 	for (UItemProperty* Property : Properties)
 	{
@@ -547,7 +541,7 @@ bool AGameItem::HasProperty(UItemProperty* PropertyToCheck)
 	return false;
 }
 
-UItemProperty* AGameItem::GetProperty(FString PropertyName)
+UItemProperty* UGameItem::GetProperty(FString PropertyName)
 {
 	for (UItemProperty* Property : Properties)
 	{
@@ -559,7 +553,7 @@ UItemProperty* AGameItem::GetProperty(FString PropertyName)
 	return nullptr;
 }
 
-bool AGameItem::IsDestrutible()
+bool UGameItem::IsDestrutible()
 {
 	UItemProperty* Destructible = this->GetProperty(TEXT("Indestrucible"));
 	if (Destructible != nullptr)
@@ -572,9 +566,9 @@ bool AGameItem::IsDestrutible()
 	return true;
 }
 
-//void AGameItem::Inspect() //needs Player.h
+//void UGameItem::Inspect() //needs Player.h
 
-FString AGameItem::ToString()
+FString UGameItem::ToString()
 {
 	return Name;
 }

@@ -9,7 +9,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class AGameItem;
+class UGameItem;
 #ifdef SPHINX_DEV_InventoryManager_generated_h
 #error "InventoryManager.generated.h already included, missing '#pragma once' in InventoryManager.h"
 #endif

@@ -26,7 +26,7 @@ UItem* UPuzzleManager::GetObject(FString ItemName)
     return nullptr;
 }
 
-TArray<URule*> UPuzzleManager::RulesFor(AGameItem* GameItem, UArea* Area)
+TArray<URule*> UPuzzleManager::RulesFor(UGameItem* GameItem, UArea* Area)
 {
     TArray<URule*> Rules;
     return Rules;
@@ -38,7 +38,7 @@ void  UPuzzleManager::UpdatePlayerProperties(UItemProperty* Property)
 }
 
 
-AGameItem* UPuzzleManager::GetPlayer()
+UGameItem* UPuzzleManager::GetPlayer()
 {
     return Player;
 }

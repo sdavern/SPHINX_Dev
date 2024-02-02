@@ -20,7 +20,7 @@ FString UActionBtn::AddSpacesBeforeCaps(const FString& InString)
 }
 
 
-void UActionBtn::InitializeButton(AGameItem* GameItem, URule* Rule)
+void UActionBtn::InitializeButton(UGameItem* GameItem, URule* Rule)
 {
     LinkedGameItem = GameItem;
     LinkedRule = Rule;

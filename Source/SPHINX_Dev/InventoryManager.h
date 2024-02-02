@@ -22,28 +22,28 @@ public:
 	static UInventoryManager* GetInstance();
 
 	UFUNCTION(BlueprintCallable)
-	void AddItemToInventory(AGameItem* Item);
+	void AddItemToInventory(UGameItem* Item);
 
 	UFUNCTION(BlueprintCallable)
-	void RemoveItemFromInventory(AGameItem* Item);
+	void RemoveItemFromInventory(UGameItem* Item);
 
 	UFUNCTION(BlueprintCallable)
 	void RemoveSelectedItemFromInventory();
 
 	UFUNCTION(BlueprintCallable)
-	bool DeleteItemFromInventory(AGameItem* Item);
+	bool DeleteItemFromInventory(UGameItem* Item);
 
 	UFUNCTION(BlueprintCallable)
-	void SelectItemFromInventory(AGameItem* Item);
+	void SelectItemFromInventory(UGameItem* Item);
 
 	UFUNCTION(BlueprintCallable)
-	void DeselectItemFromInventory(AGameItem* Item);
+	void DeselectItemFromInventory(UGameItem* Item);
 
 	UFUNCTION(BlueprintCallable)
-	AGameItem* GetSelectedItem();
+	UGameItem* GetSelectedItem();
 
 	UFUNCTION(BlueprintCallable)
-	TArray<AGameItem*> GetInventory();
+	TArray<UGameItem*> GetInventory();
 	
 
 
@@ -54,7 +54,7 @@ private:
 	UInventoryManager();
 
 	UPROPERTY(EditAnywhere)
-	TArray<AGameItem*> Inventory;
+	TArray<UGameItem*> Inventory;
 
 	UPROPERTY(EditAnywhere)
 	UItem* DbItem;
@@ -63,7 +63,7 @@ private:
 	TArray<UItemProperty*> Properties;
 	
 	UPROPERTY(EditAnywhere)
-	AGameItem* SelectedItem;
+	UGameItem* SelectedItem;
 
 	
 	

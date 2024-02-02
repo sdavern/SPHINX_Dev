@@ -10,7 +10,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 // Cross Module References
 	ENGINE_API UClass* Z_Construct_UClass_UGameInstance();
-	SPHINX_DEV_API UClass* Z_Construct_UClass_AGameItem_NoRegister();
+	SPHINX_DEV_API UClass* Z_Construct_UClass_UGameItem_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryManager();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryManager_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UItem_NoRegister();
@@ -21,19 +21,19 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	{
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(TArray<AGameItem*>*)Z_Param__Result=P_THIS->GetInventory();
+		*(TArray<UGameItem*>*)Z_Param__Result=P_THIS->GetInventory();
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UInventoryManager::execGetSelectedItem)
 	{
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		*(AGameItem**)Z_Param__Result=P_THIS->GetSelectedItem();
+		*(UGameItem**)Z_Param__Result=P_THIS->GetSelectedItem();
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(UInventoryManager::execDeselectItemFromInventory)
 	{
-		P_GET_OBJECT(AGameItem,Z_Param_Item);
+		P_GET_OBJECT(UGameItem,Z_Param_Item);
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->DeselectItemFromInventory(Z_Param_Item);
@@ -41,7 +41,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	}
 	DEFINE_FUNCTION(UInventoryManager::execSelectItemFromInventory)
 	{
-		P_GET_OBJECT(AGameItem,Z_Param_Item);
+		P_GET_OBJECT(UGameItem,Z_Param_Item);
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->SelectItemFromInventory(Z_Param_Item);
@@ -49,7 +49,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	}
 	DEFINE_FUNCTION(UInventoryManager::execDeleteItemFromInventory)
 	{
-		P_GET_OBJECT(AGameItem,Z_Param_Item);
+		P_GET_OBJECT(UGameItem,Z_Param_Item);
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		*(bool*)Z_Param__Result=P_THIS->DeleteItemFromInventory(Z_Param_Item);
@@ -64,7 +64,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	}
 	DEFINE_FUNCTION(UInventoryManager::execRemoveItemFromInventory)
 	{
-		P_GET_OBJECT(AGameItem,Z_Param_Item);
+		P_GET_OBJECT(UGameItem,Z_Param_Item);
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->RemoveItemFromInventory(Z_Param_Item);
@@ -72,7 +72,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	}
 	DEFINE_FUNCTION(UInventoryManager::execAddItemToInventory)
 	{
-		P_GET_OBJECT(AGameItem,Z_Param_Item);
+		P_GET_OBJECT(UGameItem,Z_Param_Item);
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		P_THIS->AddItemToInventory(Z_Param_Item);
@@ -97,8 +97,11 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	{
 		struct InventoryManager_eventAddItemToInventory_Parms
 		{
-			AGameItem* Item;
+			UGameItem* Item;
 		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Item_MetaData[];
+#endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_Item;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
@@ -106,7 +109,12 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_AddItemToInventory_Statics::NewProp_Item = { "Item", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventAddItemToInventory_Parms, Item), Z_Construct_UClass_AGameItem_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryManager_AddItemToInventory_Statics::NewProp_Item_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_AddItemToInventory_Statics::NewProp_Item = { "Item", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventAddItemToInventory_Parms, Item), Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryManager_AddItemToInventory_Statics::NewProp_Item_MetaData), Z_Construct_UFunction_UInventoryManager_AddItemToInventory_Statics::NewProp_Item_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInventoryManager_AddItemToInventory_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryManager_AddItemToInventory_Statics::NewProp_Item,
 	};
@@ -131,9 +139,12 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	{
 		struct InventoryManager_eventDeleteItemFromInventory_Parms
 		{
-			AGameItem* Item;
+			UGameItem* Item;
 			bool ReturnValue;
 		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Item_MetaData[];
+#endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_Item;
 		static void NewProp_ReturnValue_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
@@ -143,7 +154,12 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_DeleteItemFromInventory_Statics::NewProp_Item = { "Item", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventDeleteItemFromInventory_Parms, Item), Z_Construct_UClass_AGameItem_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryManager_DeleteItemFromInventory_Statics::NewProp_Item_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_DeleteItemFromInventory_Statics::NewProp_Item = { "Item", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventDeleteItemFromInventory_Parms, Item), Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryManager_DeleteItemFromInventory_Statics::NewProp_Item_MetaData), Z_Construct_UFunction_UInventoryManager_DeleteItemFromInventory_Statics::NewProp_Item_MetaData) };
 	void Z_Construct_UFunction_UInventoryManager_DeleteItemFromInventory_Statics::NewProp_ReturnValue_SetBit(void* Obj)
 	{
 		((InventoryManager_eventDeleteItemFromInventory_Parms*)Obj)->ReturnValue = 1;
@@ -174,8 +190,11 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	{
 		struct InventoryManager_eventDeselectItemFromInventory_Parms
 		{
-			AGameItem* Item;
+			UGameItem* Item;
 		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Item_MetaData[];
+#endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_Item;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
@@ -183,7 +202,12 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_DeselectItemFromInventory_Statics::NewProp_Item = { "Item", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventDeselectItemFromInventory_Parms, Item), Z_Construct_UClass_AGameItem_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryManager_DeselectItemFromInventory_Statics::NewProp_Item_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_DeselectItemFromInventory_Statics::NewProp_Item = { "Item", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventDeselectItemFromInventory_Parms, Item), Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryManager_DeselectItemFromInventory_Statics::NewProp_Item_MetaData), Z_Construct_UFunction_UInventoryManager_DeselectItemFromInventory_Statics::NewProp_Item_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInventoryManager_DeselectItemFromInventory_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryManager_DeselectItemFromInventory_Statics::NewProp_Item,
 	};
@@ -208,9 +232,12 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	{
 		struct InventoryManager_eventGetInventory_Parms
 		{
-			TArray<AGameItem*> ReturnValue;
+			TArray<UGameItem*> ReturnValue;
 		};
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ReturnValue_MetaData[];
+#endif
 		static const UECodeGen_Private::FArrayPropertyParams NewProp_ReturnValue;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
@@ -218,8 +245,13 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_GetInventory_Statics::NewProp_ReturnValue_Inner = { "ReturnValue", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_AGameItem_NoRegister, METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UInventoryManager_GetInventory_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventGetInventory_Parms, ReturnValue), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_GetInventory_Statics::NewProp_ReturnValue_Inner = { "ReturnValue", nullptr, (EPropertyFlags)0x0000000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryManager_GetInventory_Statics::NewProp_ReturnValue_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_UInventoryManager_GetInventory_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010008000000588, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventGetInventory_Parms, ReturnValue), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryManager_GetInventory_Statics::NewProp_ReturnValue_MetaData), Z_Construct_UFunction_UInventoryManager_GetInventory_Statics::NewProp_ReturnValue_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInventoryManager_GetInventory_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryManager_GetInventory_Statics::NewProp_ReturnValue_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryManager_GetInventory_Statics::NewProp_ReturnValue,
@@ -245,8 +277,11 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	{
 		struct InventoryManager_eventGetSelectedItem_Parms
 		{
-			AGameItem* ReturnValue;
+			UGameItem* ReturnValue;
 		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ReturnValue_MetaData[];
+#endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
@@ -254,7 +289,12 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_GetSelectedItem_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventGetSelectedItem_Parms, ReturnValue), Z_Construct_UClass_AGameItem_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryManager_GetSelectedItem_Statics::NewProp_ReturnValue_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_GetSelectedItem_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000080588, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventGetSelectedItem_Parms, ReturnValue), Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryManager_GetSelectedItem_Statics::NewProp_ReturnValue_MetaData), Z_Construct_UFunction_UInventoryManager_GetSelectedItem_Statics::NewProp_ReturnValue_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInventoryManager_GetSelectedItem_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryManager_GetSelectedItem_Statics::NewProp_ReturnValue,
 	};
@@ -279,8 +319,11 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	{
 		struct InventoryManager_eventRemoveItemFromInventory_Parms
 		{
-			AGameItem* Item;
+			UGameItem* Item;
 		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Item_MetaData[];
+#endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_Item;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
@@ -288,7 +331,12 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_RemoveItemFromInventory_Statics::NewProp_Item = { "Item", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventRemoveItemFromInventory_Parms, Item), Z_Construct_UClass_AGameItem_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryManager_RemoveItemFromInventory_Statics::NewProp_Item_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_RemoveItemFromInventory_Statics::NewProp_Item = { "Item", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventRemoveItemFromInventory_Parms, Item), Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryManager_RemoveItemFromInventory_Statics::NewProp_Item_MetaData), Z_Construct_UFunction_UInventoryManager_RemoveItemFromInventory_Statics::NewProp_Item_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInventoryManager_RemoveItemFromInventory_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryManager_RemoveItemFromInventory_Statics::NewProp_Item,
 	};
@@ -335,8 +383,11 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	{
 		struct InventoryManager_eventSelectItemFromInventory_Parms
 		{
-			AGameItem* Item;
+			UGameItem* Item;
 		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Item_MetaData[];
+#endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_Item;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
@@ -344,7 +395,12 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 #endif
 		static const UECodeGen_Private::FFunctionParams FuncParams;
 	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_SelectItemFromInventory_Statics::NewProp_Item = { "Item", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventSelectItemFromInventory_Parms, Item), Z_Construct_UClass_AGameItem_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryManager_SelectItemFromInventory_Statics::NewProp_Item_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UInventoryManager_SelectItemFromInventory_Statics::NewProp_Item = { "Item", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryManager_eventSelectItemFromInventory_Parms, Item), Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryManager_SelectItemFromInventory_Statics::NewProp_Item_MetaData), Z_Construct_UFunction_UInventoryManager_SelectItemFromInventory_Statics::NewProp_Item_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInventoryManager_SelectItemFromInventory_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryManager_SelectItemFromInventory_Statics::NewProp_Item,
 	};
@@ -405,14 +461,14 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryManager_Statics::DependentSingletons) < 16);
 	const FClassFunctionLinkInfo Z_Construct_UClass_UInventoryManager_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UInventoryManager_AddItemToInventory, "AddItemToInventory" }, // 2328353000
-		{ &Z_Construct_UFunction_UInventoryManager_DeleteItemFromInventory, "DeleteItemFromInventory" }, // 3648276398
-		{ &Z_Construct_UFunction_UInventoryManager_DeselectItemFromInventory, "DeselectItemFromInventory" }, // 4148610309
-		{ &Z_Construct_UFunction_UInventoryManager_GetInventory, "GetInventory" }, // 1831311630
-		{ &Z_Construct_UFunction_UInventoryManager_GetSelectedItem, "GetSelectedItem" }, // 2976622852
-		{ &Z_Construct_UFunction_UInventoryManager_RemoveItemFromInventory, "RemoveItemFromInventory" }, // 2647962631
+		{ &Z_Construct_UFunction_UInventoryManager_AddItemToInventory, "AddItemToInventory" }, // 4232489484
+		{ &Z_Construct_UFunction_UInventoryManager_DeleteItemFromInventory, "DeleteItemFromInventory" }, // 3160681845
+		{ &Z_Construct_UFunction_UInventoryManager_DeselectItemFromInventory, "DeselectItemFromInventory" }, // 2182625089
+		{ &Z_Construct_UFunction_UInventoryManager_GetInventory, "GetInventory" }, // 1588497639
+		{ &Z_Construct_UFunction_UInventoryManager_GetSelectedItem, "GetSelectedItem" }, // 2631420137
+		{ &Z_Construct_UFunction_UInventoryManager_RemoveItemFromInventory, "RemoveItemFromInventory" }, // 1189631107
 		{ &Z_Construct_UFunction_UInventoryManager_RemoveSelectedItemFromInventory, "RemoveSelectedItemFromInventory" }, // 2264561836
-		{ &Z_Construct_UFunction_UInventoryManager_SelectItemFromInventory, "SelectItemFromInventory" }, // 1929597625
+		{ &Z_Construct_UFunction_UInventoryManager_SelectItemFromInventory, "SelectItemFromInventory" }, // 197502691
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryManager_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
@@ -424,14 +480,15 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 		{ "ModuleRelativePath", "InventoryManager.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryManager_Statics::NewProp_Inventory_Inner = { "Inventory", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_AGameItem_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryManager_Statics::NewProp_Inventory_Inner = { "Inventory", nullptr, (EPropertyFlags)0x0000000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(0, nullptr) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryManager_Statics::NewProp_Inventory_MetaData[] = {
 		{ "Category", "InventoryManager" },
+		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "InventoryManager.h" },
 	};
 #endif
-	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UInventoryManager_Statics::NewProp_Inventory = { "Inventory", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryManager, Inventory), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryManager_Statics::NewProp_Inventory_MetaData), Z_Construct_UClass_UInventoryManager_Statics::NewProp_Inventory_MetaData) };
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UInventoryManager_Statics::NewProp_Inventory = { "Inventory", nullptr, (EPropertyFlags)0x0040008000000009, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryManager, Inventory), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryManager_Statics::NewProp_Inventory_MetaData), Z_Construct_UClass_UInventoryManager_Statics::NewProp_Inventory_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryManager_Statics::NewProp_DbItem_MetaData[] = {
 		{ "Category", "InventoryManager" },
@@ -450,10 +507,11 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryManager_Statics::NewProp_SelectedItem_MetaData[] = {
 		{ "Category", "InventoryManager" },
+		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "InventoryManager.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryManager_Statics::NewProp_SelectedItem = { "SelectedItem", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryManager, SelectedItem), Z_Construct_UClass_AGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryManager_Statics::NewProp_SelectedItem_MetaData), Z_Construct_UClass_UInventoryManager_Statics::NewProp_SelectedItem_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryManager_Statics::NewProp_SelectedItem = { "SelectedItem", nullptr, (EPropertyFlags)0x0040000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryManager, SelectedItem), Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryManager_Statics::NewProp_SelectedItem_MetaData), Z_Construct_UClass_UInventoryManager_Statics::NewProp_SelectedItem_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UInventoryManager_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryManager_Statics::NewProp_Inventory_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryManager_Statics::NewProp_Inventory,
@@ -500,9 +558,9 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UInventoryManager, UInventoryManager::StaticClass, TEXT("UInventoryManager"), &Z_Registration_Info_UClass_UInventoryManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryManager), 2451619939U) },
+		{ Z_Construct_UClass_UInventoryManager, UInventoryManager::StaticClass, TEXT("UInventoryManager"), &Z_Registration_Info_UClass_UInventoryManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryManager), 2300410064U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_3872913632(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_750139290(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -10,7 +10,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeTerm() {}
 // Cross Module References
 	COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
-	SPHINX_DEV_API UClass* Z_Construct_UClass_AGameItem_NoRegister();
+	SPHINX_DEV_API UClass* Z_Construct_UClass_UGameItem_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UItem_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UItemProperty_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UTerm();
@@ -98,10 +98,11 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTerm_Statics::NewProp_GameItem_MetaData[] = {
 		{ "Category", "Term" },
+		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Term.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTerm_Statics::NewProp_GameItem = { "GameItem", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTerm, GameItem), Z_Construct_UClass_AGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UTerm_Statics::NewProp_GameItem_MetaData), Z_Construct_UClass_UTerm_Statics::NewProp_GameItem_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UTerm_Statics::NewProp_GameItem = { "GameItem", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTerm, GameItem), Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UTerm_Statics::NewProp_GameItem_MetaData), Z_Construct_UClass_UTerm_Statics::NewProp_GameItem_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTerm_Statics::NewProp_Description_MetaData[] = {
 		{ "Category", "Term" },
@@ -140,7 +141,7 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 		0,
 		UE_ARRAY_COUNT(Z_Construct_UClass_UTerm_Statics::PropPointers),
 		0,
-		0x001000A0u,
+		0x009000A0u,
 		METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UTerm_Statics::Class_MetaDataParams), Z_Construct_UClass_UTerm_Statics::Class_MetaDataParams)
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UTerm_Statics::PropPointers) < 2048);
@@ -163,9 +164,9 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UTerm, UTerm::StaticClass, TEXT("UTerm"), &Z_Registration_Info_UClass_UTerm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTerm), 705885015U) },
+		{ Z_Construct_UClass_UTerm, UTerm::StaticClass, TEXT("UTerm"), &Z_Registration_Info_UClass_UTerm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTerm), 275192732U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_2090423617(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_2872644874(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

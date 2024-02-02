@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "Components/ActorComponent.h"
 #include "Components/TextBlock.h"
 #include "PuzzleManager.h"
 #include "Item.h"
@@ -15,14 +15,14 @@
 
 class UInventoryManager;
 
-UCLASS(Blueprintable)
-class SPHINX_DEV_API AGameItem : public AActor
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+class SPHINX_DEV_API UGameItem : public UActorComponent
 {
 	GENERATED_BODY()
 	
 public:	
 	
-	AGameItem();
+	UGameItem();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Name;
@@ -34,7 +34,7 @@ public:
 	TArray<UItemProperty*> Properties;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AGameItem* ContainedValue;
+	UGameItem* ContainedValue;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool Selected;
@@ -43,7 +43,7 @@ public:
 
 	void OnGameItemMouseOver(UTextBlock* UITextRef);
 
-	static AGameItem* Copy(AGameItem* Original, UObject* Outer);
+	static UGameItem* Copy(UGameItem* Original, UObject* Outer);
 
 	void OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, bool Inventory);
 
@@ -69,11 +69,9 @@ protected:
 
 private:
 
-	UPROPERTY(EditAnywhere)
 	bool PickedUp = false;
 
-
-	void Spawn(AGameItem* Item);
+	void Spawn(UGameItem* Item);
 
 	bool RuleFulfilled(URule* Rule);
 
@@ -81,6 +79,6 @@ private:
 
 public:	
 	
-	virtual void Tick(float DeltaTime) override;
+	
 
 };

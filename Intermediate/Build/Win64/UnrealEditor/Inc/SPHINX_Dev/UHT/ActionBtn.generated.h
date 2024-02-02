@@ -9,7 +9,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class AGameItem;
+class UGameItem;
 class URule;
 #ifdef SPHINX_DEV_ActionBtn_generated_h
 #error "ActionBtn.generated.h already included, missing '#pragma once' in ActionBtn.h"

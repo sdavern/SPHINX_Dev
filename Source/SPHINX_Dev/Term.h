@@ -8,7 +8,7 @@
 #include "Term.generated.h"
 
 class UItem;
-class AGameItem;
+class UGameItem;
 
 
 UCLASS(Blueprintable)
@@ -29,7 +29,7 @@ public:
     UItem* DbItem;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    AGameItem* GameItem;
+    UGameItem* GameItem;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString Description;

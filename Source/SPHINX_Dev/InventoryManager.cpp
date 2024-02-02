@@ -20,11 +20,14 @@ UInventoryManager::UInventoryManager()
 
 }
 
-void UInventoryManager::AddItemToInventory(AGameItem* Item)
+void UInventoryManager::AddItemToInventory(UGameItem* Item)
 {
-    Item->SetActorHiddenInGame(true);
-    Item->SetActorEnableCollision(false);
-    Item->SetActorTickEnabled(false);
+
+    AActor* OwnerActor = Item->GetOwner();
+
+    OwnerActor->SetActorHiddenInGame(true);
+    OwnerActor->SetActorEnableCollision(false);
+    OwnerActor->SetActorTickEnabled(false);
 
     if (Item->DbItem->GetPropertyWithName("InInventory") == nullptr)
     {
@@ -42,7 +45,7 @@ void UInventoryManager::AddItemToInventory(AGameItem* Item)
     SelectItemFromInventory(Item);
 }
 
-void UInventoryManager::RemoveItemFromInventory(AGameItem* Item)
+void UInventoryManager::RemoveItemFromInventory(UGameItem* Item)
 {
     for (int32 i = Inventory.Num() - 1; i >= 0; i--)
     {
@@ -52,9 +55,10 @@ void UInventoryManager::RemoveItemFromInventory(AGameItem* Item)
             Item->DbItem->GetPropertyWithName("InInventory")->RemoveProperty();
             //Line about transform on item relative to character is here in Unity code
             //Line that triggers a drop noise is here in Unity code
-            Item->SetActorHiddenInGame(false);
-            Item->SetActorEnableCollision(true);
-            Item->SetActorTickEnabled(true);
+            AActor* OwnerActor = Item->GetOwner();
+            OwnerActor->SetActorHiddenInGame(false);
+            OwnerActor->SetActorEnableCollision(true);
+            OwnerActor->SetActorTickEnabled(true);
             if (Item->Selected)
             {
                 Item->Selected = false;
@@ -70,7 +74,7 @@ void UInventoryManager::RemoveSelectedItemFromInventory()
     DeleteItemFromInventory(this->SelectedItem);
 }
 
-bool UInventoryManager::DeleteItemFromInventory(AGameItem* Item)
+bool UInventoryManager::DeleteItemFromInventory(UGameItem* Item)
 {
     for (int32 i = Inventory.Num() - 1; i >= 0; i--)
     {
@@ -89,22 +93,22 @@ bool UInventoryManager::DeleteItemFromInventory(AGameItem* Item)
     return false;
 }
 
-void UInventoryManager::SelectItemFromInventory(AGameItem* Item)
+void UInventoryManager::SelectItemFromInventory(UGameItem* Item)
 {
   //come back to if needed
 }
 
-void UInventoryManager::DeselectItemFromInventory(AGameItem* Item)
+void UInventoryManager::DeselectItemFromInventory(UGameItem* Item)
 {
     //come back to if needed
 }
 
-AGameItem* UInventoryManager::GetSelectedItem()
+UGameItem* UInventoryManager::GetSelectedItem()
 {
     return SelectedItem;    
 }
 
-TArray<AGameItem*> UInventoryManager::GetInventory()
+TArray<UGameItem*> UInventoryManager::GetInventory()
 {
     return Inventory;
 }
