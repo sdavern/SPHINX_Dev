@@ -414,17 +414,26 @@ void UGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 		{
 			if (Output->DbItem != nullptr)
 			{
-				AActor* ItemGO;
-				FActorSpawnParameters SpawnParams;
-    			SpawnParams.Owner = ItemGO;
-    			SpawnParams.Instigator = ItemGO->GetInstigator();
-				
+    			//SpawnParams.Owner = ItemGO;
+    			//SpawnParams.Instigator = ItemGO->GetInstigator();
+				AActor* ItemGO = nullptr;
+				UGameItem* GameItem = nullptr;
+				if (ItemGO)
+				{
+						GameItem = NewObject<UGameItem>(ItemGO, UGameItem::StaticClass());
+						if (GameItem)
+						{
+							GameItem->RegisterComponent();
+						}
+				}
+
 				if (ObjectsToDestroy.Num() > SpawnIndex)
 				{
 					FTransform Transform = ObjectsToDestroy[SpawnIndex]->GetTransform();
 					Transform.SetLocation(Transform.GetLocation() + FVector (0, 0, 100));
+					FActorSpawnParameters SpawnParams;
 					ItemGO = GetWorld()->SpawnActor<AActor>(Output->DbItem->ItemPrefab, Transform, SpawnParams);
-        			SpawnIndex++;
+        			
 				}
 				else
 				{
@@ -433,12 +442,30 @@ void UGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 					//Position.Z = 0;
 					//ItemGO = GetWorld()->SpawnActor<AActor>(Output->DbItem->ItemPrefab, Position, FQuat::Identity);
 				}
-				//ItemGO->GameItemComp->Setup(Output->DbItem->Name, Output->DbItem);
+				GameItem->Setup(Output->DbItem->Name, Output->DbItem);
+
+				if (Rule->bInventory)
+				{
+					if (GameItem->Name == Rule->Outputs[0]->Name || FirstOutput)
+					{
+						Inventory->AddItemToInventory(GameItem);
+					}
+				}
+				
 			}
 		}
+		FirstOutput = false;
 	}
 
-	
+	//PuzzleManager executes rule and closes action menu
+
+	for (AActor* GO : ObjectsToDestroy)
+	{
+		if (GO)
+		{
+			GO->Destroy();
+		}
+	}	
 }
 
 bool UGameItem::RuleFulfilled(URule* Rule)
