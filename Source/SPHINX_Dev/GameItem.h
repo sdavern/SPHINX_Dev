@@ -14,6 +14,7 @@
 #include "GameItem.generated.h"
 
 class UInventoryManager;
+class APlayerPawn;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class SPHINX_DEV_API UGameItem : public UActorComponent

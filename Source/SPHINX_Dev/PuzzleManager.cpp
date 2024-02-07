@@ -3,6 +3,7 @@
 
 #include "PuzzleManager.h"
 #include "GameItem.h"
+#include "PlayerPawn.h"
 
 UPuzzleManager* UPuzzleManager::Instance = nullptr;
 
@@ -38,7 +39,7 @@ void  UPuzzleManager::UpdatePlayerProperties(UItemProperty* Property)
 }
 
 
-UGameItem* UPuzzleManager::GetPlayer()
+APlayerPawn* UPuzzleManager::GetPlayer()
 {
     return Player;
 }

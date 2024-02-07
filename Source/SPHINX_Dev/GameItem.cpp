@@ -4,6 +4,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Components/WidgetComponent.h"
 #include "InventoryManager.h"
+#include "PlayerPawn.h"
 
 
 
@@ -516,10 +517,10 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 				bool Found = false;
 				if (Rule->Inputs[i]->Name == TEXT("Player"))
 				{
-					if (UPuzzleManager::GetInstance()->GetPlayer()->FulfillsProperties(Rule->Inputs[1]))
+					if (UPuzzleManager::GetInstance()->GetPlayer()->GameItem->FulfillsProperties(Rule->Inputs[1]))
 					{
 						Found = true;
-						Rule->Inputs[i]->GameItem = UPuzzleManager::GetInstance()->GetPlayer();
+						Rule->Inputs[i]->GameItem = UPuzzleManager::GetInstance()->GetPlayer()->GameItem;
 					}
 				}
 				for (UGameItem* InventoryItem : Inventory)

@@ -10,6 +10,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodePuzzleManager() {}
 // Cross Module References
 	ENGINE_API UClass* Z_Construct_UClass_UGameInstance();
+	SPHINX_DEV_API UClass* Z_Construct_UClass_APlayerPawn_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UPuzzleManager();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UPuzzleManager_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_SPHINX_Dev();
@@ -28,6 +29,11 @@ void EmptyLinkFunctionForGeneratedCodePuzzleManager() {}
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Player_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Player;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
 	};
@@ -42,6 +48,16 @@ void EmptyLinkFunctionForGeneratedCodePuzzleManager() {}
 		{ "ModuleRelativePath", "PuzzleManager.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UPuzzleManager_Statics::NewProp_Player_MetaData[] = {
+		{ "Category", "PuzzleManager" },
+		{ "ModuleRelativePath", "PuzzleManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPuzzleManager_Statics::NewProp_Player = { "Player", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPuzzleManager, Player), Z_Construct_UClass_APlayerPawn_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzleManager_Statics::NewProp_Player_MetaData), Z_Construct_UClass_UPuzzleManager_Statics::NewProp_Player_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPuzzleManager_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPuzzleManager_Statics::NewProp_Player,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UPuzzleManager_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UPuzzleManager>::IsAbstract,
 	};
@@ -51,15 +67,16 @@ void EmptyLinkFunctionForGeneratedCodePuzzleManager() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_UPuzzleManager_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzleManager_Statics::PropPointers),
 		0,
 		0x009000A8u,
 		METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzleManager_Statics::Class_MetaDataParams), Z_Construct_UClass_UPuzzleManager_Statics::Class_MetaDataParams)
 	};
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzleManager_Statics::PropPointers) < 2048);
 	UClass* Z_Construct_UClass_UPuzzleManager()
 	{
 		if (!Z_Registration_Info_UClass_UPuzzleManager.OuterSingleton)
@@ -79,9 +96,9 @@ void EmptyLinkFunctionForGeneratedCodePuzzleManager() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UPuzzleManager, UPuzzleManager::StaticClass, TEXT("UPuzzleManager"), &Z_Registration_Info_UClass_UPuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPuzzleManager), 263006429U) },
+		{ Z_Construct_UClass_UPuzzleManager, UPuzzleManager::StaticClass, TEXT("UPuzzleManager"), &Z_Registration_Info_UClass_UPuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPuzzleManager), 3042071952U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_3101814993(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_3331489266(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

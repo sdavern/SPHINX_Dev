@@ -11,6 +11,7 @@
 
 
 class UGameItem;
+class APlayerPawn;
 
 UCLASS()
 class SPHINX_DEV_API UPuzzleManager : public UGameInstance
@@ -21,7 +22,8 @@ public:
 
 	UPuzzleManager();
 
-	UGameItem* Player;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	APlayerPawn* Player;
 
 	static UPuzzleManager* GetInstance();
 
@@ -31,7 +33,7 @@ public:
 
 	TArray<URule*> RulesFor(UGameItem* GameItem, UArea* Area);
 
-	UGameItem* GetPlayer();
+	APlayerPawn* GetPlayer();
 
 	UArea* GetCurrentArea();
 
