@@ -14,7 +14,7 @@ class UGameItem;
 class APlayerPawn;
 
 UCLASS()
-class SPHINX_DEV_API UPuzzleManager : public UGameInstance
+class SPHINX_DEV_API APuzzleManager : public AActor
 {
 	GENERATED_BODY()
 
