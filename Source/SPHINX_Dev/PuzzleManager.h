@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Engine/GameInstance.h"
+#include "GameFramework/Actor.h"
 #include "Item.h"
 #include "Rule.h"
 #include "Area.h"
@@ -20,12 +20,12 @@ class SPHINX_DEV_API APuzzleManager : public AActor
 
 public: 
 
-	UPuzzleManager();
+	APuzzleManager();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	APlayerPawn* Player;
 
-	static UPuzzleManager* GetInstance();
+	static APuzzleManager* GetInstance();
 
 	UItem* GetObject(FString ItemName);
 
@@ -39,7 +39,7 @@ public:
 
 private:
 
-	static UPuzzleManager* Instance;
+	static APuzzleManager* Instance;
 	
 	UArea* CurrentArea;
 

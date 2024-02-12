@@ -33,23 +33,23 @@ class UGameItem;
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_18_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_18_INCLASS_NO_PURE_DECLS \
 private: \
-	static void StaticRegisterNativesUInventoryManager(); \
-	friend struct Z_Construct_UClass_UInventoryManager_Statics; \
+	static void StaticRegisterNativesAInventoryManager(); \
+	friend struct Z_Construct_UClass_AInventoryManager_Statics; \
 public: \
-	DECLARE_CLASS(UInventoryManager, UGameInstance, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/SPHINX_Dev"), NO_API) \
-	DECLARE_SERIALIZER(UInventoryManager)
+	DECLARE_CLASS(AInventoryManager, AActor, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/SPHINX_Dev"), NO_API) \
+	DECLARE_SERIALIZER(AInventoryManager)
 
 
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
-	NO_API UInventoryManager(UInventoryManager&&); \
-	NO_API UInventoryManager(const UInventoryManager&); \
+	NO_API AInventoryManager(AInventoryManager&&); \
+	NO_API AInventoryManager(const AInventoryManager&); \
 public: \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UInventoryManager); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UInventoryManager); \
-	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UInventoryManager) \
-	NO_API virtual ~UInventoryManager();
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, AInventoryManager); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AInventoryManager); \
+	DEFINE_DEFAULT_CONSTRUCTOR_CALL(AInventoryManager) \
+	NO_API virtual ~AInventoryManager();
 
 
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_15_PROLOG
@@ -67,7 +67,7 @@ private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> SPHINX_DEV_API UClass* StaticClass<class UInventoryManager>();
+template<> SPHINX_DEV_API UClass* StaticClass<class AInventoryManager>();
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h

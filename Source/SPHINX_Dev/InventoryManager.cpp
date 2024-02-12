@@ -3,24 +3,24 @@
 
 #include "InventoryManager.h"
 
-UInventoryManager* UInventoryManager::Instance = nullptr;
+AInventoryManager* AInventoryManager::Instance = nullptr;
 
-UInventoryManager* UInventoryManager::GetInstance()
+AInventoryManager* AInventoryManager::GetInstance()
 {
     if (!Instance)
     {
-        Instance = NewObject<UInventoryManager>();
+        Instance = NewObject<AInventoryManager>();
     }
 
     return Instance;
 }
 
-UInventoryManager::UInventoryManager()
+AInventoryManager::AInventoryManager()
 {
 
 }
 
-void UInventoryManager::AddItemToInventory(UGameItem* Item)
+void AInventoryManager::AddItemToInventory(UGameItem* Item)
 {
 
     AActor* OwnerActor = Item->GetOwner();
@@ -45,7 +45,7 @@ void UInventoryManager::AddItemToInventory(UGameItem* Item)
     SelectItemFromInventory(Item);
 }
 
-void UInventoryManager::RemoveItemFromInventory(UGameItem* Item)
+void AInventoryManager::RemoveItemFromInventory(UGameItem* Item)
 {
     for (int32 i = Inventory.Num() - 1; i >= 0; i--)
     {
@@ -69,12 +69,12 @@ void UInventoryManager::RemoveItemFromInventory(UGameItem* Item)
 
 }
 
-void UInventoryManager::RemoveSelectedItemFromInventory()
+void AInventoryManager::RemoveSelectedItemFromInventory()
 {
     DeleteItemFromInventory(this->SelectedItem);
 }
 
-bool UInventoryManager::DeleteItemFromInventory(UGameItem* Item)
+bool AInventoryManager::DeleteItemFromInventory(UGameItem* Item)
 {
     for (int32 i = Inventory.Num() - 1; i >= 0; i--)
     {
@@ -93,22 +93,22 @@ bool UInventoryManager::DeleteItemFromInventory(UGameItem* Item)
     return false;
 }
 
-void UInventoryManager::SelectItemFromInventory(UGameItem* Item)
+void AInventoryManager::SelectItemFromInventory(UGameItem* Item)
 {
   //come back to if needed
 }
 
-void UInventoryManager::DeselectItemFromInventory(UGameItem* Item)
+void AInventoryManager::DeselectItemFromInventory(UGameItem* Item)
 {
     //come back to if needed
 }
 
-UGameItem* UInventoryManager::GetSelectedItem()
+UGameItem* AInventoryManager::GetSelectedItem()
 {
     return SelectedItem;    
 }
 
-TArray<UGameItem*> UInventoryManager::GetInventory()
+TArray<UGameItem*> AInventoryManager::GetInventory()
 {
     return Inventory;
 }

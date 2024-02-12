@@ -13,7 +13,7 @@
 #include "Term.h"
 #include "GameItem.generated.h"
 
-class UInventoryManager;
+class AInventoryManager;
 class APlayerPawn;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))

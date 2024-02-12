@@ -21,23 +21,23 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_19_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_19_INCLASS_NO_PURE_DECLS \
 private: \
-	static void StaticRegisterNativesUPuzzleManager(); \
-	friend struct Z_Construct_UClass_UPuzzleManager_Statics; \
+	static void StaticRegisterNativesAPuzzleManager(); \
+	friend struct Z_Construct_UClass_APuzzleManager_Statics; \
 public: \
-	DECLARE_CLASS(UPuzzleManager, UGameInstance, COMPILED_IN_FLAGS(0 | CLASS_Transient), CASTCLASS_None, TEXT("/Script/SPHINX_Dev"), NO_API) \
-	DECLARE_SERIALIZER(UPuzzleManager)
+	DECLARE_CLASS(APuzzleManager, AActor, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/SPHINX_Dev"), NO_API) \
+	DECLARE_SERIALIZER(APuzzleManager)
 
 
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_19_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
-	NO_API UPuzzleManager(UPuzzleManager&&); \
-	NO_API UPuzzleManager(const UPuzzleManager&); \
+	NO_API APuzzleManager(APuzzleManager&&); \
+	NO_API APuzzleManager(const APuzzleManager&); \
 public: \
-	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPuzzleManager); \
-	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPuzzleManager); \
-	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UPuzzleManager) \
-	NO_API virtual ~UPuzzleManager();
+	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, APuzzleManager); \
+	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(APuzzleManager); \
+	DEFINE_DEFAULT_CONSTRUCTOR_CALL(APuzzleManager) \
+	NO_API virtual ~APuzzleManager();
 
 
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_16_PROLOG
@@ -55,7 +55,7 @@ private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-template<> SPHINX_DEV_API UClass* StaticClass<class UPuzzleManager>();
+template<> SPHINX_DEV_API UClass* StaticClass<class APuzzleManager>();
 
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h

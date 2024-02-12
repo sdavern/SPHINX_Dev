@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Engine/GameInstance.h"
+#include "GameFramework/Actor.h"
 #include "GameItem.h"
 #include "Item.h"
 #include "ItemProperty.h"
@@ -13,13 +13,13 @@
  * 
  */
 UCLASS()
-class SPHINX_DEV_API UInventoryManager : public UGameInstance
+class SPHINX_DEV_API AInventoryManager : public AActor
 {
 	GENERATED_BODY()
 
 public:
 
-	static UInventoryManager* GetInstance();
+	static AInventoryManager* GetInstance();
 
 	UFUNCTION(BlueprintCallable)
 	void AddItemToInventory(UGameItem* Item);
@@ -49,9 +49,9 @@ public:
 
 private:
 
-	static UInventoryManager* Instance;
+	static AInventoryManager* Instance;
 	
-	UInventoryManager();
+	AInventoryManager();
 
 	UPROPERTY(EditAnywhere)
 	TArray<UGameItem*> Inventory;

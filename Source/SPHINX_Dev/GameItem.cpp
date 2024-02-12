@@ -23,7 +23,7 @@ void UGameItem::BeginPlay()
 
 	if (DbItem == nullptr)
     {
-        DbItem = UPuzzleManager::GetInstance()->GetObject(Name);
+        DbItem = APuzzleManager::GetInstance()->GetObject(Name);
     }
     if (DbItem != nullptr)
     {
@@ -130,7 +130,7 @@ void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTex
 		NoAction = false;
 	}
 	
-	UPuzzleManager* Instance = UPuzzleManager::GetInstance();
+	APuzzleManager* Instance = APuzzleManager::GetInstance();
 	if (Instance)
 	{
 		TArray<URule*> Rules = Instance->RulesFor(this, Instance->GetCurrentArea());
@@ -280,7 +280,7 @@ void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTex
 
 void UGameItem::ExecuteRule(URule* Rule)
 {
-	UInventoryManager* Inventory = UInventoryManager::GetInstance();
+	AInventoryManager* Inventory = AInventoryManager::GetInstance();
 	
 
 	//Inpspect logic requires statistics class
@@ -323,7 +323,7 @@ void UGameItem::ExecuteRule(URule* Rule)
 void UGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 {
 	TArray<AActor*> ObjectsToDestroy;
-	UInventoryManager* Inventory = UInventoryManager::GetInstance();
+	AInventoryManager* Inventory = AInventoryManager::GetInstance();
 
 	for (int32 i = 0; i < Rule->Inputs.Num(); i++)
 	{
@@ -389,7 +389,7 @@ void UGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 			{
 				for (UItemProperty* OutputProperty : Output->Properties)
 				{
-					UPuzzleManager::GetInstance()->UpdatePlayerProperties(OutputProperty);
+					APuzzleManager::GetInstance()->UpdatePlayerProperties(OutputProperty);
 				}
 			}
 			if (Output->Name == Input->Name)
@@ -484,7 +484,7 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 			int32 i = 1;
 			if (!Rule->bSelectedInput)
 			{
-				UGameItem* SelectedItem = UInventoryManager::GetInstance()->GetSelectedItem();
+				UGameItem* SelectedItem = AInventoryManager::GetInstance()->GetSelectedItem();
 				if (SelectedItem != nullptr)
 				{
 					if (SelectedItem->Name == Rule->Inputs[1]->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[1]->Name))
@@ -505,7 +505,7 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 					return false;
 				}
 			}
-			UInventoryManager* InventoryManager = UInventoryManager::GetInstance();
+			AInventoryManager* InventoryManager = AInventoryManager::GetInstance();
 			TArray<UGameItem*> Inventory = InventoryManager->GetInventory();
 
 			if (Inventory.Num() == 0 && !Rule->HasPlayerInput())
@@ -517,10 +517,10 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 				bool Found = false;
 				if (Rule->Inputs[i]->Name == TEXT("Player"))
 				{
-					if (UPuzzleManager::GetInstance()->GetPlayer()->GameItem->FulfillsProperties(Rule->Inputs[1]))
+					if (APuzzleManager::GetInstance()->GetPlayer()->GameItem->FulfillsProperties(Rule->Inputs[1]))
 					{
 						Found = true;
-						Rule->Inputs[i]->GameItem = UPuzzleManager::GetInstance()->GetPlayer()->GameItem;
+						Rule->Inputs[i]->GameItem = APuzzleManager::GetInstance()->GetPlayer()->GameItem;
 					}
 				}
 				for (UGameItem* InventoryItem : Inventory)

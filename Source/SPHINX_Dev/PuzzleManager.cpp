@@ -5,46 +5,46 @@
 #include "GameItem.h"
 #include "PlayerPawn.h"
 
-UPuzzleManager* UPuzzleManager::Instance = nullptr;
+APuzzleManager* APuzzleManager::Instance = nullptr;
 
-UPuzzleManager::UPuzzleManager()
+APuzzleManager::APuzzleManager()
 {
 
 }
 
-UPuzzleManager* UPuzzleManager::GetInstance()
+APuzzleManager* APuzzleManager::GetInstance()
 {
     if (!Instance)
     {
-        Instance = NewObject<UPuzzleManager>();
+        Instance = NewObject<APuzzleManager>();
         Instance->AddToRoot(); 
     }
     return Instance;
 }
 
-UItem* UPuzzleManager::GetObject(FString ItemName)
+UItem* APuzzleManager::GetObject(FString ItemName)
 {
     return nullptr;
 }
 
-TArray<URule*> UPuzzleManager::RulesFor(UGameItem* GameItem, UArea* Area)
+TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem, UArea* Area)
 {
     TArray<URule*> Rules;
     return Rules;
 }
 
-void  UPuzzleManager::UpdatePlayerProperties(UItemProperty* Property)
+void  APuzzleManager::UpdatePlayerProperties(UItemProperty* Property)
 {
     return;
 }
 
 
-APlayerPawn* UPuzzleManager::GetPlayer()
+APlayerPawn* APuzzleManager::GetPlayer()
 {
     return Player;
 }
 
-UArea* UPuzzleManager::GetCurrentArea()
+UArea* APuzzleManager::GetCurrentArea()
 {
     return CurrentArea;
 }
