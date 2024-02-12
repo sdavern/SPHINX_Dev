@@ -4,6 +4,7 @@
 #include "PuzzleManager.h"
 #include "GameItem.h"
 #include "PlayerPawn.h"
+#include "Generator.h"
 
 APuzzleManager* APuzzleManager::Instance = nullptr;
 
@@ -17,7 +18,6 @@ APuzzleManager* APuzzleManager::GetInstance()
     if (!Instance)
     {
         Instance = NewObject<APuzzleManager>();
-        Instance->AddToRoot(); 
     }
     return Instance;
 }

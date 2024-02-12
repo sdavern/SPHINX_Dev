@@ -12,6 +12,7 @@
 
 class UGameItem;
 class APlayerPawn;
+class AGenerator;
 
 UCLASS()
 class SPHINX_DEV_API APuzzleManager : public AActor
@@ -22,8 +23,11 @@ public:
 
 	APuzzleManager();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere)
 	APlayerPawn* Player;
+
+	UPROPERTY(EditAnywhere)
+	AGenerator* Generator;
 
 	static APuzzleManager* GetInstance();
 

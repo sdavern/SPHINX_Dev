@@ -21,13 +21,13 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_Dev_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x97BB1FA0,
-				0x3A215932,
+				0x282E9F28,
+				0xF8E20FBF,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_SPHINX_Dev.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_SPHINX_Dev.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_SPHINX_Dev(Z_Construct_UPackage__Script_SPHINX_Dev, TEXT("/Script/SPHINX_Dev"), Z_Registration_Info_UPackage__Script_SPHINX_Dev, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x97BB1FA0, 0x3A215932));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_SPHINX_Dev(Z_Construct_UPackage__Script_SPHINX_Dev, TEXT("/Script/SPHINX_Dev"), Z_Registration_Info_UPackage__Script_SPHINX_Dev, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x282E9F28, 0xF8E20FBF));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
