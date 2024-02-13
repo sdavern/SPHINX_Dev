@@ -7,8 +7,16 @@
 #include "Item.h"
 #include "Rule.h"
 #include "Area.h"
+#include "ConditionalObject.h"
 #include "PuzzleManager.generated.h"
 
+USTRUCT()
+struct FRulesStruct
+{
+
+	GENERATED_BODY()
+    TArray<URule*> RulesArray;
+};
 
 class UGameItem;
 class APlayerPawn;
@@ -23,28 +31,108 @@ public:
 
 	APuzzleManager();
 
-	UPROPERTY(EditAnywhere)
+	UArea* StartArea;
+
+	bool UseAllRules;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	APlayerPawn* Player;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AGenerator* Generator;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* Everything;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* StartingInventory;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* FinalFade;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//AActor* Statistics;
+
+	TArray<UItem*> ItemAssets;
+
+	TArray<URule*> RuleAssets;
+
+	TArray<UArea*> AreaAssets;
 
 	static APuzzleManager* GetInstance();
 
-	UItem* GetObject(FString ItemName);
-
-	void UpdatePlayerProperties(UItemProperty* Property);
+	void GenerateForArea(UArea* Area);
 
 	TArray<URule*> RulesFor(UGameItem* GameItem, UArea* Area);
 
-	APlayerPawn* GetPlayer();
+	void AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules);
+
+	void ExecuteRule(URule* Rule, UArea* Area);
+
+	void FindLeaves(URule* Parent, UArea* Area);
+
+	bool FindItemsForOutputs(URule* Rule);
+
+	void AddPuzzle(UArea* Area, FString Puzzle);
+
+	UItem* GetObject(FString ItemName);
+
+	bool HasItemOfType(UTerm Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
+
+	TArray<UItem*> GetItemsOfType(FString ItemName, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
+
+	TArray<UItem*> FindDBItemsFor(UTerm*, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
+
+	TArray<URule*> GetRulesWithInput(UItem* DbItem);
+
+	TArray<URule*> GetRulesWithOutput(UTerm* Term);
+
+	TArray<UItem*> GetAllItems();
+
+	TArray<URule*> GetAllRules();
+
+	TArray<UArea*> GetAllAreas();
+
+	void UpdatePlayerProperties(UItemProperty* Property);
+
+	UGameItem* GetPlayer();
+
+	bool PuzzleContains(UItem* Item, URule* Parent);
+
+	FString GetHint();
+
+	FString GetObjective();
+
+	FString GetCurrentAreaName();
 
 	UArea* GetCurrentArea();
+
+	void TriggerEnd();
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 
 private:
 
 	static APuzzleManager* Instance;
 	
 	UArea* CurrentArea;
+
+	UPROPERTY(EditAnywhere)
+	TArray<URule*> GameOverRules;
+
+	TArray<UArea*> AccessibleAreas;
+
+	UPROPERTY(EditAnywhere)
+	TArray<AConditionalObject*> ConditionalObjects;
+
+	UPROPERTY(EditAnywhere)
+	TMap<UArea*, FRulesStruct> Leaves;
+
+	TMap<UArea*, FRulesStruct> PuzzleRules;
+
+	TMap<UArea*, FString> PuzzlesGenerated;
 
 };

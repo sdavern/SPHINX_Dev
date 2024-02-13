@@ -25,3 +25,9 @@ void AGenerator::Tick(float DeltaTime)
 
 }
 
+
+URule* AGenerator::GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAccessibleAreas)
+{
+	URule* Rule = NewObject<URule>(this, URule::StaticClass());
+	return Rule;
+}

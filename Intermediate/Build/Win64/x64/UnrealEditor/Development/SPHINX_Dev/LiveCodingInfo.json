@@ -21,8 +21,6 @@
 			"ActionBtn.cpp.obj",
 			"Area.cpp.obj",
 			"ConditionalObject.cpp.obj",
-			"GameItem.cpp.obj",
-			"InventoryManager.cpp.obj",
 			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
 			"PlayerPawn.cpp.obj",
@@ -38,7 +36,9 @@
 			"Generator.gen.cpp.obj",
 			"PuzzleManager.gen.cpp.obj",
 			"SPHINX_Dev.init.gen.cpp.obj",
+			"GameItem.cpp.obj",
 			"Generator.cpp.obj",
+			"InventoryManager.cpp.obj",
 			"PuzzleManager.cpp.obj"
 		]
 	}

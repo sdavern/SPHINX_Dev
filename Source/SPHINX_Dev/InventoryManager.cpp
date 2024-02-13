@@ -20,6 +20,12 @@ AInventoryManager::AInventoryManager()
 
 }
 
+void AInventoryManager::BeginPlay()
+{
+    Super::BeginPlay();
+
+}
+
 void AInventoryManager::AddItemToInventory(UGameItem* Item)
 {
 

@@ -4,7 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Area.h"
+#include "Rule.h"
 #include "Generator.generated.h"
+
+
+//Make singleton, see GenerateForArea in PuzzleManager
 
 UCLASS()
 class SPHINX_DEV_API AGenerator : public AActor
@@ -14,6 +19,8 @@ class SPHINX_DEV_API AGenerator : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AGenerator();
+
+	URule* GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAccessibleAreas);
 
 protected:
 	// Called when the game starts or when spawned

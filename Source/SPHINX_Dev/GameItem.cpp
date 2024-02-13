@@ -517,10 +517,10 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 				bool Found = false;
 				if (Rule->Inputs[i]->Name == TEXT("Player"))
 				{
-					if (APuzzleManager::GetInstance()->GetPlayer()->GameItem->FulfillsProperties(Rule->Inputs[1]))
+					if (APuzzleManager::GetInstance()->GetPlayer()->FulfillsProperties(Rule->Inputs[1]))
 					{
 						Found = true;
-						Rule->Inputs[i]->GameItem = APuzzleManager::GetInstance()->GetPlayer()->GameItem;
+						Rule->Inputs[i]->GameItem = APuzzleManager::GetInstance()->GetPlayer();
 					}
 				}
 				for (UGameItem* InventoryItem : Inventory)
