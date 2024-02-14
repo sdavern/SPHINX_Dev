@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Math/UnrealMathUtility.h"
 #include "Item.h"
 #include "Rule.h"
 #include "Area.h"
@@ -77,11 +78,11 @@ public:
 
 	UItem* GetObject(FString ItemName);
 
-	bool HasItemOfType(UTerm Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
+	bool HasItemOfType(UTerm* Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
 
 	TArray<UItem*> GetItemsOfType(FString ItemName, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
 
-	TArray<UItem*> FindDBItemsFor(UTerm*, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
+	TArray<UItem*> FindDbItemsFor(UTerm*, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
 
 	TArray<URule*> GetRulesWithInput(UItem* DbItem);
 

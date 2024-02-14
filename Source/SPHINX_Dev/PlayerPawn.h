@@ -16,6 +16,7 @@ public:
 	// Sets default values for this pawn's properties
 	APlayerPawn();
 
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -29,5 +30,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
     UGameItem* GameItem;
+
 
 };

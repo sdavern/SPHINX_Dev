@@ -315,12 +315,12 @@ void UGameItem::ExecuteRule(URule* Rule)
 		this->ContainedValue = nullptr;
 		this->GetProperty("Contains")->RemoveProperty();
 	}
-
-	ExecuteRule(Rule, true, this->GetOwner());
+	UWorld* World = GetWorld();
+	ExecuteRule(World, Rule, true, this);
 	
 }
 
-void UGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
+void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* GameI)
 {
 	TArray<AActor*> ObjectsToDestroy;
 	AInventoryManager* Inventory = AInventoryManager::GetInstance();
@@ -367,7 +367,7 @@ void UGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 			UE_LOG(LogTemp, Display, TEXT("Destroying: %s"), *Rule->Inputs[i]->Name);
 			if (i == 0)
 			{
-				ObjectsToDestroy.Add(GameI);
+				ObjectsToDestroy.Add(GameI->GetOwner());
 			}
 			else
 			{
@@ -433,7 +433,7 @@ void UGameItem::ExecuteRule(URule* Rule, bool Full, AActor* GameI)
 					FTransform Transform = ObjectsToDestroy[SpawnIndex]->GetTransform();
 					Transform.SetLocation(Transform.GetLocation() + FVector (0, 0, 100));
 					FActorSpawnParameters SpawnParams;
-					ItemGO = GetWorld()->SpawnActor<AActor>(Output->DbItem->ItemPrefab, Transform, SpawnParams);
+					ItemGO = World->SpawnActor<AActor>(Output->DbItem->ItemPrefab, Transform, SpawnParams);
         			
 				}
 				else

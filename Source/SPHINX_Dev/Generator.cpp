@@ -3,6 +3,10 @@
 
 #include "Generator.h"
 
+AGenerator* AGenerator::Instance = nullptr;
+
+const FString AGenerator::PuzzleString = TEXT("");
+
 // Sets default values
 AGenerator::AGenerator()
 {
@@ -11,10 +15,21 @@ AGenerator::AGenerator()
 
 }
 
+AGenerator* AGenerator::GetInstance()
+{
+	if (!Instance)
+    {
+        Instance = NewObject<AGenerator>();
+    }
+    return Instance;
+}
+
 // Called when the game starts or when spawned
 void AGenerator::BeginPlay()
 {
 	Super::BeginPlay();
+
+	GetInstance();
 	
 }
 

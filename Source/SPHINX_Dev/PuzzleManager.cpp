@@ -17,6 +17,8 @@ void APuzzleManager::BeginPlay()
 {
     Super::BeginPlay();
 
+    GetInstance();
+
     Everything->SetActorHiddenInGame(false);
     Everything->SetActorEnableCollision(true);
     Everything->SetActorTickEnabled(true);
@@ -111,6 +113,7 @@ UItem* APuzzleManager::GetObject(FString ItemName)
         if (Item->Name == ItemName)
         {
             UItem* NewItem = NewObject<UItem>(this, UItem::StaticClass());
+            NewItem = Item;
             return NewItem;
         }
     }
@@ -134,7 +137,39 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
 
 void APuzzleManager::ExecuteRule(URule* Rule, UArea* Area)
 {
-    return;
+    FRulesStruct* FoundLeavesRules = Leaves.Find(Area);
+    if (FoundLeavesRules->RulesArray.Contains(Rule))
+    {
+        FoundLeavesRules->RulesArray.Remove(Rule);
+        if (Rule->Parent->Parent != nullptr)
+        {
+            URule* Parent = Rule->Parent;
+            Parent->Children.Remove(Rule);
+            if (Parent->Children.Num() == 0)
+            {
+                FoundLeavesRules->RulesArray.Add(Parent);
+                if (Parent->bAutomatic)
+                {
+                    UWorld* World = GetWorld();
+                    UGameItem::ExecuteRule(World, Parent, true, Parent->Inputs[0]->GameItem);
+                }
+            }
+        }
+        else
+        {
+            if (Area->IsFinal())
+            {
+                TriggerEnd();
+            }
+            else
+            {
+                for (UArea* ConnectedArea : Area->ConnectedTo)
+                {
+                    GenerateForArea(ConnectedArea);
+                }
+            }
+        }
+    }
 }
 
 void APuzzleManager::FindLeaves(URule* Parent, UArea* Area)
@@ -159,41 +194,108 @@ void APuzzleManager::FindLeaves(URule* Parent, UArea* Area)
 
 bool APuzzleManager::FindItemsForOutputs(URule* Rule)
 {
+    for (UTerm* Output : Rule->Outputs)
+    {
+        bool Found = false;
+        for (UTerm* Input : Rule->Inputs)
+        {
+            if (Output->Name == Input->Name)
+            {
+                Found = true;
+            }
+        }
+        if (!Found)
+        {
+            TArray<UArea*> AreaArray;
+            TArray<UItem*> ItemArray;
+            TArray<UItem*> PossibleItems = FindDbItemsFor(Output, AreaArray, ItemArray);
+            if (PossibleItems.Num() > 0)
+            {
+                int32 RandomIndex = FMath::RandRange(0, PossibleItems.Num() - 1);
+                Output->DbItem = PossibleItems[RandomIndex];
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
     return true;
 }
 
 void APuzzleManager::AddPuzzle(UArea* Area, FString Puzzle)
 {
-    return;
+    PuzzlesGenerated.Add(Area, Puzzle);
 }
 
-bool APuzzleManager::HasItemOfType(UTerm Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
+bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
 {
-    return true;
+    for (UItem* DbItem : ItemAssets)
+    {
+        if ((DbItem->Name == Term->Name || DbItem->GetSuperTypes().Contains(Term->Name)) && DbItem->IsAccessible(NewAccessibleAreas, ItemsInLevel))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 TArray<UItem*> APuzzleManager::GetItemsOfType(FString ItemName, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
 {
-    TArray<UItem*> Items;
-    return Items;
+    TArray<UItem*> MatchingItems;
+    for (UItem* DbItem : ItemAssets)
+    {
+        if (DbItem->Name == ItemName || DbItem->GetSuperTypes().Contains(ItemName))
+        {
+            MatchingItems.Add(DbItem);
+        }
+    }
+    return MatchingItems;
 }
 
-TArray<UItem*> APuzzleManager::FindDBItemsFor(UTerm*, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
+TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
 {
-    TArray<UItem*> Items;
-    return Items;
+    TArray<UItem*> MatchingItems;
+    for (UItem* DbItem : ItemAssets)
+    {
+        if (DbItem->Matches(Term) && DbItem->IsAccessible(AccessibleAreas, ItemsInLevel))
+        {
+            UItem* NewItem = NewObject<UItem>(this, UItem::StaticClass());
+            NewItem = DbItem;
+            MatchingItems.Add(NewItem);
+        }
+    }
+    return MatchingItems;
 }
 
 TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
 {
-    TArray<URule*> Items;
-    return Items;
+    TArray<URule*> Rules;
+    for (int32 i = 0; i < RuleAssets.Num(); i++)
+    {
+        if (RuleAssets[i]->Inputs[0]->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(RuleAssets[i]->Inputs[0]->Name))
+        {
+            URule* RuleToAdd = NewObject<URule>(this, URule::StaticClass());
+            RuleToAdd = RuleAssets[i];
+            Rules.Add(RuleToAdd);
+        }
+    }
+    return Rules;
 }
 
 TArray<URule*> APuzzleManager::GetRulesWithOutput(UTerm* Term)
 {
-    TArray<URule*> Items;
-    return Items;
+    TArray<URule*> Rules;
+    for (int32 i = 0; i < RuleAssets.Num(); i++)
+    {
+        if (RuleAssets[i]->Outputs[0]->Name == Term->Name)
+        {
+            URule* RuleToAdd = NewObject<URule>(this, URule::StaticClass());
+            RuleToAdd = RuleAssets[i];
+            Rules.Add(RuleToAdd);
+        }
+    }
+    return Rules;
 }
 
 TArray<UItem*> APuzzleManager::GetAllItems()
@@ -202,6 +304,7 @@ TArray<UItem*> APuzzleManager::GetAllItems()
     for (UItem* Asset : ItemAssets)
     {
         UItem* NewItem = NewObject<UItem>(this, UItem::StaticClass());
+        NewItem = Asset;
         Objects.Add(NewItem);
     }
     return Objects;
@@ -213,6 +316,7 @@ TArray<URule*> APuzzleManager::GetAllRules()
     for (URule* Asset : RuleAssets)
     {
         URule* NewRule = NewObject<URule>(this, URule::StaticClass());
+        NewRule = Asset;
         Objects.Add(NewRule);
     }
     return Objects;
@@ -224,6 +328,7 @@ TArray<UArea*> APuzzleManager::GetAllAreas()
     for (UArea* Asset : AreaAssets)
     {
         UArea* NewArea = NewObject<UArea>(this, UArea::StaticClass());
+        NewArea = Asset;
         Objects.Add(NewArea);
     }
     return Objects;

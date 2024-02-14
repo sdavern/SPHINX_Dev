@@ -52,7 +52,7 @@ public:
 
 	void ExecuteRule(URule* Rule);
 
-	void ExecuteRule(URule* Rule, bool Full, AActor* GameI);
+	static void ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* GameI);
 
 	bool HasProperty(UItemProperty* PropertyToCheck);
 
