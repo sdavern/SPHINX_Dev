@@ -3,9 +3,9 @@
 	{
 		"Module.SPHINX_Dev.cpp.obj": [
 			"ActionBtn.gen.cpp.obj",
-			"Area.gen.cpp.obj",
 			"ConditionalObject.gen.cpp.obj",
 			"GameItem.gen.cpp.obj",
+			"Generator.gen.cpp.obj",
 			"InventoryManager.gen.cpp.obj",
 			"Item.gen.cpp.obj",
 			"ItemProperty.gen.cpp.obj",
@@ -20,11 +20,13 @@
 			"TP_PickUpComponent.gen.cpp.obj",
 			"TP_WeaponComponent.gen.cpp.obj",
 			"ActionBtn.cpp.obj",
-			"Area.cpp.obj",
 			"ConditionalObject.cpp.obj",
+			"GameItem.cpp.obj",
 			"InventoryManager.cpp.obj",
 			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
+			"PlayerPawn.cpp.obj",
+			"PuzzleManager.cpp.obj",
 			"Rule.cpp.obj",
 			"SPHINX_Dev.cpp.obj",
 			"SPHINX_DevCharacter.cpp.obj",
@@ -34,14 +36,12 @@
 			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
+			"Area.gen.cpp.obj",
 			"GameArea.gen.cpp.obj",
-			"Generator.gen.cpp.obj",
 			"SPHINX_Dev.init.gen.cpp.obj",
+			"Area.cpp.obj",
 			"GameArea.cpp.obj",
-			"GameItem.cpp.obj",
-			"Generator.cpp.obj",
-			"PlayerPawn.cpp.obj",
-			"PuzzleManager.cpp.obj"
+			"Generator.cpp.obj"
 		]
 	}
 }

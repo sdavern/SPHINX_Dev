@@ -4,45 +4,128 @@
 #include "GameArea.h"
 
 // Sets default values for this component's properties
-AGameArea::AGameArea()
+UGameArea::UGameArea()
 {
 	
 }
 
 
 // Called when the game starts
-void AGameArea::BeginPlay()
+void UGameArea::BeginPlay()
 {
 	Super::BeginPlay();
 
-	TArray<AActor
+	AActor* Owner = this->GetOwner();
+	TArray<AActor*> AttachedActors;
+	GetAllAttachedActors(Owner, AttachedActors);
 
+	for (AActor* Actor : AttachedActors)
+	{
+		TArray<UGameItem*> GameItemComponents;
+		Actor->GetComponents(UGameItem::StaticClass(), GameItemComponents);
+		ItemsInArea = GameItemComponents;	
+	}
 
+	Index = FMath::RandRange(0, SpawnPoints.Num());
+	NPCIndex = FMath::RandRange(0, NPCSpawnPoints.Num());
+	FloorIndex = FMath::RandRange(0, FloorSpawnPoints.Num());
+	UArea* AreaInstance = NewObject<UArea>(this, AreaBP);
+	AreaInstance->AreaObject = AreaContent;
 }
 
-
-void AGameArea::Tick(float DeltaTime)
+void UGameArea::GetAllAttachedActors(AActor* ParentActor, TArray<AActor*>& OutActors)
 {
-	Super::Tick(DeltaTime);
+	TArray<AActor*> DirectlyAttachedActors;
+	ParentActor->GetAttachedActors(DirectlyAttachedActors);
 
+	for (AActor* ChildActor : DirectlyAttachedActors)
+	{
+		OutActors.Add(ChildActor);
+		GetAllAttachedActors(ChildActor, OutActors);
+	}
 }
 
-FVector* AGameArea::GetNextSpawnPt(bool NPC, bool Floor)
+FVector UGameArea::GetNextSpawnPt(bool NPC, bool Floor)
 {
-
+	if (NPC)
+	{
+		if (NPCSpawnPoints.Num() == 0)
+		{
+			return GetNextSpawnPt();
+		}
+		NPCIndex++;
+		if (NPCIndex > NPCSpawnPoints.Num() - 1)
+		{
+			NPCIndex = 0;
+		}
+		return NPCSpawnPoints[NPCIndex]->GetActorLocation();
+	}
+	else if (Floor)
+	{
+		if (FloorSpawnPoints.Num() == 0)
+		{
+			return GetNextSpawnPt();
+		}
+		FloorIndex++;
+		if(FloorIndex > FloorSpawnPoints.Num() - 1)
+		{
+			FloorIndex = 0;
+		}
+		return FloorSpawnPoints[FloorIndex]->GetActorLocation();
+	}
+	else
+	{
+		return GetNextSpawnPt();
+	}
 }
 
-FVector* AGameArea::GetNextSpawnPt()
+FVector UGameArea::GetNextSpawnPt()
 {
-
+	Index++;
+	if (Index > SpawnPoints.Num() - 1)
+	{
+		Index = 0;
+	}
+	return SpawnPoints[Index]->GetActorLocation();
 }
 
-FVector* AGameArea::GetRandomSpawnpt(bool NPC)
+FVector UGameArea::GetRandomSpawnPt(bool NPC)
 {
-
+	int32 RandIndex = FMath::RandRange(0, NPCSpawnPoints.Num());
+	if (NPC)
+	{
+		if (NPCSpawnPoints.Num() > 0)
+		{
+			return NPCSpawnPoints[RandIndex]->GetActorLocation();
+		}
+		else
+		{
+			return GetRandomSpawnPt();
+		}
+	}
+	else
+	{
+		return GetRandomSpawnPt(); 
+	}
 }
 
-FString AGameArea::ToString() const
+FVector UGameArea::GetRandomSpawnPt()
 {
+	int32 RandIndex = FMath::RandRange(0, SpawnPoints.Num());
+	return SpawnPoints[RandIndex]->GetActorLocation();
+}
 
+FString UGameArea::ToString()
+{
+	UArea* AreaInstance = NewObject<UArea>(this, AreaBP);
+	
+
+	FString AreaName = AreaInstance->Name;
+
+	FString DebugString = TEXT("Area: " + AreaName + "Items");
+	for (UGameItem* G : ItemsInArea)
+	{
+		DebugString += G->ToString() + TEXT(" ");
+	}
+	return DebugString;
 }

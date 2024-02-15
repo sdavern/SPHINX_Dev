@@ -77,10 +77,12 @@ void EmptyLinkFunctionForGeneratedCodeArea() {}
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UArea_Statics::DependentSingletons) < 16);
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UArea_Statics::Class_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
 #if !UE_BUILD_SHIPPING
 		{ "Comment", "/**\n * \n */" },
 #endif
 		{ "IncludePath", "Area.h" },
+		{ "IsBlueprintBase", "true" },
 		{ "ModuleRelativePath", "Area.h" },
 	};
 #endif
@@ -197,9 +199,9 @@ void EmptyLinkFunctionForGeneratedCodeArea() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Area_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UArea, UArea::StaticClass, TEXT("UArea"), &Z_Registration_Info_UClass_UArea, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArea), 1666133657U) },
+		{ Z_Construct_UClass_UArea, UArea::StaticClass, TEXT("UArea"), &Z_Registration_Info_UClass_UArea, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArea), 2898680394U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Area_h_3946887733(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Area_h_2508572085(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Area_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Area_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

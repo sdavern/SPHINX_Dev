@@ -11,7 +11,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class SPHINX_DEV_API UArea : public UObject
 {
 	GENERATED_BODY()

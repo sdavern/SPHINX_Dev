@@ -3,36 +3,44 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/ActorComponent.h"
 #include "GameFramework/Actor.h"
+#include "Math/UnrealMathUtility.h"
 #include "GameItem.h"
 #include "Area.h"
 #include "Item.h"
 #include "GameArea.generated.h"
 
 
-UCLASS()
-class SPHINX_DEV_API AGameArea : public AActor
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+class SPHINX_DEV_API UGameArea : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	AGameArea();
+	UGameArea();
 
 	UPROPERTY(EditAnywhere)
 	TArray<UGameItem*> ItemsInArea;
 
-	UArea* Area;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UArea> AreaBP;
 
+	UPROPERTY(EditAnywhere)
 	AActor* AreaContent;
 
-	FVector* GetNextSpawnPt(bool NPC, bool Floor);
+	FVector GetNextSpawnPt(bool NPC, bool Floor);
 
-	FVector* GetNextSpawnPt();
+	FVector GetNextSpawnPt();
 
-	FVector* GetRandomSpawnpt(bool NPC);
+	FVector GetRandomSpawnPt(bool NPC);
 
-	FString ToString() const;
+	FVector GetRandomSpawnPt();
+
+	FString ToString();
+
+	void GetAllAttachedActors(AActor* ParentActor, TArray<AActor*>& OutActors);
 
 
 protected:
@@ -57,9 +65,7 @@ private:
 	int32 FloorIndex = 0;
 
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+
 
 		
 };

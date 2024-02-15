@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Kismet/GameplayStatics.h"
 #include "Area.h"
 #include "Rule.h"
 #include "Item.h"
@@ -28,11 +29,15 @@ public:
 
 	static const bool DebugMode = true;
 
-	static void Spawn(UItem* Item, URule* Rule, UArea* Area);
+	static void Spawn(UWorld* World, UItem* Item, URule* Rule, UArea* Area);
 
 	URule* GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAccessibleAreas);
 
 	static bool GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UArea* CurrentArea, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
+
+	UGameArea* FindGameArea(UArea* Area);
+
+	UWorld* GetWorldForGenerator();
 
 protected:
 	// Called when the game starts or when spawned
