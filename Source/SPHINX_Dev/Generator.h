@@ -11,6 +11,7 @@
 #include "Term.h"
 #include "GameItem.h"
 #include "GameArea.h"
+#include "InventoryManager.h"
 #include "Generator.generated.h"
 
 
@@ -37,6 +38,8 @@ public:
 
 	UGameArea* FindGameArea(UArea* Area);
 
+	void GetAllAttachedActors(AActor* ParentActor, TArray<AActor*>& OutActors);
+
 	UWorld* GetWorldForGenerator();
 
 protected:
@@ -53,7 +56,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	TArray<UGameItem*> StartingInventory;
 
-	static const FString PuzzleString;
+	static FString PuzzleString;
 
 public:	
 	// Called every frame

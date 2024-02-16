@@ -4,6 +4,7 @@
 		"Module.SPHINX_Dev.cpp.obj": [
 			"ActionBtn.gen.cpp.obj",
 			"ConditionalObject.gen.cpp.obj",
+			"GameArea.gen.cpp.obj",
 			"GameItem.gen.cpp.obj",
 			"Generator.gen.cpp.obj",
 			"InventoryManager.gen.cpp.obj",
@@ -37,7 +38,6 @@
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
 			"Area.gen.cpp.obj",
-			"GameArea.gen.cpp.obj",
 			"SPHINX_Dev.init.gen.cpp.obj",
 			"Area.cpp.obj",
 			"GameArea.cpp.obj",

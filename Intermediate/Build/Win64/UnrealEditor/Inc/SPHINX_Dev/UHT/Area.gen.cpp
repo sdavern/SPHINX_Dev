@@ -14,6 +14,7 @@ void EmptyLinkFunctionForGeneratedCodeArea() {}
 	ENGINE_API UClass* Z_Construct_UClass_USceneComponent_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UArea();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UArea_NoRegister();
+	SPHINX_DEV_API UClass* Z_Construct_UClass_UGameArea_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UTerm_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_SPHINX_Dev();
 // End Cross Module References
@@ -31,6 +32,10 @@ void EmptyLinkFunctionForGeneratedCodeArea() {}
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OwningGameArea_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OwningGameArea;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Name_MetaData[];
 #endif
@@ -86,6 +91,13 @@ void EmptyLinkFunctionForGeneratedCodeArea() {}
 		{ "ModuleRelativePath", "Area.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UArea_Statics::NewProp_OwningGameArea_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Area.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UArea_Statics::NewProp_OwningGameArea = { "OwningGameArea", nullptr, (EPropertyFlags)0x0010000000082008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArea, OwningGameArea), Z_Construct_UClass_UGameArea_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UArea_Statics::NewProp_OwningGameArea_MetaData), Z_Construct_UClass_UArea_Statics::NewProp_OwningGameArea_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UArea_Statics::NewProp_Name_MetaData[] = {
 		{ "Category", "Area" },
@@ -150,6 +162,7 @@ void EmptyLinkFunctionForGeneratedCodeArea() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UArea_Statics::NewProp_AreaObject = { "AreaObject", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UArea, AreaObject), Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UArea_Statics::NewProp_AreaObject_MetaData), Z_Construct_UClass_UArea_Statics::NewProp_AreaObject_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UArea_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArea_Statics::NewProp_OwningGameArea,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArea_Statics::NewProp_Name,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArea_Statics::NewProp_Goals_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UArea_Statics::NewProp_Goals,
@@ -199,9 +212,9 @@ void EmptyLinkFunctionForGeneratedCodeArea() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Area_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UArea, UArea::StaticClass, TEXT("UArea"), &Z_Registration_Info_UClass_UArea, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArea), 2898680394U) },
+		{ Z_Construct_UClass_UArea, UArea::StaticClass, TEXT("UArea"), &Z_Registration_Info_UClass_UArea, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UArea), 734618940U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Area_h_2508572085(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Area_h_538100463(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Area_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Area_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

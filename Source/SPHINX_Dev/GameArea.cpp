@@ -15,6 +15,13 @@ void UGameArea::BeginPlay()
 {
 	Super::BeginPlay();
 
+	UArea* MyAreaInstance = NewObject<UArea>(this, AreaBP);
+	if (MyAreaInstance)
+	{
+		MyAreaInstance->OwningGameArea = this;
+	}
+	
+
 	AActor* Owner = this->GetOwner();
 	TArray<AActor*> AttachedActors;
 	GetAllAttachedActors(Owner, AttachedActors);

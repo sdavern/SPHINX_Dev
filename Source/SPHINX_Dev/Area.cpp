@@ -1,4 +1,5 @@
 #include "Area.h"
+#include "GameArea.h"
 
 UArea::UArea()
 {

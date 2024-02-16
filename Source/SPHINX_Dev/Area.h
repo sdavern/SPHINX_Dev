@@ -8,6 +8,8 @@
 #include "Term.h"
 #include "Area.generated.h"
 
+class UGameArea;
+
 /**
  * 
  */
@@ -19,6 +21,9 @@ class SPHINX_DEV_API UArea : public UObject
 public:
 
 	UArea();
+
+	UPROPERTY(Transient)
+	UGameArea* OwningGameArea;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Name;
