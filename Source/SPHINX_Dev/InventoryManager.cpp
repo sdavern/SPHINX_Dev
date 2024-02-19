@@ -10,9 +10,10 @@ AInventoryManager* AInventoryManager::GetInstance()
     if (!Instance)
     {
         Instance = NewObject<AInventoryManager>();
+        return Instance;
     }
-
-    return Instance;
+    return nullptr;
+    
 }
 
 AInventoryManager::AInventoryManager()
