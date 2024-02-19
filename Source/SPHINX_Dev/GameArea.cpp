@@ -27,21 +27,27 @@ void UGameArea::BeginPlay()
 		MyAreaInstance->OwningGameArea = this;
 	}
 	
-
-	AActor* Owner = this->GetOwner();
-	TArray<AActor*> AttachedActors;
-	GetAllAttachedActors(Owner, AttachedActors);
-
-	for (AActor* Actor : AttachedActors)
+	if (MyAreaInstance != nullptr && MyAreaInstance->OwningGameArea != nullptr)
 	{
-		if (Actor != nullptr)
-		{
-			TArray<UGameItem*> GameItemComponents;
-			Actor->GetComponents(UGameItem::StaticClass(), GameItemComponents);
-			ItemsInArea = GameItemComponents;
-		}
-			
+    	AActor* Owner = MyAreaInstance->OwningGameArea->GetOwner();
+    	if (Owner != nullptr)
+    	{
+        	TArray<AActor*> AttachedActors;
+			GetAllAttachedActors(Owner, AttachedActors);
+			for (AActor* Actor : AttachedActors)
+			{
+				if (Actor != nullptr)
+				{
+					TArray<UGameItem*> GameItemComponents;
+					Actor->GetComponents(UGameItem::StaticClass(), GameItemComponents);
+					ItemsInArea = GameItemComponents;
+				}
+			}
+    	}
+
+		
 	}
+	
 
 	Index = FMath::RandRange(0, SpawnPoints.Num());
 	NPCIndex = FMath::RandRange(0, NPCSpawnPoints.Num());

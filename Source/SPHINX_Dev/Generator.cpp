@@ -121,7 +121,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAcc
 	{
 		for (UGameItem* GameItem : InventoryInstance->GetInventory())
 		{
-			if (GameItem != nullptr)
+			if (GameItem != nullptr && GameItem->DbItem != nullptr)
 			{
 				ItemsInLevel.Add(GameItem->DbItem);
 			}
