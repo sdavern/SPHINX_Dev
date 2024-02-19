@@ -88,4 +88,6 @@ public:
 	
 	bool ContainsItem(UItem* Item);
 
+	URule* Clone();
+
 };

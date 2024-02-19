@@ -24,24 +24,24 @@
 			"TP_WeaponComponent.gen.cpp.obj",
 			"ActionBtn.cpp.obj",
 			"ConditionalObject.cpp.obj",
+			"GameArea.cpp.obj",
 			"GameItem.cpp.obj",
-			"InventoryManager.cpp.obj",
-			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
 			"PlayerPawn.cpp.obj",
-			"PuzzleManager.cpp.obj",
-			"Rule.cpp.obj",
 			"SPHINX_Dev.cpp.obj",
 			"SPHINX_DevCharacter.cpp.obj",
 			"SPHINX_DevGameMode.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj",
 			"SPHINX_DevProjectile.cpp.obj",
-			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
 			"Area.cpp.obj",
-			"GameArea.cpp.obj",
-			"Generator.cpp.obj"
+			"Generator.cpp.obj",
+			"InventoryManager.cpp.obj",
+			"Item.cpp.obj",
+			"PuzzleManager.cpp.obj",
+			"Rule.cpp.obj",
+			"Term.cpp.obj"
 		]
 	}
 }

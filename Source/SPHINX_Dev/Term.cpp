@@ -12,7 +12,6 @@ UTerm::UTerm()
 
 UTerm::UTerm(const FString& Name)
 {
-    
     this->Name = Name;
 }
 

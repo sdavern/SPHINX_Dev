@@ -47,7 +47,7 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UArea* Area)
 
 	for (int32 i = 0; i < GameArea->ItemsInArea.Num(); i++)
 	{
-		if (GameArea->ItemsInArea[i]->Name == Item->Name)
+		if (GameArea->ItemsInArea[i] != nullptr && GameArea->ItemsInArea[i]->Name == Item->Name)
 		{
 			GameArea->ItemsInArea[i]->Setup(Item->Name, Item);
 			Found = true;
@@ -86,8 +86,16 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAcc
 
 	//Gets all Actors in area and stores them in ActorsInArea
 	TArray<AActor*> ActorsInArea;
-	AActor* OwningAreaBP = Area->OwningGameArea->GetOwner();
-	GetAllAttachedActors(OwningAreaBP, ActorsInArea);
+	if (Area != nullptr && Area->OwningGameArea != nullptr)
+	{
+		AActor* OwningAreaBP = Area->OwningGameArea->GetOwner();
+		if (OwningAreaBP != nullptr)
+		{
+			GetAllAttachedActors(OwningAreaBP, ActorsInArea);
+		}
+		
+	}
+
 
 	//Get all GameItems from ActorsInArea and store them in ExistingGameItems
 	TArray<UGameItem*> ExistingGameItems;
@@ -101,18 +109,27 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAcc
 
 	for (int32 i = 0; i < ExistingGameItems.Num(); i++)
 	{
-		ItemsInLevel.Add(ExistingGameItems[i]->DbItem);
+		if (ExistingGameItems[i] != nullptr)
+		{
+			ItemsInLevel.Add(ExistingGameItems[i]->DbItem);
+		}
 	}
 	
 	AInventoryManager* InventoryInstance = AInventoryManager::GetInstance();
 	APuzzleManager* PMInstance = APuzzleManager::GetInstance();
-
-	for (UGameItem* GameItem : InventoryInstance->GetInventory())
+	if (InventoryInstance != nullptr)
 	{
-		ItemsInLevel.Add(GameItem->DbItem);
+		for (UGameItem* GameItem : InventoryInstance->GetInventory())
+		{
+			if (GameItem != nullptr)
+			{
+				ItemsInLevel.Add(GameItem->DbItem);
+			}
+		}
 	}
+	
 
-	if (Area->Goals.Num() > 0)
+	if (Area != nullptr && Area->Goals.Num() > 0)
 	{
 		UTerm* Goal = Area->Goals[FMath::RandRange(0, Area->Goals.Num())];
 		bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, Area, NewAccessibleAreas, ItemsInLevel);
@@ -158,7 +175,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	TArray<URule*> PossibleRules;
 	for (URule* Rule : PMInstance->GetAllRules())
 	{
-		if (Rule->MainOutputIs(StartTerm))
+		if (Rule != nullptr && Rule->MainOutputIs(StartTerm))
 		{
 			PossibleRules.Add(Rule);
 		}
@@ -185,7 +202,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 		bool Result = true;
 		for (int32 i = 0; i < ChosenRule->Inputs.Num(); i++)
 		{
-			if (ChosenRule->Outputs[0]->Name == ChosenRule->Inputs[i]->Name)
+			if (ChosenRule != nullptr && ChosenRule->Outputs[0]->Name == ChosenRule->Inputs[i]->Name)
 			{
 				if (StartTerm->DbItem != nullptr)
 				{
@@ -234,8 +251,11 @@ void AGenerator::GetAllAttachedActors(AActor* ParentActor, TArray<AActor*>& OutA
 
 	for (AActor* ChildActor : DirectlyAttachedActors)
 	{
-		OutActors.Add(ChildActor);
-		GetAllAttachedActors(ChildActor, OutActors);
+		if (ChildActor != nullptr)
+		{
+			OutActors.Add(ChildActor);
+			GetAllAttachedActors(ChildActor, OutActors);
+		}
 	}
 }
 

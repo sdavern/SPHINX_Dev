@@ -80,7 +80,10 @@ FString UArea::GetObjective()
 
 void UArea::SetFinal(bool Final)
 {
-    IsFinalScene = Final;
+    if (Final)
+    {
+        IsFinalScene = Final;
+    }
 }
 
 bool UArea::IsFinal()
@@ -105,6 +108,24 @@ FString UArea::ToString() const
     }
 
     return S;
+}
+
+UArea* UArea::Clone()
+{
+    UArea* ClonedArea = NewObject<UArea>(GetOuter(), GetClass());
+
+    ClonedArea->OwningGameArea = this->OwningGameArea;
+    ClonedArea->Name = this->Name;
+    ClonedArea->Goals = this->Goals;
+    ClonedArea->ConnectedTo = this->ConnectedTo;
+    ClonedArea->InGameArea = this->InGameArea;
+    ClonedArea->MaxDepth = this->MaxDepth;
+    ClonedArea->IsFinalScene = this->IsFinalScene;
+    ClonedArea->CurrentGoal = this->CurrentGoal;
+    ClonedArea->AreaObject = this->AreaObject;
+
+    return ClonedArea;
+   
 }
 
 

@@ -71,6 +71,7 @@ public:
 
 	FString ToString() const;
 
+	UArea* Clone();
 
 
 

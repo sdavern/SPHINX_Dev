@@ -157,14 +157,14 @@ FString URule::GetRuleAsString(bool Speech)
 
     for (UTerm* Output : Outputs)
     {
-        if (Output->Name == "Speech" && !Speech)
+        if (Output != nullptr && Output->Name == "Speech" && !Speech)
         {
             continue;
         }
     
     
         RuleAsString += Output->Name;
-        if(Output->Properties.Num() > 0)
+        if(Output != nullptr && Output->Properties.Num() > 0)
         {
             RuleAsString += TEXT("[");
             for (int32 i = 0; i< Output->Properties.Num(); i++)
@@ -185,7 +185,7 @@ FString URule::GetRuleAsString(bool Speech)
     for (UTerm* Input : Inputs)
     {
         RuleAsString += Input->Name;
-        if (Input->Properties.Num() > 0)
+        if (Input != nullptr && Input->Properties.Num() > 0)
         {
             RuleAsString += TEXT("[");
             for (int32 i = 0; i< Input->Properties.Num(); i++)
@@ -219,17 +219,36 @@ bool URule::ContainsItem(UItem* Item)
     FString ItemName = Item->Name;
     for (UTerm* T : Inputs)
     {
-        if (T->Name == ItemName)
+        if (T != nullptr && T->Name == ItemName)
         {
             return true;
         }
     }
     for (UTerm* T : Outputs)
     {
-        if (T->Name == ItemName)
+        if (T != nullptr && T->Name == ItemName)
         {
             return true;
         }
     }
     return false;
+}
+
+URule* URule::Clone()
+{
+    URule* ClonedRule = NewObject<URule>(GetOuter(), GetClass());
+
+    ClonedRule->Outputs = this->Outputs;
+    ClonedRule->Inputs = this->Inputs;
+    ClonedRule->Action = this->Action;
+    ClonedRule->Hint = this->Hint;
+    ClonedRule->Parent = this->Parent;
+    ClonedRule->Children = this->Children;
+    ClonedRule->bAutomatic = this->bAutomatic;
+    ClonedRule->bSelectedInput = this->bSelectedInput;
+    ClonedRule->bInventory = this->bInventory;
+    ClonedRule->RuleNumber = this->RuleNumber;
+    ClonedRule->Name = this->Name;
+
+    return ClonedRule;
 }

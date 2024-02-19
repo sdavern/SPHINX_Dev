@@ -285,3 +285,20 @@ void UItem::PostInitProperties()
     }
 }
 
+UItem* UItem::Clone()
+{
+    UItem* ClonedItem = NewObject<UItem>(GetOuter(), GetClass());
+
+    ClonedItem->Name = this->Name;
+    ClonedItem->Properties = this->Properties;
+    ClonedItem->ItemPrefab = this->ItemPrefab;
+    ClonedItem->Description = this->Description;
+    ClonedItem->LongDescription = this->LongDescription;
+    ClonedItem->SpawnPoints = this->SpawnPoints;
+    ClonedItem->SpecificSpawnPoints = this->SpecificSpawnPoints;
+    ClonedItem->SpawnLength = this->SpawnLength;
+    ClonedItem->_index = this->_index;
+
+    return ClonedItem;
+}
+

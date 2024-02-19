@@ -43,7 +43,7 @@ public:
 	UGameItem* GetSelectedItem();
 
 	UFUNCTION(BlueprintCallable)
-	TArray<UGameItem*> GetInventory();
+	const TArray<UGameItem*>&  GetInventory() const;
 	
 protected:
 	// Called when the game starts or when spawned

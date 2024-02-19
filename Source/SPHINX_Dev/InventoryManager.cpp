@@ -30,7 +30,6 @@ void AInventoryManager::AddItemToInventory(UGameItem* Item)
 {
 
     AActor* OwnerActor = Item->GetOwner();
-
     OwnerActor->SetActorHiddenInGame(true);
     OwnerActor->SetActorEnableCollision(false);
     OwnerActor->SetActorTickEnabled(false);
@@ -111,10 +110,14 @@ void AInventoryManager::DeselectItemFromInventory(UGameItem* Item)
 
 UGameItem* AInventoryManager::GetSelectedItem()
 {
-    return SelectedItem;    
+    if (SelectedItem != nullptr)
+    {
+        return SelectedItem;
+    }
+    return nullptr;
 }
 
-TArray<UGameItem*> AInventoryManager::GetInventory()
+const TArray<UGameItem*>& AInventoryManager::GetInventory() const 
 {
     return Inventory;
 }

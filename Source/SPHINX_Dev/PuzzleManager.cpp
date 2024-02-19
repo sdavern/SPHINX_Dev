@@ -19,21 +19,35 @@ void APuzzleManager::BeginPlay()
 
     GetInstance();
 
-    Everything->SetActorHiddenInGame(false);
-    Everything->SetActorEnableCollision(true);
-    Everything->SetActorTickEnabled(true);
+    if (Everything != nullptr)
+    {
+        Everything->SetActorHiddenInGame(false);
+        Everything->SetActorEnableCollision(true);
+        Everything->SetActorTickEnabled(true);
+    }
+    
+    if (Player != nullptr)
+    {
+        Player->SetActorHiddenInGame(false);
+        Player->SetActorEnableCollision(true);
+        Player->SetActorTickEnabled(true);
+    }
+    
+    if (Generator != nullptr)
+    {
+        Generator->SetActorHiddenInGame(false);
+        Generator->SetActorEnableCollision(true);
+        Generator->SetActorTickEnabled(true);
 
-    Player->SetActorHiddenInGame(false);
-    Player->SetActorEnableCollision(true);
-    Player->SetActorTickEnabled(true);
-
-    Generator->SetActorHiddenInGame(false);
-    Generator->SetActorEnableCollision(true);
-    Generator->SetActorTickEnabled(true);
-
-    StartingInventory->SetActorHiddenInGame(false);
-    StartingInventory->SetActorEnableCollision(true);
-    StartingInventory->SetActorTickEnabled(true);
+    }
+    
+    if (StartingInventory != nullptr)
+    {
+        StartingInventory->SetActorHiddenInGame(false);
+        StartingInventory->SetActorEnableCollision(true);
+        StartingInventory->SetActorTickEnabled(true);
+    }
+   
 
     GenerateForArea(StartArea);
 
@@ -50,13 +64,15 @@ APuzzleManager* APuzzleManager::GetInstance()
 
 void APuzzleManager::GenerateForArea(UArea* Area)
 {
-    Area->AreaObject->SetActorHiddenInGame(false);
-    Area->AreaObject->SetActorEnableCollision(true);
-    Area->AreaObject->SetActorTickEnabled(true);
+    if (Area != nullptr)
+    {
+        Area->AreaObject->SetActorHiddenInGame(false);
+        Area->AreaObject->SetActorEnableCollision(true);
+        Area->AreaObject->SetActorTickEnabled(true);
+    }
+    
 
     URule* Root = Generator->GeneratePuzzleStartingFrom(Area, AccessibleAreas);
-
-
     FRulesStruct NewRules;
     Leaves.Add(Area, NewRules);
     PuzzleRules.Add(Area, NewRules);
@@ -65,12 +81,12 @@ void APuzzleManager::GenerateForArea(UArea* Area)
 
     for (AConditionalObject* CO : ConditionalObjects)
     {
-        if (CO->Area->Name == Area->Name)
+        if (CO != nullptr && CO->Area->Name == Area->Name)
         {
             FRulesStruct* FoundRulesStruct = PuzzleRules.Find(Area);
             for (URule* Rule : FoundRulesStruct->RulesArray)
             {
-                if (PuzzleContains(CO->Condition, Rule))
+                if (Rule != nullptr && PuzzleContains(CO->Condition, Rule))
                 {
                     CO->AffectedItem->SetActorHiddenInGame(false);
                     CO->AffectedItem->SetActorEnableCollision(true);
@@ -88,7 +104,10 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem, UArea* Area)
     FRulesStruct* FoundLeavesRules = Leaves.Find(Area);
     for (URule* Rule: FoundLeavesRules->RulesArray)
     {
-        AddApplicableRule(Rule, GameItem, Rules);
+        if (Rule != nullptr)
+        {
+            AddApplicableRule(Rule, GameItem, Rules);
+        }  
     }
 
     if (UseAllRules)
@@ -110,7 +129,7 @@ UItem* APuzzleManager::GetObject(FString ItemName)
 {
     for (UItem* Item : ItemAssets)
     {
-        if (Item->Name == ItemName)
+        if (Item != nullptr && Item->Name == ItemName)
         {
             UItem* NewItem = NewObject<UItem>(this, UItem::StaticClass());
             NewItem = Item;
@@ -165,7 +184,10 @@ void APuzzleManager::ExecuteRule(URule* Rule, UArea* Area)
             {
                 for (UArea* ConnectedArea : Area->ConnectedTo)
                 {
-                    GenerateForArea(ConnectedArea);
+                    if (ConnectedArea != nullptr)
+                    {
+                            GenerateForArea(ConnectedArea);
+                    }
                 }
             }
         }
@@ -187,7 +209,10 @@ void APuzzleManager::FindLeaves(URule* Parent, UArea* Area)
         }
         for (URule* Child : Parent->Children)
         {
-            FindLeaves(Child, Area);
+            if (Child != nullptr)
+            {
+                FindLeaves(Child, Area);
+            }
         }
     }
 }
@@ -199,7 +224,7 @@ bool APuzzleManager::FindItemsForOutputs(URule* Rule)
         bool Found = false;
         for (UTerm* Input : Rule->Inputs)
         {
-            if (Output->Name == Input->Name)
+            if (Input != nullptr && Output->Name == Input->Name)
             {
                 Found = true;
             }
@@ -232,7 +257,7 @@ bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UArea*> NewAccessibleArea
 {
     for (UItem* DbItem : ItemAssets)
     {
-        if ((DbItem->Name == Term->Name || DbItem->GetSuperTypes().Contains(Term->Name)) && DbItem->IsAccessible(NewAccessibleAreas, ItemsInLevel))
+        if (DbItem != nullptr && (DbItem->Name == Term->Name || DbItem->GetSuperTypes().Contains(Term->Name)) && DbItem->IsAccessible(NewAccessibleAreas, ItemsInLevel))
         {
             return true;
         }
@@ -245,7 +270,7 @@ TArray<UItem*> APuzzleManager::GetItemsOfType(FString ItemName, TArray<UArea*> N
     TArray<UItem*> MatchingItems;
     for (UItem* DbItem : ItemAssets)
     {
-        if (DbItem->Name == ItemName || DbItem->GetSuperTypes().Contains(ItemName))
+        if (DbItem != nullptr && DbItem->Name == ItemName || DbItem->GetSuperTypes().Contains(ItemName))
         {
             MatchingItems.Add(DbItem);
         }
@@ -258,10 +283,9 @@ TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UArea*> NewAcc
     TArray<UItem*> MatchingItems;
     for (UItem* DbItem : ItemAssets)
     {
-        if (DbItem->Matches(Term) && DbItem->IsAccessible(AccessibleAreas, ItemsInLevel))
+        if (DbItem != nullptr && DbItem->Matches(Term) && DbItem->IsAccessible(AccessibleAreas, ItemsInLevel))
         {
-            UItem* NewItem = NewObject<UItem>(this, UItem::StaticClass());
-            NewItem = DbItem;
+            UItem* NewItem = DbItem->Clone();
             MatchingItems.Add(NewItem);
         }
     }
@@ -273,10 +297,9 @@ TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
     TArray<URule*> Rules;
     for (int32 i = 0; i < RuleAssets.Num(); i++)
     {
-        if (RuleAssets[i]->Inputs[0]->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(RuleAssets[i]->Inputs[0]->Name))
+        if (RuleAssets[i] != nullptr && (RuleAssets[i]->Inputs[0]->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(RuleAssets[i]->Inputs[0]->Name)))
         {
-            URule* RuleToAdd = NewObject<URule>(this, URule::StaticClass());
-            RuleToAdd = RuleAssets[i];
+            URule* RuleToAdd = RuleAssets[i]->Clone();
             Rules.Add(RuleToAdd);
         }
     }
@@ -288,10 +311,9 @@ TArray<URule*> APuzzleManager::GetRulesWithOutput(UTerm* Term)
     TArray<URule*> Rules;
     for (int32 i = 0; i < RuleAssets.Num(); i++)
     {
-        if (RuleAssets[i]->Outputs[0]->Name == Term->Name)
+        if (RuleAssets[i] != nullptr && RuleAssets[i]->Outputs[0]->Name == Term->Name)
         {
-            URule* RuleToAdd = NewObject<URule>(this, URule::StaticClass());
-            RuleToAdd = RuleAssets[i];
+            URule* RuleToAdd = RuleAssets[i]->Clone();
             Rules.Add(RuleToAdd);
         }
     }
@@ -303,9 +325,11 @@ TArray<UItem*> APuzzleManager::GetAllItems()
     TArray<UItem*> Objects;
     for (UItem* Asset : ItemAssets)
     {
-        UItem* NewItem = NewObject<UItem>(this, UItem::StaticClass());
-        NewItem = Asset;
-        Objects.Add(NewItem);
+        if (Asset != nullptr)
+        {
+            UItem* NewItem = Asset->Clone();
+            Objects.Add(NewItem);
+        }
     }
     return Objects;
 }
@@ -315,9 +339,11 @@ TArray<URule*> APuzzleManager::GetAllRules()
     TArray<URule*> Objects;
     for (URule* Asset : RuleAssets)
     {
-        URule* NewRule = NewObject<URule>(this, URule::StaticClass());
-        NewRule = Asset;
-        Objects.Add(NewRule);
+        if (Asset != nullptr)
+        {
+            URule* NewRule = Asset->Clone();
+            Objects.Add(NewRule);
+        }
     }
     return Objects;
 }
@@ -327,9 +353,11 @@ TArray<UArea*> APuzzleManager::GetAllAreas()
     TArray<UArea*> Objects;
     for (UArea* Asset : AreaAssets)
     {
-        UArea* NewArea = NewObject<UArea>(this, UArea::StaticClass());
-        NewArea = Asset;
-        Objects.Add(NewArea);
+        if (Asset != nullptr)
+        {
+            UArea* NewArea = Asset->Clone();
+            Objects.Add(NewArea);
+        }
     }
     return Objects;
 }
@@ -349,7 +377,12 @@ void APuzzleManager::UpdatePlayerProperties(UItemProperty* Property)
 
 UGameItem* APuzzleManager::GetPlayer()
 {
-    return Player->GameItem;
+    if (Player != nullptr)
+    {
+
+        return Player->GameItem;
+    }
+    return nullptr;
 }
 
 bool APuzzleManager::PuzzleContains(UItem* Item, URule* Parent)
@@ -359,28 +392,47 @@ bool APuzzleManager::PuzzleContains(UItem* Item, URule* Parent)
 
 FString APuzzleManager::GetHint()
 {
-    return CurrentArea->GetHint();
+    if (CurrentArea != nullptr)
+    {
+        return CurrentArea->GetHint();
+    }
+    return FString();
 }
 
 FString APuzzleManager::GetObjective()
 {
-    return CurrentArea->GetObjective();
+    if (CurrentArea != nullptr)
+    {
+        return CurrentArea->GetObjective();
+    }
+    return FString();
 }
 
 FString APuzzleManager::GetCurrentAreaName()
 {
-    return CurrentArea->Name;
+    if (CurrentArea != nullptr)
+    {
+        return CurrentArea->Name;
+    }
+    return FString();
 }
 
 UArea* APuzzleManager::GetCurrentArea()
 {
-    return CurrentArea;
+    if (CurrentArea != nullptr)
+    {
+        return CurrentArea;
+    }   
+    return nullptr;
 }
 
 void APuzzleManager::TriggerEnd()
 {
-    FinalFade->SetActorHiddenInGame(false);
-    FinalFade->SetActorEnableCollision(true);
-    FinalFade->SetActorTickEnabled(true);
+    if (FinalFade != nullptr)
+    {
+        FinalFade->SetActorHiddenInGame(false);
+        FinalFade->SetActorEnableCollision(true);
+        FinalFade->SetActorTickEnabled(true);
+    }    
 }
 

@@ -15,6 +15,12 @@ void UGameArea::BeginPlay()
 {
 	Super::BeginPlay();
 
+	if (AreaBP == nullptr)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("AreaBP is not set in UGameArea::BeginPlay"));
+		return;
+	}
+
 	UArea* MyAreaInstance = NewObject<UArea>(this, AreaBP);
 	if (MyAreaInstance)
 	{
@@ -28,9 +34,13 @@ void UGameArea::BeginPlay()
 
 	for (AActor* Actor : AttachedActors)
 	{
-		TArray<UGameItem*> GameItemComponents;
-		Actor->GetComponents(UGameItem::StaticClass(), GameItemComponents);
-		ItemsInArea = GameItemComponents;	
+		if (Actor != nullptr)
+		{
+			TArray<UGameItem*> GameItemComponents;
+			Actor->GetComponents(UGameItem::StaticClass(), GameItemComponents);
+			ItemsInArea = GameItemComponents;
+		}
+			
 	}
 
 	Index = FMath::RandRange(0, SpawnPoints.Num());
@@ -47,8 +57,12 @@ void UGameArea::GetAllAttachedActors(AActor* ParentActor, TArray<AActor*>& OutAc
 
 	for (AActor* ChildActor : DirectlyAttachedActors)
 	{
-		OutActors.Add(ChildActor);
-		GetAllAttachedActors(ChildActor, OutActors);
+		if (ChildActor != nullptr)
+		{
+			OutActors.Add(ChildActor);
+			GetAllAttachedActors(ChildActor, OutActors);
+		}
+		
 	}
 }
 
@@ -125,14 +139,15 @@ FVector UGameArea::GetRandomSpawnPt()
 FString UGameArea::ToString()
 {
 	UArea* AreaInstance = NewObject<UArea>(this, AreaBP);
-	
-
 	FString AreaName = AreaInstance->Name;
 
 	FString DebugString = TEXT("Area: " + AreaName + "Items");
 	for (UGameItem* G : ItemsInArea)
 	{
-		DebugString += G->ToString() + TEXT(" ");
+		if (G != nullptr)
+		{
+			DebugString += G->ToString() + TEXT(" ");
+		}
 	}
 	return DebugString;
 }

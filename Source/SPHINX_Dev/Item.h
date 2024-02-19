@@ -86,6 +86,8 @@ public:
 
 	void PostInitProperties();
 
+	UItem* Clone();
+
 
 
 
