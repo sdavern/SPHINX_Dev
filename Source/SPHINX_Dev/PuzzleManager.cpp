@@ -19,11 +19,21 @@ void APuzzleManager::BeginPlay()
 
     GetInstance();
 
+    //Load in databases
+    //Area
+    AreaAssets = LoadAreaBPs();
+    //Item
+    ItemAssets = LoadItemBPs();
+    //Rule
+    RuleAssets = LoadRuleBPs();
+
+
     if (Everything != nullptr)
     {
         Everything->SetActorHiddenInGame(false);
         Everything->SetActorEnableCollision(true);
         Everything->SetActorTickEnabled(true);
+        UE_LOG(LogTemp, Display, TEXT("Everything set to Active"));
     }
     
     if (Player != nullptr)
@@ -31,6 +41,7 @@ void APuzzleManager::BeginPlay()
         Player->SetActorHiddenInGame(false);
         Player->SetActorEnableCollision(true);
         Player->SetActorTickEnabled(true);
+        UE_LOG(LogTemp, Display, TEXT("Player set to Active"));
     }
     
     if (Generator != nullptr)
@@ -38,6 +49,7 @@ void APuzzleManager::BeginPlay()
         Generator->SetActorHiddenInGame(false);
         Generator->SetActorEnableCollision(true);
         Generator->SetActorTickEnabled(true);
+        UE_LOG(LogTemp, Display, TEXT("Generator set to Active"));
 
     }
     
@@ -46,6 +58,7 @@ void APuzzleManager::BeginPlay()
         StartingInventory->SetActorHiddenInGame(false);
         StartingInventory->SetActorEnableCollision(true);
         StartingInventory->SetActorTickEnabled(true);
+        UE_LOG(LogTemp, Display, TEXT("Starting Inventory set to Active"));
     }
    
 
@@ -58,8 +71,12 @@ APuzzleManager* APuzzleManager::GetInstance()
     if (!Instance)
     {
         Instance = NewObject<APuzzleManager>();
+        UE_LOG(LogTemp, Warning, TEXT("Puzzle Manager instance created."));
+        return Instance;
     }
+    UE_LOG(LogTemp, Display, TEXT("Puzzle Manager instance found."));
     return Instance;
+    
 }
 
 void APuzzleManager::GenerateForArea(UArea* Area)
@@ -69,6 +86,7 @@ void APuzzleManager::GenerateForArea(UArea* Area)
         Area->AreaObject->SetActorHiddenInGame(false);
         Area->AreaObject->SetActorEnableCollision(true);
         Area->AreaObject->SetActorTickEnabled(true);
+        UE_LOG(LogTemp, Display, TEXT("%s area set to Active"), *Area->Name);
     }
     
 
@@ -127,13 +145,15 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem, UArea* Area)
 
 UItem* APuzzleManager::GetObject(FString ItemName)
 {
-    for (UItem* Item : ItemAssets)
+    for (TSubclassOf<UItem> Item : ItemAssets)
     {
-        if (Item != nullptr && Item->Name == ItemName)
+        if (Item != nullptr)
         {
-            UItem* NewItem = NewObject<UItem>(this, UItem::StaticClass());
-            NewItem = Item;
-            return NewItem;
+            UItem* NewItem = NewObject<UItem>(this, Item);
+            if (NewItem && NewItem->Name == ItemName)
+            {
+                return NewItem;
+            }
         }
     }
     return nullptr;
@@ -147,6 +167,7 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
         {
             if (!Rules.Contains(Rule))
             {
+                UE_LOG(LogTemp, Display, TEXT("Found: %s %s"), *GameItem->DbItem->Name, *Rule->Action);
                 Rule->Inputs[0]->GameItem = GameItem;
                 Rules.Add(Rule);
             }
@@ -159,6 +180,7 @@ void APuzzleManager::ExecuteRule(URule* Rule, UArea* Area)
     FRulesStruct* FoundLeavesRules = Leaves.Find(Area);
     if (FoundLeavesRules->RulesArray.Contains(Rule))
     {
+        UE_LOG(LogTemp, Display, TEXT("Execute: %s"), *Rule->Parent->Outputs[0]->Name);
         FoundLeavesRules->RulesArray.Remove(Rule);
         if (Rule->Parent->Parent != nullptr)
         {
@@ -186,6 +208,7 @@ void APuzzleManager::ExecuteRule(URule* Rule, UArea* Area)
                 {
                     if (ConnectedArea != nullptr)
                     {
+                            UE_LOG(LogTemp, Display, TEXT("Attempting to generate puzzle for: %s"), *ConnectedArea->Name);
                             GenerateForArea(ConnectedArea);
                     }
                 }
@@ -198,6 +221,7 @@ void APuzzleManager::FindLeaves(URule* Parent, UArea* Area)
 {
     if (Parent->Children.Num() == 0)
     {
+        UE_LOG(LogTemp, Display, TEXT("Rule %s has no children"), *Parent->ToString());
         Leaves.FindOrAdd(Area).RulesArray.Add(Parent);
     }
     else
@@ -255,11 +279,15 @@ void APuzzleManager::AddPuzzle(UArea* Area, FString Puzzle)
 
 bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
 {
-    for (UItem* DbItem : ItemAssets)
+    for (TSubclassOf<UItem> DbItem : ItemAssets)
     {
-        if (DbItem != nullptr && (DbItem->Name == Term->Name || DbItem->GetSuperTypes().Contains(Term->Name)) && DbItem->IsAccessible(NewAccessibleAreas, ItemsInLevel))
+        if (DbItem != nullptr)
         {
-            return true;
+            UItem* DbItemPtr = NewObject<UItem>(this, DbItem);
+            if (DbItemPtr && (DbItemPtr->Name == Term->Name || DbItemPtr->GetSuperTypes().Contains(Term->Name)) && DbItemPtr->IsAccessible(NewAccessibleAreas, ItemsInLevel))
+            {
+                return true;
+            }
         }
     }
     return false;
@@ -268,11 +296,16 @@ bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UArea*> NewAccessibleArea
 TArray<UItem*> APuzzleManager::GetItemsOfType(FString ItemName, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
 {
     TArray<UItem*> MatchingItems;
-    for (UItem* DbItem : ItemAssets)
+    for (TSubclassOf<UItem> DbItem : ItemAssets)
     {
-        if (DbItem != nullptr && DbItem->Name == ItemName || DbItem->GetSuperTypes().Contains(ItemName))
+        if (DbItem != nullptr)
         {
-            MatchingItems.Add(DbItem);
+            UItem* DbItemPtr = NewObject<UItem>(this, DbItem);
+
+            if (DbItemPtr && DbItemPtr->Name == ItemName || DbItemPtr->GetSuperTypes().Contains(ItemName))
+            {
+                MatchingItems.Add(DbItemPtr);
+            }
         }
     }
     return MatchingItems;
@@ -281,12 +314,15 @@ TArray<UItem*> APuzzleManager::GetItemsOfType(FString ItemName, TArray<UArea*> N
 TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
 {
     TArray<UItem*> MatchingItems;
-    for (UItem* DbItem : ItemAssets)
+    for (TSubclassOf<UItem> DbItem : ItemAssets)
     {
-        if (DbItem != nullptr && DbItem->Matches(Term) && DbItem->IsAccessible(AccessibleAreas, ItemsInLevel))
+        if (DbItem != nullptr)
         {
-            UItem* NewItem = DbItem->Clone();
-            MatchingItems.Add(NewItem);
+            UItem* DbItemPtr = NewObject<UItem>(this, DbItem);
+            if (DbItemPtr && DbItemPtr->Matches(Term) && DbItemPtr->IsAccessible(AccessibleAreas, ItemsInLevel))
+            {
+                MatchingItems.Add(DbItemPtr);
+            }
         }
     }
     return MatchingItems;
@@ -297,10 +333,14 @@ TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
     TArray<URule*> Rules;
     for (int32 i = 0; i < RuleAssets.Num(); i++)
     {
-        if (RuleAssets[i] != nullptr && (RuleAssets[i]->Inputs[0]->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(RuleAssets[i]->Inputs[0]->Name)))
+        if (RuleAssets[i] != nullptr)
         {
-            URule* RuleToAdd = RuleAssets[i]->Clone();
-            Rules.Add(RuleToAdd);
+            URule* RuleToAdd = NewObject<URule>(this, RuleAssets[i]);
+
+            if (RuleToAdd && RuleToAdd->Inputs.Num() > 0 && (RuleToAdd->Inputs[0]->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(RuleToAdd->Inputs[0]->Name)))
+            {
+                Rules.Add(RuleToAdd);
+            }
         }
     }
     return Rules;
@@ -309,12 +349,17 @@ TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
 TArray<URule*> APuzzleManager::GetRulesWithOutput(UTerm* Term)
 {
     TArray<URule*> Rules;
+    UE_LOG(LogTemp, Display, TEXT("GetRulesWithOutput - term: %s"), *Term->GetTermAsString());
     for (int32 i = 0; i < RuleAssets.Num(); i++)
     {
-        if (RuleAssets[i] != nullptr && RuleAssets[i]->Outputs[0]->Name == Term->Name)
+        if (RuleAssets[i] != nullptr)
         {
-            URule* RuleToAdd = RuleAssets[i]->Clone();
-            Rules.Add(RuleToAdd);
+            URule* RuleToAdd = NewObject<URule>(this, RuleAssets[i]);
+
+            if (RuleToAdd && RuleToAdd->Outputs.Num() > 0 && RuleToAdd->Outputs[0]->Name == Term->Name && RuleToAdd->Outputs[0] != nullptr)
+            {
+                Rules.Add(RuleToAdd);
+            }
         }
     }
     return Rules;
@@ -323,12 +368,15 @@ TArray<URule*> APuzzleManager::GetRulesWithOutput(UTerm* Term)
 TArray<UItem*> APuzzleManager::GetAllItems()
 {
     TArray<UItem*> Objects;
-    for (UItem* Asset : ItemAssets)
+    for (TSubclassOf<UItem> AssetClass : ItemAssets)
     {
-        if (Asset != nullptr)
+        if (AssetClass != nullptr)
         {
-            UItem* NewItem = Asset->Clone();
-            Objects.Add(NewItem);
+            UItem* NewItem = NewObject<UItem>(this, AssetClass);
+            if (NewItem)
+            {
+                Objects.Add(NewItem);
+            }
         }
     }
     return Objects;
@@ -337,12 +385,15 @@ TArray<UItem*> APuzzleManager::GetAllItems()
 TArray<URule*> APuzzleManager::GetAllRules()
 {
     TArray<URule*> Objects;
-    for (URule* Asset : RuleAssets)
+    for (TSubclassOf<URule> AssetClass : RuleAssets)
     {
-        if (Asset != nullptr)
+        if (AssetClass != nullptr)
         {
-            URule* NewRule = Asset->Clone();
-            Objects.Add(NewRule);
+            URule* NewRule = NewObject<URule>(this, AssetClass);
+            if (NewRule)
+            {
+                Objects.Add(NewRule);
+            }
         }
     }
     return Objects;
@@ -351,12 +402,15 @@ TArray<URule*> APuzzleManager::GetAllRules()
 TArray<UArea*> APuzzleManager::GetAllAreas()
 {
     TArray<UArea*> Objects;
-    for (UArea* Asset : AreaAssets)
+    for (TSubclassOf<UArea> AssetClass : AreaAssets)
     {
-        if (Asset != nullptr)
+        if (AssetClass != nullptr)
         {
-            UArea* NewArea = Asset->Clone();
-            Objects.Add(NewArea);
+            UArea* NewArea = NewObject<UArea>(this, AssetClass);
+            if (NewArea)
+            {
+                Objects.Add(NewArea);
+            }
         }
     }
     return Objects;
@@ -387,7 +441,26 @@ UGameItem* APuzzleManager::GetPlayer()
 
 bool APuzzleManager::PuzzleContains(UItem* Item, URule* Parent)
 {
-    return true;
+    if (Parent->ContainsItem(Item))
+    {
+        return true;
+    }
+    if (Parent->Children.Num() == 0)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Rule %s has no children."), *Parent->ToString());
+        return false;
+    }
+    else
+    {
+        for (URule* Child : Parent->Children)
+        {
+            if (PuzzleContains(Item, Child))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 FString APuzzleManager::GetHint()
@@ -430,9 +503,113 @@ void APuzzleManager::TriggerEnd()
 {
     if (FinalFade != nullptr)
     {
+        UE_LOG(LogTemp, Display, TEXT("Final Fade Triggered"));
         FinalFade->SetActorHiddenInGame(false);
         FinalFade->SetActorEnableCollision(true);
         FinalFade->SetActorTickEnabled(true);
     }    
+}
+
+TArray<TSubclassOf<UArea>> APuzzleManager::LoadAreaBPs()
+{
+    TArray<TSubclassOf<UArea>> LoadedAreaClasses;
+
+    // Initialize the Asset Registry Module
+    FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
+    FARFilter Filter;
+    Filter.bRecursivePaths = true;
+    Filter.PackagePaths.Add("/Game/Resources/Areas");
+
+    // Query the Asset Registry
+    TArray<FAssetData> AssetData;
+    AssetRegistryModule.Get().GetAssets(Filter, AssetData);
+    UE_LOG(LogTemp, Warning, TEXT("Found %d AREA assets."), AssetData.Num());
+
+    // Load each asset class
+    for (const FAssetData& Asset : AssetData)
+    {
+        // Get the generated class from the blueprint asset
+        const FString GeneratedClassPath = Asset.GetTagValueRef<FString>(FName("GeneratedClass"));
+        if (!GeneratedClassPath.IsEmpty())
+        {
+            UClass* AssetClass = Cast<UClass>(StaticLoadObject(UClass::StaticClass(), nullptr, *GeneratedClassPath));
+            if (AssetClass && AssetClass->IsChildOf(UArea::StaticClass()))
+            {
+                LoadedAreaClasses.Add(AssetClass);
+                UE_LOG(LogTemp, Display, TEXT("Area '%s' loaded from database."), *AssetClass->GetName());
+            }
+
+        }
+    }
+
+    return LoadedAreaClasses;
+}
+
+TArray<TSubclassOf<UItem>> APuzzleManager::LoadItemBPs()
+{
+    TArray<TSubclassOf<UItem>> LoadedItemClasses;
+
+    // Initialize the Asset Registry Module
+    FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
+    FARFilter Filter;
+    Filter.bRecursivePaths = true;
+    Filter.PackagePaths.Add("/Game/Resources/Items");
+
+    // Query the Asset Registry
+    TArray<FAssetData> AssetData;
+    AssetRegistryModule.Get().GetAssets(Filter, AssetData);
+    UE_LOG(LogTemp, Warning, TEXT("Found %d ITEM assets."), AssetData.Num());
+
+    // Load each asset class
+    for (const FAssetData& Asset : AssetData)
+    {
+        // Get the generated class from the blueprint asset
+        const FString GeneratedClassPath = Asset.GetTagValueRef<FString>(FName("GeneratedClass"));
+        if (!GeneratedClassPath.IsEmpty())
+        {
+            UClass* AssetClass = Cast<UClass>(StaticLoadObject(UClass::StaticClass(), nullptr, *GeneratedClassPath));
+            if (AssetClass && AssetClass->IsChildOf(UItem::StaticClass()))
+            {
+                LoadedItemClasses.Add(AssetClass);
+                UE_LOG(LogTemp, Display, TEXT("Item '%s' loaded from database."), *AssetClass->GetName());
+            }
+        }
+    }
+
+    return LoadedItemClasses;
+}
+
+TArray<TSubclassOf<URule>> APuzzleManager::LoadRuleBPs()
+{
+    TArray<TSubclassOf<URule>> LoadedRuleClasses;
+
+    // Initialize the Asset Registry Module
+    FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
+    FARFilter Filter;
+    Filter.bRecursivePaths = true;
+    Filter.PackagePaths.Add("/Game/Resources/Rules");
+
+    // Query the Asset Registry
+    TArray<FAssetData> AssetData;
+    AssetRegistryModule.Get().GetAssets(Filter, AssetData);
+    UE_LOG(LogTemp, Warning, TEXT("Found %d RULE assets."), AssetData.Num());
+
+    // Load each asset class
+    for (const FAssetData& Asset : AssetData)
+    {
+        // Get the generated class from the blueprint asset
+        const FString GeneratedClassPath = Asset.GetTagValueRef<FString>(FName("GeneratedClass"));
+        if (!GeneratedClassPath.IsEmpty())
+        {
+            UClass* AssetClass = Cast<UClass>(StaticLoadObject(UClass::StaticClass(), nullptr, *GeneratedClassPath));
+            if (AssetClass && AssetClass->IsChildOf(URule::StaticClass()))
+            {
+                LoadedRuleClasses.Add(AssetClass);
+                UE_LOG(LogTemp, Display, TEXT("Rule '%s' loaded from database."), *AssetClass->GetName());
+            }
+        }
+    }
+
+    return LoadedRuleClasses;
 }
 

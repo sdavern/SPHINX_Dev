@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Math/UnrealMathUtility.h"
+#include "AssetRegistry/AssetRegistryModule.h"
 #include "Item.h"
 #include "Rule.h"
 #include "Area.h"
@@ -54,11 +55,11 @@ public:
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	//AActor* Statistics;
 
-	TArray<UItem*> ItemAssets;
+	TArray<TSubclassOf<UItem>> ItemAssets;
 
-	TArray<URule*> RuleAssets;
+	TArray<TSubclassOf<URule>> RuleAssets;
 
-	TArray<UArea*> AreaAssets;
+	TArray<TSubclassOf<UArea>> AreaAssets;
 
 	static APuzzleManager* GetInstance();
 
@@ -109,6 +110,13 @@ public:
 	UArea* GetCurrentArea();
 
 	void TriggerEnd();
+
+	TArray<TSubclassOf<UArea>> LoadAreaBPs();
+
+	TArray<TSubclassOf<UItem>> LoadItemBPs();
+
+	TArray<TSubclassOf<URule>> LoadRuleBPs();
+
 
 protected:
 	// Called when the game starts or when spawned

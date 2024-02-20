@@ -19,8 +19,11 @@ AGenerator* AGenerator::GetInstance()
 	if (!Instance)
     {
         Instance = NewObject<AGenerator>();
+		UE_LOG(LogTemp, Warning, TEXT("Generator instance created."));
     }
+	UE_LOG(LogTemp, Display, TEXT("Generator instance found."));
     return Instance;
+	
 }
 
 // Called when the game starts or when spawned
@@ -70,6 +73,7 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UArea* Area)
 			NextSpawnPoint = GameArea->GetNextSpawnPt();
 		}
 		
+		UE_LOG(LogTemp, Display, TEXT("Spawn point: %s ( %s )"), *NextSpawnPoint.ToString(), *Item->Name);
 		AActor* ItemGO = World->SpawnActor<AActor>(Item->ItemPrefab, NextSpawnPoint, FRotator::ZeroRotator);
 		ItemGO->AttachToActor(GameArea->GetOwner(), FAttachmentTransformRules::KeepRelativeTransform);
 		ItemGO->FindComponentByClass<UGameItem>()->Setup(Item->Name, Item);
@@ -111,6 +115,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAcc
 	{
 		if (ExistingGameItems[i] != nullptr)
 		{
+			UE_LOG(LogTemp, Display, TEXT("Existing GameItems: %s"), *ExistingGameItems[i]->Name);
 			ItemsInLevel.Add(ExistingGameItems[i]->DbItem);
 		}
 	}
@@ -132,6 +137,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAcc
 	if (Area != nullptr && Area->Goals.Num() > 0)
 	{
 		UTerm* Goal = Area->Goals[FMath::RandRange(0, Area->Goals.Num())];
+		UE_LOG(LogTemp, Display, TEXT("Area goal: %s"), *Goal->Name);
 		bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, Area, NewAccessibleAreas, ItemsInLevel);
 		if (SuccessfulInputs)
 		{
@@ -160,6 +166,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	{
 		if(!PMInstance->HasItemOfType(StartTerm, NewAccessibleAreas, ItemsInLevel))
 		{
+			UE_LOG(LogTemp, Warning, TEXT("GRAMMAR ERROR: Couldn't find accessible item of type: %s"), *StartTerm->Name);
 			return false;
 		}
 	}
@@ -177,9 +184,19 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	{
 		if (Rule != nullptr && Rule->MainOutputIs(StartTerm))
 		{
+			if (StartTerm->DbItem == nullptr)
+			{
+				UE_LOG(LogTemp, Display, TEXT("Found matching rule %s with output DbItem: %d"), *Rule->Outputs[0]->Name, *StartTerm->DbItem->Name, Depth);
+			}
+			else
+			{
+				UE_LOG(LogTemp, Display, TEXT("Found matching rule with output: %s"), *StartTerm->Name);
+			}
 			PossibleRules.Add(Rule);
 		}
 	}
+	
+	UE_LOG(LogTemp, Display, TEXT("Number of possible rules: %f"), PossibleRules.Num());
 
 	if (PossibleRules.Num() > 0 && Depth < CurrentArea->MaxDepth)
 	{
@@ -226,12 +243,14 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	}
 	if (StartTerm->DbItem == nullptr && StartTerm->Name != TEXT("Player"))
 	{
+		UE_LOG(LogTemp, Display, TEXT("GRAMMAR ERROR: No terminal or non-terminal match for term: %s"), *StartTerm->Name);
 		return false;
 	}
 
 	//Doesn't matter what GetWorld() is called on as there is only one UWorld*
 	UWorld* World = StartTerm->GetWorld();
 	Spawn(World, StartTerm->DbItem, ParentRule, CurrentArea);
+	UE_LOG(LogTemp, Display, TEXT("DbItem added to spawn list: %s"), *StartTerm->DbItem->Name);
 	return true;
 }
 

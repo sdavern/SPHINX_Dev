@@ -24,6 +24,7 @@ AInventoryManager::AInventoryManager()
 void AInventoryManager::BeginPlay()
 {
     Super::BeginPlay();
+    GetInstance();
 
 }
 
