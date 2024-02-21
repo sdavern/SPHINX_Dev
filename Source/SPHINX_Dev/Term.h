@@ -23,6 +23,8 @@ public:
     FString Name;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    TArray<TSubclassOf<UItemProperty>> PropertiesBP;
+
     TArray<UItemProperty*> Properties;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -55,6 +57,9 @@ public:
 	FString GetTermAsString();
 
 	FString ToString();
+
+    //Remove if causing issues
+    void ToPropPtrs();
 
 
 };

@@ -4,6 +4,7 @@
 UArea::UArea()
 {
     Name = TEXT("New Area");
+    this->ToGoalsPtr();
 }
 
 void UArea::AddGoal()
@@ -128,4 +129,17 @@ UArea* UArea::Clone()
    
 }
 
-
+void UArea::ToGoalsPtr()
+{
+    for (TSubclassOf<UTerm> AssetClass : GoalsBP)
+    {
+        if (AssetClass != nullptr)
+        {
+            UTerm* TermPtr = NewObject<UTerm>(this, AssetClass);
+            if (TermPtr != nullptr)
+            {
+                Goals.Add(TermPtr);
+            }
+        }
+    }
+}

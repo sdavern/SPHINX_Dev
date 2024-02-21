@@ -5,6 +5,7 @@
 UItem::UItem()
 {
     Name = TEXT("NewItem");
+    this->ToPropPtrs();
     
 }
 
@@ -302,3 +303,17 @@ UItem* UItem::Clone()
     return ClonedItem;
 }
 
+void UItem::ToPropPtrs()
+{
+    for (TSubclassOf<UItemProperty> AssetClass : PropertiesBP)
+    {
+        if (AssetClass != nullptr)
+        {
+            UItemProperty* NewProp = NewObject<UItemProperty>(this, AssetClass);
+            if (NewProp)
+            {
+                Properties.Add(NewProp);
+            }
+        }
+    }
+}

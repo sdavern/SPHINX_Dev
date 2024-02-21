@@ -20,6 +20,10 @@ URule::URule()
         OutputTerm->Description = TEXT("Output"); //could be Name rather than Description
         Outputs.Add(OutputTerm);
     } 
+
+    this->ToInputsPtr();
+    this->ToOutputsPtr();
+    this->ToChildrenPtr();
     
 }
 
@@ -251,4 +255,49 @@ URule* URule::Clone()
     ClonedRule->Name = this->Name;
 
     return ClonedRule;
+}
+
+void URule::ToOutputsPtr()
+{
+    for (TSubclassOf<UTerm> AssetClass : OutputsBP)
+    {
+        if (AssetClass != nullptr)
+        {
+            UTerm* TermPtr = NewObject<UTerm>(this, AssetClass);
+            if (TermPtr != nullptr)
+            {
+                Outputs.Add(TermPtr);
+            }
+        }
+    }
+}
+
+void URule::ToInputsPtr()
+{
+    for (TSubclassOf<UTerm> AssetClass : InputsBP)
+    {
+        if (AssetClass != nullptr)
+        {
+            UTerm* TermPtr = NewObject<UTerm>(this, AssetClass);
+            if (TermPtr != nullptr)
+            {
+                Inputs.Add(TermPtr);
+            }
+        }
+    }
+}
+
+void URule::ToChildrenPtr()
+{
+    for (TSubclassOf<URule> AssetClass : ChildrenBP)
+    {
+        if (AssetClass != nullptr)
+        {
+            URule* RulePtr = NewObject<URule>(this, AssetClass);
+            if (RulePtr != nullptr)
+            {
+                Children.Add(RulePtr);
+            }
+        }
+    }
 }

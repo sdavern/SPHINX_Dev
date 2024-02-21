@@ -29,6 +29,8 @@ public:
 	FString Name;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TSubclassOf<UTerm>> GoalsBP;
+
 	TArray<UTerm*> Goals;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -72,6 +74,9 @@ public:
 	FString ToString() const;
 
 	UArea* Clone();
+
+	//Remove if causing issues
+	void ToGoalsPtr();
 
 
 

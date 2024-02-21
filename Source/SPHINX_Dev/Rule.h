@@ -21,9 +21,13 @@ public:
 	URule();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TSubclassOf<UTerm>> OutputsBP;
+
 	TArray<UTerm*> Outputs;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TSubclassOf<UTerm>> InputsBP;
+
 	TArray<UTerm*> Inputs;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -36,6 +40,8 @@ public:
 	URule* Parent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TSubclassOf<URule>> ChildrenBP;
+
 	TArray<URule*> Children;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -89,5 +95,11 @@ public:
 	bool ContainsItem(UItem* Item);
 
 	URule* Clone();
+
+	void ToOutputsPtr();
+
+	void ToInputsPtr();
+
+	void ToChildrenPtr();
 
 };

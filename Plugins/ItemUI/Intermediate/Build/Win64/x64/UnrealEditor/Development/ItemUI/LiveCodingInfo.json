@@ -1,0 +1,10 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.ItemUI.cpp.obj": [
+			"ItemUI.cpp.obj",
+			"ItemUICommands.cpp.obj",
+			"ItemUIStyle.cpp.obj"
+		]
+	}
+}

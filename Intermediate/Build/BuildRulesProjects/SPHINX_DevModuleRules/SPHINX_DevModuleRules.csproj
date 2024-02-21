@@ -14,6 +14,8 @@
     <ProjectReference Include="..\..\..\..\..\..\..\..\..\Program Files\Epic Games\UE_5.3\Engine\Source\Programs\UnrealBuildTool\UnrealBuildTool.csproj"><Private>false</Private></ProjectReference>
   </ItemGroup>
   <ItemGroup>
+  <Compile Include="..\..\..\..\Plugins\ItemUI\Source\ItemUI\ItemUI.Build.cs"><Link>Plugins\ItemUI\Source\ItemUI\ItemUI.Build.cs</Link></Compile>
+  <Compile Include="..\..\..\..\Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\SlateQuickstartWindow.Build.cs"><Link>Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\SlateQuickstartWindow.Build.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\SPHINX_Dev.Target.cs"><Link>Source\SPHINX_Dev.Target.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\SPHINX_DevEditor.Target.cs"><Link>Source\SPHINX_DevEditor.Target.cs</Link></Compile>
   <Compile Include="..\..\..\..\Source\SPHINX_Dev\SPHINX_Dev.Build.cs"><Link>Source\SPHINX_Dev\SPHINX_Dev.Build.cs</Link></Compile>

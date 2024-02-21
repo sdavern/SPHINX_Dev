@@ -1,0 +1,37 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\slatequickstartwindow\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\slatequickstartwindow\\module.slatequickstartwindow.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\x64\\sphinx_deveditor\\development\\unrealed\\sharedpch.unrealed.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\slatequickstartwindow\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\slatequickstartwindow\\definitions.slatequickstartwindow.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\slatequickstartwindow\\source\\slatequickstartwindow\\private\\slatequickstartwindow.cpp",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\slatequickstartwindow\\source\\slatequickstartwindow\\public\\slatequickstartwindow.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\slatequickstartwindow\\source\\slatequickstartwindow\\public\\slatequickstartwindowstyle.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\slatequickstartwindow\\source\\slatequickstartwindow\\public\\slatequickstartwindowcommands.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\editor\\leveleditor\\public\\leveleditor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\editor\\leveleditor\\public\\ileveleditor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\public\\elements\\framework\\engineelementslibrary.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\engineelementslibrary.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\editor\\leveleditor\\public\\viewporttypedefinition.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\editor\\leveleditor\\public\\leveleditoroutlinersettings.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\developer\\toolwidgets\\public\\filters\\genericfilter.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\developer\\toolwidgets\\public\\filters\\filterbase.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\slatequickstartwindow\\source\\slatequickstartwindow\\private\\slatequickstartwindowcommands.cpp",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\slatequickstartwindow\\source\\slatequickstartwindow\\private\\slatequickstartwindowstyle.cpp",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\slatecore\\public\\styling\\slatestyleregistry.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\public\\slate\\slategameresources.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\interfaces\\ipluginmanager.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\plugindescriptor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\custombuildsteps.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\localizationdescriptor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\moduledescriptor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\pluginreferencedescriptor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\versescope.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\slatecore\\public\\styling\\slatestylemacros.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

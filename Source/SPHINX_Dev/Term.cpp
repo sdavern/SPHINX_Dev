@@ -7,7 +7,7 @@
 
 UTerm::UTerm()
 {
-    
+    this->ToPropPtrs();
 }
 
 UTerm::UTerm(const FString& Name)
@@ -112,4 +112,19 @@ FString UTerm::GetTermAsString()
 FString UTerm::ToString()
 {
     return this->GetTermAsString();
+}
+
+void UTerm::ToPropPtrs()
+{
+    for (TSubclassOf<UItemProperty> AssetClass : PropertiesBP)
+    {
+        if (AssetClass != nullptr)
+        {
+            UItemProperty* NewProp = NewObject<UItemProperty>(this, AssetClass);
+            if (NewProp)
+            {
+                Properties.Add(NewProp);
+            }
+        }
+    }
 }

@@ -25,6 +25,8 @@ public:
     FString Name;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
+	TArray<TSubclassOf<UItemProperty>> PropertiesBP;
+
     TArray<UItemProperty*> Properties;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
@@ -88,6 +90,8 @@ public:
 
 	UItem* Clone();
 
+	//Remove if causing issues
+    void ToPropPtrs();
 
 
 

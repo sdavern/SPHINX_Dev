@@ -1,6 +1,8 @@
 {
 	"SourceFiles": [
 		"C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SPHINX_Dev.Build.cs",
+		"C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\ItemUI\\Source\\ItemUI\\ItemUI.Build.cs",
+		"C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\SlateQuickstartWindow\\Source\\SlateQuickstartWindow\\SlateQuickstartWindow.Build.cs",
 		"C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev.Target.cs",
 		"C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_DevEditor.Target.cs"
 	],
