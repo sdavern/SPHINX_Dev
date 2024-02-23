@@ -18,7 +18,6 @@
 			"SPHINX_DevGameMode.gen.cpp.obj",
 			"SPHINX_DevPlayerController.gen.cpp.obj",
 			"SPHINX_DevProjectile.gen.cpp.obj",
-			"Term.gen.cpp.obj",
 			"TP_PickUpComponent.gen.cpp.obj",
 			"TP_WeaponComponent.gen.cpp.obj",
 			"ActionBtn.cpp.obj",
@@ -38,14 +37,21 @@
 			"SPHINX_DevGameMode.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj",
 			"SPHINX_DevProjectile.cpp.obj",
-			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
 			"GamePuzzlePoint.gen.cpp.obj",
+			"InitNPC.gen.cpp.obj",
+			"InitObject.gen.cpp.obj",
+			"InitText.gen.cpp.obj",
 			"PuzzlePoint.gen.cpp.obj",
 			"SPHINX_Dev.init.gen.cpp.obj",
+			"Term.gen.cpp.obj",
 			"GamePuzzlePoint.cpp.obj",
-			"PuzzlePoint.cpp.obj"
+			"InitNPC.cpp.obj",
+			"InitObject.cpp.obj",
+			"InitText.cpp.obj",
+			"PuzzlePoint.cpp.obj",
+			"Term.cpp.obj"
 		]
 	}
 }

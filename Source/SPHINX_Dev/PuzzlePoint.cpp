@@ -21,3 +21,25 @@ void UPuzzlePoint::ToPuzzleGoalPtrs()
     }
 }
 
+UTerm* UPuzzlePoint::PickGoal()
+{
+   return MainGoal = PuzzleGoalsPtrs[FMath::RandRange(0, PuzzleGoalsPtrs.Num() - 1)];
+}
+
+void UPuzzlePoint::SetInitType()
+{
+    if (MainGoal->InitPointType == "NPC")
+    {
+        IsNPC = true;
+    }
+
+    if (MainGoal->InitPointType == "Text")
+    {
+        IsText = true;
+    }
+
+    if (MainGoal->InitPointType == "Object")
+    {
+        IsObject = true;
+    }
+}

@@ -39,6 +39,9 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString Hint;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FString InitPointType;
+
 
 	UTerm(const FString& Name);
 

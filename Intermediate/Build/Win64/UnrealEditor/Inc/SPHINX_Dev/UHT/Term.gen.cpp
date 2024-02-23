@@ -57,6 +57,10 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Hint_MetaData[];
 #endif
 		static const UECodeGen_Private::FStrPropertyParams NewProp_Hint;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_InitPointType_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_InitPointType;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -118,6 +122,13 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 	};
 #endif
 	const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UTerm_Statics::NewProp_Hint = { "Hint", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTerm, Hint), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UTerm_Statics::NewProp_Hint_MetaData), Z_Construct_UClass_UTerm_Statics::NewProp_Hint_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTerm_Statics::NewProp_InitPointType_MetaData[] = {
+		{ "Category", "Term" },
+		{ "ModuleRelativePath", "Term.h" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UTerm_Statics::NewProp_InitPointType = { "InitPointType", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTerm, InitPointType), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UTerm_Statics::NewProp_InitPointType_MetaData), Z_Construct_UClass_UTerm_Statics::NewProp_InitPointType_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UTerm_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_Name,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_PropertiesBP_Inner,
@@ -126,6 +137,7 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_GameItem,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_Description,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_Hint,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_InitPointType,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UTerm_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UTerm>::IsAbstract,
@@ -165,9 +177,9 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UTerm, UTerm::StaticClass, TEXT("UTerm"), &Z_Registration_Info_UClass_UTerm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTerm), 1991234849U) },
+		{ Z_Construct_UClass_UTerm, UTerm::StaticClass, TEXT("UTerm"), &Z_Registration_Info_UClass_UTerm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTerm), 3959676338U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_3499514535(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_1486979429(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

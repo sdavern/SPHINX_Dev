@@ -4,7 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Kismet/GameplayStatics.h"
 #include "PuzzlePoint.h"
+#include "InitNPC.h"
+#include "InitText.h"
+#include "InitObject.h"
 #include "GamePuzzlePoint.generated.h"
 
 UCLASS()
@@ -19,9 +23,28 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UPuzzlePoint> PuzzlePoint;
 
-	UPuzzlePoint* PuzzlePointPtr;
+	UPROPERTY(EditAnywhere)
+	TArray<TSubclassOf<AInitNPC>> InitNPCs;
+
+	UPROPERTY(EditAnywhere)
+	TArray<TSubclassOf<AInitText>> InitTexts;
+
+	UPROPERTY(EditAnywhere)
+	TArray<TSubclassOf<AInitObject>> InitObjects;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AInitNPC> TestNPC;
+
 
 	FTransform PointTransform;
+
+	UPuzzlePoint* PuzzlePointPtr;
+
+	UPuzzlePoint* PPToPtr();
+
+	void SpawnInit();
+
+
 
 protected:
 	// Called when the game starts or when spawned
