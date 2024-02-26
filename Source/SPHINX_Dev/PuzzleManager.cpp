@@ -17,13 +17,12 @@ void APuzzleManager::BeginPlay()
 {
     Super::BeginPlay();
 
-    GetInstance();
-
     //Load in databases
     //Area
     AreaAssets = LoadAreaBPs();
     //Item
     ItemAssets = LoadItemBPs();
+    UE_LOG(LogTemp, Display, TEXT("LoadItemBPs called"));
     //Rule
     RuleAssets = LoadRuleBPs();
 
@@ -145,16 +144,35 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem, UArea* Area)
 
 UItem* APuzzleManager::GetObject(FString ItemName)
 {
-    for (TSubclassOf<UItem> Item : ItemAssets)
+
+    UE_LOG(LogTemp, Error, TEXT("Checking ItemAssets, count: %d"), ItemAssets.Num());
+    for (TSubclassOf<UItem> ItemClass : ItemAssets)
     {
-        if (Item != nullptr)
+        FString ClassName = ItemClass->GetName();
+        UE_LOG(LogTemp, Error, TEXT("ItemClass: %s"), *ClassName);
+    }
+
+    UE_LOG(LogTemp, Error, TEXT("GetObject called with Name: %s"), *ItemName);
+    for (TSubclassOf<UItem> ItemClass : ItemAssets)
+    {
+        if (ItemClass != nullptr)
         {
-            UItem* NewItem = NewObject<UItem>(this, Item);
-            if (NewItem && NewItem->Name == ItemName)
+            UItem* NewItem = NewObject<UItem>(this, ItemClass);
+            if (NewItem)
             {
-                return NewItem;
+                UE_LOG(LogTemp, Error, TEXT("NewItem that has been created has the name: %s"), *NewItem->Name);
             }
+            else
+            {
+                UE_LOG(LogTemp, Error, TEXT("NewItem that has NOT been created!"));
+            }
+
         }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("ItemClass == nullptr"));
+        }
+        
     }
     return nullptr;
 }
@@ -571,7 +589,10 @@ TArray<TSubclassOf<UItem>> APuzzleManager::LoadItemBPs()
             if (AssetClass && AssetClass->IsChildOf(UItem::StaticClass()))
             {
                 LoadedItemClasses.Add(AssetClass);
-                UE_LOG(LogTemp, Display, TEXT("Item '%s' loaded from database."), *AssetClass->GetName());
+                if (LoadedItemClasses.Contains(AssetClass))   
+                {
+                    UE_LOG(LogTemp, Display, TEXT("Item '%s' loaded from database."), *AssetClass->GetName());
+                }
             }
         }
     }

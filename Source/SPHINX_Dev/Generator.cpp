@@ -129,6 +129,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAcc
 			if (GameItem != nullptr && GameItem->DbItem != nullptr)
 			{
 				ItemsInLevel.Add(GameItem->DbItem);
+				UE_LOG(LogTemp, Display, TEXT("%s is in level"), *GameItem->DbItem->Name);
 			}
 		}
 	}

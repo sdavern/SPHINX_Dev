@@ -23,14 +23,23 @@ void UGameItem::BeginPlay()
 
 	if (DbItem == nullptr)
     {
+		UE_LOG(LogTemp, Display, TEXT("DbItem = null"));
         DbItem = APuzzleManager::GetInstance()->GetObject(Name);
+		UE_LOG(LogTemp, Display, TEXT("DbItem %s added to %s GameItem"), *Name, *Name);
+
+		if (DbItem == nullptr)
+		{
+			UE_LOG(LogTemp, Display, TEXT("DbItem is still null"));
+		}
     }
     if (DbItem != nullptr)
     {
         Properties = DbItem->Properties;
     }
+
 	
 }
+
 
 void UGameItem::Setup(FString NewName, UItem* NewDbItem)
 {

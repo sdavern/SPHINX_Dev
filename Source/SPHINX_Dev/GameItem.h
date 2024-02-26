@@ -16,6 +16,7 @@
 class AInventoryManager;
 class APlayerPawn;
 
+
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class SPHINX_DEV_API UGameItem : public UActorComponent
 {
@@ -62,11 +63,9 @@ public:
 
 	FString ToString();
 
-
 protected:
 	
 	virtual void BeginPlay() override;
-
 
 private:
 

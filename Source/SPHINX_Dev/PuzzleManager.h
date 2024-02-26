@@ -117,6 +117,8 @@ public:
 
 	TArray<TSubclassOf<URule>> LoadRuleBPs();
 
+	TArray<UItem*> GetItemsInWorld();
+
 
 protected:
 	// Called when the game starts or when spawned
