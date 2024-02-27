@@ -23,6 +23,7 @@ void APuzzleManager::BeginPlay()
     //Item
     ItemAssets = LoadItemBPs();
     UE_LOG(LogTemp, Display, TEXT("LoadItemBPs called"));
+    //GetObject("Book");
     //Rule
     RuleAssets = LoadRuleBPs();
 
@@ -144,37 +145,19 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem, UArea* Area)
 
 UItem* APuzzleManager::GetObject(FString ItemName)
 {
-
     UE_LOG(LogTemp, Error, TEXT("Checking ItemAssets, count: %d"), ItemAssets.Num());
     for (TSubclassOf<UItem> ItemClass : ItemAssets)
     {
-        FString ClassName = ItemClass->GetName();
-        UE_LOG(LogTemp, Error, TEXT("ItemClass: %s"), *ClassName);
+        UItem* NewItem = NewObject<UItem>(this, ItemClass);
+        if (NewItem && NewItem->Name == ItemName)
+        {
+            UE_LOG(LogTemp, Error, TEXT("NewItem that has been created has the name: %s"), *NewItem->Name);
+            return NewItem; // Return the newly created item if it matches the requested name.
+        }
     }
 
     UE_LOG(LogTemp, Error, TEXT("GetObject called with Name: %s"), *ItemName);
-    for (TSubclassOf<UItem> ItemClass : ItemAssets)
-    {
-        if (ItemClass != nullptr)
-        {
-            UItem* NewItem = NewObject<UItem>(this, ItemClass);
-            if (NewItem)
-            {
-                UE_LOG(LogTemp, Error, TEXT("NewItem that has been created has the name: %s"), *NewItem->Name);
-            }
-            else
-            {
-                UE_LOG(LogTemp, Error, TEXT("NewItem that has NOT been created!"));
-            }
-
-        }
-        else
-        {
-            UE_LOG(LogTemp, Error, TEXT("ItemClass == nullptr"));
-        }
-        
-    }
-    return nullptr;
+    return nullptr; // Return nullptr if no matching item is found.
 }
 
 void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules)

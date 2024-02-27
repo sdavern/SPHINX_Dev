@@ -10,6 +10,7 @@ APlayerPawn::APlayerPawn()
 	PrimaryActorTick.bCanEverTick = true;
 
 	GameItem = CreateDefaultSubobject<UGameItem>(TEXT("GameItem"));
+	GameItem->Name = TEXT("Player");
 
 }
 

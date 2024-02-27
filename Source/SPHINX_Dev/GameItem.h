@@ -41,6 +41,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool Selected;
 
+	void SetupDbItem();
+
 	void Setup(FString Name, UItem* DbItem);
 
 	void OnGameItemMouseOver(UTextBlock* UITextRef);
@@ -62,6 +64,8 @@ public:
 	bool IsDestrutible();
 
 	FString ToString();
+
+	APuzzleManager* GetPuzzleManager();
 
 protected:
 	

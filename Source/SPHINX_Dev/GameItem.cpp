@@ -2,6 +2,7 @@
 #include "GameItem.h"
 #include "Blueprint/UserWidget.h"
 #include "Kismet/GameplayStatics.h"
+#include "EngineUtils.h"
 #include "Components/WidgetComponent.h"
 #include "InventoryManager.h"
 #include "PlayerPawn.h"
@@ -20,26 +21,41 @@ UGameItem::UGameItem()
 void UGameItem::BeginPlay()
 {
 	Super::BeginPlay();
+	SetupDbItem();
+}
 
+APuzzleManager* UGameItem::GetPuzzleManager()
+{
+	UWorld* World = GetWorld();
+	if (World != nullptr)
+	{
+		for (TActorIterator<APuzzleManager> It(World); It; ++It)
+    	{
+        	APuzzleManager* FoundActor = *It;
+			return FoundActor;
+		}
+	}
+	return nullptr;
+}
+
+void UGameItem::SetupDbItem()
+{
 	if (DbItem == nullptr)
     {
-		UE_LOG(LogTemp, Display, TEXT("DbItem = null"));
-        DbItem = APuzzleManager::GetInstance()->GetObject(Name);
+		UE_LOG(LogTemp, Display, TEXT("DbItem for %s = null"), *Name);
+        DbItem = GetPuzzleManager()->GetObject(Name);
 		UE_LOG(LogTemp, Display, TEXT("DbItem %s added to %s GameItem"), *Name, *Name);
 
 		if (DbItem == nullptr)
 		{
-			UE_LOG(LogTemp, Display, TEXT("DbItem is still null"));
+			UE_LOG(LogTemp, Display, TEXT("DbItem for %s is still null"), *Name);
 		}
     }
     if (DbItem != nullptr)
     {
         Properties = DbItem->Properties;
     }
-
-	
 }
-
 
 void UGameItem::Setup(FString NewName, UItem* NewDbItem)
 {
