@@ -20,14 +20,19 @@ void AGamePuzzlePoint::BeginPlay()
 
 	PuzzlePointPtr = this->PPToPtr();
 
-	SpawnInit();
-	
+		
 }
 
 // Called every frame
 void AGamePuzzlePoint::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (IsActive && !InitSpawned)
+	{
+		SpawnInit();
+		InitSpawned = true;
+	}
 
 }
 
@@ -51,8 +56,9 @@ void AGamePuzzlePoint::SpawnInit()
     		SpawnParams.Owner = this;
     		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 			int32 i = FMath::RandRange(0, InitNPCs.Num() - 1);
-			AInitNPC* InitNPC = GetWorld()->SpawnActor<AInitNPC>(InitNPCs[i], PointTransform, SpawnParams);
+			InitNPC = GetWorld()->SpawnActor<AInitNPC>(InitNPCs[i], PointTransform, SpawnParams);
 			UE_LOG(LogTemp, Display, TEXT("InitNPC spawned."));
+			InitSpawned = true;
 		}
 
 		else if (PuzzlePointPtr->IsText == true)
@@ -61,8 +67,9 @@ void AGamePuzzlePoint::SpawnInit()
     		SpawnParams.Owner = this;
     		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 			int32 i = FMath::RandRange(0, InitTexts.Num() - 1);
-			AInitText* InitText = GetWorld()->SpawnActor<AInitText>(InitTexts[i], PointTransform, SpawnParams);
+			InitText = GetWorld()->SpawnActor<AInitText>(InitTexts[i], PointTransform, SpawnParams);
 			UE_LOG(LogTemp, Display, TEXT("InitText spawned"));
+			InitSpawned = true;
 		}
 
 		else if (PuzzlePointPtr->IsObject == true)
@@ -71,8 +78,34 @@ void AGamePuzzlePoint::SpawnInit()
     		SpawnParams.Owner = this;
     		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 			int32 i = FMath::RandRange(0, InitObjects.Num() - 1);
-			AInitObject* InitObject = GetWorld()->SpawnActor<AInitObject>(InitObjects[i], PointTransform, SpawnParams);
+			InitObject = GetWorld()->SpawnActor<AInitObject>(InitObjects[i], PointTransform, SpawnParams);
 			UE_LOG(LogTemp, Display, TEXT("InitObject spawned."));
+			InitSpawned = true;
+		}
+	}
+}
+
+void AGamePuzzlePoint::DespawnInit()
+{
+	if (PuzzlePointPtr->IsNPC == true)
+	{
+		if (InitNPC)
+		{
+			InitNPC->Destroy();
+		}
+	}
+	else if (PuzzlePointPtr->IsText == true)
+	{
+		if (InitText)
+		{
+			InitText->Destroy();
+		}
+	}
+	else if (PuzzlePointPtr->IsObject == true)
+	{
+		if (InitObject)
+		{
+			InitObject->Destroy();
 		}
 	}
 }

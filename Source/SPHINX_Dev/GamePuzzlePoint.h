@@ -35,14 +35,29 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AInitNPC> TestNPC;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool IsActive = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool InitSpawned = false;
 
 	FTransform PointTransform;
 
 	UPuzzlePoint* PuzzlePointPtr;
 
+	AInitNPC* InitNPC;
+	
+	AInitText* InitText;
+
+	AInitObject* InitObject;
+
+	bool ActivePuzzleCompleted = false;
+
 	UPuzzlePoint* PPToPtr();
 
 	void SpawnInit();
+
+	void DespawnInit();
 
 
 

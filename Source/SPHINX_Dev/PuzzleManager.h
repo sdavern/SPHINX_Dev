@@ -23,6 +23,7 @@ struct FRulesStruct
 class UGameItem;
 class APlayerPawn;
 class AGenerator;
+class AGamePuzzlePoint;
 
 UCLASS()
 class SPHINX_DEV_API APuzzleManager : public AActor
@@ -119,6 +120,20 @@ public:
 
 	TArray<UItem*> GetItemsInWorld();
 
+	bool CheckIfPuzzleToBeGenerated();
+
+	TArray<AGamePuzzlePoint*> GetPPsInWorld();
+
+	void ActivatePuzzlePoint(AGamePuzzlePoint* PP);
+
+	void DeactivatePuzzlePoint(AGamePuzzlePoint* PP);
+
+	void ActivateMaxPuzzlePoints();
+
+
+
+
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -136,8 +151,7 @@ private:
 
 	TArray<UArea*> AccessibleAreas;
 
-	UPROPERTY(EditAnywhere)
-	TArray<AConditionalObject*> ConditionalObjects;
+	TArray<AGamePuzzlePoint*> ActivePuzzlePoints;
 
 	UPROPERTY(EditAnywhere)
 	TMap<UArea*, FRulesStruct> Leaves;
@@ -145,5 +159,14 @@ private:
 	TMap<UArea*, FRulesStruct> PuzzleRules;
 
 	TMap<UArea*, FString> PuzzlesGenerated;
+
+	UPROPERTY(EditAnywhere)
+	int32 MaxActivePuzzles;
+
+	int32 ActivePuzzles = 0;
+
+public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
 };

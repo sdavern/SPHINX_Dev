@@ -7,6 +7,7 @@
 UPuzzlePoint::UPuzzlePoint()
 {
     this->ToPuzzleGoalPtrs();
+    //this->SetInitType();
 }
 
 void UPuzzlePoint::ToPuzzleGoalPtrs()

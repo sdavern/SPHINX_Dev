@@ -2,9 +2,11 @@
 
 
 #include "PuzzleManager.h"
+#include "EngineUtils.h"
 #include "GameItem.h"
 #include "PlayerPawn.h"
 #include "Generator.h"
+#include "GamePuzzlePoint.h"
 
 APuzzleManager* APuzzleManager::Instance = nullptr;
 
@@ -61,9 +63,44 @@ void APuzzleManager::BeginPlay()
         UE_LOG(LogTemp, Display, TEXT("Starting Inventory set to Active"));
     }
    
-
+    ActivateMaxPuzzlePoints();
     GenerateForArea(StartArea);
+    
 
+}
+
+void APuzzleManager::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+    ActivateMaxPuzzlePoints();
+}
+
+void APuzzleManager::ActivateMaxPuzzlePoints()
+{
+    while (ActivePuzzles < MaxActivePuzzles)
+    {
+        TArray<AGamePuzzlePoint*> PPsInWorld = GetPPsInWorld();
+        int32 RandomInt = FMath::RandRange(0, PPsInWorld.Num() - 1);
+        AGamePuzzlePoint* RandPP = PPsInWorld[RandomInt];
+        if (RandPP != nullptr && !RandPP->IsActive && !RandPP->InitSpawned)
+        {
+            ActivatePuzzlePoint(RandPP);
+            ActivePuzzlePoints.Add(RandPP);
+            ++ActivePuzzles;
+        }
+    }
+}
+
+void APuzzleManager::DeactivatePuzzlePoint(AGamePuzzlePoint* PP)
+{
+    if (PP != nullptr)
+    {
+        PP->IsActive = false;
+        PP->DespawnInit();
+        PP->InitSpawned = false;
+        ActivePuzzlePoints.Remove(PP);
+    }
+    
 }
 
 APuzzleManager* APuzzleManager::GetInstance()
@@ -78,6 +115,10 @@ APuzzleManager* APuzzleManager::GetInstance()
     return Instance;
     
 }
+
+//void APuzzleManager::GenerateForPuzzlePoint(AGamePuzzlePoint* PuzzlePoint)
+
+
 
 void APuzzleManager::GenerateForArea(UArea* Area)
 {
@@ -96,23 +137,7 @@ void APuzzleManager::GenerateForArea(UArea* Area)
     PuzzleRules.Add(Area, NewRules);
     FindLeaves(Root, Area);
     CurrentArea = Area;
-
-    for (AConditionalObject* CO : ConditionalObjects)
-    {
-        if (CO != nullptr && CO->Area->Name == Area->Name)
-        {
-            FRulesStruct* FoundRulesStruct = PuzzleRules.Find(Area);
-            for (URule* Rule : FoundRulesStruct->RulesArray)
-            {
-                if (Rule != nullptr && PuzzleContains(CO->Condition, Rule))
-                {
-                    CO->AffectedItem->SetActorHiddenInGame(false);
-                    CO->AffectedItem->SetActorEnableCollision(true);
-                    CO->AffectedItem->SetActorTickEnabled(true);
-                }
-            }
-        }
-    }
+    
 }
 
 TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem, UArea* Area)
@@ -617,3 +642,54 @@ TArray<TSubclassOf<URule>> APuzzleManager::LoadRuleBPs()
     return LoadedRuleClasses;
 }
 
+TArray<UItem*> APuzzleManager::GetItemsInWorld()
+{
+    UWorld* World = GetWorld();
+    TArray<UItem*> ItemsInWorld;
+
+    if (World != nullptr)
+    {
+        for (TActorIterator<AActor> It(World); It; ++It)
+        {
+            AActor* Actor = *It;
+            UGameItem* GameItem = Actor->FindComponentByClass<UGameItem>();
+            if (GameItem != nullptr && GameItem->DbItem != nullptr)
+            {
+                ItemsInWorld.Add(GameItem->DbItem);
+            }
+        }
+    }
+    return ItemsInWorld;
+}
+
+bool APuzzleManager::CheckIfPuzzleToBeGenerated()
+{
+    if (ActivePuzzles >= MaxActivePuzzles + 1)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+void APuzzleManager::ActivatePuzzlePoint(AGamePuzzlePoint* PP)
+{
+    PP->IsActive = true;
+}
+
+TArray<AGamePuzzlePoint*> APuzzleManager::GetPPsInWorld()
+{
+    UWorld* World = GetWorld();
+    TArray<AGamePuzzlePoint*> PPsInWorld;
+    for (TActorIterator<AGamePuzzlePoint> It(World); It; ++It)
+    {
+        AGamePuzzlePoint* GPP = *It;
+        if (GPP != nullptr)
+        {
+            PPsInWorld.Add(GPP);
+        }
+    }
+    return PPsInWorld;
+}
