@@ -53,7 +53,7 @@ private:
 
 	static AGenerator* Instance;
 
-	static TMap<UArea*, URule*> PuzzlesPerArea;
+	//static TMap<UArea*, URule*> PuzzlesPerArea;
 
 
 	UPROPERTY(EditAnywhere)

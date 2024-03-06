@@ -139,6 +139,8 @@ public:
 
 	void ActivateMaxPuzzlePoints();
 
+	UPuzzlePoint* GetPointForPuzzle();
+
 
 
 

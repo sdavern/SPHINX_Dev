@@ -255,15 +255,26 @@ FVector UItem::GetNextSpawnPt()
         UE_LOG(LogTemp, Warning, TEXT("Item: %s - No spawn points."), *Name);
         return FVector::ZeroVector; // Return a default FVector if no spawn points are available
     }
-
-    _index = FMath::RandRange(0, SpawnPoints.Num() - 1);
-    
-    if (GEngine)
+    else 
     {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("Item: %s - Spawn point %d: %s"), *Name, _index, *SpawnPoints[_index].ToString()));
-    }
+        int32 Random = FMath::RandRange(0, SpawnPoints.Num());
+        TArray<AActor*> SpawnPtrs;
+        for (TSubclassOf<AActor> SpawnPoint : SpawnPoints)
+        {
+            if (SpawnPoint)
+            {
+                AActor* SpawnPtr = NewObject<AActor>(this, SpawnPoint);
+                SpawnPtrs.Add(SpawnPtr);
+            }
+        }
 
-    return SpawnPoints[_index];
+        if (SpawnPtrs[0] != nullptr)
+        {
+            FVector NextSpawnPt = SpawnPtrs[Random]->GetActorLocation();
+            return NextSpawnPt;
+        }
+    }
+    return FVector::ZeroVector;
 }
 
 

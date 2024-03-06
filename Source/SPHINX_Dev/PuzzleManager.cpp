@@ -708,9 +708,10 @@ TArray<AGamePuzzlePoint*> APuzzleManager::GetPPsInWorld()
     return PPsInWorld;
 }
 
-
-
-
+UPuzzlePoint* APuzzleManager::GetPointForPuzzle()
+{
+    
+}
 
 
 

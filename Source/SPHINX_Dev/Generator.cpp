@@ -44,8 +44,6 @@ void AGenerator::Tick(float DeltaTime)
 
 void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP)
 {
-	AGenerator* GeneratorInstance = GetInstance();
-	AGamePuzzlePoint* GamePP = Instance->FindGamePuzzlePoint(PP);
 	bool Found = false;
     APuzzleManager* PMInstance = APuzzleManager::GetInstance();
     TArray<UGameItem*> ItemsInWorld = PMInstance->GetGameItemsInWorld();
@@ -60,27 +58,11 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
         }
     }
 
-
-    //need to sort out spawning points later
 	if (!Found)
 	{
-		FVector NextSpawnPoint = FVector(0, 0, 0);
-		/* if (Item->GetPropertyWithName(TEXT("Floor")) != nullptr && Item->GetPropertyWithName(TEXT("Floor"))->Value == TEXT("True"))
-		{
-			NextSpawnPoint = GameArea->GetNextSpawnPt(false, true);
-		}
-		else if (Item->GetPropertyWithName(TEXT("isa")) != nullptr && Item->GetPropertyWithName(TEXT("isa"))->Value == TEXT("NPC"))
-		{
-			NextSpawnPoint = GameArea->GetNextSpawnPt(true, false);
-		}
-		else
-		{
-			NextSpawnPoint = GameArea->GetNextSpawnPt();
-		} */
-		
+		FVector NextSpawnPoint = Item->GetNextSpawnPt();
 		UE_LOG(LogTemp, Display, TEXT("Spawn point: %s ( %s )"), *NextSpawnPoint.ToString(), *Item->Name);
 		AActor* ItemGO = World->SpawnActor<AActor>(Item->ItemPrefab, NextSpawnPoint, FRotator::ZeroRotator);
-		ItemGO->FindComponentByClass<UGameItem>()->Setup(Item->Name, Item);
 	}
 }
 

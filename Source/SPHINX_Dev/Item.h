@@ -40,7 +40,7 @@ public:
 	FString LongDescription;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
-	TArray<FVector> SpawnPoints;
+	TArray<TSubclassOf<AActor>> SpawnPoints;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
 	bool SpecificSpawnPoints;

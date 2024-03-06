@@ -143,7 +143,7 @@ void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTex
 
 }
 
-void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader)
+void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP)
 {
 	ActionHeader->SetText(FText::FromString(this->DbItem->Description));
 	FText CurrentText = ActionHeader->GetText();
@@ -158,8 +158,7 @@ void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTex
 	APuzzleManager* Instance = APuzzleManager::GetInstance();
 	if (Instance)
 	{
-		TArray<URule*> Rules; // = Instance->RulesFor(this, Instance->GetCurrentArea());
-		//GetCurrentPuzzlePoint()
+		TArray<URule*> Rules = Instance->RulesFor(this, PP);
 		for (URule* PuzzleRule : Rules)
 		{
 			UE_LOG(LogTemp, Display, TEXT("Checking Rule %s fulfilled by %s ? %s"), *PuzzleRule->ToString(), *this->Name, (RuleFulfilled(PuzzleRule) ? TEXT("True") : TEXT("False")));
@@ -350,6 +349,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 {
 	TArray<AActor*> ObjectsToDestroy;
 	AInventoryManager* Inventory = AInventoryManager::GetInstance();
+	APuzzleManager* PMInstance = APuzzleManager::GetInstance();
 
 	for (int32 i = 0; i < Rule->Inputs.Num(); i++)
 	{
@@ -465,7 +465,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 				else
 				{
 					//Logic for moving location of item relative to player
-					//FVector Position = APlayer::GetInstance()->GetTransform->GetLocation() + FVector (0, 20, 0);
+					//FVector Position = APlayerPawn::GetInstance()->GetTransform->GetLocation() + FVector (0, 20, 0);
 					//Position.Z = 0;
 					//ItemGO = GetWorld()->SpawnActor<AActor>(Output->DbItem->ItemPrefab, Position, FQuat::Identity);
 				}
@@ -484,7 +484,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 		FirstOutput = false;
 	}
 
-	//PuzzleManager executes rule and closes action menu
+	PMInstance->ExecuteRule(Rule, PMInstance->GetPointForPuzzle());
 
 	for (AActor* GO : ObjectsToDestroy)
 	{
