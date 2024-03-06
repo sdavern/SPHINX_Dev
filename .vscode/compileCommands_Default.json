@@ -56,62 +56,6 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\SlateQuickstartWindow\\Source\\SlateQuickstartWindow\\Private\\SlateQuickstartWindow.cpp",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SlateQuickstartWindow.25.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\SlateQuickstartWindow\\Source\\SlateQuickstartWindow\\Private\\SlateQuickstartWindowCommands.cpp",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SlateQuickstartWindow.25.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\SlateQuickstartWindow\\Source\\SlateQuickstartWindow\\Private\\SlateQuickstartWindowStyle.cpp",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SlateQuickstartWindow.25.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\SlateQuickstartWindow\\Source\\SlateQuickstartWindow\\Public\\SlateQuickstartWindow.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SlateQuickstartWindow.25.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\SlateQuickstartWindow\\Source\\SlateQuickstartWindow\\Public\\SlateQuickstartWindowCommands.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SlateQuickstartWindow.25.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\SlateQuickstartWindow\\Source\\SlateQuickstartWindow\\Public\\SlateQuickstartWindowStyle.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SlateQuickstartWindow.25.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\SlateQuickstartWindow\\Source\\SlateQuickstartWindow\\SlateQuickstartWindow.Build.cs",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SlateQuickstartWindow.25.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
-	},
-	{
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\ActionBtn.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
@@ -192,6 +136,22 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
 	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\GamePuzzlePoint.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\GamePuzzlePoint.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\Generator.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
@@ -201,6 +161,54 @@
 	},
 	{
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\Generator.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\InitNPC.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\InitNPC.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\InitObject.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\InitObject.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\InitText.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\InitText.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
@@ -281,6 +289,22 @@
 	},
 	{
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\PuzzleManager.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\PuzzlePoint.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\PuzzlePoint.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"

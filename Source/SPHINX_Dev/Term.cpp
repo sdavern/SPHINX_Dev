@@ -71,6 +71,17 @@ UItemProperty* UTerm::GetPropertyWithName(const FString& PropertyName) const
 TArray<FString> UTerm::GetSuperTypes() //needs to be finished once PuzzleManager is done.
 {
     TArray<FString> Types;
+    APuzzleManager* PMInstance = APuzzleManager::GetInstance();
+    if (PMInstance)
+    {
+        UItem* DbItemMatch = PMInstance->GetObject(this->Name); //may not need to create new object?
+        if (DbItemMatch)
+        {
+            return DbItemMatch->GetSuperTypes();
+        }
+    }
+
+    Types.Add("Item");
 
     return Types;
     

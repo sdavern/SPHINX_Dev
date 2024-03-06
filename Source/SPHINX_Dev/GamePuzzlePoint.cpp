@@ -20,6 +20,12 @@ void AGamePuzzlePoint::BeginPlay()
 
 	PuzzlePointPtr = this->PPToPtr();
 
+	UPuzzlePoint* MyPPInstance = NewObject<UPuzzlePoint>(this, PuzzlePointBP);
+	if (MyPPInstance)
+	{
+		MyPPInstance->OwningGamePP = this;
+	}
+
 		
 }
 
@@ -38,9 +44,9 @@ void AGamePuzzlePoint::Tick(float DeltaTime)
 
 UPuzzlePoint* AGamePuzzlePoint::PPToPtr()
 {
-	if (PuzzlePoint)
+	if (PuzzlePointBP)
 	{
-		UPuzzlePoint* Ptr = NewObject<UPuzzlePoint>(this, PuzzlePoint);
+		UPuzzlePoint* Ptr = NewObject<UPuzzlePoint>(this, PuzzlePointBP);
 		return Ptr;
  	}
 	return nullptr;

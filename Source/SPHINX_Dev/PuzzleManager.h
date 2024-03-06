@@ -24,6 +24,7 @@ class UGameItem;
 class APlayerPawn;
 class AGenerator;
 class AGamePuzzlePoint;
+class UPuzzlePoint;
 
 UCLASS()
 class SPHINX_DEV_API APuzzleManager : public AActor
@@ -60,31 +61,33 @@ public:
 
 	TArray<TSubclassOf<URule>> RuleAssets;
 
-	TArray<TSubclassOf<UArea>> AreaAssets;
+	//TArray<TSubclassOf<UArea>> AreaAssets;
+
+	TArray<TSubclassOf<UPuzzlePoint>> PPAssets;
 
 	static APuzzleManager* GetInstance();
 
-	void GenerateForArea(UArea* Area);
+	void GenerateForActivePuzzlePoints();
 
-	TArray<URule*> RulesFor(UGameItem* GameItem, UArea* Area);
+	TArray<URule*> RulesFor(UGameItem* GameItem, UPuzzlePoint* PP);
 
 	void AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules);
 
-	void ExecuteRule(URule* Rule, UArea* Area);
+	void ExecuteRule(URule* Rule, UPuzzlePoint* PP);
 
-	void FindLeaves(URule* Parent, UArea* Area);
+	void FindLeaves(URule* Parent, UPuzzlePoint* PP);
 
 	bool FindItemsForOutputs(URule* Rule);
 
-	void AddPuzzle(UArea* Area, FString Puzzle);
+	void AddPuzzle(UPuzzlePoint* PP, FString Puzzle);
 
 	UItem* GetObject(FString ItemName);
 
-	bool HasItemOfType(UTerm* Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
+	bool HasItemOfType(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
 
-	TArray<UItem*> GetItemsOfType(FString ItemName, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
+	TArray<UItem*> GetItemsOfType(FString ItemName, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
 
-	TArray<UItem*> FindDbItemsFor(UTerm*, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
+	TArray<UItem*> FindDbItemsFor(UTerm*, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
 
 	TArray<URule*> GetRulesWithInput(UItem* DbItem);
 
@@ -95,6 +98,8 @@ public:
 	TArray<URule*> GetAllRules();
 
 	TArray<UArea*> GetAllAreas();
+
+	TArray<UPuzzlePoint*> GetAllPPs();
 
 	void UpdatePlayerProperties(UItemProperty* Property);
 
@@ -114,11 +119,15 @@ public:
 
 	TArray<TSubclassOf<UArea>> LoadAreaBPs();
 
+	TArray<TSubclassOf<UPuzzlePoint>> LoadPuzzlePointBPs();
+
 	TArray<TSubclassOf<UItem>> LoadItemBPs();
 
 	TArray<TSubclassOf<URule>> LoadRuleBPs();
 
 	TArray<UItem*> GetItemsInWorld();
+
+	TArray<UGameItem*> GetGameItemsInWorld();
 
 	bool CheckIfPuzzleToBeGenerated();
 
@@ -149,16 +158,16 @@ private:
 	UPROPERTY(EditAnywhere)
 	TArray<URule*> GameOverRules;
 
-	TArray<UArea*> AccessibleAreas;
+	TArray<UPuzzlePoint*> AccessiblePPs;
 
 	TArray<AGamePuzzlePoint*> ActivePuzzlePoints;
 
 	UPROPERTY(EditAnywhere)
-	TMap<UArea*, FRulesStruct> Leaves;
+	TMap<UPuzzlePoint*, FRulesStruct> Leaves;
 
-	TMap<UArea*, FRulesStruct> PuzzleRules;
+	TMap<UPuzzlePoint*, FRulesStruct> PuzzleRules;
 
-	TMap<UArea*, FString> PuzzlesGenerated;
+	TMap<UPuzzlePoint*, FString> PuzzlesGenerated;
 
 	UPROPERTY(EditAnywhere)
 	int32 MaxActivePuzzles;

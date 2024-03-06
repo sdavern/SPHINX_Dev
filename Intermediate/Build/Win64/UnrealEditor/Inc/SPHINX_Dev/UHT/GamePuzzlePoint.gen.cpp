@@ -34,9 +34,9 @@ void EmptyLinkFunctionForGeneratedCodeGamePuzzlePoint() {}
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_PuzzlePoint_MetaData[];
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_PuzzlePointBP_MetaData[];
 #endif
-		static const UECodeGen_Private::FClassPropertyParams NewProp_PuzzlePoint;
+		static const UECodeGen_Private::FClassPropertyParams NewProp_PuzzlePointBP;
 		static const UECodeGen_Private::FClassPropertyParams NewProp_InitNPCs_Inner;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_InitNPCs_MetaData[];
@@ -82,12 +82,12 @@ void EmptyLinkFunctionForGeneratedCodeGamePuzzlePoint() {}
 	};
 #endif
 #if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_PuzzlePoint_MetaData[] = {
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_PuzzlePointBP_MetaData[] = {
 		{ "Category", "GamePuzzlePoint" },
 		{ "ModuleRelativePath", "GamePuzzlePoint.h" },
 	};
 #endif
-	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_PuzzlePoint = { "PuzzlePoint", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGamePuzzlePoint, PuzzlePoint), Z_Construct_UClass_UClass, Z_Construct_UClass_UPuzzlePoint_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_PuzzlePoint_MetaData), Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_PuzzlePoint_MetaData) };
+	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_PuzzlePointBP = { "PuzzlePointBP", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGamePuzzlePoint, PuzzlePointBP), Z_Construct_UClass_UClass, Z_Construct_UClass_UPuzzlePoint_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_PuzzlePointBP_MetaData), Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_PuzzlePointBP_MetaData) };
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_InitNPCs_Inner = { "InitNPCs", nullptr, (EPropertyFlags)0x0004000000000000, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UClass, Z_Construct_UClass_AInitNPC_NoRegister, METADATA_PARAMS(0, nullptr) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_InitNPCs_MetaData[] = {
@@ -142,7 +142,7 @@ void EmptyLinkFunctionForGeneratedCodeGamePuzzlePoint() {}
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_InitSpawned = { "InitSpawned", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AGamePuzzlePoint), &Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_InitSpawned_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_InitSpawned_MetaData), Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_InitSpawned_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AGamePuzzlePoint_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_PuzzlePoint,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_PuzzlePointBP,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_InitNPCs_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_InitNPCs,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGamePuzzlePoint_Statics::NewProp_InitTexts_Inner,
@@ -191,9 +191,9 @@ void EmptyLinkFunctionForGeneratedCodeGamePuzzlePoint() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AGamePuzzlePoint, AGamePuzzlePoint::StaticClass, TEXT("AGamePuzzlePoint"), &Z_Registration_Info_UClass_AGamePuzzlePoint, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGamePuzzlePoint), 4099119220U) },
+		{ Z_Construct_UClass_AGamePuzzlePoint, AGamePuzzlePoint::StaticClass, TEXT("AGamePuzzlePoint"), &Z_Registration_Info_UClass_AGamePuzzlePoint, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGamePuzzlePoint), 2258734135U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_875861587(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_1038302635(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

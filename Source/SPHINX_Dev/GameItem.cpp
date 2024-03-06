@@ -158,11 +158,12 @@ void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTex
 	APuzzleManager* Instance = APuzzleManager::GetInstance();
 	if (Instance)
 	{
-		TArray<URule*> Rules = Instance->RulesFor(this, Instance->GetCurrentArea());
+		TArray<URule*> Rules; // = Instance->RulesFor(this, Instance->GetCurrentArea());
+		//GetCurrentPuzzlePoint()
 		for (URule* PuzzleRule : Rules)
 		{
 			UE_LOG(LogTemp, Display, TEXT("Checking Rule %s fulfilled by %s ? %s"), *PuzzleRule->ToString(), *this->Name, (RuleFulfilled(PuzzleRule) ? TEXT("True") : TEXT("False")));
-			if (RuleFulfilled(PuzzleRule))
+			if (PuzzleRule && RuleFulfilled(PuzzleRule))
 			{
 				NoAction = false;
 				UWidgetComponent* WidgetComp = NewObject<UWidgetComponent>(ActionMenu, UWidgetComponent::StaticClass());

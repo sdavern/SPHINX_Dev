@@ -6,6 +6,8 @@
 #include "UObject/NoExportTypes.h"
 #include "Term.h"
 #include "PuzzlePoint.generated.h"
+
+class AGamePuzzlePoint;
 /**
  * 
  */
@@ -18,6 +20,12 @@ public:
 
 	UPuzzlePoint();
 
+	UPROPERTY(Transient)
+	AGamePuzzlePoint* OwningGamePP;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Name;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool IsNPC = false;
 
@@ -26,6 +34,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool IsObject = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 MaxDepth;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<UTerm>> PuzzleGoals;
@@ -39,6 +50,16 @@ public:
 	void SetInitType();
 
 	UTerm* PickGoal();
+
+	UTerm* GetCurrentGoal();
+
+	FString GetHint();
+
+	FString GetObjective();
+
+	void AddGoal();
+
+	void DeleteGoal(int32 Index);
 
 
 

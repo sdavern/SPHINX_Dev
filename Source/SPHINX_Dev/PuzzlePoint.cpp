@@ -2,12 +2,12 @@
 
 
 #include "PuzzlePoint.h"
+#include "GamePuzzlePoint.h"
 
 
 UPuzzlePoint::UPuzzlePoint()
 {
     this->ToPuzzleGoalPtrs();
-    //this->SetInitType();
 }
 
 void UPuzzlePoint::ToPuzzleGoalPtrs()
@@ -24,23 +24,78 @@ void UPuzzlePoint::ToPuzzleGoalPtrs()
 
 UTerm* UPuzzlePoint::PickGoal()
 {
-   return MainGoal = PuzzleGoalsPtrs[FMath::RandRange(0, PuzzleGoalsPtrs.Num() - 1)];
+   MainGoal = PuzzleGoalsPtrs[FMath::RandRange(0, PuzzleGoalsPtrs.Num())];
+   this->SetInitType();
+   return MainGoal;
 }
 
 void UPuzzlePoint::SetInitType()
 {
-    if (MainGoal->InitPointType == "NPC")
+    if (MainGoal->InitPointType != "")
     {
-        IsNPC = true;
-    }
+        if (MainGoal->InitPointType == "NPC")
+        {
+            IsNPC = true;
+        }
 
-    if (MainGoal->InitPointType == "Text")
-    {
-        IsText = true;
-    }
+        if (MainGoal->InitPointType == "Text")
+        {
+            IsText = true;
+        }
 
-    if (MainGoal->InitPointType == "Object")
+        if (MainGoal->InitPointType == "Object")
+        {
+            IsObject = true;
+        }
+    }
+    
+}
+
+UTerm* UPuzzlePoint::GetCurrentGoal()
+{
+    if (MainGoal != nullptr)
     {
-        IsObject = true;
+        return MainGoal;
+    }
+    else
+    {
+        return nullptr;
+    }
+}
+
+FString UPuzzlePoint::GetHint()
+{
+    if (MainGoal != nullptr)
+    {
+        return MainGoal->Hint;
+    }
+    else
+    {
+        return FString(TEXT("No current goal set."));
+    }
+}
+
+FString UPuzzlePoint::GetObjective()
+{
+    UE_LOG(LogTemp, Display, TEXT("Getting objective. "));
+    UE_LOG(LogTemp, Display, TEXT("Current Goal: %s"), *MainGoal->Name);
+    return MainGoal->Description;
+}
+
+void UPuzzlePoint::AddGoal()
+{
+    UTerm* Goal = NewObject<UTerm>(this, UTerm::StaticClass());
+    TSubclassOf<UTerm> NewGoal = Goal->GetClass();
+    if (NewGoal)
+    {
+        PuzzleGoals.Add(NewGoal);
+    }
+}
+
+void UPuzzlePoint::DeleteGoal(int32 Index)
+{
+    if (PuzzleGoals.IsValidIndex(Index))
+    {
+        PuzzleGoals.RemoveAt(Index);
     }
 }

@@ -42,7 +42,241 @@ void AGenerator::Tick(float DeltaTime)
 
 }
 
-void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UArea* Area)
+void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP)
+{
+	AGenerator* GeneratorInstance = GetInstance();
+	AGamePuzzlePoint* GamePP = Instance->FindGamePuzzlePoint(PP);
+	bool Found = false;
+    APuzzleManager* PMInstance = APuzzleManager::GetInstance();
+    TArray<UGameItem*> ItemsInWorld = PMInstance->GetGameItemsInWorld();
+
+    for (int32 i = 0; i < ItemsInWorld.Num(); i++)
+    {
+        if (ItemsInWorld[i] != nullptr && ItemsInWorld[i]->Name == Item->Name)
+        {
+            ItemsInWorld[i]->Setup(Item->Name, Item);
+            Found = true;
+            ItemsInWorld[i]->Name = TEXT(" ");
+        }
+    }
+
+
+    //need to sort out spawning points later
+	if (!Found)
+	{
+		FVector NextSpawnPoint = FVector(0, 0, 0);
+		/* if (Item->GetPropertyWithName(TEXT("Floor")) != nullptr && Item->GetPropertyWithName(TEXT("Floor"))->Value == TEXT("True"))
+		{
+			NextSpawnPoint = GameArea->GetNextSpawnPt(false, true);
+		}
+		else if (Item->GetPropertyWithName(TEXT("isa")) != nullptr && Item->GetPropertyWithName(TEXT("isa"))->Value == TEXT("NPC"))
+		{
+			NextSpawnPoint = GameArea->GetNextSpawnPt(true, false);
+		}
+		else
+		{
+			NextSpawnPoint = GameArea->GetNextSpawnPt();
+		} */
+		
+		UE_LOG(LogTemp, Display, TEXT("Spawn point: %s ( %s )"), *NextSpawnPoint.ToString(), *Item->Name);
+		AActor* ItemGO = World->SpawnActor<AActor>(Item->ItemPrefab, NextSpawnPoint, FRotator::ZeroRotator);
+		ItemGO->FindComponentByClass<UGameItem>()->Setup(Item->Name, Item);
+	}
+}
+
+URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs)
+{
+    URule* Root = NewObject<URule>(this, URule::StaticClass());
+    TArray<UItem*> ItemsInLevel;
+    AInventoryManager* InventoryInstance = AInventoryManager::GetInstance();
+	APuzzleManager* PMInstance = APuzzleManager::GetInstance();
+
+    TArray<UGameItem*> ExistingGameItems;
+    ExistingGameItems = PMInstance->GetGameItemsInWorld();
+
+    for (int32 i = 0; i < ExistingGameItems.Num(); i++)
+	{
+		if (ExistingGameItems[i] != nullptr)
+		{
+			UE_LOG(LogTemp, Display, TEXT("Existing GameItems: %s"), *ExistingGameItems[i]->Name);
+			ItemsInLevel.Add(ExistingGameItems[i]->DbItem);
+		}
+	}
+
+    if (InventoryInstance != nullptr)
+	{
+		for (UGameItem* GameItem : InventoryInstance->GetInventory())
+		{
+			if (GameItem != nullptr && GameItem->DbItem != nullptr)
+			{
+				ItemsInLevel.Add(GameItem->DbItem);
+				UE_LOG(LogTemp, Display, TEXT("%s is in level"), *GameItem->DbItem->Name);
+			}
+		}
+	}
+
+    if (PP != nullptr && PP->PuzzleGoals.Num() > 0)
+    {
+        UTerm* Goal = PP->PickGoal();
+        UE_LOG(LogTemp, Display, TEXT("PP goal: %s"), *Goal->Name);
+        bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, PP, NewAccessiblePPs, ItemsInLevel);
+        if (SuccessfulInputs)
+        {
+            PMInstance->AddPuzzle(PP, PuzzleString);
+            PuzzleString = TEXT("");
+        }
+        else
+        {
+            Root = GeneratePuzzleStartingFrom(PP, NewAccessiblePPs);
+        }
+    }
+
+    return Root;
+
+}
+
+bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
+{
+    APuzzleManager* PMInstance = APuzzleManager::GetInstance();
+
+	TArray<UItem*> MatchingItems = PMInstance->FindDbItemsFor(StartTerm, NewAccessiblePPs, ItemsInLevel);
+	if (MatchingItems.Num() == 0)
+	{
+		if(!PMInstance->HasItemOfType(StartTerm, NewAccessiblePPs, ItemsInLevel))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("GRAMMAR ERROR: Couldn't find accessible item of type: %s"), *StartTerm->Name);
+			return false;
+		}
+	}
+	else if (StartTerm->DbItem == nullptr)
+	{
+		StartTerm->DbItem = MatchingItems[FMath::RandRange(0, MatchingItems.Num())];
+		if (ItemsInLevel.Contains(StartTerm->DbItem))
+		{
+			return true;
+		}
+	}
+
+	TArray<URule*> PossibleRules;
+	for (URule* Rule : PMInstance->GetAllRules())
+	{
+		if (Rule != nullptr && Rule->MainOutputIs(StartTerm))
+		{
+			if (StartTerm->DbItem == nullptr)
+			{
+				UE_LOG(LogTemp, Display, TEXT("Found matching rule %s with output DbItem: %d"), *Rule->Outputs[0]->Name, *StartTerm->DbItem->Name, Depth);
+			}
+			else
+			{
+				UE_LOG(LogTemp, Display, TEXT("Found matching rule with output: %s"), *StartTerm->Name);
+			}
+			PossibleRules.Add(Rule);
+		}
+	}
+	
+	UE_LOG(LogTemp, Display, TEXT("Number of possible rules: %f"), PossibleRules.Num());
+
+	if (PossibleRules.Num() > 0 && Depth < CurrentPP->MaxDepth)
+	{
+		URule* ChosenRule = PossibleRules[FMath::RandRange(0, PossibleRules.Num())];
+		ChosenRule->Outputs[0]->DbItem = StartTerm->DbItem;
+		ChosenRule->Parent = ParentRule;
+		ParentRule->AddChildRule(ChosenRule);
+		for (int32 i = 0; i < ChosenRule->Inputs.Num(); i++)
+		{
+			bool Found = false;
+			for (int32 j = 0; j < ChosenRule->Outputs.Num(); j++)
+			{
+				if (ChosenRule->Inputs[j]->Name == ChosenRule->Outputs[i]->Name)
+				{
+					Found = true;
+				}
+			}
+		}
+
+		bool Result = true;
+		for (int32 i = 0; i < ChosenRule->Inputs.Num(); i++)
+		{
+			if (ChosenRule != nullptr && ChosenRule->Outputs[0]->Name == ChosenRule->Inputs[i]->Name)
+			{
+				if (StartTerm->DbItem != nullptr)
+				{
+					ChosenRule->Inputs[i]->DbItem = StartTerm->DbItem;
+				}
+				else if (StartTerm->Name != ChosenRule->Inputs[i]->Name)
+				{
+					if (StartTerm->GetSuperTypes().Contains(ChosenRule->Inputs[i]->Name))
+					{
+						ChosenRule->Inputs[i]->Name = StartTerm->Name;
+					}
+				}
+			}
+			Result = GenerateInputs(ChosenRule->Inputs[i], ChosenRule, Depth + 1, CurrentPP, NewAccessiblePPs, ItemsInLevel);
+			if (ChosenRule->Outputs[0]->Name == ChosenRule->Inputs[i]->Name)
+			{
+				StartTerm->DbItem = ChosenRule->Inputs[i]->DbItem;
+			}
+		}
+		return Result;
+	}
+	if (StartTerm->DbItem == nullptr && StartTerm->Name != TEXT("Player"))
+	{
+		UE_LOG(LogTemp, Display, TEXT("GRAMMAR ERROR: No terminal or non-terminal match for term: %s"), *StartTerm->Name);
+		return false;
+	}
+
+	//Doesn't matter what GetWorld() is called on as there is only one UWorld*
+	UWorld* World = StartTerm->GetWorld();
+	Spawn(World, StartTerm->DbItem, ParentRule, CurrentPP);
+	UE_LOG(LogTemp, Display, TEXT("DbItem added to spawn list: %s"), *StartTerm->DbItem->Name);
+	return true;
+}
+
+AGamePuzzlePoint* AGenerator::FindGamePuzzlePoint(UPuzzlePoint* PP)
+{ 
+	TArray<AActor*> ActorsWithTag;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName(PP->Name), ActorsWithTag);
+	AActor* PPWithTag = ActorsWithTag[0];
+	AGamePuzzlePoint* FoundGamePuzzlePoint = Cast<AGamePuzzlePoint>(PPWithTag->GetComponentByClass(AGamePuzzlePoint::StaticClass()));
+	return FoundGamePuzzlePoint;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* UGameArea* AGenerator::FindGameArea(UArea* Area)
+{ 
+	TArray<AActor*> ActorsWithTag;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName(Area->Name), ActorsWithTag);
+	AActor* AreaWithTag = ActorsWithTag[0];
+	UGameArea* FoundGameArea = Cast<UGameArea>(AreaWithTag->GetComponentByClass(UGameArea::StaticClass()));
+	return FoundGameArea;
+} */
+
+/* void AGenerator::GetAllAttachedActors(AActor* ParentActor, TArray<AActor*>& OutActors)
+{
+	TArray<AActor*> DirectlyAttachedActors;
+	ParentActor->GetAttachedActors(DirectlyAttachedActors);
+
+	for (AActor* ChildActor : DirectlyAttachedActors)
+	{
+		if (ChildActor != nullptr)
+		{
+			OutActors.Add(ChildActor);
+			GetAllAttachedActors(ChildActor, OutActors);
+		}
+	}
+} */
+
+
+/* void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UArea* Area)
 {
 	AGenerator* GeneratorInstance = GetInstance();
 	UGameArea* GameArea = Instance->FindGameArea(Area);
@@ -78,10 +312,9 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UArea* Area)
 		ItemGO->AttachToActor(GameArea->GetOwner(), FAttachmentTransformRules::KeepRelativeTransform);
 		ItemGO->FindComponentByClass<UGameItem>()->Setup(Item->Name, Item);
 	}
-}
+} */
 
-
-URule* AGenerator::GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAccessibleAreas)
+/* URule* AGenerator::GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAccessibleAreas)
 {
 	URule* Root = NewObject<URule>(this, URule::StaticClass());
 	Area->SetFinal(false);
@@ -159,7 +392,9 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAcc
 	return Root;
 }
 
-bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UArea* CurrentArea, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
+ */
+
+/* bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UArea* CurrentArea, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
 {
 	APuzzleManager* PMInstance = APuzzleManager::GetInstance();
 	TArray<UItem*> MatchingItems = PMInstance->FindDbItemsFor(StartTerm, NewAccessibleAreas, ItemsInLevel);
@@ -253,29 +488,4 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	Spawn(World, StartTerm->DbItem, ParentRule, CurrentArea);
 	UE_LOG(LogTemp, Display, TEXT("DbItem added to spawn list: %s"), *StartTerm->DbItem->Name);
 	return true;
-}
-
-UGameArea* AGenerator::FindGameArea(UArea* Area)
-{ 
-	TArray<AActor*> ActorsWithTag;
-	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName(Area->Name), ActorsWithTag);
-	AActor* AreaWithTag = ActorsWithTag[0];
-	UGameArea* FoundGameArea = Cast<UGameArea>(AreaWithTag->GetComponentByClass(UGameArea::StaticClass()));
-	return FoundGameArea;
-}
-
-void AGenerator::GetAllAttachedActors(AActor* ParentActor, TArray<AActor*>& OutActors)
-{
-	TArray<AActor*> DirectlyAttachedActors;
-	ParentActor->GetAttachedActors(DirectlyAttachedActors);
-
-	for (AActor* ChildActor : DirectlyAttachedActors)
-	{
-		if (ChildActor != nullptr)
-		{
-			OutActors.Add(ChildActor);
-			GetAllAttachedActors(ChildActor, OutActors);
-		}
-	}
-}
-
+} */

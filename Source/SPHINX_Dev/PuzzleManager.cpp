@@ -7,6 +7,7 @@
 #include "PlayerPawn.h"
 #include "Generator.h"
 #include "GamePuzzlePoint.h"
+#include "PuzzlePoint.h"
 
 APuzzleManager* APuzzleManager::Instance = nullptr;
 
@@ -20,12 +21,11 @@ void APuzzleManager::BeginPlay()
     Super::BeginPlay();
 
     //Load in databases
-    //Area
-    AreaAssets = LoadAreaBPs();
+  
+    //PP
+    PPAssets = LoadPuzzlePointBPs();
     //Item
     ItemAssets = LoadItemBPs();
-    UE_LOG(LogTemp, Display, TEXT("LoadItemBPs called"));
-    //GetObject("Book");
     //Rule
     RuleAssets = LoadRuleBPs();
 
@@ -64,7 +64,11 @@ void APuzzleManager::BeginPlay()
     }
    
     ActivateMaxPuzzlePoints();
-    GenerateForArea(StartArea);
+    GenerateForActivePuzzlePoints();
+
+
+
+
     
 
 }
@@ -73,6 +77,7 @@ void APuzzleManager::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
     ActivateMaxPuzzlePoints();
+    GenerateForActivePuzzlePoints();
 }
 
 void APuzzleManager::ActivateMaxPuzzlePoints()
@@ -116,35 +121,36 @@ APuzzleManager* APuzzleManager::GetInstance()
     
 }
 
-//void APuzzleManager::GenerateForPuzzlePoint(AGamePuzzlePoint* PuzzlePoint)
-
-
-
-void APuzzleManager::GenerateForArea(UArea* Area)
+void APuzzleManager::GenerateForActivePuzzlePoints()
 {
-    if (Area != nullptr)
+    TArray<UPuzzlePoint*> PPPtrs;
+    for (TSubclassOf<UPuzzlePoint> PP : PPAssets)
     {
-        Area->AreaObject->SetActorHiddenInGame(false);
-        Area->AreaObject->SetActorEnableCollision(true);
-        Area->AreaObject->SetActorTickEnabled(true);
-        UE_LOG(LogTemp, Display, TEXT("%s area set to Active"), *Area->Name);
+        if (PP)
+        {
+            UPuzzlePoint* PPPtr = NewObject<UPuzzlePoint>(this, PP);
+            PPPtrs.Add(PPPtr);
+        }
     }
-    
 
-    URule* Root = Generator->GeneratePuzzleStartingFrom(Area, AccessibleAreas);
-    FRulesStruct NewRules;
-    Leaves.Add(Area, NewRules);
-    PuzzleRules.Add(Area, NewRules);
-    FindLeaves(Root, Area);
-    CurrentArea = Area;
-    
+    for (UPuzzlePoint* PP : PPPtrs)
+    {
+        if (PP != nullptr && PP->OwningGamePP != nullptr && PP->OwningGamePP->IsActive == true)
+        {
+            URule* Root = Generator->GeneratePuzzleStartingFrom(PP, AccessiblePPs);
+            FRulesStruct NewRules;
+            Leaves.Add(PP, NewRules);
+            PuzzleRules.Add(PP, NewRules);
+            FindLeaves(Root, PP);
+        }
+    }
 }
 
-TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem, UArea* Area)
+TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem, UPuzzlePoint* PP)
 {
     TArray<URule*> Rules;
 
-    FRulesStruct* FoundLeavesRules = Leaves.Find(Area);
+    FRulesStruct* FoundLeavesRules = Leaves.Find(PP);
     for (URule* Rule: FoundLeavesRules->RulesArray)
     {
         if (Rule != nullptr)
@@ -201,9 +207,10 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
     }
 }
 
-void APuzzleManager::ExecuteRule(URule* Rule, UArea* Area)
+void APuzzleManager::ExecuteRule(URule* Rule, UPuzzlePoint* PP)
 {
-    FRulesStruct* FoundLeavesRules = Leaves.Find(Area);
+    FRulesStruct* FoundLeavesRules = Leaves.Find(PP);
+    UWorld* World = GetWorld();
     if (FoundLeavesRules->RulesArray.Contains(Rule))
     {
         UE_LOG(LogTemp, Display, TEXT("Execute: %s"), *Rule->Parent->Outputs[0]->Name);
@@ -217,42 +224,23 @@ void APuzzleManager::ExecuteRule(URule* Rule, UArea* Area)
                 FoundLeavesRules->RulesArray.Add(Parent);
                 if (Parent->bAutomatic)
                 {
-                    UWorld* World = GetWorld();
                     UGameItem::ExecuteRule(World, Parent, true, Parent->Inputs[0]->GameItem);
-                }
-            }
-        }
-        else
-        {
-            if (Area->IsFinal())
-            {
-                TriggerEnd();
-            }
-            else
-            {
-                for (UArea* ConnectedArea : Area->ConnectedTo)
-                {
-                    if (ConnectedArea != nullptr)
-                    {
-                            UE_LOG(LogTemp, Display, TEXT("Attempting to generate puzzle for: %s"), *ConnectedArea->Name);
-                            GenerateForArea(ConnectedArea);
-                    }
                 }
             }
         }
     }
 }
 
-void APuzzleManager::FindLeaves(URule* Parent, UArea* Area)
+void APuzzleManager::FindLeaves(URule* Parent, UPuzzlePoint* PP)
 {
     if (Parent->Children.Num() == 0)
     {
         UE_LOG(LogTemp, Display, TEXT("Rule %s has no children"), *Parent->ToString());
-        Leaves.FindOrAdd(Area).RulesArray.Add(Parent);
+        Leaves.FindOrAdd(PP).RulesArray.Add(Parent);
     }
     else
     {
-        FRulesStruct* FoundRulesStruct = Leaves.Find(Area);
+        FRulesStruct* FoundRulesStruct = Leaves.Find(PP);
         if (FoundRulesStruct && !FoundRulesStruct->RulesArray.Contains(Parent))
         {
             FoundRulesStruct->RulesArray.Add(Parent);
@@ -261,7 +249,7 @@ void APuzzleManager::FindLeaves(URule* Parent, UArea* Area)
         {
             if (Child != nullptr)
             {
-                FindLeaves(Child, Area);
+                FindLeaves(Child, PP);
             }
         }
     }
@@ -281,9 +269,9 @@ bool APuzzleManager::FindItemsForOutputs(URule* Rule)
         }
         if (!Found)
         {
-            TArray<UArea*> AreaArray;
+            TArray<UPuzzlePoint*> PPArray;
             TArray<UItem*> ItemArray;
-            TArray<UItem*> PossibleItems = FindDbItemsFor(Output, AreaArray, ItemArray);
+            TArray<UItem*> PossibleItems = FindDbItemsFor(Output, PPArray, ItemArray);
             if (PossibleItems.Num() > 0)
             {
                 int32 RandomIndex = FMath::RandRange(0, PossibleItems.Num() - 1);
@@ -298,19 +286,19 @@ bool APuzzleManager::FindItemsForOutputs(URule* Rule)
     return true;
 }
 
-void APuzzleManager::AddPuzzle(UArea* Area, FString Puzzle)
+void APuzzleManager::AddPuzzle(UPuzzlePoint* PP, FString Puzzle)
 {
-    PuzzlesGenerated.Add(Area, Puzzle);
+    PuzzlesGenerated.Add(PP, Puzzle);
 }
 
-bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
+bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
 {
     for (TSubclassOf<UItem> DbItem : ItemAssets)
     {
         if (DbItem != nullptr)
         {
             UItem* DbItemPtr = NewObject<UItem>(this, DbItem);
-            if (DbItemPtr && (DbItemPtr->Name == Term->Name || DbItemPtr->GetSuperTypes().Contains(Term->Name)) && DbItemPtr->IsAccessible(NewAccessibleAreas, ItemsInLevel))
+            if (DbItemPtr && (DbItemPtr->Name == Term->Name || DbItemPtr->GetSuperTypes().Contains(Term->Name)) && DbItemPtr->IsAccessible(NewAccessiblePPs, ItemsInLevel))
             {
                 return true;
             }
@@ -319,7 +307,7 @@ bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UArea*> NewAccessibleArea
     return false;
 }
 
-TArray<UItem*> APuzzleManager::GetItemsOfType(FString ItemName, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
+TArray<UItem*> APuzzleManager::GetItemsOfType(FString ItemName, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
 {
     TArray<UItem*> MatchingItems;
     for (TSubclassOf<UItem> DbItem : ItemAssets)
@@ -337,7 +325,7 @@ TArray<UItem*> APuzzleManager::GetItemsOfType(FString ItemName, TArray<UArea*> N
     return MatchingItems;
 }
 
-TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
+TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
 {
     TArray<UItem*> MatchingItems;
     for (TSubclassOf<UItem> DbItem : ItemAssets)
@@ -345,7 +333,7 @@ TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UArea*> NewAcc
         if (DbItem != nullptr)
         {
             UItem* DbItemPtr = NewObject<UItem>(this, DbItem);
-            if (DbItemPtr && DbItemPtr->Matches(Term) && DbItemPtr->IsAccessible(AccessibleAreas, ItemsInLevel))
+            if (DbItemPtr && DbItemPtr->Matches(Term) && DbItemPtr->IsAccessible(AccessiblePPs, ItemsInLevel))
             {
                 MatchingItems.Add(DbItemPtr);
             }
@@ -425,22 +413,25 @@ TArray<URule*> APuzzleManager::GetAllRules()
     return Objects;
 }
 
-TArray<UArea*> APuzzleManager::GetAllAreas()
+
+
+TArray<UPuzzlePoint*> APuzzleManager::GetAllPPs()
 {
-    TArray<UArea*> Objects;
-    for (TSubclassOf<UArea> AssetClass : AreaAssets)
+    TArray<UPuzzlePoint*> Objects;
+    for (TSubclassOf<UPuzzlePoint> AssetClass : PPAssets)
     {
         if (AssetClass != nullptr)
         {
-            UArea* NewArea = NewObject<UArea>(this, AssetClass);
-            if (NewArea)
+            UPuzzlePoint* NewPP = NewObject<UPuzzlePoint>(this, AssetClass);
+            if (NewPP)
             {
-                Objects.Add(NewArea);
+                Objects.Add(NewPP);
             }
         }
     }
     return Objects;
 }
+
 
 void APuzzleManager::UpdatePlayerProperties(UItemProperty* Property)
 {
@@ -536,20 +527,23 @@ void APuzzleManager::TriggerEnd()
     }    
 }
 
-TArray<TSubclassOf<UArea>> APuzzleManager::LoadAreaBPs()
+
+
+
+TArray<TSubclassOf<UPuzzlePoint>> APuzzleManager::LoadPuzzlePointBPs()
 {
-    TArray<TSubclassOf<UArea>> LoadedAreaClasses;
+    TArray<TSubclassOf<UPuzzlePoint>> LoadedPPClasses;
 
     // Initialize the Asset Registry Module
     FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
     FARFilter Filter;
     Filter.bRecursivePaths = true;
-    Filter.PackagePaths.Add("/Game/Resources/Areas");
+    Filter.PackagePaths.Add("/Game/Resources/PuzzlePoints");
 
     // Query the Asset Registry
     TArray<FAssetData> AssetData;
     AssetRegistryModule.Get().GetAssets(Filter, AssetData);
-    UE_LOG(LogTemp, Warning, TEXT("Found %d AREA assets."), AssetData.Num());
+    UE_LOG(LogTemp, Warning, TEXT("Found %d PP assets."), AssetData.Num());
 
     // Load each asset class
     for (const FAssetData& Asset : AssetData)
@@ -559,16 +553,16 @@ TArray<TSubclassOf<UArea>> APuzzleManager::LoadAreaBPs()
         if (!GeneratedClassPath.IsEmpty())
         {
             UClass* AssetClass = Cast<UClass>(StaticLoadObject(UClass::StaticClass(), nullptr, *GeneratedClassPath));
-            if (AssetClass && AssetClass->IsChildOf(UArea::StaticClass()))
+            if (AssetClass && AssetClass->IsChildOf(UPuzzlePoint::StaticClass()))
             {
-                LoadedAreaClasses.Add(AssetClass);
-                UE_LOG(LogTemp, Display, TEXT("Area '%s' loaded from database."), *AssetClass->GetName());
+                LoadedPPClasses.Add(AssetClass);
+                UE_LOG(LogTemp, Display, TEXT("PuzzlePoint '%s' loaded from database."), *AssetClass->GetName());
             }
 
         }
     }
 
-    return LoadedAreaClasses;
+    return LoadedPPClasses;
 }
 
 TArray<TSubclassOf<UItem>> APuzzleManager::LoadItemBPs()
@@ -662,6 +656,26 @@ TArray<UItem*> APuzzleManager::GetItemsInWorld()
     return ItemsInWorld;
 }
 
+TArray<UGameItem*> APuzzleManager::GetGameItemsInWorld()
+{
+    UWorld* World = GetWorld();
+    TArray<UGameItem*> GameItemsInWorld;
+
+    if (World != nullptr)
+    {
+        for (TActorIterator<AActor> It(World); It; ++It)
+        {
+            AActor* Actor = *It;
+            UGameItem* GameItem = Actor->FindComponentByClass<UGameItem>();
+            if (GameItem != nullptr)
+            {
+                GameItemsInWorld.Add(GameItem);
+            }
+        }
+    }
+    return GameItemsInWorld;
+}
+
 bool APuzzleManager::CheckIfPuzzleToBeGenerated()
 {
     if (ActivePuzzles >= MaxActivePuzzles + 1)
@@ -693,3 +707,174 @@ TArray<AGamePuzzlePoint*> APuzzleManager::GetPPsInWorld()
     }
     return PPsInWorld;
 }
+
+
+
+
+
+
+
+/* TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)
+{
+    TArray<UItem*> MatchingItems;
+    for (TSubclassOf<UItem> DbItem : ItemAssets)
+    {
+        if (DbItem != nullptr)
+        {
+            UItem* DbItemPtr = NewObject<UItem>(this, DbItem);
+            if (DbItemPtr && DbItemPtr->Matches(Term) && DbItemPtr->IsAccessible(AccessibleAreas, ItemsInLevel))
+            {
+                MatchingItems.Add(DbItemPtr);
+            }
+        }
+    }
+    return MatchingItems;
+} */
+
+
+
+/* TArray<TSubclassOf<UArea>> APuzzleManager::LoadAreaBPs()
+{
+    TArray<TSubclassOf<UArea>> LoadedAreaClasses;
+
+    // Initialize the Asset Registry Module
+    FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
+    FARFilter Filter;
+    Filter.bRecursivePaths = true;
+    Filter.PackagePaths.Add("/Game/Resources/Areas");
+
+    // Query the Asset Registry
+    TArray<FAssetData> AssetData;
+    AssetRegistryModule.Get().GetAssets(Filter, AssetData);
+    UE_LOG(LogTemp, Warning, TEXT("Found %d AREA assets."), AssetData.Num());
+
+    // Load each asset class
+    for (const FAssetData& Asset : AssetData)
+    {
+        // Get the generated class from the blueprint asset
+        const FString GeneratedClassPath = Asset.GetTagValueRef<FString>(FName("GeneratedClass"));
+        if (!GeneratedClassPath.IsEmpty())
+        {
+            UClass* AssetClass = Cast<UClass>(StaticLoadObject(UClass::StaticClass(), nullptr, *GeneratedClassPath));
+            if (AssetClass && AssetClass->IsChildOf(UArea::StaticClass()))
+            {
+                LoadedAreaClasses.Add(AssetClass);
+                UE_LOG(LogTemp, Display, TEXT("Area '%s' loaded from database."), *AssetClass->GetName());
+            }
+
+        }
+    }
+
+    return LoadedAreaClasses;
+} */
+
+/* 
+void APuzzleManager::FindLeaves(URule* Parent, UArea* Area)
+{
+    if (Parent->Children.Num() == 0)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Rule %s has no children"), *Parent->ToString());
+        Leaves.FindOrAdd(Area).RulesArray.Add(Parent);
+    }
+    else
+    {
+        FRulesStruct* FoundRulesStruct = Leaves.Find(Area);
+        if (FoundRulesStruct && !FoundRulesStruct->RulesArray.Contains(Parent))
+        {
+            FoundRulesStruct->RulesArray.Add(Parent);
+        }
+        for (URule* Child : Parent->Children)
+        {
+            if (Child != nullptr)
+            {
+                FindLeaves(Child, Area);
+            }
+        }
+    }
+} */
+
+/* void APuzzleManager::GenerateForArea(UArea* Area)
+{
+    if (Area != nullptr)
+    {
+        Area->AreaObject->SetActorHiddenInGame(false);
+        Area->AreaObject->SetActorEnableCollision(true);
+        Area->AreaObject->SetActorTickEnabled(true);
+        UE_LOG(LogTemp, Display, TEXT("%s area set to Active"), *Area->Name);
+    }
+    
+
+    URule* Root = Generator->GeneratePuzzleStartingFrom(Area, AccessibleAreas);
+    FRulesStruct NewRules;
+    Leaves.Add(Area, NewRules);
+    PuzzleRules.Add(Area, NewRules);
+    FindLeaves(Root, Area);
+    CurrentArea = Area;
+    
+} */
+
+
+/* TArray<UArea*> APuzzleManager::GetAllAreas()
+{
+    TArray<UArea*> Objects;
+    for (TSubclassOf<UArea> AssetClass : AreaAssets)
+    {
+        if (AssetClass != nullptr)
+        {
+            UArea* NewArea = NewObject<UArea>(this, AssetClass);
+            if (NewArea)
+            {
+                Objects.Add(NewArea);
+            }
+        }
+    }
+    return Objects;
+} */
+
+  //Area
+    //AreaAssets = LoadAreaBPs();
+
+        //GenerateForArea(StartArea);
+
+
+/* void APuzzleManager::ExecuteRule(URule* Rule, UArea* Area)
+{
+    FRulesStruct* FoundLeavesRules = Leaves.Find(Area);
+    if (FoundLeavesRules->RulesArray.Contains(Rule))
+    {
+        UE_LOG(LogTemp, Display, TEXT("Execute: %s"), *Rule->Parent->Outputs[0]->Name);
+        FoundLeavesRules->RulesArray.Remove(Rule);
+        if (Rule->Parent->Parent != nullptr)
+        {
+            URule* Parent = Rule->Parent;
+            Parent->Children.Remove(Rule);
+            if (Parent->Children.Num() == 0)
+            {
+                FoundLeavesRules->RulesArray.Add(Parent);
+                if (Parent->bAutomatic)
+                {
+                    UWorld* World = GetWorld();
+                    UGameItem::ExecuteRule(World, Parent, true, Parent->Inputs[0]->GameItem);
+                }
+            }
+        }
+        else
+        {
+            if (Area->IsFinal())
+            {
+                TriggerEnd();
+            }
+            else
+            {
+                for (UArea* ConnectedArea : Area->ConnectedTo)
+                {
+                    if (ConnectedArea != nullptr)
+                    {
+                            UE_LOG(LogTemp, Display, TEXT("Attempting to generate puzzle for: %s"), *ConnectedArea->Name);
+                            GenerateForArea(ConnectedArea);
+                    }
+                }
+            }
+        }
+    }
+} */

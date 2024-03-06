@@ -8,6 +8,7 @@
 #include "Item.generated.h"
 
 class UTerm;
+class UPuzzlePoint;
 
 
 UCLASS(Blueprintable)
@@ -72,7 +73,7 @@ public:
 
 	bool IsOfType(UTerm* Term);   
 
-	bool IsAccessible(TArray<UArea*> Areas, TArray<UItem*> ItemsInScene);
+	bool IsAccessible(TArray<UPuzzlePoint*> PPs, TArray<UItem*> ItemsInScene);
 
 	bool IsCarryable();
 

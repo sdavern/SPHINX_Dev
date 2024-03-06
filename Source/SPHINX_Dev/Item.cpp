@@ -1,6 +1,7 @@
 #include "Item.h"
 #include "Term.h"
 #include "Area.h"
+#include "PuzzlePoint.h"
 
 UItem::UItem()
 {
@@ -148,16 +149,16 @@ bool UItem::IsOfType(UTerm* Term)
     return true;
 }
 
-bool UItem::IsAccessible(TArray<UArea*> Areas, TArray<UItem*> ItemsInScene)
+bool UItem::IsAccessible(TArray<UPuzzlePoint*> PPs, TArray<UItem*> ItemsInScene)
 {
     if (Name == TEXT("Player"))
     {
         return true;
     }
 
-    TArray<UItemProperty*> AreaProperties = this->GetPropertiesWithName("Area");
+    TArray<UItemProperty*> PointProperties = this->GetPropertiesWithName("PuzzlePoint");
 
-    if (AreaProperties.Num() == 0)
+    if (PointProperties.Num() == 0)
     {
         if(IsSpawnable() || ItemsInScene.Contains(this))
         {
@@ -173,11 +174,11 @@ bool UItem::IsAccessible(TArray<UArea*> Areas, TArray<UItem*> ItemsInScene)
         }
     }
 
-    for (UItemProperty* AreaProp : AreaProperties)
+    for (UItemProperty* PointProp : PointProperties)
     {
-        for (UArea* Area : Areas)
+        for (UPuzzlePoint* PP : PPs)
         {
-            if (AreaProp->Value == Area->Name && (IsSpawnable() || ItemsInScene.Contains(this)))
+            if (PointProp->Value == PP->Name && (IsSpawnable() || ItemsInScene.Contains(this)))
             {
                 return true;
             }

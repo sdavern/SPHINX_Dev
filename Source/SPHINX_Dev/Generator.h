@@ -12,7 +12,10 @@
 #include "GameItem.h"
 #include "GameArea.h"
 #include "InventoryManager.h"
+#include "PuzzlePoint.h"
+#include "GamePuzzlePoint.h"
 #include "Generator.generated.h"
+
 
 
 //Make singleton, see GenerateForArea in PuzzleManager
@@ -30,13 +33,13 @@ public:
 
 	static const bool DebugMode = true;
 
-	static void Spawn(UWorld* World, UItem* Item, URule* Rule, UArea* Area);
+	static void Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP);
 
-	URule* GeneratePuzzleStartingFrom(UArea* Area, TArray<UArea*> NewAccessibleAreas);
+	URule* GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs);
 
-	static bool GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UArea* CurrentArea, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel);
+	static bool GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
 
-	UGameArea* FindGameArea(UArea* Area);
+	AGamePuzzlePoint* FindGamePuzzlePoint(UPuzzlePoint* PP);
 
 	void GetAllAttachedActors(AActor* ParentActor, TArray<AActor*>& OutActors);
 

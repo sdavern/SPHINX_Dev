@@ -21,7 +21,7 @@ public:
 	AGamePuzzlePoint();
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UPuzzlePoint> PuzzlePoint;
+	TSubclassOf<UPuzzlePoint> PuzzlePointBP;
 
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<AInitNPC>> InitNPCs;
