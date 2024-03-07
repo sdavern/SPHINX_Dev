@@ -20,11 +20,15 @@ void AGamePuzzlePoint::BeginPlay()
 
 	PuzzlePointPtr = this->PPToPtr();
 
-	UPuzzlePoint* MyPPInstance = NewObject<UPuzzlePoint>(this, PuzzlePointBP);
-	if (MyPPInstance)
+	if (PuzzlePointBP)
 	{
-		MyPPInstance->OwningGamePP = this;
+		UPuzzlePoint* MyPPInstance = NewObject<UPuzzlePoint>(this, PuzzlePointBP);
+		if (MyPPInstance)
+		{
+			MyPPInstance->OwningGamePP = this;
+		}
 	}
+	
 
 		
 }
@@ -56,16 +60,18 @@ void AGamePuzzlePoint::SpawnInit()
 {
 	if (GetWorld())
 	{
-		if (PuzzlePointPtr->IsNPC == true)
+		if (PuzzlePointPtr)
 		{
-			FActorSpawnParameters SpawnParams;
-    		SpawnParams.Owner = this;
-    		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-			int32 i = FMath::RandRange(0, InitNPCs.Num() - 1);
-			InitNPC = GetWorld()->SpawnActor<AInitNPC>(InitNPCs[i], PointTransform, SpawnParams);
-			UE_LOG(LogTemp, Display, TEXT("InitNPC spawned."));
-			InitSpawned = true;
-		}
+			if (PuzzlePointPtr->IsNPC == true)
+			{
+				FActorSpawnParameters SpawnParams;
+    			SpawnParams.Owner = this;
+    			SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+				int32 i = FMath::RandRange(0, InitNPCs.Num() - 1);
+				InitNPC = GetWorld()->SpawnActor<AInitNPC>(InitNPCs[i], PointTransform, SpawnParams);
+				UE_LOG(LogTemp, Display, TEXT("InitNPC spawned."));
+				InitSpawned = true;
+			}
 
 		else if (PuzzlePointPtr->IsText == true)
 		{
@@ -88,6 +94,8 @@ void AGamePuzzlePoint::SpawnInit()
 			UE_LOG(LogTemp, Display, TEXT("InitObject spawned."));
 			InitSpawned = true;
 		}
+		}
+		
 	}
 }
 

@@ -49,9 +49,9 @@ public:
 
 	static UGameItem* Copy(UGameItem* Original, UObject* Outer);
 
-	void OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, bool Inventory);
+	void OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP, bool Inventory);
 
-	void OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader);
+	void OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP2);
 
 	void ExecuteRule(URule* Rule);
 

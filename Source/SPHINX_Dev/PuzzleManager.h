@@ -73,7 +73,7 @@ public:
 
 	void AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules);
 
-	void ExecuteRule(URule* Rule, UPuzzlePoint* PP);
+	void ExecuteRule(URule* Rule);
 
 	void FindLeaves(URule* Parent, UPuzzlePoint* PP);
 
@@ -139,7 +139,6 @@ public:
 
 	void ActivateMaxPuzzlePoints();
 
-	UPuzzlePoint* GetPointForPuzzle();
 
 
 

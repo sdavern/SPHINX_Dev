@@ -104,17 +104,17 @@ void UGameItem::Spawn(UGameItem* Item)
 	
 }
 
-void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, bool Inventory)
+void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP, bool Inventory)
 {
 	if (!Inventory)
 	{
-		OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader);
+		OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader, PP);
 	}
 	else
 	{
 		if (Selected)
 		{
-			OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader);
+			OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader, PP);
 		}
 		else
 		{
@@ -136,7 +136,7 @@ void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTex
                 }
             }
 
-			OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader);
+			OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader, PP);
 		}
 		
 	}
@@ -484,7 +484,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 		FirstOutput = false;
 	}
 
-	PMInstance->ExecuteRule(Rule, PMInstance->GetPointForPuzzle());
+	PMInstance->ExecuteRule(Rule);
 
 	for (AActor* GO : ObjectsToDestroy)
 	{

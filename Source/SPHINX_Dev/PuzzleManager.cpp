@@ -66,11 +66,6 @@ void APuzzleManager::BeginPlay()
     ActivateMaxPuzzlePoints();
     GenerateForActivePuzzlePoints();
 
-
-
-
-    
-
 }
 
 void APuzzleManager::Tick(float DeltaTime)
@@ -142,6 +137,32 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
             Leaves.Add(PP, NewRules);
             PuzzleRules.Add(PP, NewRules);
             FindLeaves(Root, PP);
+
+            FRulesStruct* LeavesRulesStruct = Leaves.Find(PP);
+            if (LeavesRulesStruct != nullptr)
+            {
+                for (URule* Rule : LeavesRulesStruct->RulesArray)
+                {
+                    if (Rule)
+                    {
+                        Rule->OwningPP = PP;
+                    }
+                }
+            }
+            
+
+            FRulesStruct* PuzzleRulesStruct = PuzzleRules.Find(PP);
+            if (PuzzleRulesStruct != nullptr)
+            {
+                for (URule* Rule : PuzzleRulesStruct->RulesArray)
+                {
+                    if (Rule)
+                    {
+                        Rule->OwningPP = PP;
+                    }
+                }
+            }
+            
         }
     }
 }
@@ -207,9 +228,10 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
     }
 }
 
-void APuzzleManager::ExecuteRule(URule* Rule, UPuzzlePoint* PP)
+void APuzzleManager::ExecuteRule(URule* Rule)
 {
-    FRulesStruct* FoundLeavesRules = Leaves.Find(PP);
+    UPuzzlePoint* FoundPP = Rule->OwningPP;
+    FRulesStruct* FoundLeavesRules = Leaves.Find(FoundPP);
     UWorld* World = GetWorld();
     if (FoundLeavesRules->RulesArray.Contains(Rule))
     {
@@ -708,10 +730,6 @@ TArray<AGamePuzzlePoint*> APuzzleManager::GetPPsInWorld()
     return PPsInWorld;
 }
 
-UPuzzlePoint* APuzzleManager::GetPointForPuzzle()
-{
-    
-}
 
 
 

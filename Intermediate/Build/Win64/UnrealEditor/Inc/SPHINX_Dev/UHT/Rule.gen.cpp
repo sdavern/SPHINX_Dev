@@ -11,6 +11,7 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 // Cross Module References
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	COREUOBJECT_API UClass* Z_Construct_UClass_UObject();
+	SPHINX_DEV_API UClass* Z_Construct_UClass_UPuzzlePoint_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_URule();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_URule_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UTerm_NoRegister();
@@ -44,6 +45,10 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Action_MetaData[];
 #endif
 		static const UECodeGen_Private::FStrPropertyParams NewProp_Action;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_OwningPP_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OwningPP;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Hint_MetaData[];
 #endif
@@ -124,6 +129,13 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 #endif
 	const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_URule_Statics::NewProp_Action = { "Action", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(URule, Action), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_URule_Statics::NewProp_Action_MetaData), Z_Construct_UClass_URule_Statics::NewProp_Action_MetaData) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URule_Statics::NewProp_OwningPP_MetaData[] = {
+		{ "Category", "Rule" },
+		{ "ModuleRelativePath", "Rule.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_URule_Statics::NewProp_OwningPP = { "OwningPP", nullptr, (EPropertyFlags)0x0010000000020005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(URule, OwningPP), Z_Construct_UClass_UPuzzlePoint_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_URule_Statics::NewProp_OwningPP_MetaData), Z_Construct_UClass_URule_Statics::NewProp_OwningPP_MetaData) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URule_Statics::NewProp_Hint_MetaData[] = {
 		{ "Category", "Rule" },
 		{ "ModuleRelativePath", "Rule.h" },
@@ -198,6 +210,7 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_InputsBP_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_InputsBP,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Action,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_OwningPP,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Hint,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Parent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_ChildrenBP_Inner,
@@ -246,9 +259,9 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_URule, URule::StaticClass, TEXT("URule"), &Z_Registration_Info_UClass_URule, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(URule), 31544302U) },
+		{ Z_Construct_UClass_URule, URule::StaticClass, TEXT("URule"), &Z_Registration_Info_UClass_URule, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(URule), 1061935990U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_823598278(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_589657145(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

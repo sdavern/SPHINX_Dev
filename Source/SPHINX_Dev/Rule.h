@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
 #include "Term.h"
+#include "PuzzlePoint.h"
 #include "Rule.generated.h"
 
 /**
@@ -32,6 +33,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Action;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	UPuzzlePoint* OwningPP;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Hint;
