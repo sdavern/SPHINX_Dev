@@ -231,6 +231,7 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
 void APuzzleManager::ExecuteRule(URule* Rule)
 {
     UPuzzlePoint* FoundPP = Rule->OwningPP;
+    AGamePuzzlePoint* OwningGPP = FoundPP->OwningGamePP;
     FRulesStruct* FoundLeavesRules = Leaves.Find(FoundPP);
     UWorld* World = GetWorld();
     if (FoundLeavesRules->RulesArray.Contains(Rule))
@@ -249,6 +250,16 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                     UGameItem::ExecuteRule(World, Parent, true, Parent->Inputs[0]->GameItem);
                 }
             }
+        }
+        else
+        {
+            UE_LOG(LogTemp, Display, TEXT("Puzzle for PP: %s completed!"), *FoundPP->Name);
+            if (OwningGPP)
+            {
+                DeactivatePuzzlePoint(OwningGPP);
+                //Activating next PP is handled in Tick()
+            }
+            
         }
     }
 }

@@ -191,9 +191,15 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_DevCharacter() {}
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ASPHINX_DevCharacter_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPHINX_DevCharacter_Statics::Class_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);\n" },
+#endif
 		{ "HideCategories", "Navigation" },
 		{ "IncludePath", "SPHINX_DevCharacter.h" },
 		{ "ModuleRelativePath", "SPHINX_DevCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);" },
+#endif
 	};
 #endif
 #if WITH_METADATA
@@ -345,9 +351,9 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_DevCharacter() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevCharacter_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ASPHINX_DevCharacter, ASPHINX_DevCharacter::StaticClass, TEXT("ASPHINX_DevCharacter"), &Z_Registration_Info_UClass_ASPHINX_DevCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASPHINX_DevCharacter), 1568600006U) },
+		{ Z_Construct_UClass_ASPHINX_DevCharacter, ASPHINX_DevCharacter::StaticClass, TEXT("ASPHINX_DevCharacter"), &Z_Registration_Info_UClass_ASPHINX_DevCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASPHINX_DevCharacter), 644053313U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevCharacter_h_2771023347(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevCharacter_h_2367936645(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevCharacter_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
