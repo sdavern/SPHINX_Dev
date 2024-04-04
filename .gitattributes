@@ -5,3 +5,5 @@
 SharedPCH.Engine.Cpp20.h.pch filter=lfs diff=lfs merge=lfs -text
 SharedPCH.UnrealEd.Cpp20.h.pch filter=lfs diff=lfs merge=lfs -text
 FantasyInterior01_BuiltData.uasset filter=lfs diff=lfs merge=lfs -text
+Medieval_Daytime_BuiltData.uasset filter=lfs diff=lfs merge=lfs -text
+Medieval_Nighttime_BuiltData.uasset filter=lfs diff=lfs merge=lfs -text
