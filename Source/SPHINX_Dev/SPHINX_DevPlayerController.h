@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "GameItem.h"
+#include "PlayerPawn.h"
 #include "SPHINX_DevPlayerController.generated.h"
 
 class UInputMappingContext;
@@ -22,7 +24,27 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input)
 	UInputMappingContext* InputMappingContext;
 
+	virtual void SetupInputComponent() override;
+
 	// Begin Actor interface
+
+private:
+
+	UPROPERTY(VisibleAnywhere)
+	APlayerPawn* ActivePlayer;
+
+	void OnLeftMouseDown();
+
+	void PerformGeoSweep();
+
+	UPROPERTY(EditAnywhere)
+	float MaxGrabDistance = 400;
+
+	UPROPERTY(EditAnywhere)
+	float GrabRadius = 100;
+
+	void AssignPlayer();
+
 protected:
 
 	virtual void BeginPlay() override;

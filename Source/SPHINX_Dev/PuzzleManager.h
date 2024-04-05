@@ -175,6 +175,8 @@ private:
 
 	int32 ActivePuzzles = 0;
 
+	void AssignPlayer();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

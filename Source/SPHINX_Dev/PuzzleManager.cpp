@@ -3,6 +3,7 @@
 
 #include "PuzzleManager.h"
 #include "EngineUtils.h"
+#include "Kismet/GameplayStatics.h"
 #include "GameItem.h"
 #include "PlayerPawn.h"
 #include "Generator.h"
@@ -65,6 +66,7 @@ void APuzzleManager::BeginPlay()
    
     ActivateMaxPuzzlePoints();
     GenerateForActivePuzzlePoints();
+    AssignPlayer();
 
 }
 
@@ -73,6 +75,21 @@ void APuzzleManager::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
     ActivateMaxPuzzlePoints();
     GenerateForActivePuzzlePoints();
+}
+
+void APuzzleManager::AssignPlayer()
+{
+    TArray<AActor*> FoundActors;
+    UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Player"), FoundActors);
+    if (FoundActors.Num() > 0)
+    {
+        AActor* FoundActor = FoundActors[0];
+        APlayerPawn* PlayerPawn = Cast<APlayerPawn>(FoundActor);
+        if (PlayerPawn)
+        {
+            Player = PlayerPawn;
+        }
+    }
 }
 
 void APuzzleManager::ActivateMaxPuzzlePoints()
