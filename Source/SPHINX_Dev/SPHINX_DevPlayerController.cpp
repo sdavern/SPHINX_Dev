@@ -4,6 +4,7 @@
 #include "SPHINX_DevPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "Kismet/GameplayStatics.h"
+#include "Camera/CameraComponent.h"
 
 void ASPHINX_DevPlayerController::BeginPlay()
 {
@@ -43,41 +44,31 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
 
 void ASPHINX_DevPlayerController::PerformGeoSweep()
 {
-	FVector2D MousePosition;
-    if (GetMousePosition(MousePosition.X, MousePosition.Y))
+    if (!ActivePlayer) return;
+
+    UCameraComponent* PlayerCamera = ActivePlayer->GetFirstPersonCameraComponent();
+    if (!PlayerCamera) return;
+
+    FVector Start = PlayerCamera->GetComponentLocation();
+    FVector ForwardVector = PlayerCamera->GetForwardVector();
+    FVector End = Start + (ForwardVector * MaxGrabDistance); 
+    FHitResult HitResult;
+    FCollisionQueryParams QueryParams;
+    QueryParams.AddIgnoredActor(ActivePlayer);
+
+    DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 5.0f);
+
+    FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
+    bool bHit = GetWorld()->SweepSingleByChannel(HitResult, Start, End, FQuat::Identity, ECC_GameTraceChannel2, Sphere, QueryParams);
+
+    if (bHit && HitResult.GetActor() != nullptr)
     {
-		FVector2D ViewportSize;
-		if (GEngine && GEngine->GameViewport)
-		{
-			GEngine->GameViewport->GetViewportSize(ViewportSize);
-    		FVector2D ScreenCenter = FVector2D(ViewportSize.X / 2, ViewportSize.Y / 2);
-
-        	FVector WorldPosition, WorldDirection;
-        	if (DeprojectScreenPositionToWorld(MousePosition.X, MousePosition.Y, WorldPosition, WorldDirection))
-			{
-				FHitResult HitResult;
-        		FVector Start = WorldPosition;
-        		FVector End = Start + WorldDirection * 1000;
-
-				DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 5); 
-				DrawDebugSphere(GetWorld(), End, 10, 10, FColor::Blue, false, 5);
-		
-				FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
-        		GetWorld()->SweepSingleByChannel(HitResult, Start, End, FQuat::Identity, ECC_GameTraceChannel2, Sphere);
-				AActor* HitActor = HitResult.GetActor();
-
-				if (HitActor != nullptr)
-				{
-					UGameItem* HitGameItem = HitActor->FindComponentByClass<UGameItem>();
-					if (HitGameItem != nullptr)
-					{
-						UE_LOG(LogTemp, Display, TEXT("%s clicked on!"), *HitGameItem->Name);
-					}
-				}
-			}
-
-		}
-		
-	}
-	
+        DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, GrabRadius, 32, FColor::Blue, false, 5.0f);
+        UGameItem* HitGameItem = HitResult.GetActor()->FindComponentByClass<UGameItem>();
+        if (HitGameItem)
+        {
+            UE_LOG(LogTemp, Display, TEXT("%s clicked on!"), *HitGameItem->Name);
+			//HitGameItem->OnGameItemClicked(ActionMenuContent, ButtonPrefab, ActionHeader);
+        }
+    }
 }

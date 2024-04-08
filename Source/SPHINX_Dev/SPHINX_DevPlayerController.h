@@ -41,7 +41,7 @@ private:
 	float MaxGrabDistance = 400;
 
 	UPROPERTY(EditAnywhere)
-	float GrabRadius = 100;
+	float GrabRadius = 10;
 
 	void AssignPlayer();
 

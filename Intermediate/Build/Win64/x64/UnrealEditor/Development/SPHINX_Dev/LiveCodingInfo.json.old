@@ -40,7 +40,6 @@
 			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
 			"MyPawn.cpp.obj",
-			"PlayerPawn.cpp.obj",
 			"PuzzlePoint.cpp.obj",
 			"Rule.cpp.obj",
 			"SPHINX_Dev.cpp.obj",
@@ -53,6 +52,7 @@
 			"SPHINXHUD.gen.cpp.obj",
 			"SPHINX_Dev.init.gen.cpp.obj",
 			"SPHINX_DevPlayerController.gen.cpp.obj",
+			"PlayerPawn.cpp.obj",
 			"PuzzleManager.cpp.obj",
 			"SPHINXHUD.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj"
