@@ -21,7 +21,7 @@ struct FRulesStruct
 };
 
 class UGameItem;
-class APlayerPawn;
+class AAvatar;
 class AGenerator;
 class AGamePuzzlePoint;
 class UPuzzlePoint;
@@ -40,7 +40,7 @@ public:
 	bool UseAllRules;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	APlayerPawn* Player;
+	AAvatar* Player;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AGenerator* Generator;

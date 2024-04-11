@@ -1,4 +1,4 @@
-#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/x64/SPHINX_DevEditor/Development/Engine/SharedDefinitions.Engine.Cpp20.h"
+#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/x64/SPHINX_DevEditor/Development/UnrealEd/SharedDefinitions.UnrealEd.Cpp20.h"
 #undef UE_IS_ENGINE_MODULE
 #undef DEPRECATED_FORGAME
 #define DEPRECATED_FORGAME DEPRECATED
@@ -21,5 +21,7 @@
 #define IMPLEMENT_SIGNING_KEY_REGISTRATION() 
 #define DEPRECATED_FORGAME DEPRECATED
 #define UE_DEPRECATED_FORGAME UE_DEPRECATED
+#define PAPERZD_API DLLIMPORT
+#define PAPER2D_API DLLIMPORT
 #define SPHINX_DEV_API DLLEXPORT
 #define ENHANCEDINPUT_API DLLIMPORT

@@ -20,10 +20,10 @@ void ASPHINX_DevPlayerController::AssignPlayer()
     if (FoundActors.Num() > 0)
     {
         AActor* FoundActor = FoundActors[0];
-        APlayerPawn* PlayerPawn = Cast<APlayerPawn>(FoundActor);
-        if (PlayerPawn)
+        AAvatar* Avatar = Cast<AAvatar>(FoundActor);
+        if (Avatar)
         {
-            ActivePlayer = PlayerPawn;
+            ActivePlayer = Avatar;
         }
     }
 }
@@ -31,20 +31,20 @@ void ASPHINX_DevPlayerController::AssignPlayer()
 void ASPHINX_DevPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
-    InputComponent->BindAction("LeftClick", IE_Pressed, this, &ASPHINX_DevPlayerController::OnLeftMouseDown);
-	UE_LOG(LogTemp, Display, TEXT("LeftClick bound to mouse."));
+    /* InputComponent->BindAction("LeftClick", IE_Pressed, this, &ASPHINX_DevPlayerController::OnLeftMouseDown);
+	UE_LOG(LogTemp, Display, TEXT("LeftClick bound to mouse.")); */
 }
 
 void ASPHINX_DevPlayerController::OnLeftMouseDown()
 {
-	UE_LOG(LogTemp, Display, TEXT("Left mouse has been clicked!"));
-	PerformGeoSweep();
+	/* UE_LOG(LogTemp, Display, TEXT("Left mouse has been clicked!"));
+	PerformGeoSweep(); */
 }
 
 
 void ASPHINX_DevPlayerController::PerformGeoSweep()
 {
-    if (!ActivePlayer) return;
+    /* if (!ActivePlayer) return;
 
     UCameraComponent* PlayerCamera = ActivePlayer->GetFirstPersonCameraComponent();
     if (!PlayerCamera) return;
@@ -70,5 +70,5 @@ void ASPHINX_DevPlayerController::PerformGeoSweep()
             UE_LOG(LogTemp, Display, TEXT("%s clicked on!"), *HitGameItem->Name);
 			//HitGameItem->OnGameItemClicked(ActionMenuContent, ButtonPrefab, ActionHeader);
         }
-    }
+    } */
 }

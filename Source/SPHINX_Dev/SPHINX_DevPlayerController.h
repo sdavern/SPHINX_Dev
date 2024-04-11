@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "GameItem.h"
-#include "PlayerPawn.h"
+#include "Avatar.h"
 #include "SPHINX_DevPlayerController.generated.h"
 
 class UInputMappingContext;
@@ -31,7 +31,7 @@ protected:
 private:
 
 	UPROPERTY(VisibleAnywhere)
-	APlayerPawn* ActivePlayer;
+	AAvatar* ActivePlayer;
 
 	void OnLeftMouseDown();
 

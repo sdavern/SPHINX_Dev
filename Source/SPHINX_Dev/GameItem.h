@@ -14,7 +14,7 @@
 #include "GameItem.generated.h"
 
 class AInventoryManager;
-class APlayerPawn;
+class AAvatar;
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))

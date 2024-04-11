@@ -8,7 +8,7 @@
 
 void ASPHINXHUD::DrawHUD()
 {
-    Super::DrawHUD();
+    /* Super::DrawHUD();
 
     if (CrosshairTexture)
     {
@@ -23,5 +23,5 @@ void ASPHINXHUD::DrawHUD()
         FCanvasTileItem TileItem(CrosshairDrawPosition, CrosshairTexture->GetResource(), FLinearColor::White);
         TileItem.BlendMode = SE_BLEND_Translucent;
         Canvas->DrawItem(TileItem);
-    }
+    } */
 }

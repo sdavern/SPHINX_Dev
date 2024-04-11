@@ -5,7 +5,7 @@
 #include "EngineUtils.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameItem.h"
-#include "PlayerPawn.h"
+#include "Avatar.h"
 #include "Generator.h"
 #include "GamePuzzlePoint.h"
 #include "PuzzlePoint.h"
@@ -84,10 +84,10 @@ void APuzzleManager::AssignPlayer()
     if (FoundActors.Num() > 0)
     {
         AActor* FoundActor = FoundActors[0];
-        APlayerPawn* PlayerPawn = Cast<APlayerPawn>(FoundActor);
-        if (PlayerPawn)
+        AAvatar* Avatar = Cast<AAvatar>(FoundActor);
+        if (Avatar)
         {
-            Player = PlayerPawn;
+            Player = Avatar;
         }
     }
 }

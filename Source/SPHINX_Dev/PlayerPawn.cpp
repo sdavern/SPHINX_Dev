@@ -10,9 +10,11 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "Kismet/GameplayStatics.h"
+#include "PaperZDCharacter.h"
 #include "Engine/LocalPlayer.h"
 
-DEFINE_LOG_CATEGORY(LogTemplateCharacter);
+/* DEFINE_LOG_CATEGORY(LogTemplateCharacter); */
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -20,7 +22,7 @@ APlayerPawn::APlayerPawn()
 
 	GameItem = CreateDefaultSubobject<UGameItem>(TEXT("GameItem"));
 	GameItem->Name = TEXT("Player");
-
+/* 
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
 		
 	// Create a CameraComponent	
@@ -36,7 +38,7 @@ APlayerPawn::APlayerPawn()
 	Mesh1P->bCastDynamicShadow = false;
 	Mesh1P->CastShadow = false;
 	Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
-	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
+	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f)); */
 
 }
 
@@ -63,15 +65,15 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	// Set up action bindings
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
-		// Jumping
+		/* // Jumping
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ACharacter::Jump);
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping); */
 
 		// Moving
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &APlayerPawn::Move);
 
-		// Looking
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APlayerPawn::Look);
+		/* // Looking
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APlayerPawn::Look); */
 	}
 	else
 	{
@@ -93,7 +95,7 @@ void APlayerPawn::Move(const FInputActionValue& Value)
 	}
 }
 
-void APlayerPawn::Look(const FInputActionValue& Value)
+/* void APlayerPawn::Look(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
@@ -104,7 +106,7 @@ void APlayerPawn::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
-}
+} */
 
 
 

@@ -5,8 +5,6 @@
 /I "Runtime\Core\Public"
 /I "Runtime\Core\Internal"
 /I "Runtime\TraceLog\Public"
-/I "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\UnrealEditor\Inc\SPHINX_Dev\UHT"
-/I "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\UHT"
 /I "..\Shaders\Shared"
 /I "Runtime\Engine\Classes"
@@ -258,6 +256,8 @@
 /I "Developer\PhysicsUtilities\Public"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\WidgetRegistration\UHT"
 /I "Developer\WidgetRegistration\Public"
+/I "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\UnrealEditor\Inc\SPHINX_Dev\UHT"
+/I "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source"
 /I "..\Plugins\EnhancedInput\Intermediate\Build\Win64\UnrealEditor\Inc\EnhancedInput\UHT"
 /I "..\Plugins\EnhancedInput\Source\EnhancedInput\Public"
 /external:W0
