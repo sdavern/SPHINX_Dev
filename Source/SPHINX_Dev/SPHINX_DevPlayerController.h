@@ -35,6 +35,8 @@ private:
 
 	void OnLeftMouseDown();
 
+	void OnRightMouseDown();
+
 	void PerformGeoSweep();
 
 	UPROPERTY(EditAnywhere)
@@ -44,6 +46,15 @@ private:
 	float GrabRadius = 10;
 
 	void AssignPlayer();
+
+	void GrabGameItem(UGameItem* GameItem);
+
+	void DropGameItem(AActor* GameItemBP);
+
+	void DisableCollisionForActor(AActor* ActorToDisable);
+
+	void EnableCollisionForActor(AActor* ActorToEnable);
+
 
 protected:
 
