@@ -4,6 +4,7 @@
 		"Module.SPHINX_Dev.cpp.obj": [
 			"ActionBtn.gen.cpp.obj",
 			"Area.gen.cpp.obj",
+			"Avatar.gen.cpp.obj",
 			"ConditionalObject.gen.cpp.obj",
 			"GameArea.gen.cpp.obj",
 			"GameItem.gen.cpp.obj",
@@ -30,6 +31,7 @@
 			"TP_WeaponComponent.gen.cpp.obj",
 			"ActionBtn.cpp.obj",
 			"Area.cpp.obj",
+			"Avatar.cpp.obj",
 			"ConditionalObject.cpp.obj",
 			"GameArea.cpp.obj",
 			"GameItem.cpp.obj",
@@ -54,9 +56,9 @@
 			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
-			"Avatar.gen.cpp.obj",
+			"ActionMenu.gen.cpp.obj",
 			"SPHINX_Dev.init.gen.cpp.obj",
-			"Avatar.cpp.obj",
+			"ActionMenu.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj"
 		]
 	}

@@ -4,7 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Blueprint/UserWidget.h"
 #include "GameItem.h"
+#include "ActionMenu.h"
 #include "Avatar.h"
 #include "SPHINX_DevPlayerController.generated.h"
 
@@ -18,6 +20,12 @@ class SPHINX_DEV_API ASPHINX_DevPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 	
+
+public:
+
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UActionMenu> ActionMenuClass;
+
 protected:
 
 	/** Input Mapping Context to be used for player input */
