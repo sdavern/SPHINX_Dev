@@ -72,6 +72,22 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
 	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\ActionMenu.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\ActionMenu.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\Area.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",

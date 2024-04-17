@@ -43,9 +43,9 @@ private:
 
 	void OnLeftMouseDown();
 
-	void OnRightMouseDown();
+	/* void OnRightMouseDown(); */
 
-	void PerformGeoSweep();
+	bool PerformGeoSweep();
 
 	UPROPERTY(EditAnywhere)
 	float MaxGrabDistance = 400;
@@ -54,15 +54,47 @@ private:
 	float GrabRadius = 10;
 
 	void AssignPlayer();
-
-	void GrabGameItem(UGameItem* GameItem);
-
+	
 	void DropGameItem(AActor* GameItemBP);
 
 	void DisableCollisionForActor(AActor* ActorToDisable);
 
 	void EnableCollisionForActor(AActor* ActorToEnable);
+	
+	UGameItem* HitGameItem;
 
+public:
+
+	void GrabGameItem(UGameItem* GameItem);
+
+	UActionMenu* ActionMenu;
+
+	void SetupHoldButton();
+
+	void SetupActionButton();
+
+	void SetupExitButton();
+
+	void SetupInventoryButton();
+
+	void SetupInspectButton();
+
+	UFUNCTION()
+	void OnHoldButtonClicked();
+
+	UFUNCTION()
+	void OnActionButtonClicked();
+
+	UFUNCTION()
+	void OnInventoryButtonClicked();
+
+	UFUNCTION()
+	void OnExitButtonClicked();
+
+	UFUNCTION()
+	void OnInspectButtonClicked();
+
+	void SetupActionMenuButtons();
 
 protected:
 
