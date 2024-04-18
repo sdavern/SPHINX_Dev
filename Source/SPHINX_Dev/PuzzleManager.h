@@ -12,6 +12,7 @@
 #include "ConditionalObject.h"
 #include "PuzzleManager.generated.h"
 
+
 USTRUCT()
 struct FRulesStruct
 {

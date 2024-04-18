@@ -78,6 +78,8 @@
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\actionbtn.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\actionbtn.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\gameitem.generated.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\dialoguebox.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\dialoguebox.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\avatar.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\kismet\\gameplaystatics.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\kismet\\kismetsystemlibrary.h",
@@ -102,6 +104,8 @@
             "c:\\program files\\epic games\\ue_5.3\\engine\\plugins\\marketplace\\paperzd\\intermediate\\build\\win64\\unrealeditor\\inc\\paperzd\\uht\\ipaperzdsequencersource.generated.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\plugins\\marketplace\\paperzd\\intermediate\\build\\win64\\unrealeditor\\inc\\paperzd\\uht\\paperzdcharacter.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\avatar.generated.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\inventorymanager.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\inventorymanager.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\sphinx_devplayercontroller.generated.h"
         ],
         "ImportedModules": [],

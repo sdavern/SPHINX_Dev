@@ -14,22 +14,16 @@ APuzzleManager* APuzzleManager::Instance = nullptr;
 
 APuzzleManager::APuzzleManager()
 {
-
-}
-
-void APuzzleManager::BeginPlay()
-{
-    Super::BeginPlay();
-
-    //Load in databases
-  
-    //PP
     PPAssets = LoadPuzzlePointBPs();
     //Item
     ItemAssets = LoadItemBPs();
     //Rule
     RuleAssets = LoadRuleBPs();
+}
 
+void APuzzleManager::BeginPlay()
+{
+    Super::BeginPlay();
 
     if (Everything != nullptr)
     {
@@ -214,7 +208,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem, UPuzzlePoint* PP)
 
 UItem* APuzzleManager::GetObject(FString ItemName)
 {
-    UE_LOG(LogTemp, Error, TEXT("Checking ItemAssets, count: %d"), ItemAssets.Num());
+    UE_LOG(LogTemp, Display, TEXT("Searching for DbItem with name: %s"), *ItemName);
     for (TSubclassOf<UItem> ItemClass : ItemAssets)
     {
         UItem* NewItem = NewObject<UItem>(this, ItemClass);
@@ -225,7 +219,7 @@ UItem* APuzzleManager::GetObject(FString ItemName)
         }
     }
 
-    UE_LOG(LogTemp, Error, TEXT("GetObject called with Name: %s"), *ItemName);
+    UE_LOG(LogTemp, Error, TEXT("GetObject called with Name: %s. No Item found."), *ItemName);
     return nullptr; // Return nullptr if no matching item is found.
 }
 
@@ -648,7 +642,8 @@ TArray<TSubclassOf<UItem>> APuzzleManager::LoadItemBPs()
             }
         }
     }
-
+  /*   UE_LOG(LogTemp, Display, TEXT("Broadcasting OnDatabaseLoaded."));
+    OnDatabaseLoaded.Broadcast(); */
     return LoadedItemClasses;
 }
 

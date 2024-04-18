@@ -42,6 +42,10 @@
             "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\panelwidget.generated.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\contentwidget.generated.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\button.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\umg\\public\\components\\textblock.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\umg\\public\\components\\textwidgettypes.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\textwidgettypes.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\textblock.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\actionmenu.generated.h"
         ],
         "ImportedModules": [],

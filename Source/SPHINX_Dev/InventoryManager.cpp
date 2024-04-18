@@ -30,27 +30,43 @@ void AInventoryManager::BeginPlay()
 
 void AInventoryManager::AddItemToInventory(UGameItem* Item)
 {
+    if (!Item)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Attempted to add a null Item to inventory."));
+        return;
+    }
 
     AActor* OwnerActor = Item->GetOwner();
+    if (!OwnerActor)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("OwnerActor is null in AddItemToInventory."));
+        return;
+    }
+
     OwnerActor->SetActorHiddenInGame(true);
     OwnerActor->SetActorEnableCollision(false);
     OwnerActor->SetActorTickEnabled(false);
 
-    if (Item->DbItem->GetPropertyWithName("InInventory") == nullptr)
+    if (!Item->DbItem)
     {
-       UItemProperty* InInventory = NewObject<UItemProperty>(Item->DbItem, UItemProperty::StaticClass());
-       InInventory->Type = EItemProperty::BoolProperty;
-       InInventory->Name = TEXT("InInventory");
-       InInventory->Value = TEXT("True");
-       DbItem->Properties.Add(InInventory);
+        UE_LOG(LogTemp, Warning, TEXT("DbItem is null for Item: %s."), *Item->GetName());
+        return;
     }
-    else
+
+    UItemProperty* InInventory = Item->DbItem->GetPropertyWithName("InInventory");
+    if (!InInventory)
     {
-        Item->DbItem->GetPropertyWithName("InInventory")->Value = TEXT("True");
+        InInventory = NewObject<UItemProperty>(Item->DbItem, UItemProperty::StaticClass());
+        InInventory->Type = EItemProperty::BoolProperty;
+        InInventory->Name = TEXT("InInventory");
+        Item->DbItem->Properties.Add(InInventory);
+        UE_LOG(LogTemp, Display, TEXT("InInventory added to %s"), *Item->Name);
     }
+    InInventory->Value = TEXT("True");
+
     Inventory.Add(Item);
-    SelectItemFromInventory(Item);
 }
+    
 
 void AInventoryManager::RemoveItemFromInventory(UGameItem* Item)
 {

@@ -7,7 +7,9 @@
 #include "Blueprint/UserWidget.h"
 #include "GameItem.h"
 #include "ActionMenu.h"
+#include "DialogueBox.h"
 #include "Avatar.h"
+#include "InventoryManager.h"
 #include "SPHINX_DevPlayerController.generated.h"
 
 class UInputMappingContext;
@@ -25,6 +27,13 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UActionMenu> ActionMenuClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UDialogueBox> DialogueBoxClass;
+
+	UPROPERTY()
+	AInventoryManager* InventoryManager;
+
 
 protected:
 
@@ -55,6 +64,8 @@ private:
 
 	void AssignPlayer();
 	
+	void AssignInventoryManager();
+
 	void DropGameItem(AActor* GameItemBP);
 
 	void DisableCollisionForActor(AActor* ActorToDisable);
@@ -68,6 +79,10 @@ public:
 	void GrabGameItem(UGameItem* GameItem);
 
 	UActionMenu* ActionMenu;
+
+	UDialogueBox* DialogueBox;
+
+	bool InspectOpen = false;
 
 	void SetupHoldButton();
 

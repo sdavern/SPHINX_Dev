@@ -4,12 +4,15 @@
 #include "SPHINX_DevPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "Kismet/GameplayStatics.h"
+#include "Slate/SlateBrushAsset.h"
 #include "Camera/CameraComponent.h"
 
 void ASPHINX_DevPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 	AssignPlayer();
+    AssignInventoryManager();
+
 }
 
 void ASPHINX_DevPlayerController::AssignPlayer()
@@ -23,6 +26,21 @@ void ASPHINX_DevPlayerController::AssignPlayer()
         if (Avatar)
         {
             ActivePlayer = Avatar;
+        }
+    }
+}
+
+void ASPHINX_DevPlayerController::AssignInventoryManager()
+{
+    TArray<AActor*> FoundActors;
+    UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("InventoryManager"), FoundActors);
+    if (FoundActors.Num() > 0)
+    {
+        AActor* FoundActor = FoundActors[0];
+        AInventoryManager* IM = Cast<AInventoryManager>(FoundActor);
+        if (IM)
+        {
+            InventoryManager = IM;
         }
     }
 }
@@ -49,6 +67,11 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
             ActionMenu->AddToViewport(1);
             ActionMenu->SetVisibility(ESlateVisibility::Visible);
             SetupActionMenuButtons();
+            FInputModeUIOnly InputMode;
+            InputMode.SetWidgetToFocus(ActionMenu->TakeWidget());
+            InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+            SetInputMode(InputMode);
+            //bShowMouseCursor = true;
         }
         else
         {
@@ -250,19 +273,23 @@ void ASPHINX_DevPlayerController::OnActionButtonClicked()
 
 void ASPHINX_DevPlayerController::OnExitButtonClicked()
 {
-    if (ActionMenu)
+    if (ActionMenu && !InspectOpen)
     {
         ActionMenu->RemoveFromParent();
         ActionMenu = nullptr;
         UE_LOG(LogTemp, Display, TEXT("Exit button clicked!"));
+        FInputModeGameOnly InputMode;
+        SetInputMode(InputMode);
+        //bShowMouseCursor = false;
     }
 }
 
 
 void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
 {
-    if (HitGameItem)
+    if (HitGameItem && InventoryManager)
     {
+        InventoryManager->AddItemToInventory(HitGameItem);
         UE_LOG(LogTemp, Display, TEXT("Inventory button clicked!"));
     }
 }
@@ -270,10 +297,37 @@ void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
 
 void ASPHINX_DevPlayerController::OnInspectButtonClicked()
 {
-    if (HitGameItem)
+    if (HitGameItem && !InspectOpen && ActionMenu)
     {
-        //Print Item->Description on new Widget
-        UE_LOG(LogTemp, Display, TEXT("Inspect button clicked!"));
+        DialogueBox = CreateWidget<UDialogueBox>(this, DialogueBoxClass);
+        if (DialogueBox)
+        {
+            DialogueBox->AddToViewport(0);
+            DialogueBox->SetVisibility(ESlateVisibility::Visible);
+            ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Exit Inspect"));
+
+            if (HitGameItem->DbItem)
+            {
+                DialogueBox->ChangeInspectText(DialogueBox->InspectText, HitGameItem->DbItem->Description);
+            }
+            
+            FSlateColor NewColor = FSlateColor(FLinearColor(0.652479f, 0.662771f, 0.697917f)); 
+            ActionMenu->ExitText->SetColorAndOpacity(NewColor);
+            
+            InspectOpen = true;
+        }
+    }
+    else if (HitGameItem && InspectOpen && ActionMenu)
+    {
+        if (DialogueBox)
+        {
+            DialogueBox->RemoveFromParent();
+            DialogueBox = nullptr;
+            InspectOpen = false;
+            ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Inspect"));
+            FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f)); 
+            ActionMenu->ExitText->SetColorAndOpacity(NewColor);
+        }
     }
 }
 

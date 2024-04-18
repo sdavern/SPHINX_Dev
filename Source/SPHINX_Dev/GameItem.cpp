@@ -22,6 +22,7 @@ void UGameItem::BeginPlay()
 {
 	Super::BeginPlay();
 	SetupDbItem();
+	
 }
 
 APuzzleManager* UGameItem::GetPuzzleManager()
@@ -35,22 +36,29 @@ APuzzleManager* UGameItem::GetPuzzleManager()
 			return FoundActor;
 		}
 	}
+	UE_LOG(LogTemp, Warning, TEXT("PuzzleManager not found."));
 	return nullptr;
 }
 
 void UGameItem::SetupDbItem()
 {
-	if (DbItem == nullptr)
+	if (APuzzleManager* Manager = GetPuzzleManager())
     {
-		UE_LOG(LogTemp, Display, TEXT("DbItem for %s = null"), *Name);
-        DbItem = GetPuzzleManager()->GetObject(Name);
-		UE_LOG(LogTemp, Display, TEXT("DbItem %s added to %s GameItem"), *Name, *Name);
-
-		if (DbItem == nullptr)
-		{
-			UE_LOG(LogTemp, Display, TEXT("DbItem for %s is still null"), *Name);
-		}
+        DbItem = Manager->GetObject(Name);
+        if (DbItem)
+        {
+            UE_LOG(LogTemp, Display, TEXT("DbItem for %s successfully retrieved."), *Name);
+        }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("Failed to retrieve DbItem for %s."), *Name);
+        }
     }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("PuzzleManager instance not found."));
+    }
+
     if (DbItem != nullptr)
     {
         Properties = DbItem->Properties;
@@ -59,6 +67,11 @@ void UGameItem::SetupDbItem()
 
 void UGameItem::Setup(FString NewName, UItem* NewDbItem)
 {
+	if (NewName.IsEmpty() || NewDbItem == nullptr)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Setup called with invalid parameters."));
+        return;
+    }
 	this->Name = NewName;
 	this->DbItem = NewDbItem;
 	Properties = this->DbItem->Properties;

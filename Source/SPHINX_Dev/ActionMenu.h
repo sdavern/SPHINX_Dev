@@ -47,6 +47,12 @@ public:
 	UPROPERTY(meta = (BindWidget))
     UTextBlock* ActionText;
 
+	UPROPERTY(meta = (BindWidget))
+    UTextBlock* InspectText;
+
+	UPROPERTY(meta = (BindWidget))
+    UTextBlock* ExitText;
+
 
 
 };
