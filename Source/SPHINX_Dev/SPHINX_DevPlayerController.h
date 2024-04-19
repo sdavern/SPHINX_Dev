@@ -8,6 +8,7 @@
 #include "GameItem.h"
 #include "ActionMenu.h"
 #include "DialogueBox.h"
+#include "InventoryMenu.h"
 #include "Avatar.h"
 #include "InventoryManager.h"
 #include "SPHINX_DevPlayerController.generated.h"
@@ -31,6 +32,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UDialogueBox> DialogueBoxClass;
 
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UInventoryMenu> InventoryMenuClass;
+
 	UPROPERTY()
 	AInventoryManager* InventoryManager;
 
@@ -52,7 +56,7 @@ private:
 
 	void OnLeftMouseDown();
 
-	/* void OnRightMouseDown(); */
+	void OnRightMouseDown();
 
 	bool PerformGeoSweep();
 
@@ -82,7 +86,11 @@ public:
 
 	UDialogueBox* DialogueBox;
 
+	UInventoryMenu* InventoryMenu;
+
 	bool InspectOpen = false;
+
+	bool InventoryOpen = false;
 
 	void SetupHoldButton();
 
@@ -110,6 +118,12 @@ public:
 	void OnInspectButtonClicked();
 
 	void SetupActionMenuButtons();
+
+	UFUNCTION()
+	void OpenInventoryMenu();
+
+	UFUNCTION()
+	void CloseInventoryMenu();
 
 protected:
 

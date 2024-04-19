@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Slate/SlateBrushAsset.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 void ASPHINX_DevPlayerController::BeginPlay()
 {
@@ -51,8 +52,8 @@ void ASPHINX_DevPlayerController::SetupInputComponent()
     InputComponent->BindAction("LeftClick", IE_Pressed, this, &ASPHINX_DevPlayerController::OnLeftMouseDown);
 	UE_LOG(LogTemp, Display, TEXT("LeftClick bound to mouse."));
 
-    /* InputComponent->BindAction("RightClick", IE_Pressed, this, &ASPHINX_DevPlayerController::OnRightMouseDown);
-	UE_LOG(LogTemp, Display, TEXT("RightClick bound to mouse.")); */
+    InputComponent->BindAction("RightClick", IE_Pressed, this, &ASPHINX_DevPlayerController::OnRightMouseDown);
+	UE_LOG(LogTemp, Display, TEXT("RightClick bound to mouse."));
 }
 
 void ASPHINX_DevPlayerController::OnLeftMouseDown()
@@ -71,7 +72,15 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
             InputMode.SetWidgetToFocus(ActionMenu->TakeWidget());
             InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
             SetInputMode(InputMode);
-            //bShowMouseCursor = true;
+            if (ActivePlayer)
+            {
+                ActivePlayer->DisableInput(this);
+                ActivePlayer->GetCharacterMovement()->Velocity = FVector::ZeroVector;
+                ActivePlayer->GetCharacterMovement()->StopMovementImmediately();
+                UE_LOG(LogTemp, Display, TEXT("ActivePlayer movement stopped."));
+            
+            }
+            
         }
         else
         {
@@ -177,14 +186,18 @@ void ASPHINX_DevPlayerController::DisableCollisionForActor(AActor* ActorToDisabl
     }
 }
 
-/* void ASPHINX_DevPlayerController::OnRightMouseDown()
+void ASPHINX_DevPlayerController::OnRightMouseDown()
 {
     UE_LOG(LogTemp, Display, TEXT("Right mouse has been clicked!"));
-    if (ActivePlayer && ActivePlayer->HeldGameItem)
+    if (!InventoryOpen)
     {
-        DropGameItem(ActivePlayer->HeldGameItem);
-    } 
-} */
+        OpenInventoryMenu();
+    }
+    else if (InventoryOpen)
+    {
+        CloseInventoryMenu();
+    }
+}
 
 void ASPHINX_DevPlayerController::DropGameItem(AActor* GameItemBP)
 {
@@ -278,11 +291,24 @@ void ASPHINX_DevPlayerController::OnExitButtonClicked()
         ActionMenu->RemoveFromParent();
         ActionMenu = nullptr;
         UE_LOG(LogTemp, Display, TEXT("Exit button clicked!"));
+
+        
         FInputModeGameOnly InputMode;
+        InputMode.SetConsumeCaptureMouseDown(false); // Ensure mouse down events are not consumed by the UI
         SetInputMode(InputMode);
-        //bShowMouseCursor = false;
+        ActivePlayer->EnableInput(this);
+        bShowMouseCursor = true;
+
+        // Set the focus back to the game viewport
+        if (APlayerController* PC = Cast<APlayerController>(this))
+        {
+            PC->SetIgnoreLookInput(false);
+            PC->SetIgnoreMoveInput(false);
+        }
     }
+    
 }
+
 
 
 void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
@@ -402,4 +428,26 @@ void ASPHINX_DevPlayerController::SetupActionMenuButtons()
         SetupInventoryButton();
         SetupInspectButton();
     }
+}
+
+void ASPHINX_DevPlayerController::OpenInventoryMenu()
+{
+    InventoryMenu = CreateWidget<UInventoryMenu>(this, InventoryMenuClass);
+
+        if (InventoryMenu)
+        {
+            InventoryMenu->AddToViewport(1);
+            InventoryMenu->SetVisibility(ESlateVisibility::Visible);
+            InventoryOpen = true;
+        }
+}
+
+void ASPHINX_DevPlayerController::CloseInventoryMenu()
+{
+    if (InventoryMenu && InventoryOpen)
+        {
+            InventoryMenu->RemoveFromParent();
+            InventoryMenu = nullptr;
+            InventoryOpen = false;
+        }
 }
