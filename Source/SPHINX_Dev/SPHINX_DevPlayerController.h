@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "Blueprint/UserWidget.h"
+#include "PaperSpriteComponent.h"
 #include "GameItem.h"
 #include "ActionMenu.h"
 #include "DialogueBox.h"

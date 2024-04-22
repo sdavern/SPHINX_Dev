@@ -44,7 +44,6 @@
 			"InitNPC.cpp.obj",
 			"InitObject.cpp.obj",
 			"InitText.cpp.obj",
-			"InventoryManager.cpp.obj",
 			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
 			"MyPawn.cpp.obj",
@@ -62,6 +61,7 @@
 			"TP_WeaponComponent.cpp.obj",
 			"InventoryMenu.gen.cpp.obj",
 			"SPHINX_Dev.init.gen.cpp.obj",
+			"InventoryManager.cpp.obj",
 			"InventoryMenu.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj"
 		]

@@ -44,15 +44,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	const TArray<UGameItem*>&  GetInventory() const;
-	
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
 
-private:
-
-	static AInventoryManager* Instance;
-	
 	AInventoryManager();
 
 	UPROPERTY(EditAnywhere)
@@ -66,7 +58,14 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	UGameItem* SelectedItem;
-
 	
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+private:
+
+	static AInventoryManager* Instance;
+
 	
 };
