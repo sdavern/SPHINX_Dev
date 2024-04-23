@@ -62,30 +62,8 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
 	if (PerformGeoSweep())
     {
         UE_LOG(LogTemp, Display, TEXT("GeoSweep = true"));
-        ActionMenu = CreateWidget<UActionMenu>(this, ActionMenuClass);
-        if (ActionMenu)
-        {
-            ActionMenu->AddToViewport(1);
-            ActionMenu->SetVisibility(ESlateVisibility::Visible);
-            SetupActionMenuButtons();
-            FInputModeUIOnly InputMode;
-            InputMode.SetWidgetToFocus(ActionMenu->TakeWidget());
-            InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
-            SetInputMode(InputMode);
-            if (ActivePlayer)
-            {
-                ActivePlayer->DisableInput(this);
-                ActivePlayer->GetCharacterMovement()->Velocity = FVector::ZeroVector;
-                ActivePlayer->GetCharacterMovement()->StopMovementImmediately();
-                UE_LOG(LogTemp, Display, TEXT("ActivePlayer movement stopped."));
-            
-            }
-            
-        }
-        else
-        {
-            UE_LOG(LogTemp, Error, TEXT("ActionMenu not created"));
-        }
+        CreateActionMenu();
+        
     }
     else
     {
@@ -317,6 +295,10 @@ void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
     {
         InventoryManager->AddItemToInventory(HitGameItem);
         UE_LOG(LogTemp, Display, TEXT("Inventory button clicked!"));
+        if (InventoryOpen)
+        {
+            SetupUISprites();
+        }
     }
 }
 
@@ -439,6 +421,8 @@ void ASPHINX_DevPlayerController::OpenInventoryMenu()
             InventoryMenu->AddToViewport(1);
             InventoryMenu->SetVisibility(ESlateVisibility::Visible);
             InventoryOpen = true;
+            UE_LOG(LogTemp, Display, TEXT("Opening inventory menu with %d items, AllImages has %d elements."), InventoryManager->Inventory.Num(), InventoryMenu->AllImages.Num());
+            SetupUISprites();
         }
 }
 
@@ -449,5 +433,61 @@ void ASPHINX_DevPlayerController::CloseInventoryMenu()
             InventoryMenu->RemoveFromParent();
             InventoryMenu = nullptr;
             InventoryOpen = false;
+        }
+}
+
+void ASPHINX_DevPlayerController::SetupUISprites()
+{
+    if (InventoryManager)
+    {
+        for (int i = 0; i < InventoryManager->Inventory.Num(); i++)
+        {
+            //UImage is just for UMG, UMG can't handle sprites, need to extract UTexture2D from sprite to use in place of image
+            AActor* SpriteOwner = InventoryManager->Inventory[i]->GetOwner();
+            if (SpriteOwner)
+            {
+                UPaperSpriteComponent* SpriteComponent = SpriteOwner->FindComponentByClass<UPaperSpriteComponent>();
+                if (SpriteComponent && SpriteComponent->GetSprite())
+                {
+                    if (InventoryMenu->AllImages[i])
+                    {
+                        UE_LOG(LogTemp, Display, TEXT("InventoryMenu->AllImages[i] is valid"));
+                        InventoryMenu->AllImages[i]->SetBrushFromAtlasInterface(SpriteComponent->GetSprite());
+                    }
+                }
+            }
+        }
+    }
+}
+
+void ASPHINX_DevPlayerController::CreateActionMenu()
+{
+    ActionMenu = CreateWidget<UActionMenu>(this, ActionMenuClass);
+        if (ActionMenu)
+        {
+            ActionMenu->AddToViewport(1);
+            ActionMenu->SetVisibility(ESlateVisibility::Visible);
+            SetupActionMenuButtons();
+            FInputModeUIOnly InputMode;
+            InputMode.SetWidgetToFocus(ActionMenu->TakeWidget());
+            InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+            SetInputMode(InputMode);
+            if (HitGameItem)
+            {
+                FString ItemName = HitGameItem->Name;
+                ActionMenu->ChangeButtonText(ActionMenu->NameText, ItemName);
+            }
+            if (ActivePlayer)
+            {
+                ActivePlayer->DisableInput(this);
+                ActivePlayer->GetCharacterMovement()->Velocity = FVector::ZeroVector;
+                ActivePlayer->GetCharacterMovement()->StopMovementImmediately();
+                UE_LOG(LogTemp, Display, TEXT("ActivePlayer movement stopped."));
+            
+            }
+        }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("ActionMenu not created"));
         }
 }

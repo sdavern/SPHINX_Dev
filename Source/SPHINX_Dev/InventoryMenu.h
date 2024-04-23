@@ -22,10 +22,14 @@ class SPHINX_DEV_API UInventoryMenu : public UUserWidget
 
 public:
 
+	UInventoryMenu(const FObjectInitializer& ObjectInitializer);
+
 	virtual void NativeConstruct() override;
 
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category="UI")
 	TArray<UButton*> AllButtons;
 
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category="UI")
 	TArray<UImage*> AllImages;
 
 	AInventoryManager* InventoryManager;
@@ -140,4 +144,8 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UImage* IB16_Image;
+
+	void SetupUI();
+
+	
 };

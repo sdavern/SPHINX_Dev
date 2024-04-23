@@ -53,6 +53,9 @@ public:
 	UPROPERTY(meta = (BindWidget))
     UTextBlock* ExitText;
 
+	UPROPERTY(meta = (BindWidget))
+    UTextBlock* NameText;
+
 
 
 };

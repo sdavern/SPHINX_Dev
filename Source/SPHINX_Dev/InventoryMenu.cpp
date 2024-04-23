@@ -4,10 +4,35 @@
 #include "InventoryMenu.h"
 #include "SPHINX_DevPlayerController.h"
 
+UInventoryMenu::UInventoryMenu(const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer)
+{
+    AllButtons.SetNum(16);
+    AllImages.SetNum(16);
+    
+}
+
 void UInventoryMenu::NativeConstruct()
 {
     Super::NativeConstruct();
+    SetupUI();
+    UE_LOG(LogTemp, Warning, TEXT("AllImages has %d elements"), AllImages.Num());
+    for (int i = 0; i < AllImages.Num(); i++)
+    {
+        if (AllImages[i])
+        {
+            UE_LOG(LogTemp, Warning, TEXT("Image %d is valid"), i);
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("Image %d is NULL"), i);
+        }
+    }
+    
+}
 
+void UInventoryMenu::SetupUI()
+{
     AllButtons[0] = IB1;
     AllButtons[1] = IB2;
     AllButtons[2] = IB3;
@@ -42,5 +67,4 @@ void UInventoryMenu::NativeConstruct()
     AllImages[14] = IB15_Image;
     AllImages[15] = IB16_Image;
 
-    
 }

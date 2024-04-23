@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Blueprint/UserWidget.h"
 #include "PaperSpriteComponent.h"
+#include "PaperSprite.h"
 #include "GameItem.h"
 #include "ActionMenu.h"
 #include "DialogueBox.h"
@@ -16,9 +17,7 @@
 
 class UInputMappingContext;
 
-/**
- *
- */
+
 UCLASS()
 class SPHINX_DEV_API ASPHINX_DevPlayerController : public APlayerController
 {
@@ -102,6 +101,10 @@ public:
 	void SetupInventoryButton();
 
 	void SetupInspectButton();
+
+	void SetupUISprites();
+
+	void CreateActionMenu();
 
 	UFUNCTION()
 	void OnHoldButtonClicked();
