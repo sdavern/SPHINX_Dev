@@ -38,7 +38,6 @@ public:
 	UPROPERTY()
 	AInventoryManager* InventoryManager;
 
-
 protected:
 
 	/** Input Mapping Context to be used for player input */
@@ -92,6 +91,8 @@ public:
 
 	bool InventoryOpen = false;
 
+	bool ActionMenuOpen = false;
+
 	void SetupHoldButton();
 
 	void SetupActionButton();
@@ -101,6 +102,8 @@ public:
 	void SetupInventoryButton();
 
 	void SetupInspectButton();
+
+	void SetupSpriteButton(UButton* Button);
 
 	void SetupUISprites();
 
@@ -120,6 +123,9 @@ public:
 
 	UFUNCTION()
 	void OnInspectButtonClicked();
+
+	UFUNCTION()
+	void OnSpriteButtonClicked(UButton* Button);
 
 	void SetupActionMenuButtons();
 

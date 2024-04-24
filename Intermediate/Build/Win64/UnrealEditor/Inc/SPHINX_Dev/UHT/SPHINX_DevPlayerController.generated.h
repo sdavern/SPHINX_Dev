@@ -9,6 +9,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UButton;
 #ifdef SPHINX_DEV_SPHINX_DevPlayerController_generated_h
 #error "SPHINX_DevPlayerController.generated.h already included, missing '#pragma once' in SPHINX_DevPlayerController.h"
 #endif
@@ -21,6 +22,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
  \
 	DECLARE_FUNCTION(execCloseInventoryMenu); \
 	DECLARE_FUNCTION(execOpenInventoryMenu); \
+	DECLARE_FUNCTION(execOnSpriteButtonClicked); \
 	DECLARE_FUNCTION(execOnInspectButtonClicked); \
 	DECLARE_FUNCTION(execOnExitButtonClicked); \
 	DECLARE_FUNCTION(execOnInventoryButtonClicked); \

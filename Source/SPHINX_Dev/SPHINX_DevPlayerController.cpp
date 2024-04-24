@@ -264,7 +264,7 @@ void ASPHINX_DevPlayerController::OnActionButtonClicked()
 
 void ASPHINX_DevPlayerController::OnExitButtonClicked()
 {
-    if (ActionMenu && !InspectOpen)
+    if (ActionMenu && !InspectOpen && ActionMenuOpen)
     {
         ActionMenu->RemoveFromParent();
         ActionMenu = nullptr;
@@ -283,6 +283,8 @@ void ASPHINX_DevPlayerController::OnExitButtonClicked()
             PC->SetIgnoreLookInput(false);
             PC->SetIgnoreMoveInput(false);
         }
+        ActionMenuOpen = false;
+        HitGameItem = nullptr;
     }
     
 }
@@ -423,6 +425,7 @@ void ASPHINX_DevPlayerController::OpenInventoryMenu()
             InventoryOpen = true;
             UE_LOG(LogTemp, Display, TEXT("Opening inventory menu with %d items, AllImages has %d elements."), InventoryManager->Inventory.Num(), InventoryMenu->AllImages.Num());
             SetupUISprites();
+            
         }
 }
 
@@ -449,10 +452,10 @@ void ASPHINX_DevPlayerController::SetupUISprites()
                 UPaperSpriteComponent* SpriteComponent = SpriteOwner->FindComponentByClass<UPaperSpriteComponent>();
                 if (SpriteComponent && SpriteComponent->GetSprite())
                 {
-                    if (InventoryMenu->AllImages[i])
+                    if (InventoryMenu->AllImages[i] && InventoryMenu->AllButtons[i])
                     {
-                        UE_LOG(LogTemp, Display, TEXT("InventoryMenu->AllImages[i] is valid"));
                         InventoryMenu->AllImages[i]->SetBrushFromAtlasInterface(SpriteComponent->GetSprite());
+                        SetupSpriteButton(InventoryMenu->AllButtons[i]);
                     }
                 }
             }
@@ -462,7 +465,9 @@ void ASPHINX_DevPlayerController::SetupUISprites()
 
 void ASPHINX_DevPlayerController::CreateActionMenu()
 {
-    ActionMenu = CreateWidget<UActionMenu>(this, ActionMenuClass);
+    if (!ActionMenu)
+    {
+        ActionMenu = CreateWidget<UActionMenu>(this, ActionMenuClass);
         if (ActionMenu)
         {
             ActionMenu->AddToViewport(1);
@@ -485,9 +490,43 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
                 UE_LOG(LogTemp, Display, TEXT("ActivePlayer movement stopped."));
             
             }
+            ActionMenuOpen = true;
         }
         else
         {
             UE_LOG(LogTemp, Error, TEXT("ActionMenu not created"));
         }
+    }
+    
+}
+
+void ASPHINX_DevPlayerController::SetupSpriteButton(UButton* Button)
+{
+    if (InventoryMenu && Button)
+    {
+        Button->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnSpriteButtonClicked());
+        UE_LOG(LogTemp, Display, TEXT("ExitButton set up"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Display, TEXT("SpriteButton setup falied"));
+    }
+}
+
+void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UButton* Button)
+{
+    if (!ActionMenuOpen)
+    {
+        int ItemIndex = InventoryMenu->AllButtons.Find(Button);
+        HitGameItem = InventoryManager->Inventory[ItemIndex];
+        CreateActionMenu();
+    }
+    else if (ActionMenuOpen)
+    {
+        OnExitButtonClicked();
+        int ItemIndex = InventoryMenu->AllButtons.Find(Button);
+        HitGameItem = InventoryManager->Inventory[ItemIndex];
+        CreateActionMenu();
+    }
+    
 }
