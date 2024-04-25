@@ -18,7 +18,7 @@ AInventoryManager* AInventoryManager::GetInstance()
 
 AInventoryManager::AInventoryManager()
 {
-    Inventory.SetNum(16);
+   /*  Inventory.SetNum(16); */
 
 }
 
@@ -76,18 +76,22 @@ void AInventoryManager::RemoveItemFromInventory(UGameItem* Item)
         if (Inventory[i] == Item)
         {
             Inventory.RemoveAt(i);
-            Item->DbItem->GetPropertyWithName("InInventory")->RemoveProperty();
-            //Line about transform on item relative to character is here in Unity code
-            //Line that triggers a drop noise is here in Unity code
-            AActor* OwnerActor = Item->GetOwner();
-            OwnerActor->SetActorHiddenInGame(false);
-            OwnerActor->SetActorEnableCollision(true);
-            OwnerActor->SetActorTickEnabled(true);
-            if (Item->Selected)
+            if (Item->DbItem->GetPropertyWithName("InInventory"))
             {
-                Item->Selected = false;
-                SelectedItem = nullptr;
+                Item->DbItem->GetPropertyWithName("InInventory")->RemoveProperty();
+                //Line about transform on item relative to character is here in Unity code
+                //Line that triggers a drop noise is here in Unity code
+                AActor* OwnerActor = Item->GetOwner();
+                OwnerActor->SetActorHiddenInGame(false);
+                OwnerActor->SetActorEnableCollision(true);
+                OwnerActor->SetActorTickEnabled(true);
+                if (Item->Selected)
+                {
+                    Item->Selected = false;
+                    SelectedItem = nullptr;
+                }
             }
+            
         }
     }
 

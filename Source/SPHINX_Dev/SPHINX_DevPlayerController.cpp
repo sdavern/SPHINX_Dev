@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+
 
 
 #include "SPHINX_DevPlayerController.h"
@@ -296,26 +296,29 @@ void ASPHINX_DevPlayerController::OnExitButtonClicked()
 void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
 {
     
-    if (HitGameItem && InventoryManager && !HitGameItem->InInventory)
+    if (HitGameItem && InventoryManager )
     {
-        InventoryManager->AddItemToInventory(HitGameItem);
-        UE_LOG(LogTemp, Display, TEXT("%s added to Inventory"), *HitGameItem->Name);
-        HitGameItem->InInventory = true;
-        ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Remove from Inventory"));
-        if (InventoryOpen)
+        if (!HitGameItem->InInventory && InventoryManager->Inventory.Num() <= 16)
         {
-            SetupUISprites();
+            InventoryManager->AddItemToInventory(HitGameItem);
+            UE_LOG(LogTemp, Display, TEXT("%s added to Inventory"), *HitGameItem->Name);
+            HitGameItem->InInventory = true;
+            ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Remove from Inventory"));
         }
     }
-    else if (HitGameItem && InventoryManager && HitGameItem->InInventory)
+    else if (HitGameItem->InInventory)
     {
         InventoryManager->RemoveItemFromInventory(HitGameItem);
         UE_LOG(LogTemp, Display, TEXT("%s removed from Inventory"), *HitGameItem->Name);
         HitGameItem->InInventory = false;
-        if (InventoryOpen)
-        {
-            SetupUISprites();
-        }
+        ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Add to Inventory"));
+    }
+
+    SetupUISprites();
+
+    if (!InventoryOpen)
+    {
+        SetupUISprites();
     }
 }
 
