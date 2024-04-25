@@ -18,7 +18,7 @@ AInventoryManager* AInventoryManager::GetInstance()
 
 AInventoryManager::AInventoryManager()
 {
-
+    Inventory.SetNum(16);
 
 }
 

@@ -301,6 +301,7 @@ void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
         InventoryManager->AddItemToInventory(HitGameItem);
         UE_LOG(LogTemp, Display, TEXT("%s added to Inventory"), *HitGameItem->Name);
         HitGameItem->InInventory = true;
+        ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Remove from Inventory"));
         if (InventoryOpen)
         {
             SetupUISprites();
@@ -459,20 +460,24 @@ void ASPHINX_DevPlayerController::SetupUISprites()
     {
         for (int i = 0; i < InventoryManager->Inventory.Num(); i++)
         {
-            //UImage is just for UMG, UMG can't handle sprites, need to extract UTexture2D from sprite to use in place of image
-            AActor* SpriteOwner = InventoryManager->Inventory[i]->GetOwner();
-            if (SpriteOwner)
+            if (InventoryManager->Inventory[i])
             {
-                UPaperSpriteComponent* SpriteComponent = SpriteOwner->FindComponentByClass<UPaperSpriteComponent>();
-                if (SpriteComponent && SpriteComponent->GetSprite())
+                //UImage is just for UMG, UMG can't handle sprites, need to extract UTexture2D from sprite to use in place of image
+                AActor* SpriteOwner = InventoryManager->Inventory[i]->GetOwner();
+                if (SpriteOwner)
                 {
-                    if (InventoryMenu->AllImages[i] && InventoryMenu->AllButtons[i])
+                    UPaperSpriteComponent* SpriteComponent = SpriteOwner->FindComponentByClass<UPaperSpriteComponent>();
+                    if (SpriteComponent && SpriteComponent->GetSprite())
                     {
-                        InventoryMenu->AllImages[i]->SetBrushFromAtlasInterface(SpriteComponent->GetSprite());
+                        if (InventoryMenu->AllImages[i] && InventoryMenu->AllButtons[i])
+                        {
+                            InventoryMenu->AllImages[i]->SetBrushFromAtlasInterface(SpriteComponent->GetSprite());
                         SetupSpriteButton(InventoryMenu->AllButtons[i]);
+                        }
                     }
                 }
             }
+            
         }
     }
 }
@@ -540,15 +545,27 @@ void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UInventoryButton* Button
     if (!ActionMenuOpen)
     {
         int ItemIndex = InventoryMenu->AllButtons.Find(Button);
-        HitGameItem = InventoryManager->Inventory[ItemIndex];
-        CreateActionMenu();
+        if (InventoryManager->Inventory[ItemIndex])
+        {
+            HitGameItem = InventoryManager->Inventory[ItemIndex];
+            if (HitGameItem)
+            {
+                CreateActionMenu();
+            }
+        }
     }
     else if (ActionMenuOpen)
     {
         OnExitButtonClicked();
         int ItemIndex = InventoryMenu->AllButtons.Find(Button);
-        HitGameItem = InventoryManager->Inventory[ItemIndex];
-        CreateActionMenu();
+        if (InventoryManager->Inventory[ItemIndex])
+        {
+            HitGameItem = InventoryManager->Inventory[ItemIndex];
+            if (HitGameItem)
+            {
+                CreateActionMenu();
+            }
+        }
+         
     }
-    
 }
