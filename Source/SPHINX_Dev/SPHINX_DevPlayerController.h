@@ -16,6 +16,8 @@
 #include "SPHINX_DevPlayerController.generated.h"
 
 class UInputMappingContext;
+class UInventoryButton;
+class UItemProperty;
 
 
 UCLASS()
@@ -103,7 +105,7 @@ public:
 
 	void SetupInspectButton();
 
-	void SetupSpriteButton(UButton* Button);
+	void SetupSpriteButton(UInventoryButton* Button);
 
 	void SetupUISprites();
 
@@ -125,7 +127,7 @@ public:
 	void OnInspectButtonClicked();
 
 	UFUNCTION()
-	void OnSpriteButtonClicked(UButton* Button);
+	void OnSpriteButtonClicked(UInventoryButton* Button);
 
 	void SetupActionMenuButtons();
 

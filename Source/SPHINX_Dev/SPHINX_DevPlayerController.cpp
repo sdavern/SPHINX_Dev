@@ -4,9 +4,11 @@
 #include "SPHINX_DevPlayerController.h"
 #include "EnhancedInputSubsystems.h"
 #include "Kismet/GameplayStatics.h"
+#include "ItemProperty.h"
 #include "Slate/SlateBrushAsset.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "InventoryButton.h"
 
 void ASPHINX_DevPlayerController::BeginPlay()
 {
@@ -293,10 +295,22 @@ void ASPHINX_DevPlayerController::OnExitButtonClicked()
 
 void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
 {
-    if (HitGameItem && InventoryManager)
+    
+    if (HitGameItem && InventoryManager && !HitGameItem->InInventory)
     {
         InventoryManager->AddItemToInventory(HitGameItem);
-        UE_LOG(LogTemp, Display, TEXT("Inventory button clicked!"));
+        UE_LOG(LogTemp, Display, TEXT("%s added to Inventory"), *HitGameItem->Name);
+        HitGameItem->InInventory = true;
+        if (InventoryOpen)
+        {
+            SetupUISprites();
+        }
+    }
+    else if (HitGameItem && InventoryManager && HitGameItem->InInventory)
+    {
+        InventoryManager->RemoveItemFromInventory(HitGameItem);
+        UE_LOG(LogTemp, Display, TEXT("%s removed from Inventory"), *HitGameItem->Name);
+        HitGameItem->InInventory = false;
         if (InventoryOpen)
         {
             SetupUISprites();
@@ -420,7 +434,7 @@ void ASPHINX_DevPlayerController::OpenInventoryMenu()
 
         if (InventoryMenu)
         {
-            InventoryMenu->AddToViewport(1);
+            InventoryMenu->AddToViewport(0);
             InventoryMenu->SetVisibility(ESlateVisibility::Visible);
             InventoryOpen = true;
             UE_LOG(LogTemp, Display, TEXT("Opening inventory menu with %d items, AllImages has %d elements."), InventoryManager->Inventory.Num(), InventoryMenu->AllImages.Num());
@@ -481,6 +495,14 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
             {
                 FString ItemName = HitGameItem->Name;
                 ActionMenu->ChangeButtonText(ActionMenu->NameText, ItemName);
+                if (HitGameItem->InInventory)
+                {
+                    ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Remove from Inventory"));
+                }
+                else if (!HitGameItem->InInventory)
+                {
+                    ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Add to Inventory"));
+                }
             }
             if (ActivePlayer)
             {
@@ -500,11 +522,11 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
     
 }
 
-void ASPHINX_DevPlayerController::SetupSpriteButton(UButton* Button)
+void ASPHINX_DevPlayerController::SetupSpriteButton(UInventoryButton* Button)
 {
     if (InventoryMenu && Button)
     {
-        Button->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnSpriteButtonClicked());
+        Button->OnInventoryButtonClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnSpriteButtonClicked);
         UE_LOG(LogTemp, Display, TEXT("ExitButton set up"));
     }
     else
@@ -513,7 +535,7 @@ void ASPHINX_DevPlayerController::SetupSpriteButton(UButton* Button)
     }
 }
 
-void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UButton* Button)
+void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UInventoryButton* Button)
 {
     if (!ActionMenuOpen)
     {

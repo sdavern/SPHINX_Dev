@@ -67,6 +67,8 @@ public:
 
 	APuzzleManager* GetPuzzleManager();
 
+	bool InInventory = false;
+
 protected:
 	
 	virtual void BeginPlay() override;

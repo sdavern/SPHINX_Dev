@@ -18,10 +18,7 @@ AInventoryManager* AInventoryManager::GetInstance()
 
 AInventoryManager::AInventoryManager()
 {
-  /*   for (UImage* Image : AllImages, int i = 0, i++)
-    {
-        Cast<UImage>(Inventory[i]->GetOwner()->FindComponentByClass<UPaperSprite>()) = AllImages[i];
-    } */
+
 
 }
 

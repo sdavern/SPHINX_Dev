@@ -9,9 +9,9 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 // Cross Module References
+	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryButton_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryMenu();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryMenu_NoRegister();
-	UMG_API UClass* Z_Construct_UClass_UButton_NoRegister();
 	UMG_API UClass* Z_Construct_UClass_UImage_NoRegister();
 	UMG_API UClass* Z_Construct_UClass_UUserWidget();
 	UPackage* Z_Construct_UPackage__Script_SPHINX_Dev();
@@ -187,7 +187,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ObjectInitializerConstructorDeclared", "" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllButtons_Inner = { "AllButtons", nullptr, (EPropertyFlags)0x00000000000a0008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllButtons_Inner = { "AllButtons", nullptr, (EPropertyFlags)0x00000000000a0008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(0, nullptr) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllButtons_MetaData[] = {
 		{ "Category", "UI" },
@@ -213,7 +213,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1 = { "IB1", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB1), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1 = { "IB1", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB1), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -231,7 +231,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB2 = { "IB2", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB2), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB2_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB2_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB2 = { "IB2", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB2), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB2_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB2_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB2_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -249,7 +249,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB3 = { "IB3", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB3), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB3_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB3_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB3 = { "IB3", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB3), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB3_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB3_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB3_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -267,7 +267,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB4 = { "IB4", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB4), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB4_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB4_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB4 = { "IB4", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB4), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB4_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB4_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB4_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -285,7 +285,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB5 = { "IB5", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB5), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB5_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB5_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB5 = { "IB5", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB5), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB5_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB5_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB5_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -303,7 +303,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB6 = { "IB6", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB6), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB6_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB6_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB6 = { "IB6", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB6), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB6_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB6_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB6_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -321,7 +321,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB7 = { "IB7", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB7), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB7_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB7_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB7 = { "IB7", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB7), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB7_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB7_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB7_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -339,7 +339,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB8 = { "IB8", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB8), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB8_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB8_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB8 = { "IB8", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB8), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB8_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB8_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB8_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -357,7 +357,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB9 = { "IB9", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB9), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB9_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB9_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB9 = { "IB9", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB9), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB9_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB9_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB9_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -375,7 +375,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB10 = { "IB10", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB10), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB10_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB10_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB10 = { "IB10", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB10), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB10_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB10_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB10_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -393,7 +393,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB11 = { "IB11", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB11), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB11_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB11_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB11 = { "IB11", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB11), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB11_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB11_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB11_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -411,7 +411,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB12 = { "IB12", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB12), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB12_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB12_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB12 = { "IB12", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB12), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB12_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB12_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB12_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -429,7 +429,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB13 = { "IB13", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB13), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB13_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB13_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB13 = { "IB13", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB13), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB13_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB13_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB13_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -447,7 +447,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB14 = { "IB14", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB14), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB14_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB14_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB14 = { "IB14", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB14), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB14_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB14_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB14_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -465,7 +465,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB15 = { "IB15", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB15), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB15_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB15_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB15 = { "IB15", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB15), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB15_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB15_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB15_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -483,7 +483,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		{ "ModuleRelativePath", "InventoryMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16 = { "IB16", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB16), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16 = { "IB16", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB16), Z_Construct_UClass_UInventoryButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16_Image_MetaData[] = {
 		{ "BindWidget", "" },
@@ -569,9 +569,9 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UInventoryMenu, UInventoryMenu::StaticClass, TEXT("UInventoryMenu"), &Z_Registration_Info_UClass_UInventoryMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryMenu), 4128152580U) },
+		{ Z_Construct_UClass_UInventoryMenu, UInventoryMenu::StaticClass, TEXT("UInventoryMenu"), &Z_Registration_Info_UClass_UInventoryMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryMenu), 1839854842U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_844673439(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_1020315739(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -70,6 +70,10 @@ void EmptyLinkFunctionForGeneratedCodeActionMenu() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_NameText_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_NameText;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_AddText_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_AddText;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -173,6 +177,14 @@ void EmptyLinkFunctionForGeneratedCodeActionMenu() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_NameText = { "NameText", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, NameText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_NameText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_NameText_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText_MetaData[] = {
+		{ "BindWidget", "" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "ActionMenu.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText = { "AddText", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, AddText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UActionMenu_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionMenu_Statics::NewProp_HoldButton,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionMenu_Statics::NewProp_InspectButton,
@@ -184,6 +196,7 @@ void EmptyLinkFunctionForGeneratedCodeActionMenu() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionMenu_Statics::NewProp_InspectText,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionMenu_Statics::NewProp_ExitText,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionMenu_Statics::NewProp_NameText,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UActionMenu_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UActionMenu>::IsAbstract,
@@ -224,9 +237,9 @@ void EmptyLinkFunctionForGeneratedCodeActionMenu() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UActionMenu, UActionMenu::StaticClass, TEXT("UActionMenu"), &Z_Registration_Info_UClass_UActionMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionMenu), 2669778568U) },
+		{ Z_Construct_UClass_UActionMenu, UActionMenu::StaticClass, TEXT("UActionMenu"), &Z_Registration_Info_UClass_UActionMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionMenu), 507689828U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_1686301727(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_3758281251(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
