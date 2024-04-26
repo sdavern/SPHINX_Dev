@@ -9,6 +9,8 @@
 #include "ItemProperty.h"
 #include "InventoryManager.generated.h"
 
+
+class AAvatar;
 /**
  * 
  */
@@ -20,6 +22,8 @@ class SPHINX_DEV_API AInventoryManager : public AActor
 public:
 
 	static AInventoryManager* GetInstance();
+
+	void AssignPlayer();
 
 	UFUNCTION(BlueprintCallable)
 	void AddItemToInventory(UGameItem* Item);
@@ -58,6 +62,9 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	UGameItem* SelectedItem;
+
+	UPROPERTY(VisibleAnywhere)
+	AAvatar* ActivePlayer;
 	
 protected:
 	// Called when the game starts or when spawned

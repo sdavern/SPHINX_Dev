@@ -9,6 +9,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 // Cross Module References
+	ENGINE_API UClass* Z_Construct_UClass_UTexture2D_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryButton_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryMenu();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryMenu_NoRegister();
@@ -168,6 +169,10 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_IB16_Image_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_IB16_Image;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultSprite_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_DefaultSprite;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -493,6 +498,13 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16_Image = { "IB16_Image", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, IB16_Image), Z_Construct_UClass_UImage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16_Image_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16_Image_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_DefaultSprite_MetaData[] = {
+		{ "Category", "InventoryMenu" },
+		{ "ModuleRelativePath", "InventoryMenu.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_DefaultSprite = { "DefaultSprite", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, DefaultSprite), Z_Construct_UClass_UTexture2D_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_DefaultSprite_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_DefaultSprite_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UInventoryMenu_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllButtons_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllButtons,
@@ -530,6 +542,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB15_Image,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16_Image,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_DefaultSprite,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UInventoryMenu_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UInventoryMenu>::IsAbstract,
@@ -569,9 +582,9 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UInventoryMenu, UInventoryMenu::StaticClass, TEXT("UInventoryMenu"), &Z_Registration_Info_UClass_UInventoryMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryMenu), 1839854842U) },
+		{ Z_Construct_UClass_UInventoryMenu, UInventoryMenu::StaticClass, TEXT("UInventoryMenu"), &Z_Registration_Info_UClass_UInventoryMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryMenu), 3049955974U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_1020315739(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_428567575(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -2,6 +2,8 @@
 
 
 #include "InventoryManager.h"
+#include "Kismet/GameplayStatics.h"
+#include "Avatar.h"
 
 AInventoryManager* AInventoryManager::Instance = nullptr;
 
@@ -18,14 +20,30 @@ AInventoryManager* AInventoryManager::GetInstance()
 
 AInventoryManager::AInventoryManager()
 {
-   /*  Inventory.SetNum(16); */
+   
 
+}
+
+void AInventoryManager::AssignPlayer()
+{
+	TArray<AActor*> FoundActors;
+    UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("Player"), FoundActors);
+    if (FoundActors.Num() > 0)
+    {
+        AActor* FoundActor = FoundActors[0];
+        AAvatar* Avatar = Cast<AAvatar>(FoundActor);
+        if (Avatar)
+        {
+            ActivePlayer = Avatar;
+        }
+    }
 }
 
 void AInventoryManager::BeginPlay()
 {
     Super::BeginPlay();
     GetInstance();
+    AssignPlayer();
 
 }
 
@@ -37,35 +55,39 @@ void AInventoryManager::AddItemToInventory(UGameItem* Item)
         return;
     }
 
-    AActor* OwnerActor = Item->GetOwner();
-    if (!OwnerActor)
+    if (Inventory.Num() <= 15)
     {
-        UE_LOG(LogTemp, Warning, TEXT("OwnerActor is null in AddItemToInventory."));
-        return;
+        AActor* OwnerActor = Item->GetOwner();
+        if (!OwnerActor)
+        {
+            UE_LOG(LogTemp, Warning, TEXT("OwnerActor is null in AddItemToInventory."));
+            return;
+        }
+
+        OwnerActor->SetActorHiddenInGame(true);
+        OwnerActor->SetActorEnableCollision(false);
+        OwnerActor->SetActorTickEnabled(false);
+
+        if (!Item->DbItem)
+        {
+            UE_LOG(LogTemp, Warning, TEXT("DbItem is null for Item: %s."), *Item->GetName());
+            return;
+        }
+
+        UItemProperty* InInventory = Item->DbItem->GetPropertyWithName("InInventory");
+        if (!InInventory)
+        {
+            InInventory = NewObject<UItemProperty>(Item->DbItem, UItemProperty::StaticClass());
+            InInventory->Type = EItemProperty::BoolProperty;
+            InInventory->Name = TEXT("InInventory");
+            Item->DbItem->Properties.Add(InInventory);
+            UE_LOG(LogTemp, Display, TEXT("InInventory added to %s"), *Item->Name);
+        }
+        InInventory->Value = TEXT("True");
+
+        Inventory.Add(Item);
     }
-
-    OwnerActor->SetActorHiddenInGame(true);
-    OwnerActor->SetActorEnableCollision(false);
-    OwnerActor->SetActorTickEnabled(false);
-
-    if (!Item->DbItem)
-    {
-        UE_LOG(LogTemp, Warning, TEXT("DbItem is null for Item: %s."), *Item->GetName());
-        return;
-    }
-
-    UItemProperty* InInventory = Item->DbItem->GetPropertyWithName("InInventory");
-    if (!InInventory)
-    {
-        InInventory = NewObject<UItemProperty>(Item->DbItem, UItemProperty::StaticClass());
-        InInventory->Type = EItemProperty::BoolProperty;
-        InInventory->Name = TEXT("InInventory");
-        Item->DbItem->Properties.Add(InInventory);
-        UE_LOG(LogTemp, Display, TEXT("InInventory added to %s"), *Item->Name);
-    }
-    InInventory->Value = TEXT("True");
-
-    Inventory.Add(Item);
+    
 }
     
 
@@ -79,22 +101,23 @@ void AInventoryManager::RemoveItemFromInventory(UGameItem* Item)
             if (Item->DbItem->GetPropertyWithName("InInventory"))
             {
                 Item->DbItem->GetPropertyWithName("InInventory")->RemoveProperty();
-                //Line about transform on item relative to character is here in Unity code
-                //Line that triggers a drop noise is here in Unity code
-                AActor* OwnerActor = Item->GetOwner();
-                OwnerActor->SetActorHiddenInGame(false);
-                OwnerActor->SetActorEnableCollision(true);
-                OwnerActor->SetActorTickEnabled(true);
-                if (Item->Selected)
+                if (ActivePlayer)
                 {
-                    Item->Selected = false;
-                    SelectedItem = nullptr;
+                    FVector AvatarOffset = ActivePlayer->GetActorLocation() + FVector(25.0f, 0.0f, 0.0f);
+                    AActor* OwnerActor = Item->GetOwner();
+                    OwnerActor->SetActorHiddenInGame(false);
+                    OwnerActor->SetActorEnableCollision(true);
+                    OwnerActor->SetActorTickEnabled(true);
+                    OwnerActor->SetActorLocation(AvatarOffset);
+                    if (Item->Selected)
+                    {
+                        Item->Selected = false;
+                        SelectedItem = nullptr;
+                    }
                 }
             }
-            
         }
     }
-
 }
 
 void AInventoryManager::RemoveSelectedItemFromInventory()

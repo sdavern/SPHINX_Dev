@@ -145,6 +145,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UImage* IB16_Image;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UTexture2D* DefaultSprite;
+
 	void SetupUI();
 
 	

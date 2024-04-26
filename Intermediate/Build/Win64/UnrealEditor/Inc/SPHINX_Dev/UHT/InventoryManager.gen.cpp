@@ -10,6 +10,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 // Cross Module References
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
+	SPHINX_DEV_API UClass* Z_Construct_UClass_AAvatar_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_AInventoryManager();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_AInventoryManager_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UGameItem_NoRegister();
@@ -452,6 +453,10 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_SelectedItem_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_SelectedItem;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ActivePlayer_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ActivePlayer;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -513,6 +518,13 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AInventoryManager_Statics::NewProp_SelectedItem = { "SelectedItem", nullptr, (EPropertyFlags)0x0010000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AInventoryManager, SelectedItem), Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AInventoryManager_Statics::NewProp_SelectedItem_MetaData), Z_Construct_UClass_AInventoryManager_Statics::NewProp_SelectedItem_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AInventoryManager_Statics::NewProp_ActivePlayer_MetaData[] = {
+		{ "Category", "InventoryManager" },
+		{ "ModuleRelativePath", "InventoryManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AInventoryManager_Statics::NewProp_ActivePlayer = { "ActivePlayer", nullptr, (EPropertyFlags)0x0010000000020001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AInventoryManager, ActivePlayer), Z_Construct_UClass_AAvatar_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AInventoryManager_Statics::NewProp_ActivePlayer_MetaData), Z_Construct_UClass_AInventoryManager_Statics::NewProp_ActivePlayer_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AInventoryManager_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AInventoryManager_Statics::NewProp_Inventory_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AInventoryManager_Statics::NewProp_Inventory,
@@ -520,6 +532,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AInventoryManager_Statics::NewProp_Properties_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AInventoryManager_Statics::NewProp_Properties,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AInventoryManager_Statics::NewProp_SelectedItem,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AInventoryManager_Statics::NewProp_ActivePlayer,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AInventoryManager_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AInventoryManager>::IsAbstract,
@@ -559,9 +572,9 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AInventoryManager, AInventoryManager::StaticClass, TEXT("AInventoryManager"), &Z_Registration_Info_UClass_AInventoryManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AInventoryManager), 2934771276U) },
+		{ Z_Construct_UClass_AInventoryManager, AInventoryManager::StaticClass, TEXT("AInventoryManager"), &Z_Registration_Info_UClass_AInventoryManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AInventoryManager), 1587602569U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_37203650(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_175792243(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

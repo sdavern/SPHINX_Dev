@@ -135,11 +135,15 @@ public:
 	void OpenInventoryMenu();
 
 	UFUNCTION()
-	void CloseInventoryMenu();
+	void CloseInventoryMenu();\
+
+	UFUNCTION()
+	void ClearSprites();
 
 protected:
 
 	virtual void BeginPlay() override;
+
 
 	// End Actor interface
 };

@@ -61,7 +61,22 @@ void ASPHINX_DevPlayerController::SetupInputComponent()
 void ASPHINX_DevPlayerController::OnLeftMouseDown()
 {
 	UE_LOG(LogTemp, Display, TEXT("Left mouse has been clicked!"));
-	if (PerformGeoSweep())
+    if (ActivePlayer->IsHoldingItem && ActivePlayer->HeldGameItem)
+    {
+        if (PerformGeoSweep())
+        {
+            CreateActionMenu();
+        }
+        else
+        {
+            UGameItem* GameItem = Cast<UGameItem>(ActivePlayer->HeldGameItem->GetComponentByClass(UGameItem::StaticClass()));
+            HitGameItem = GameItem;
+            CreateActionMenu();
+            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Drop"));
+        }
+    }
+
+	else if (PerformGeoSweep())
     {
         UE_LOG(LogTemp, Display, TEXT("GeoSweep = true"));
         CreateActionMenu();
@@ -114,7 +129,6 @@ bool ASPHINX_DevPlayerController::PerformGeoSweep()
         {
             UE_LOG(LogTemp, Display, TEXT("%s clicked on!"), *HitGameItem->Name);
             return true;
-			//HitGameItem->OnGameItemClicked(ActionMenuContent, ButtonPrefab, ActionHeader);
         }
     }
     return false;
@@ -127,6 +141,7 @@ void ASPHINX_DevPlayerController::GrabGameItem(UGameItem* GameItem)
         if (ActivePlayer->IsHoldingItem)
         {
             UE_LOG(LogTemp, Display, TEXT("Player is already holding item"));
+            
             //open menu and allow for inspection, add to inventory or swap item in hand to new item by sending old item to inventory
         }
         else
@@ -260,6 +275,7 @@ void ASPHINX_DevPlayerController::OnActionButtonClicked()
     if (HitGameItem)
     {
         UE_LOG(LogTemp, Display, TEXT("Action button clicked!"));
+        //HitGameItem->OnGameItemClicked(ActionMenuContent, ButtonPrefab, ActionHeader);
     }
 }
 
@@ -296,7 +312,7 @@ void ASPHINX_DevPlayerController::OnExitButtonClicked()
 void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
 {
     
-    if (HitGameItem && InventoryManager )
+    if (HitGameItem && InventoryManager)
     {
         if (!HitGameItem->InInventory && InventoryManager->Inventory.Num() <= 16)
         {
@@ -304,21 +320,28 @@ void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
             UE_LOG(LogTemp, Display, TEXT("%s added to Inventory"), *HitGameItem->Name);
             HitGameItem->InInventory = true;
             ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Remove from Inventory"));
+            OnExitButtonClicked();
+            if (InventoryMenu)
+            {
+                SetupUISprites();
+            }
         }
-    }
-    else if (HitGameItem->InInventory)
-    {
-        InventoryManager->RemoveItemFromInventory(HitGameItem);
-        UE_LOG(LogTemp, Display, TEXT("%s removed from Inventory"), *HitGameItem->Name);
-        HitGameItem->InInventory = false;
-        ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Add to Inventory"));
-    }
-
-    SetupUISprites();
-
-    if (!InventoryOpen)
-    {
-        SetupUISprites();
+        else if (HitGameItem->InInventory)
+        {
+            InventoryManager->RemoveItemFromInventory(HitGameItem);
+            AActor* OwnerActor = HitGameItem->GetOwner();
+            EnableCollisionForActor(OwnerActor);
+            UE_LOG(LogTemp, Display, TEXT("%s removed from Inventory"), *HitGameItem->Name);
+            HitGameItem->InInventory = false;
+            ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Add to Inventory"));
+            CloseInventoryMenu();
+            OnExitButtonClicked();
+            if (InventoryMenu)
+            {
+                UE_LOG(LogTemp, Display, TEXT("SetupUISprites called"));
+                SetupUISprites();
+            }
+        }
     }
 }
 
@@ -459,28 +482,30 @@ void ASPHINX_DevPlayerController::CloseInventoryMenu()
 
 void ASPHINX_DevPlayerController::SetupUISprites()
 {
-    if (InventoryManager)
+    if (InventoryManager && InventoryMenu)
     {
+        ClearSprites();
+
         for (int i = 0; i < InventoryManager->Inventory.Num(); i++)
         {
-            if (InventoryManager->Inventory[i])
+            UGameItem* Item = InventoryManager->Inventory[i];
+            if (Item)
             {
-                //UImage is just for UMG, UMG can't handle sprites, need to extract UTexture2D from sprite to use in place of image
-                AActor* SpriteOwner = InventoryManager->Inventory[i]->GetOwner();
+                AActor* SpriteOwner = Item->GetOwner();
                 if (SpriteOwner)
                 {
                     UPaperSpriteComponent* SpriteComponent = SpriteOwner->FindComponentByClass<UPaperSpriteComponent>();
                     if (SpriteComponent && SpriteComponent->GetSprite())
                     {
-                        if (InventoryMenu->AllImages[i] && InventoryMenu->AllButtons[i])
+                        if (InventoryMenu->AllImages.IsValidIndex(i) && InventoryMenu->AllButtons.IsValidIndex(i) && InventoryMenu->AllImages[i] && InventoryMenu->AllButtons[i])
                         {
                             InventoryMenu->AllImages[i]->SetBrushFromAtlasInterface(SpriteComponent->GetSprite());
-                        SetupSpriteButton(InventoryMenu->AllButtons[i]);
+                            SetupSpriteButton(InventoryMenu->AllButtons[i]);
                         }
                     }
                 }
+
             }
-            
         }
     }
 }
@@ -548,7 +573,7 @@ void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UInventoryButton* Button
     if (!ActionMenuOpen)
     {
         int ItemIndex = InventoryMenu->AllButtons.Find(Button);
-        if (InventoryManager->Inventory[ItemIndex])
+        if (ItemIndex != INDEX_NONE && InventoryManager->Inventory.IsValidIndex(ItemIndex))
         {
             HitGameItem = InventoryManager->Inventory[ItemIndex];
             if (HitGameItem)
@@ -561,7 +586,7 @@ void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UInventoryButton* Button
     {
         OnExitButtonClicked();
         int ItemIndex = InventoryMenu->AllButtons.Find(Button);
-        if (InventoryManager->Inventory[ItemIndex])
+        if (ItemIndex != INDEX_NONE && InventoryManager->Inventory.IsValidIndex(ItemIndex))
         {
             HitGameItem = InventoryManager->Inventory[ItemIndex];
             if (HitGameItem)
@@ -569,6 +594,16 @@ void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UInventoryButton* Button
                 CreateActionMenu();
             }
         }
-         
+    }
+}
+
+void ASPHINX_DevPlayerController::ClearSprites()
+{
+    for (UImage* Sprite : InventoryMenu->AllImages)
+    {
+        if (Sprite && InventoryMenu && InventoryMenu->DefaultSprite)
+        {
+            Sprite->SetBrushFromTexture(InventoryMenu->DefaultSprite);
+        }
     }
 }

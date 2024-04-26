@@ -16,8 +16,6 @@
 			"InitObject.gen.cpp.obj",
 			"InitText.gen.cpp.obj",
 			"InventoryButton.gen.cpp.obj",
-			"InventoryManager.gen.cpp.obj",
-			"InventoryMenu.gen.cpp.obj",
 			"Item.gen.cpp.obj",
 			"ItemProperty.gen.cpp.obj",
 			"MyPawn.gen.cpp.obj",
@@ -26,7 +24,6 @@
 			"PuzzlePoint.gen.cpp.obj",
 			"Rule.gen.cpp.obj",
 			"SPHINXHUD.gen.cpp.obj",
-			"SPHINX_Dev.init.gen.cpp.obj",
 			"SPHINX_DevCharacter.gen.cpp.obj",
 			"SPHINX_DevGameMode.gen.cpp.obj",
 			"SPHINX_DevPlayerController.gen.cpp.obj",
@@ -48,7 +45,6 @@
 			"InitObject.cpp.obj",
 			"InitText.cpp.obj",
 			"InventoryButton.cpp.obj",
-			"InventoryMenu.cpp.obj",
 			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
 			"MyPawn.cpp.obj",
@@ -64,7 +60,11 @@
 			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
+			"InventoryManager.gen.cpp.obj",
+			"InventoryMenu.gen.cpp.obj",
+			"SPHINX_Dev.init.gen.cpp.obj",
 			"InventoryManager.cpp.obj",
+			"InventoryMenu.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj"
 		]
 	}
