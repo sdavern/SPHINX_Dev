@@ -1,7 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "SPHINX_DevGameMode.h"
-#include "SPHINX_DevCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
 ASPHINX_DevGameMode::ASPHINX_DevGameMode()

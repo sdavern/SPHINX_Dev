@@ -248,6 +248,14 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
 {
     if (HitGameItem && !ActivePlayer->IsHoldingItem)
     {
+        if (HitGameItem->InInventory && InventoryManager && InventoryMenu)
+        {
+            InventoryManager->RemoveItemFromInventory(HitGameItem);
+            HitGameItem->InInventory = false;
+            ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Add to Inventory"));
+            SetupUISprites();
+            CloseInventoryMenu();
+        }
         GrabGameItem(HitGameItem);
         UE_LOG(LogTemp, Display, TEXT("%s grabbed!"), *HitGameItem->Name);
         if (ActivePlayer->IsHoldingItem && ActionMenu) 
@@ -317,6 +325,11 @@ void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
         if (!HitGameItem->InInventory && InventoryManager->Inventory.Num() <= 16)
         {
             InventoryManager->AddItemToInventory(HitGameItem);
+            if (HitGameItem->GetOwner() == ActivePlayer->HeldGameItem)
+            {
+                ActivePlayer->HeldGameItem = nullptr;
+                ActivePlayer->IsHoldingItem = false;
+            }
             UE_LOG(LogTemp, Display, TEXT("%s added to Inventory"), *HitGameItem->Name);
             HitGameItem->InInventory = true;
             ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Remove from Inventory"));
@@ -325,6 +338,7 @@ void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
             {
                 SetupUISprites();
             }
+            HitGameItem = nullptr;
         }
         else if (HitGameItem->InInventory)
         {
