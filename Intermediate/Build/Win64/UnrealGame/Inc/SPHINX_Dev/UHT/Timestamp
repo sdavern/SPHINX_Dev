@@ -1,13 +1,14 @@
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\ActionBtn.h
+C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\ActionMenu.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\Area.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\Avatar.h
-C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\ActionMenu.h
-C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\ConditionalObject.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\DialogueBox.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\GameArea.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\GameItem.h
-C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\InitNPC.h
+C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\GamePuzzlePoint.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\Generator.h
+C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\InitNPC.h
+C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\ConditionalObject.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\InitObject.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\InitText.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\InventoryButton.h
@@ -22,7 +23,6 @@ C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\PuzzlePoin
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\Rule.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\SPHINXHUD.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\SPHINX_DevCharacter.h
-C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\GamePuzzlePoint.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\SPHINX_DevGameMode.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\SPHINX_DevPlayerController.h
 C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Source\SPHINX_Dev\SPHINX_DevProjectile.h

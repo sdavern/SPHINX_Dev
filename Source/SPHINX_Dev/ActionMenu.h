@@ -7,6 +7,7 @@
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "Delegates/Delegate.h"
+#include "ActionBtn.h"
 #include "ActionMenu.generated.h"
 
 
@@ -33,7 +34,7 @@ public:
 	UButton* InspectButton;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
-	UButton* ActionButton;
+	UActionBtn* ActionButton;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UButton* InventoryButton;

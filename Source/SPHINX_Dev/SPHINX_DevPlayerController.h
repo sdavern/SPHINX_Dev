@@ -9,6 +9,7 @@
 #include "PaperSprite.h"
 #include "GameItem.h"
 #include "ActionMenu.h"
+#include "ActionBtn.h"
 #include "DialogueBox.h"
 #include "InventoryMenu.h"
 #include "Avatar.h"
@@ -97,7 +98,7 @@ public:
 
 	void SetupHoldButton();
 
-	void SetupActionButton();
+	/* void SetupActionButton(); */
 
 	void SetupExitButton();
 
@@ -114,8 +115,8 @@ public:
 	UFUNCTION()
 	void OnHoldButtonClicked();
 
-	UFUNCTION()
-	void OnActionButtonClicked();
+	/* UFUNCTION()
+	void OnActionButtonClicked(); */
 
 	UFUNCTION()
 	void OnInventoryButtonClicked();
@@ -139,6 +140,9 @@ public:
 
 	UFUNCTION()
 	void ClearSprites();
+
+	FString AddSpacesBeforeCaps(const FString& InString);
+
 
 protected:
 

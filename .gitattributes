@@ -9,3 +9,6 @@ Medieval_Daytime_BuiltData.uasset filter=lfs diff=lfs merge=lfs -text
 Medieval_Nighttime_BuiltData.uasset filter=lfs diff=lfs merge=lfs -text
 SPHINX_Dev.exe filter=lfs diff=lfs merge=lfs -text
 SPHINX_Dev.pdb filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-Win64-Shipping.exe filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-Win64-Shipping.pdb filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-Windows.ucas filter=lfs diff=lfs merge=lfs -text

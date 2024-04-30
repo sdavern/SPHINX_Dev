@@ -32,11 +32,8 @@ void UActionBtn::InitializeButton(UGameItem* GameItem, URule* Rule)
         ActionText->SetText(FText::FromString(FormattedActionText));
     }
 
-    if (ActionButton)
-    {
-        // Bind the OnButtonClicked function to the button's OnClicked event
-        ActionButton->OnClicked.AddDynamic(this, &UActionBtn::OnButtonClicked);
-    }
+    OnClicked.AddDynamic(this, &UActionBtn::OnButtonClicked);
+    
 }
 
 void UActionBtn::OnButtonClicked()

@@ -61,17 +61,22 @@ void ASPHINX_DevPlayerController::SetupInputComponent()
 void ASPHINX_DevPlayerController::OnLeftMouseDown()
 {
 	UE_LOG(LogTemp, Display, TEXT("Left mouse has been clicked!"));
+
+    UPuzzlePoint* PP = NewObject<UPuzzlePoint>(this, UPuzzlePoint::StaticClass());
+
     if (ActivePlayer->IsHoldingItem && ActivePlayer->HeldGameItem)
     {
         if (PerformGeoSweep())
         {
             CreateActionMenu();
+            /* HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton, PP); */
         }
         else
         {
             UGameItem* GameItem = Cast<UGameItem>(ActivePlayer->HeldGameItem->GetComponentByClass(UGameItem::StaticClass()));
             HitGameItem = GameItem;
             CreateActionMenu();
+            /* HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton, PP); */
             ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Drop"));
         }
     }
@@ -80,7 +85,7 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
     {
         UE_LOG(LogTemp, Display, TEXT("GeoSweep = true"));
         CreateActionMenu();
-        
+        /* HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton, PP); */
     }
     else
     {
@@ -200,7 +205,8 @@ void ASPHINX_DevPlayerController::DropGameItem(AActor* GameItemBP)
     GameItemRoot->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
 
     // Ensure the item has a slight offset when dropped; sometimes helps with collision detection
-    FVector NewLocation = GameItemRoot->GetComponentLocation() + FVector(0.0f, 0.0f, 10.0f);
+    FVector NewLocation = GameItemRoot->GetComponentLocation() + FVector(10.0f, 0.0f, 0.0f);
+    NewLocation.Z = 40.0f;
     GameItemRoot->SetWorldLocation(NewLocation);
     ActivePlayer->IsHoldingItem = false;
 
@@ -278,14 +284,7 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
     }
 }
 
-void ASPHINX_DevPlayerController::OnActionButtonClicked()
-{
-    if (HitGameItem)
-    {
-        UE_LOG(LogTemp, Display, TEXT("Action button clicked!"));
-        //HitGameItem->OnGameItemClicked(ActionMenuContent, ButtonPrefab, ActionHeader);
-    }
-}
+
 
 
 void ASPHINX_DevPlayerController::OnExitButtonClicked()
@@ -396,21 +395,6 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
     }
 }
 
-void ASPHINX_DevPlayerController::SetupActionButton()
-{
-    if (ActionMenu && HitGameItem && ActionMenu->ActionButton)
-    {
-        //Change ActionText to Rule->Action
-        ActionMenu->ActionButton->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnActionButtonClicked);
-        UE_LOG(LogTemp, Display, TEXT("ActionButton set up"));
-    }
-    else
-    {
-        UE_LOG(LogTemp, Display, TEXT("ActionButton setup falied"));
-    }
-    
-
-}
 
 void ASPHINX_DevPlayerController::SetupExitButton()
 {
@@ -462,7 +446,6 @@ void ASPHINX_DevPlayerController::SetupActionMenuButtons()
     if (ActionMenu && HitGameItem)
     {
         SetupHoldButton();
-        SetupActionButton();
         SetupExitButton();
         SetupInventoryButton();
         SetupInspectButton();
@@ -524,6 +507,20 @@ void ASPHINX_DevPlayerController::SetupUISprites()
     }
 }
 
+FString ASPHINX_DevPlayerController::AddSpacesBeforeCaps(const FString& InString)
+{
+    FString Result;
+    for (int32 i = 0; i < InString.Len(); ++i)
+    {
+        if (FChar::IsUpper(InString[i]) && i > 0)
+        {
+            Result += TEXT(" ");
+        }
+        Result += InString[i];
+    }
+    return Result;
+}
+
 void ASPHINX_DevPlayerController::CreateActionMenu()
 {
     if (!ActionMenu)
@@ -540,7 +537,7 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
             SetInputMode(InputMode);
             if (HitGameItem)
             {
-                FString ItemName = HitGameItem->Name;
+                FString ItemName = AddSpacesBeforeCaps(HitGameItem->Name);
                 ActionMenu->ChangeButtonText(ActionMenu->NameText, ItemName);
                 if (HitGameItem->InInventory)
                 {
@@ -606,6 +603,7 @@ void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UInventoryButton* Button
             if (HitGameItem)
             {
                 CreateActionMenu();
+                //HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton, ActionMenu->ActionText, PP);
             }
         }
     }
@@ -621,3 +619,31 @@ void ASPHINX_DevPlayerController::ClearSprites()
         }
     }
 }
+
+
+
+
+/* void ASPHINX_DevPlayerController::SetupActionButton()
+{
+    if (ActionMenu && HitGameItem && ActionMenu->ActionButton)
+    {
+        //Change ActionText to Rule->Action
+        ActionMenu->ActionButton->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnActionButtonClicked);
+        UE_LOG(LogTemp, Display, TEXT("ActionButton set up"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Display, TEXT("ActionButton setup falied"));
+    }
+    
+
+} */
+
+/* void ASPHINX_DevPlayerController::OnActionButtonClicked()
+{
+    if (HitGameItem)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Action button clicked!"));
+        //HitGameItem->OnGameItemClicked(ActionMenuContent, ButtonPrefab, ActionHeader);
+    }
+} */

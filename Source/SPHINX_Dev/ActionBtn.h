@@ -13,13 +13,11 @@ class UGameItem;
 
 
 UCLASS()
-class SPHINX_DEV_API UActionBtn : public UUserWidget
+class SPHINX_DEV_API UActionBtn : public UButton
 {
 	GENERATED_BODY()
 	
 public:
-    UPROPERTY(Meta = (BindWidget))
-    UButton* ActionButton;
 
     UPROPERTY(Meta = (BindWidget))
     UTextBlock* ActionText;

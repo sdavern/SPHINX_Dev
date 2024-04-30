@@ -6,7 +6,7 @@
 #include "Components/WidgetComponent.h"
 #include "InventoryManager.h"
 #include "PlayerPawn.h"
-
+#include "ActionMenu.h"
 
 
 // Sets default values
@@ -78,14 +78,6 @@ void UGameItem::Setup(FString NewName, UItem* NewDbItem)
 }
 
 
-void UGameItem::OnGameItemMouseOver(UTextBlock* UITextRef)
-{
-    if (Name != "Player" && DbItem != nullptr && UITextRef != nullptr)
-    {
-        UITextRef->SetText(FText::FromString(DbItem->Description));
-    }
-}
-
 UGameItem* UGameItem::Copy(UGameItem* Original, UObject* Outer)
 {
     if (Original == nullptr || Outer == nullptr)
@@ -117,56 +109,11 @@ void UGameItem::Spawn(UGameItem* Item)
 	
 }
 
-void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP, bool Inventory)
+
+
+void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionButton, UPuzzlePoint* PP)
 {
-	if (!Inventory)
-	{
-		OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader, PP);
-	}
-	else
-	{
-		if (Selected)
-		{
-			OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader, PP);
-		}
-		else
-		{
-			UWidgetComponent* WidgetComp = NewObject<UWidgetComponent>(ActionMenu, UWidgetComponent::StaticClass());
-            if (WidgetComp)
-            {
-            	WidgetComp->SetupAttachment(ActionMenu->GetRootComponent());
-                WidgetComp->SetWidgetClass(UActionBtn::StaticClass());
-                WidgetComp->SetDrawSize(FVector2D(200, 100)); // Adjust size as needed
-                WidgetComp->RegisterComponent();
-                
-                // Initialize the button widget after creating it
-                UActionBtn* ButtonWidget = Cast<UActionBtn>(WidgetComp->GetUserWidgetObject());
-                if (ButtonWidget)
-                {
-                    URule* Rule = NewObject<URule>(this, URule::StaticClass());
-                    Rule->Action = TEXT("Select");
-                    ButtonWidget->InitializeButton(this, Rule);
-                }
-            }
-
-			OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader, PP);
-		}
-		
-	}
-
-}
-
-void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP)
-{
-	ActionHeader->SetText(FText::FromString(this->DbItem->Description));
-	FText CurrentText = ActionHeader->GetText();
-
 	bool NoAction = true;
-
-	if (GetProperty("InInventory") != nullptr && GetProperty("InInventory")->Value == "True")
-	{
-		NoAction = false;
-	}
 	
 	APuzzleManager* Instance = APuzzleManager::GetInstance();
 	if (Instance)
@@ -178,141 +125,11 @@ void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTex
 			if (PuzzleRule && RuleFulfilled(PuzzleRule))
 			{
 				NoAction = false;
-				UWidgetComponent* WidgetComp = NewObject<UWidgetComponent>(ActionMenu, UWidgetComponent::StaticClass());
-            	if (WidgetComp)
-            	{
-            		WidgetComp->SetupAttachment(ActionMenu->GetRootComponent());
-                	WidgetComp->SetWidgetClass(UActionBtn::StaticClass());
-                	WidgetComp->SetDrawSize(FVector2D(200, 100)); // Adjust size as needed
-                	WidgetComp->RegisterComponent();
-                
-                	// Initialize the button widget after creating it
-                	UActionBtn* ButtonWidget = Cast<UActionBtn>(WidgetComp->GetUserWidgetObject());
-                	if (ButtonWidget)
-                	{
-                    	URule* Rule = NewObject<URule>(this, URule::StaticClass());
-                    	ButtonWidget->InitializeButton(this, PuzzleRule);
-                	}
-            	}
-			}
-		}
-
-		if (DbItem->IsCarryable() && !Selected && (GetProperty("InInventory") == nullptr || GetProperty("InInventory")->Value == TEXT("False")))
-		{
-			NoAction = false;
-			UWidgetComponent* WidgetComp = NewObject<UWidgetComponent>(ActionMenu, UWidgetComponent::StaticClass());
-            if (WidgetComp)
-            {
-            	WidgetComp->SetupAttachment(ActionMenu->GetRootComponent());
-                WidgetComp->SetWidgetClass(UActionBtn::StaticClass());
-                WidgetComp->SetDrawSize(FVector2D(200, 100)); // Adjust size as needed
-                WidgetComp->RegisterComponent();
-                
-                // Initialize the button widget after creating it
-                UActionBtn* ButtonWidget = Cast<UActionBtn>(WidgetComp->GetUserWidgetObject());
-                if (ButtonWidget)
-                {
-                    URule* Rule = NewObject<URule>(this, URule::StaticClass());
-                    Rule->Action = TEXT("PickUp");
-                    ButtonWidget->InitializeButton(this, Rule);
-                }
+                ActionButton->InitializeButton(this, PuzzleRule);
             }
 		}
-
-		if (DbItem->IsInspectable())
-		{
-			NoAction = false;
-			UWidgetComponent* WidgetComp = NewObject<UWidgetComponent>(ActionMenu, UWidgetComponent::StaticClass());
-            if (WidgetComp)
-            {
-            	WidgetComp->SetupAttachment(ActionMenu->GetRootComponent());
-                WidgetComp->SetWidgetClass(UActionBtn::StaticClass());
-                WidgetComp->SetDrawSize(FVector2D(200, 100)); // Adjust size as needed
-                WidgetComp->RegisterComponent();
-                
-                // Initialize the button widget after creating it
-                UActionBtn* ButtonWidget = Cast<UActionBtn>(WidgetComp->GetUserWidgetObject());
-                if (ButtonWidget)
-                {
-                    URule* Rule = NewObject<URule>(this, URule::StaticClass());
-                    Rule->Action = TEXT("Inspect");
-                    ButtonWidget->InitializeButton(this, Rule);
-                }
-            }
-		}
-
-		if (ContainedValue && ContainedValue->GetProperty("Carryable") != nullptr)
-		{
-			if (ContainedValue->GetProperty("Carryable")->Value == TEXT("True"))
-			{
-				NoAction = false;
-				UWidgetComponent* WidgetComp = NewObject<UWidgetComponent>(ActionMenu, UWidgetComponent::StaticClass());
-            	if (WidgetComp)
-            	{
-            		WidgetComp->SetupAttachment(ActionMenu->GetRootComponent());
-                	WidgetComp->SetWidgetClass(UActionBtn::StaticClass());
-                	WidgetComp->SetDrawSize(FVector2D(200, 100)); // Adjust size as needed
-                	WidgetComp->RegisterComponent();
-                
-                	// Initialize the button widget after creating it
-                	UActionBtn* ButtonWidget = Cast<UActionBtn>(WidgetComp->GetUserWidgetObject());
-                	if (ButtonWidget)
-                	{
-                    	URule* Rule = NewObject<URule>(this, URule::StaticClass());
-                    	Rule->Action = TEXT("TakeOut");
-                    	ButtonWidget->InitializeButton(this, Rule);
-                	}
-            	}
-			}
-		}
-
-		if (Selected)
-		{
-			NoAction = false;
-			UWidgetComponent* WidgetComp = NewObject<UWidgetComponent>(ActionMenu, UWidgetComponent::StaticClass());
-            if (WidgetComp)
-            {
-            	WidgetComp->SetupAttachment(ActionMenu->GetRootComponent());
-                WidgetComp->SetWidgetClass(UActionBtn::StaticClass());
-                WidgetComp->SetDrawSize(FVector2D(200, 100)); // Adjust size as needed
-                WidgetComp->RegisterComponent();
-                
-                // Initialize the button widget after creating it
-                UActionBtn* ButtonWidget = Cast<UActionBtn>(WidgetComp->GetUserWidgetObject());
-                if (ButtonWidget)
-                {
-                    URule* Rule = NewObject<URule>(this, URule::StaticClass());
-                    Rule->Action = TEXT("Deselect");
-                    ButtonWidget->InitializeButton(this, Rule);
-                }
-            }
-		}
-
-		if (GetProperty("InInventory") != nullptr && GetProperty("InInventory")->Value == TEXT("True"))
-		{
-			NoAction = false;
-			UWidgetComponent* WidgetComp = NewObject<UWidgetComponent>(ActionMenu, UWidgetComponent::StaticClass());
-            if (WidgetComp)
-            {
-            	WidgetComp->SetupAttachment(ActionMenu->GetRootComponent());
-                WidgetComp->SetWidgetClass(UActionBtn::StaticClass());
-                WidgetComp->SetDrawSize(FVector2D(200, 100)); // Adjust size as needed
-                WidgetComp->RegisterComponent();
-                
-                // Initialize the button widget after creating it
-                UActionBtn* ButtonWidget = Cast<UActionBtn>(WidgetComp->GetUserWidgetObject());
-                if (ButtonWidget)
-                {
-                    URule* Rule = NewObject<URule>(this, URule::StaticClass());
-                    Rule->Action = TEXT("Drop");
-                    ButtonWidget->InitializeButton(this, Rule);
-                }
-            }
-		}
-		//Need to set NoAction on Player instance to NoAction from this. 
-
-		//Unity code also includes if statement for "ison", requires music controls
 	}
+		//Need to set NoAction on Player instance to NoAction from this. 
 
 }
 
@@ -639,3 +456,53 @@ FString UGameItem::ToString()
 {
 	return Name;
 }
+
+
+
+/* void UGameItem::OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP, bool Inventory)
+{
+	if (!Inventory)
+	{
+		OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader, PP);
+	}
+	else
+	{
+		if (Selected)
+		{
+			OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader, PP);
+		}
+		else
+		{
+			UWidgetComponent* WidgetComp = NewObject<UWidgetComponent>(ActionMenu, UWidgetComponent::StaticClass());
+            if (WidgetComp)
+            {
+            	WidgetComp->SetupAttachment(ActionMenu->GetRootComponent());
+                WidgetComp->SetWidgetClass(UActionBtn::StaticClass());
+                WidgetComp->SetDrawSize(FVector2D(200, 100)); // Adjust size as needed
+                WidgetComp->RegisterComponent();
+                
+                // Initialize the button widget after creating it
+                UActionBtn* ButtonWidget = Cast<UActionBtn>(WidgetComp->GetUserWidgetObject());
+                if (ButtonWidget)
+                {
+                    URule* Rule = NewObject<URule>(this, URule::StaticClass());
+                    Rule->Action = TEXT("Select");
+                    ButtonWidget->InitializeButton(this, Rule);
+                }
+            }
+
+			OnGameItemClicked(ActionMenu, ButtonPrefab, ActionHeader, PP);
+		}
+		
+	}
+
+} */
+
+
+/* void UGameItem::OnGameItemMouseOver(UTextBlock* UITextRef)
+{
+    if (Name != "Player" && DbItem != nullptr && UITextRef != nullptr)
+    {
+        UITextRef->SetText(FText::FromString(DbItem->Description));
+    }
+} */

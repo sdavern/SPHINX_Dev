@@ -15,6 +15,7 @@
 
 class AInventoryManager;
 class AAvatar;
+class UActionMenu;
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -45,13 +46,13 @@ public:
 
 	void Setup(FString Name, UItem* DbItem);
 
-	void OnGameItemMouseOver(UTextBlock* UITextRef);
+	/* void OnGameItemMouseOver(UTextBlock* UITextRef); */
 
 	static UGameItem* Copy(UGameItem* Original, UObject* Outer);
 
-	void OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP, bool Inventory);
+	/* void OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP, bool Inventory); */
 
-	void OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP2);
+	void OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionButton, UPuzzlePoint* PP);
 
 	void ExecuteRule(URule* Rule);
 

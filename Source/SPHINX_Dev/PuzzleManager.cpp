@@ -97,6 +97,7 @@ void APuzzleManager::ActivateMaxPuzzlePoints()
         {
             ActivatePuzzlePoint(RandPP);
             ActivePuzzlePoints.Add(RandPP);
+            AccessiblePPs.Add(RandPP->PuzzlePointPtr);
             ++ActivePuzzles;
         }
     }
@@ -110,6 +111,7 @@ void APuzzleManager::DeactivatePuzzlePoint(AGamePuzzlePoint* PP)
         PP->DespawnInit();
         PP->InitSpawned = false;
         ActivePuzzlePoints.Remove(PP);
+        AccessiblePPs.Remove(PP->PuzzlePointPtr);
     }
     
 }

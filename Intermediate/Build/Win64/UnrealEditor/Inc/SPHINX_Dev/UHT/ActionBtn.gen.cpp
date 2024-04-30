@@ -13,9 +13,8 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UActionBtn_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UGameItem_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_URule_NoRegister();
-	UMG_API UClass* Z_Construct_UClass_UButton_NoRegister();
+	UMG_API UClass* Z_Construct_UClass_UButton();
 	UMG_API UClass* Z_Construct_UClass_UTextBlock_NoRegister();
-	UMG_API UClass* Z_Construct_UClass_UUserWidget();
 	UPackage* Z_Construct_UPackage__Script_SPHINX_Dev();
 // End Cross Module References
 	DEFINE_FUNCTION(UActionBtn::execOnButtonClicked)
@@ -124,10 +123,6 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam NewProp_ActionButton_MetaData[];
-#endif
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_ActionButton;
-#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ActionText_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_ActionText;
@@ -144,7 +139,7 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 		static const UECodeGen_Private::FClassParams ClassParams;
 	};
 	UObject* (*const Z_Construct_UClass_UActionBtn_Statics::DependentSingletons[])() = {
-		(UObject* (*)())Z_Construct_UClass_UUserWidget,
+		(UObject* (*)())Z_Construct_UClass_UButton,
 		(UObject* (*)())Z_Construct_UPackage__Script_SPHINX_Dev,
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UActionBtn_Statics::DependentSingletons) < 16);
@@ -159,14 +154,6 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 		{ "ModuleRelativePath", "ActionBtn.h" },
 	};
 #endif
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionButton_MetaData[] = {
-		{ "BindWidget", "" },
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "ActionBtn.h" },
-	};
-#endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionButton = { "ActionButton", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionBtn, ActionButton), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionButton_MetaData), Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionButton_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionText_MetaData[] = {
 		{ "BindWidget", "" },
@@ -189,7 +176,6 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionBtn_Statics::NewProp_LinkedRule = { "LinkedRule", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionBtn, LinkedRule), Z_Construct_UClass_URule_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionBtn_Statics::NewProp_LinkedRule_MetaData), Z_Construct_UClass_UActionBtn_Statics::NewProp_LinkedRule_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UActionBtn_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionButton,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionText,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionBtn_Statics::NewProp_LinkedGameItem,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionBtn_Statics::NewProp_LinkedRule,
@@ -209,7 +195,7 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_UActionBtn_Statics::PropPointers),
 		0,
-		0x00B010A0u,
+		0x00B000A0u,
 		METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionBtn_Statics::Class_MetaDataParams), Z_Construct_UClass_UActionBtn_Statics::Class_MetaDataParams)
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UActionBtn_Statics::PropPointers) < 2048);
@@ -233,9 +219,9 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UActionBtn, UActionBtn::StaticClass, TEXT("UActionBtn"), &Z_Registration_Info_UClass_UActionBtn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionBtn), 3298168851U) },
+		{ Z_Construct_UClass_UActionBtn, UActionBtn::StaticClass, TEXT("UActionBtn"), &Z_Registration_Info_UClass_UActionBtn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionBtn), 2787465060U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_227211152(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_4933678(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
