@@ -20,8 +20,10 @@ public:
 
 	UPuzzlePoint();
 
-	UPROPERTY(Transient)
-	AGamePuzzlePoint* OwningGamePP;
+
+	//was (Transient)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AGamePuzzlePoint> OwningGamePP;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Name;

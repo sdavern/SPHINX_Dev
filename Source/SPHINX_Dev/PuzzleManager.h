@@ -178,6 +178,12 @@ private:
 
 	void AssignPlayer();
 
+	bool PPLoaded = false;
+
+	bool ItemsLoaded = false;
+	
+	bool RulesLoaded = false;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

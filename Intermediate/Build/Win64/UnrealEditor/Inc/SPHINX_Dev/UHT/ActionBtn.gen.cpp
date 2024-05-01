@@ -123,6 +123,10 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ActionButton_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ActionButton;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ActionText_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_ActionText;
@@ -155,6 +159,14 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 	};
 #endif
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionButton_MetaData[] = {
+		{ "BindWidget", "" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "ActionBtn.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionButton = { "ActionButton", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionBtn, ActionButton), Z_Construct_UClass_UActionBtn_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionButton_MetaData), Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionButton_MetaData) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionText_MetaData[] = {
 		{ "BindWidget", "" },
 		{ "EditInline", "true" },
@@ -176,6 +188,7 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionBtn_Statics::NewProp_LinkedRule = { "LinkedRule", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionBtn, LinkedRule), Z_Construct_UClass_URule_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionBtn_Statics::NewProp_LinkedRule_MetaData), Z_Construct_UClass_UActionBtn_Statics::NewProp_LinkedRule_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UActionBtn_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionButton,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionBtn_Statics::NewProp_ActionText,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionBtn_Statics::NewProp_LinkedGameItem,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionBtn_Statics::NewProp_LinkedRule,
@@ -219,9 +232,9 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UActionBtn, UActionBtn::StaticClass, TEXT("UActionBtn"), &Z_Registration_Info_UClass_UActionBtn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionBtn), 2787465060U) },
+		{ Z_Construct_UClass_UActionBtn, UActionBtn::StaticClass, TEXT("UActionBtn"), &Z_Registration_Info_UClass_UActionBtn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionBtn), 2403014901U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_4933678(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_743860175(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

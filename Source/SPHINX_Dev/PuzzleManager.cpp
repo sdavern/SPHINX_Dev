@@ -30,7 +30,7 @@ void APuzzleManager::BeginPlay()
         Everything->SetActorHiddenInGame(false);
         Everything->SetActorEnableCollision(true);
         Everything->SetActorTickEnabled(true);
-        UE_LOG(LogTemp, Display, TEXT("Everything set to Active"));
+        //UE_LOG(LogTemp, Display, TEXT("Everything set to Active"));
     }
     
     if (Player != nullptr)
@@ -38,7 +38,7 @@ void APuzzleManager::BeginPlay()
         Player->SetActorHiddenInGame(false);
         Player->SetActorEnableCollision(true);
         Player->SetActorTickEnabled(true);
-        UE_LOG(LogTemp, Display, TEXT("Player set to Active"));
+        //UE_LOG(LogTemp, Display, TEXT("Player set to Active"));
     }
     
     if (Generator != nullptr)
@@ -46,7 +46,7 @@ void APuzzleManager::BeginPlay()
         Generator->SetActorHiddenInGame(false);
         Generator->SetActorEnableCollision(true);
         Generator->SetActorTickEnabled(true);
-        UE_LOG(LogTemp, Display, TEXT("Generator set to Active"));
+        //UE_LOG(LogTemp, Display, TEXT("Generator set to Active"));
 
     }
     
@@ -55,11 +55,11 @@ void APuzzleManager::BeginPlay()
         StartingInventory->SetActorHiddenInGame(false);
         StartingInventory->SetActorEnableCollision(true);
         StartingInventory->SetActorTickEnabled(true);
-        UE_LOG(LogTemp, Display, TEXT("Starting Inventory set to Active"));
+        //UE_LOG(LogTemp, Display, TEXT("Starting Inventory set to Active"));
     }
    
-    ActivateMaxPuzzlePoints();
-    GenerateForActivePuzzlePoints();
+    //ActivateMaxPuzzlePoints();
+    //GenerateForActivePuzzlePoints();
     AssignPlayer();
 
 }
@@ -67,8 +67,10 @@ void APuzzleManager::BeginPlay()
 void APuzzleManager::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
+    
     ActivateMaxPuzzlePoints();
     GenerateForActivePuzzlePoints();
+    
 }
 
 void APuzzleManager::AssignPlayer()
@@ -99,6 +101,7 @@ void APuzzleManager::ActivateMaxPuzzlePoints()
             ActivePuzzlePoints.Add(RandPP);
             AccessiblePPs.Add(RandPP->PuzzlePointPtr);
             ++ActivePuzzles;
+            UE_LOG(LogTemp, Error, TEXT("MAX PUZZLEPOINTS ACTIVATED"));
         }
     }
 }
@@ -131,6 +134,7 @@ APuzzleManager* APuzzleManager::GetInstance()
 
 void APuzzleManager::GenerateForActivePuzzlePoints()
 {
+    UE_LOG(LogTemp, Error, TEXT("ATTEMPTING TO GENERATE PUZZLES"));
     TArray<UPuzzlePoint*> PPPtrs;
     for (TSubclassOf<UPuzzlePoint> PP : PPAssets)
     {
@@ -138,18 +142,22 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
         {
             UPuzzlePoint* PPPtr = NewObject<UPuzzlePoint>(this, PP);
             PPPtrs.Add(PPPtr);
+            UE_LOG(LogTemp, Error, TEXT("PPPtr added"));
         }
     }
 
     for (UPuzzlePoint* PP : PPPtrs)
     {
-        if (PP != nullptr && PP->OwningGamePP != nullptr && PP->OwningGamePP->IsActive == true)
+        UE_LOG(LogTemp, Error, TEXT("CHECKING IF PP IS NOT NULL"));
+        AGamePuzzlePoint* OwningGPP = NewObject<AGamePuzzlePoint>(this, PP->OwningGamePP);
+        if (PP != nullptr && OwningGPP != nullptr && OwningGPP->IsActive == true)
         {
             URule* Root = Generator->GeneratePuzzleStartingFrom(PP, AccessiblePPs);
             FRulesStruct NewRules;
             Leaves.Add(PP, NewRules);
             PuzzleRules.Add(PP, NewRules);
             FindLeaves(Root, PP);
+            UE_LOG(LogTemp, Error, TEXT("RULES ADDED"));
 
             FRulesStruct* LeavesRulesStruct = Leaves.Find(PP);
             if (LeavesRulesStruct != nullptr)
@@ -159,6 +167,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                     if (Rule)
                     {
                         Rule->OwningPP = PP;
+                        UE_LOG(LogTemp, Error, TEXT("RULE ASSIGNED TO PP"));
                     }
                 }
             }
@@ -176,6 +185,10 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                 }
             }
             
+        }
+        else
+        {
+            UE_LOG(LogTemp, Error, TEXT("PP IS NULL"));
         }
     }
 }
@@ -210,13 +223,13 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem, UPuzzlePoint* PP)
 
 UItem* APuzzleManager::GetObject(FString ItemName)
 {
-    UE_LOG(LogTemp, Display, TEXT("Searching for DbItem with name: %s"), *ItemName);
+    //UE_LOG(LogTemp, Display, TEXT("Searching for DbItem with name: %s"), *ItemName);
     for (TSubclassOf<UItem> ItemClass : ItemAssets)
     {
         UItem* NewItem = NewObject<UItem>(this, ItemClass);
         if (NewItem && NewItem->Name == ItemName)
         {
-            UE_LOG(LogTemp, Error, TEXT("NewItem that has been created has the name: %s"), *NewItem->Name);
+            //UE_LOG(LogTemp, Error, TEXT("NewItem that has been created has the name: %s"), *NewItem->Name);
             return NewItem; // Return the newly created item if it matches the requested name.
         }
     }
@@ -244,7 +257,7 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
 void APuzzleManager::ExecuteRule(URule* Rule)
 {
     UPuzzlePoint* FoundPP = Rule->OwningPP;
-    AGamePuzzlePoint* OwningGPP = FoundPP->OwningGamePP;
+    AGamePuzzlePoint* OwningGPP = NewObject<AGamePuzzlePoint>(this, FoundPP->OwningGamePP);
     FRulesStruct* FoundLeavesRules = Leaves.Find(FoundPP);
     UWorld* World = GetWorld();
     if (FoundLeavesRules->RulesArray.Contains(Rule))
@@ -607,8 +620,9 @@ TArray<TSubclassOf<UPuzzlePoint>> APuzzleManager::LoadPuzzlePointBPs()
 
         }
     }
-
+    PPLoaded = true;
     return LoadedPPClasses;
+    
 }
 
 TArray<TSubclassOf<UItem>> APuzzleManager::LoadItemBPs()
@@ -646,7 +660,9 @@ TArray<TSubclassOf<UItem>> APuzzleManager::LoadItemBPs()
     }
   /*   UE_LOG(LogTemp, Display, TEXT("Broadcasting OnDatabaseLoaded."));
     OnDatabaseLoaded.Broadcast(); */
+    ItemsLoaded = true;
     return LoadedItemClasses;
+    
 }
 
 TArray<TSubclassOf<URule>> APuzzleManager::LoadRuleBPs()
@@ -680,7 +696,9 @@ TArray<TSubclassOf<URule>> APuzzleManager::LoadRuleBPs()
         }
     }
 
+    RulesLoaded = true;
     return LoadedRuleClasses;
+    
 }
 
 TArray<UItem*> APuzzleManager::GetItemsInWorld()

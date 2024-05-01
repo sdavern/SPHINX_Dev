@@ -68,6 +68,7 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
 
 URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs)
 {
+	UE_LOG(LogTemp, Error, TEXT("GENERATEPUZZLESTARTINGFROM CALLED"));
     URule* Root = NewObject<URule>(this, URule::StaticClass());
     TArray<UItem*> ItemsInLevel;
     AInventoryManager* InventoryInstance = AInventoryManager::GetInstance();

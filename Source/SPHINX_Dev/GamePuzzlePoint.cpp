@@ -9,6 +9,17 @@ AGamePuzzlePoint::AGamePuzzlePoint()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	PuzzlePointPtr = this->PPToPtr();
+
+	/* if (PuzzlePointBP)
+	{
+		UPuzzlePoint* MyPPInstance = NewObject<UPuzzlePoint>(this, PuzzlePointBP);
+		if (MyPPInstance)
+		{
+			MyPPInstance->OwningGamePP = this;
+		}
+	} */
+
 }
 
 // Called when the game starts or when spawned
@@ -18,16 +29,7 @@ void AGamePuzzlePoint::BeginPlay()
 
 	PointTransform = this->GetActorTransform();
 
-	PuzzlePointPtr = this->PPToPtr();
-
-	if (PuzzlePointBP)
-	{
-		UPuzzlePoint* MyPPInstance = NewObject<UPuzzlePoint>(this, PuzzlePointBP);
-		if (MyPPInstance)
-		{
-			MyPPInstance->OwningGamePP = this;
-		}
-	}
+	
 	
 
 		
