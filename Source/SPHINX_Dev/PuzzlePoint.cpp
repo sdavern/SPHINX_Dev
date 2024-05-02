@@ -7,7 +7,7 @@
 
 UPuzzlePoint::UPuzzlePoint()
 {
-    this->ToPuzzleGoalPtrs();
+    ToPuzzleGoalPtrs();
 }
 
 void UPuzzlePoint::ToPuzzleGoalPtrs()
@@ -17,16 +17,29 @@ void UPuzzlePoint::ToPuzzleGoalPtrs()
         if (Goal)
         {
             UTerm* GoalPtr = NewObject<UTerm>(this, Goal);
-            PuzzleGoalsPtrs.Add(GoalPtr);
+            if (GoalPtr)
+            {
+                PuzzleGoalsPtrs.Add(GoalPtr);
+                UE_LOG(LogTemp, Error, TEXT("GoalPtr added"));
+            }
+            
         }
     }
 }
 
 UTerm* UPuzzlePoint::PickGoal()
 {
-   MainGoal = PuzzleGoalsPtrs[FMath::RandRange(0, PuzzleGoalsPtrs.Num())];
-   this->SetInitType();
-   return MainGoal;
+    int RandIndex = FMath::RandRange(0, PuzzleGoalsPtrs.Num() - 1);
+    UTerm* RandGoal = PuzzleGoalsPtrs[RandIndex];
+    if (RandGoal)
+    {
+        UE_LOG(LogTemp, Display, TEXT("RandGoal is valid"));
+        MainGoal = RandGoal;
+        UE_LOG(LogTemp, Display, TEXT("Main goal = randgoal"));
+        SetInitType();
+        return MainGoal;
+    }
+    return nullptr;
 }
 
 void UPuzzlePoint::SetInitType()

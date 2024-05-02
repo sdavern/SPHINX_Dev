@@ -25,6 +25,7 @@ class UGameItem;
 class AAvatar;
 class AGenerator;
 class AGamePuzzlePoint;
+class AInventoryManager;
 class UPuzzlePoint;
 
 UCLASS()
@@ -47,6 +48,9 @@ public:
 	AGenerator* Generator;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AInventoryManager* InventoryManager;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AActor* Everything;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -65,6 +69,8 @@ public:
 	//TArray<TSubclassOf<UArea>> AreaAssets;
 
 	TArray<TSubclassOf<UPuzzlePoint>> PPAssets;
+
+	TArray<UPuzzlePoint*> AccessiblePPs;
 
 	static APuzzleManager* GetInstance();
 
@@ -160,7 +166,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	TArray<URule*> GameOverRules;
 
-	TArray<UPuzzlePoint*> AccessiblePPs;
+	
 
 	TArray<AGamePuzzlePoint*> ActivePuzzlePoints;
 
@@ -172,9 +178,9 @@ private:
 	TMap<UPuzzlePoint*, FString> PuzzlesGenerated;
 
 	UPROPERTY(EditAnywhere)
-	int32 MaxActivePuzzles;
+	int MaxActivePuzzles;
 
-	int32 ActivePuzzles = 0;
+	int ActivePuzzles = 0;
 
 	void AssignPlayer();
 

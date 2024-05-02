@@ -2,6 +2,7 @@
 	"RemapUnityFiles": 
 	{
 		"Module.SPHINX_Dev.cpp.obj": [
+			"ActionBtn.gen.cpp.obj",
 			"ActionMenu.gen.cpp.obj",
 			"Area.gen.cpp.obj",
 			"Avatar.gen.cpp.obj",
@@ -9,7 +10,6 @@
 			"DialogueBox.gen.cpp.obj",
 			"GameArea.gen.cpp.obj",
 			"GameItem.gen.cpp.obj",
-			"GamePuzzlePoint.gen.cpp.obj",
 			"Generator.gen.cpp.obj",
 			"InitNPC.gen.cpp.obj",
 			"InitObject.gen.cpp.obj",
@@ -21,7 +21,7 @@
 			"ItemProperty.gen.cpp.obj",
 			"MyPawn.gen.cpp.obj",
 			"PlayerPawn.gen.cpp.obj",
-			"PuzzleManager.gen.cpp.obj",
+			"PuzzlePoint.gen.cpp.obj",
 			"Rule.gen.cpp.obj",
 			"SPHINXHUD.gen.cpp.obj",
 			"SPHINX_DevCharacter.gen.cpp.obj",
@@ -31,6 +31,7 @@
 			"Term.gen.cpp.obj",
 			"TP_PickUpComponent.gen.cpp.obj",
 			"TP_WeaponComponent.gen.cpp.obj",
+			"ActionBtn.cpp.obj",
 			"ActionMenu.cpp.obj",
 			"Area.cpp.obj",
 			"Avatar.cpp.obj",
@@ -42,7 +43,6 @@
 			"InitObject.cpp.obj",
 			"InitText.cpp.obj",
 			"InventoryButton.cpp.obj",
-			"InventoryManager.cpp.obj",
 			"InventoryMenu.cpp.obj",
 			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
@@ -58,12 +58,12 @@
 			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
-			"ActionBtn.gen.cpp.obj",
-			"PuzzlePoint.gen.cpp.obj",
+			"GamePuzzlePoint.gen.cpp.obj",
+			"PuzzleManager.gen.cpp.obj",
 			"SPHINX_Dev.init.gen.cpp.obj",
-			"ActionBtn.cpp.obj",
 			"GamePuzzlePoint.cpp.obj",
 			"Generator.cpp.obj",
+			"InventoryManager.cpp.obj",
 			"PuzzleManager.cpp.obj",
 			"PuzzlePoint.cpp.obj"
 		]

@@ -9,7 +9,7 @@ AGamePuzzlePoint::AGamePuzzlePoint()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	PuzzlePointPtr = this->PPToPtr();
+	//PuzzlePointPtr = this->PPToPtr();
 
 	/* if (PuzzlePointBP)
 	{
@@ -53,7 +53,12 @@ UPuzzlePoint* AGamePuzzlePoint::PPToPtr()
 	if (PuzzlePointBP)
 	{
 		UPuzzlePoint* Ptr = NewObject<UPuzzlePoint>(this, PuzzlePointBP);
-		return Ptr;
+		if (Ptr)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Ptr CREATED"));
+			return Ptr;
+		}
+		
  	}
 	return nullptr;
 }

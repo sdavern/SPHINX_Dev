@@ -7,6 +7,7 @@
 #include "GameItem.h"
 #include "Avatar.h"
 #include "Generator.h"
+#include "InventoryManager.h"
 #include "GamePuzzlePoint.h"
 #include "PuzzlePoint.h"
 
@@ -14,16 +15,19 @@ APuzzleManager* APuzzleManager::Instance = nullptr;
 
 APuzzleManager::APuzzleManager()
 {
+    PrimaryActorTick.bCanEverTick = true;
     PPAssets = LoadPuzzlePointBPs();
     //Item
     ItemAssets = LoadItemBPs();
     //Rule
     RuleAssets = LoadRuleBPs();
+    ActivateMaxPuzzlePoints();
 }
 
 void APuzzleManager::BeginPlay()
 {
     Super::BeginPlay();
+    GetInstance();
 
     if (Everything != nullptr)
     {
@@ -49,6 +53,15 @@ void APuzzleManager::BeginPlay()
         //UE_LOG(LogTemp, Display, TEXT("Generator set to Active"));
 
     }
+
+    if (InventoryManager != nullptr)
+    {
+        InventoryManager->SetActorHiddenInGame(false);
+        InventoryManager->SetActorEnableCollision(true);
+        InventoryManager->SetActorTickEnabled(true);
+        //UE_LOG(LogTemp, Display, TEXT("Generator set to Active"));
+
+    }
     
     if (StartingInventory != nullptr)
     {
@@ -58,8 +71,6 @@ void APuzzleManager::BeginPlay()
         //UE_LOG(LogTemp, Display, TEXT("Starting Inventory set to Active"));
     }
    
-    //ActivateMaxPuzzlePoints();
-    //GenerateForActivePuzzlePoints();
     AssignPlayer();
 
 }
@@ -95,7 +106,12 @@ void APuzzleManager::ActivateMaxPuzzlePoints()
         TArray<AGamePuzzlePoint*> PPsInWorld = GetPPsInWorld();
         int32 RandomInt = FMath::RandRange(0, PPsInWorld.Num() - 1);
         AGamePuzzlePoint* RandPP = PPsInWorld[RandomInt];
-        if (RandPP != nullptr && !RandPP->IsActive && !RandPP->InitSpawned)
+        RandPP->PuzzlePointPtr = RandPP->PPToPtr();
+        if (RandPP->PuzzlePointPtr)
+        {
+            UE_LOG(LogTemp, Error, TEXT("PuzzlePointPtr is valid"));
+        }
+        if (RandPP != nullptr && !RandPP->IsActive && !RandPP->InitSpawned && RandPP->PuzzlePointPtr)
         {
             ActivatePuzzlePoint(RandPP);
             ActivePuzzlePoints.Add(RandPP);
@@ -124,6 +140,7 @@ APuzzleManager* APuzzleManager::GetInstance()
     if (!Instance)
     {
         Instance = NewObject<APuzzleManager>();
+        Instance->AddToRoot();
         UE_LOG(LogTemp, Warning, TEXT("Puzzle Manager instance created."));
         return Instance;
     }
@@ -150,40 +167,60 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
     {
         UE_LOG(LogTemp, Error, TEXT("CHECKING IF PP IS NOT NULL"));
         AGamePuzzlePoint* OwningGPP = NewObject<AGamePuzzlePoint>(this, PP->OwningGamePP);
-        if (PP != nullptr && OwningGPP != nullptr && OwningGPP->IsActive == true)
+        if (AccessiblePPs[0])
+        {
+            UE_LOG(LogTemp, Error, TEXT("Accessible[0] is not null"));
+        }
+        if (Generator)
+        {
+            UE_LOG(LogTemp, Error, TEXT("Generator is valid"));
+        }
+
+        if (PP && OwningGPP && AccessiblePPs[0]) //need to add && OwningGPP->IsActive
         {
             URule* Root = Generator->GeneratePuzzleStartingFrom(PP, AccessiblePPs);
-            FRulesStruct NewRules;
-            Leaves.Add(PP, NewRules);
-            PuzzleRules.Add(PP, NewRules);
-            FindLeaves(Root, PP);
-            UE_LOG(LogTemp, Error, TEXT("RULES ADDED"));
-
-            FRulesStruct* LeavesRulesStruct = Leaves.Find(PP);
-            if (LeavesRulesStruct != nullptr)
+            if (Root)
             {
-                for (URule* Rule : LeavesRulesStruct->RulesArray)
+                UE_LOG(LogTemp, Error, TEXT("Root is VALID"));
+                UE_LOG(LogTemp, Error, TEXT("ROOT is %s"), *Root->Action);	
+                FRulesStruct NewRules;
+                Leaves.Add(PP, NewRules);
+                UE_LOG(LogTemp, Error, TEXT("Leaves.ADD"));
+                PuzzleRules.Add(PP, NewRules);
+                FindLeaves(Root, PP);
+                UE_LOG(LogTemp, Error, TEXT("RULES ADDED"));
+
+                FRulesStruct* LeavesRulesStruct = Leaves.Find(PP);
+                if (LeavesRulesStruct != nullptr)
                 {
-                    if (Rule)
+                    for (URule* Rule : LeavesRulesStruct->RulesArray)
                     {
-                        Rule->OwningPP = PP;
-                        UE_LOG(LogTemp, Error, TEXT("RULE ASSIGNED TO PP"));
+                        if (Rule)
+                        {
+                            Rule->OwningPP = PP;
+                            UE_LOG(LogTemp, Error, TEXT("RULE ASSIGNED TO PP"));
+                        }
                     }
                 }
-            }
             
 
-            FRulesStruct* PuzzleRulesStruct = PuzzleRules.Find(PP);
-            if (PuzzleRulesStruct != nullptr)
-            {
-                for (URule* Rule : PuzzleRulesStruct->RulesArray)
+                FRulesStruct* PuzzleRulesStruct = PuzzleRules.Find(PP);
+                if (PuzzleRulesStruct != nullptr)
                 {
-                    if (Rule)
+                    for (URule* Rule : PuzzleRulesStruct->RulesArray)
                     {
-                        Rule->OwningPP = PP;
+                        if (Rule)
+                        {
+                            Rule->OwningPP = PP;
+                        }
                     }
-                }
+                } 
             }
+            else 
+            {
+                UE_LOG(LogTemp, Error, TEXT("Root is null"));
+            }
+            
             
         }
         else

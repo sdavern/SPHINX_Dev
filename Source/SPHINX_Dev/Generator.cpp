@@ -74,48 +74,68 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
     AInventoryManager* InventoryInstance = AInventoryManager::GetInstance();
 	APuzzleManager* PMInstance = APuzzleManager::GetInstance();
 
-    TArray<UGameItem*> ExistingGameItems;
-    ExistingGameItems = PMInstance->GetGameItemsInWorld();
-
-    for (int32 i = 0; i < ExistingGameItems.Num(); i++)
+	if (!InventoryInstance)
 	{
-		if (ExistingGameItems[i] != nullptr)
-		{
-			UE_LOG(LogTemp, Display, TEXT("Existing GameItems: %s"), *ExistingGameItems[i]->Name);
-			ItemsInLevel.Add(ExistingGameItems[i]->DbItem);
-		}
+		UE_LOG(LogTemp, Error, TEXT("InventoryInstance is null"));
 	}
 
-    if (InventoryInstance != nullptr)
+	if (InventoryInstance && PMInstance)
 	{
-		for (UGameItem* GameItem : InventoryInstance->GetInventory())
+		TArray<UGameItem*> ExistingGameItems;
+    	ExistingGameItems = PMInstance->GetGameItemsInWorld();
+
+    	for (int i = 0; i < ExistingGameItems.Num(); i++)
 		{
-			if (GameItem != nullptr && GameItem->DbItem != nullptr)
+			if (ExistingGameItems[i] != nullptr)
 			{
-				ItemsInLevel.Add(GameItem->DbItem);
-				UE_LOG(LogTemp, Display, TEXT("%s is in level"), *GameItem->DbItem->Name);
+				UE_LOG(LogTemp, Display, TEXT("Existing GameItems: %s"), *ExistingGameItems[i]->Name);
+				ItemsInLevel.Add(ExistingGameItems[i]->DbItem);
 			}
 		}
+
+    	if (InventoryInstance != nullptr)
+		{
+			TArray<UGameItem*> Inventory = InventoryInstance->Inventory;
+			for (int i = 0; i < Inventory.Num(); i++)
+			{
+				if (Inventory[i] && Inventory[i]->DbItem)
+				{
+					ItemsInLevel.Add(Inventory[i]->DbItem);
+					UE_LOG(LogTemp, Warning, TEXT("%s added to ItemsInLevel"), *Inventory[i]->DbItem->Name);
+				}
+			}
+		}
+
+    	if (PP != nullptr && PP->PuzzleGoals.Num() > 0)
+    	{
+			PP->ToPuzzleGoalPtrs();
+        	UTerm* Goal = PP->PickGoal();
+			if (Goal)
+			{
+				UE_LOG(LogTemp, Display, TEXT("PP goal: %s"), *Goal->Name);
+        		bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, PP, NewAccessiblePPs, ItemsInLevel);
+        		if (SuccessfulInputs)
+        		{
+            		PMInstance->AddPuzzle(PP, PuzzleString);
+            		PuzzleString = TEXT("");
+        		}
+        		else
+        		{
+					UE_LOG(LogTemp, Error, TEXT("NO SUCCESSFUL INPUTS"));
+            		Root = GeneratePuzzleStartingFrom(PP, NewAccessiblePPs);
+        		} 
+			}
+			else
+			{
+				UE_LOG(LogTemp, Error, TEXT("Goal is NULL"));
+				return nullptr;
+			}
+        	
+    	} 
+    	return Root;
 	}
-
-    if (PP != nullptr && PP->PuzzleGoals.Num() > 0)
-    {
-        UTerm* Goal = PP->PickGoal();
-        UE_LOG(LogTemp, Display, TEXT("PP goal: %s"), *Goal->Name);
-        bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, PP, NewAccessiblePPs, ItemsInLevel);
-        if (SuccessfulInputs)
-        {
-            PMInstance->AddPuzzle(PP, PuzzleString);
-            PuzzleString = TEXT("");
-        }
-        else
-        {
-            Root = GeneratePuzzleStartingFrom(PP, NewAccessiblePPs);
-        }
-    }
-
-    return Root;
-
+    
+	return nullptr;
 }
 
 bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
@@ -133,26 +153,27 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	}
 	else if (StartTerm->DbItem == nullptr)
 	{
-		StartTerm->DbItem = MatchingItems[FMath::RandRange(0, MatchingItems.Num())];
+		StartTerm->DbItem = MatchingItems[FMath::RandRange(0, MatchingItems.Num() - 1)];
 		if (ItemsInLevel.Contains(StartTerm->DbItem))
 		{
+			UE_LOG(LogTemp, Error, TEXT("ITEMSINLEVEL CONTAINS STARTTERM->DBITEM"));
 			return true;
 		}
 	}
 
 	TArray<URule*> PossibleRules;
-	for (URule* Rule : PMInstance->GetAllRules())
+	
+	TArray<URule*> AllRules = PMInstance->GetAllRules();
+	UE_LOG(LogTemp, Error, TEXT("GETTING ALL RULES, no of rules = %d"), AllRules.Num());
+	for (URule* Rule : AllRules)
 	{
 		if (Rule != nullptr && Rule->MainOutputIs(StartTerm))
 		{
-			if (StartTerm->DbItem == nullptr)
+			if (StartTerm->DbItem)
 			{
 				UE_LOG(LogTemp, Display, TEXT("Found matching rule %s with output DbItem: %d"), *Rule->Outputs[0]->Name, *StartTerm->DbItem->Name, Depth);
 			}
-			else
-			{
-				UE_LOG(LogTemp, Display, TEXT("Found matching rule with output: %s"), *StartTerm->Name);
-			}
+			UE_LOG(LogTemp, Error, TEXT("Adding rule %s"), *Rule->Action);
 			PossibleRules.Add(Rule);
 		}
 	}
@@ -161,7 +182,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 
 	if (PossibleRules.Num() > 0 && Depth < CurrentPP->MaxDepth)
 	{
-		URule* ChosenRule = PossibleRules[FMath::RandRange(0, PossibleRules.Num())];
+		URule* ChosenRule = PossibleRules[FMath::RandRange(0, PossibleRules.Num() - 1)];
 		ChosenRule->Outputs[0]->DbItem = StartTerm->DbItem;
 		ChosenRule->Parent = ParentRule;
 		ParentRule->AddChildRule(ChosenRule);
@@ -210,7 +231,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 
 	//Doesn't matter what GetWorld() is called on as there is only one UWorld*
 	UWorld* World = StartTerm->GetWorld();
-	Spawn(World, StartTerm->DbItem, ParentRule, CurrentPP);
+	//Spawn(World, StartTerm->DbItem, ParentRule, CurrentPP);
 	UE_LOG(LogTemp, Display, TEXT("DbItem added to spawn list: %s"), *StartTerm->DbItem->Name);
 	return true;
 }

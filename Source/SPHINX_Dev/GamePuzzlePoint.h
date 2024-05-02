@@ -43,6 +43,7 @@ public:
 
 	FTransform PointTransform;
 
+	UPROPERTY(VisibleAnywhere)
 	UPuzzlePoint* PuzzlePointPtr;
 
 	AInitNPC* InitNPC;
