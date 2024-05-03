@@ -176,7 +176,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
             UE_LOG(LogTemp, Error, TEXT("Generator is valid"));
         }
 
-        if (PP && OwningGPP && AccessiblePPs[0]) //need to add && OwningGPP->IsActive
+        if (PP && OwningGPP && AccessiblePPs[0]) //need to add && OwningGPP->IsActive !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             URule* Root = Generator->GeneratePuzzleStartingFrom(PP, AccessiblePPs);
             if (Root)

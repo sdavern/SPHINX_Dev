@@ -96,7 +96,7 @@ void UItem::DeleteProperty(int32 Index)
 TArray<FString> UItem::GetSuperTypes()
 {
     TArray<FString> Types;
-    Types.Add("Item");
+    Types.Add(Name);
 
     TArray<UItemProperty*> IsaProperties = GetPropertiesWithName("isa");
     for (UItemProperty* Prop : IsaProperties)
@@ -108,20 +108,22 @@ TArray<FString> UItem::GetSuperTypes()
 
 bool UItem::Matches(UTerm* Term)
 {
-    if (Term->Name != this->Name)
+    if (Term->Name != Name)
     {
         bool Found = false;
-        for (FString Type : this->GetSuperTypes())
+        for (FString Type : GetSuperTypes())
         {
+            //UE_LOG(LogTemp, Warning, TEXT("%s type in SuperTypes of %s"), *Type, *Name);
             if (Type == Term->Name)
             {
                 Found = true;
             }
         }
+        if (!Found) return false;
     }
     for (UItemProperty* Property : Term->Properties)
     {
-        if (!this->HasProperty(Property))
+        if (!HasProperty(Property))
         {
             return false;
         }

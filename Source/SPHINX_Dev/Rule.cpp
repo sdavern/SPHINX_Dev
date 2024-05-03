@@ -6,7 +6,7 @@
 
 URule::URule()
 {
-    UTerm* InputTerm  = NewObject<UTerm>(this, UTerm::StaticClass(), TEXT("InputTermInstance"));
+/*     UTerm* InputTerm  = NewObject<UTerm>(this, UTerm::StaticClass(), TEXT("InputTermInstance"));
     if (InputTerm)
     {
         InputTerm->Description = TEXT("Input");
@@ -19,7 +19,7 @@ URule::URule()
     {
         OutputTerm->Description = TEXT("Output"); //could be Name rather than Description
         Outputs.Add(OutputTerm);
-    } 
+    }  */
 
     this->ToInputsPtr();
     this->ToOutputsPtr();
@@ -94,13 +94,15 @@ void URule::RemoveLastAddedRule()
     }
 }
 
-bool URule::MainOutputIs(UTerm* Term) const
+bool URule::MainOutputIs(UTerm* Term) const 
 {
     if (Term->DbItem)
     {
+        //UE_LOG(LogTemp, Warning, TEXT("Term->DbItem = %s"), *Term->DbItem->Name);
         if(Term->DbItem->Name != Outputs[0]->Name)
         {
-            if (!Term->DbItem->GetSuperTypes().Contains(this->Outputs[0]->Name))
+            //UE_LOG(LogTemp, Warning, TEXT("Term->DbItem->Name '%s' doesn't equal Outputs[0]->Name '%s'"), *Term->DbItem->Name, *Outputs[0]->Name);
+            if (!Term->DbItem->GetSuperTypes().Contains(Outputs[0]->Name))
             {
                 return false;
             }
@@ -109,7 +111,7 @@ bool URule::MainOutputIs(UTerm* Term) const
         {
             if (Term->Name != Outputs[0]->Name)
             {
-                if (!Term->GetSuperTypes().Contains(this->Outputs[0]->Name))
+                if (!Term->GetSuperTypes().Contains(Outputs[0]->Name))
                 {
                     return false;
                 }
@@ -267,6 +269,7 @@ void URule::ToOutputsPtr()
             if (TermPtr != nullptr)
             {
                 Outputs.Add(TermPtr);
+                //UE_LOG(LogTemp, Error, TEXT("%s added to rule outputptrs"), *TermPtr->Name);
             }
         }
     }

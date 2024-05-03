@@ -74,14 +74,15 @@ TArray<FString> UTerm::GetSuperTypes() //needs to be finished once PuzzleManager
     APuzzleManager* PMInstance = APuzzleManager::GetInstance();
     if (PMInstance)
     {
-        UItem* DbItemMatch = PMInstance->GetObject(this->Name); //may not need to create new object?
+        UItem* DbItemMatch = PMInstance->GetObject(Name); //may not need to create new object?
         if (DbItemMatch)
         {
+            DbItem = DbItemMatch;
             return DbItemMatch->GetSuperTypes();
         }
     }
 
-    Types.Add("Item");
+    //Types.Add("Item");
 
     return Types;
     

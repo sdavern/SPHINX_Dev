@@ -118,6 +118,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
         		{
             		PMInstance->AddPuzzle(PP, PuzzleString);
             		PuzzleString = TEXT("");
+					UE_LOG(LogTemp, Error, TEXT("SUCCESSFUL INPUTS"));
         		}
         		else
         		{
@@ -141,8 +142,23 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
 {
     APuzzleManager* PMInstance = APuzzleManager::GetInstance();
+	if (StartTerm->DbItem)
+	{
+		UE_LOG(LogTemp, Display, TEXT("DBITEM IS VALID"));
+	}
+	else 
+	{
+		UE_LOG(LogTemp, Display, TEXT("DBITEM IS NULL"));
+	}
 
-	TArray<UItem*> MatchingItems = PMInstance->FindDbItemsFor(StartTerm, NewAccessiblePPs, ItemsInLevel);
+	TArray<UItem*> MatchingItems = PMInstance->FindDbItemsFor(StartTerm, NewAccessiblePPs, ItemsInLevel); 
+	for (UItem* Item : MatchingItems)
+	{
+		if (Item)
+		{
+			UE_LOG(LogTemp, Error, TEXT("%s is in MatchingItems"), *Item->Name);
+		}
+	}
 	if (MatchingItems.Num() == 0)
 	{
 		if(!PMInstance->HasItemOfType(StartTerm, NewAccessiblePPs, ItemsInLevel))
@@ -154,6 +170,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	else if (StartTerm->DbItem == nullptr)
 	{
 		StartTerm->DbItem = MatchingItems[FMath::RandRange(0, MatchingItems.Num() - 1)];
+		UE_LOG(LogTemp, Warning, TEXT("StartTerm is %s and DbItem is %s"), *StartTerm->Name, *StartTerm->DbItem->Name);
 		if (ItemsInLevel.Contains(StartTerm->DbItem))
 		{
 			UE_LOG(LogTemp, Error, TEXT("ITEMSINLEVEL CONTAINS STARTTERM->DBITEM"));
@@ -164,23 +181,29 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	TArray<URule*> PossibleRules;
 	
 	TArray<URule*> AllRules = PMInstance->GetAllRules();
-	UE_LOG(LogTemp, Error, TEXT("GETTING ALL RULES, no of rules = %d"), AllRules.Num());
+	//UE_LOG(LogTemp, Error, TEXT("GETTING ALL RULES, no of rules = %d"), AllRules.Num());
 	for (URule* Rule : AllRules)
-	{
+	{	
+		Rule->ToOutputsPtr();
+		if (Rule->Outputs[0])
+		{
+			//UE_LOG(LogTemp, Error, TEXT("Output[0] is %s"), *Rule->Outputs[0]->Name);
+		}
+		//UE_LOG(LogTemp, Error, TEXT("%s is in AllRules and StartTerm is %s"), *Rule->Action, *StartTerm->Name);
 		if (Rule != nullptr && Rule->MainOutputIs(StartTerm))
 		{
 			if (StartTerm->DbItem)
 			{
-				UE_LOG(LogTemp, Display, TEXT("Found matching rule %s with output DbItem: %d"), *Rule->Outputs[0]->Name, *StartTerm->DbItem->Name, Depth);
+				UE_LOG(LogTemp, Display, TEXT("Found matching rule %s with output DbItem: %s"), *Rule->Outputs[0]->Name, *StartTerm->DbItem->Name);
 			}
 			UE_LOG(LogTemp, Error, TEXT("Adding rule %s"), *Rule->Action);
 			PossibleRules.Add(Rule);
 		}
 	}
 	
-	UE_LOG(LogTemp, Display, TEXT("Number of possible rules: %f"), PossibleRules.Num());
+	UE_LOG(LogTemp, Display, TEXT("Number of possible rules: %d"), PossibleRules.Num());
 
-	if (PossibleRules.Num() > 0 && Depth < CurrentPP->MaxDepth)
+	if (PossibleRules.Num() > 0 && Depth < CurrentPP->MaxDepth) //Need to verify below !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	{
 		URule* ChosenRule = PossibleRules[FMath::RandRange(0, PossibleRules.Num() - 1)];
 		ChosenRule->Outputs[0]->DbItem = StartTerm->DbItem;
