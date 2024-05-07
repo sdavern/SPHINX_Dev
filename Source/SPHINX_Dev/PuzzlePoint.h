@@ -8,6 +8,7 @@
 #include "PuzzlePoint.generated.h"
 
 class AGamePuzzlePoint;
+class URule;
 /**
  * 
  */
@@ -46,6 +47,8 @@ public:
 	UTerm* MainGoal;
 
 	TArray<UTerm*> PuzzleGoalsPtrs;
+
+	TArray<URule*> CurrentPuzzleRules;
 
 	void ToPuzzleGoalPtrs();
 

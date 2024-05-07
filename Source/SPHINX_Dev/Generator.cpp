@@ -185,6 +185,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	for (URule* Rule : AllRules)
 	{	
 		Rule->ToOutputsPtr();
+		Rule->ToInputsPtr();
 		if (Rule->Outputs[0])
 		{
 			//UE_LOG(LogTemp, Error, TEXT("Output[0] is %s"), *Rule->Outputs[0]->Name);
@@ -198,28 +199,47 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 			}
 			UE_LOG(LogTemp, Error, TEXT("Adding rule %s"), *Rule->Action);
 			PossibleRules.Add(Rule);
+			UE_LOG(LogTemp, Display, TEXT("Rule[0] is %s, and depth is %d"), *Rule->Action, Depth);
 		}
 	}
 	
 	UE_LOG(LogTemp, Display, TEXT("Number of possible rules: %d"), PossibleRules.Num());
 
+
 	if (PossibleRules.Num() > 0 && Depth < CurrentPP->MaxDepth) //Need to verify below !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	{
+		UE_LOG(LogTemp, Warning, TEXT("PossibleRules > 0 && Depth < MaxDepth (%d)"), CurrentPP->MaxDepth);
 		URule* ChosenRule = PossibleRules[FMath::RandRange(0, PossibleRules.Num() - 1)];
+		UE_LOG(LogTemp, Warning, TEXT("ChosenRule is %s"), *ChosenRule->Action);
+		if (PossibleRules.Num() > 1)
+		{
+			while (CurrentPP->CurrentPuzzleRules.Contains(ChosenRule))
+			{
+				ChosenRule = PossibleRules[FMath::RandRange(0, PossibleRules.Num() - 1)];
+				UE_LOG(LogTemp, Warning, TEXT("Choosing a different rule, new chosen rule %s"), *ChosenRule->Action);
+			}
+		}
+
 		ChosenRule->Outputs[0]->DbItem = StartTerm->DbItem;
 		ChosenRule->Parent = ParentRule;
 		ParentRule->AddChildRule(ChosenRule);
-		for (int32 i = 0; i < ChosenRule->Inputs.Num(); i++)
+		CurrentPP->CurrentPuzzleRules.Add(ChosenRule);
+		UE_LOG(LogTemp, Warning, TEXT("ChosenRule %s has %d inputs"), *ChosenRule->Action, ChosenRule->Inputs.Num());
+
+
+		for (int32 i = 0; i < ChosenRule->Inputs.Num() - 1; i++)
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Found = false"));
 			bool Found = false;
-			for (int32 j = 0; j < ChosenRule->Outputs.Num(); j++)
+			for (int32 j = 0; j < ChosenRule->Outputs.Num() - 1; j++)
 			{
 				if (ChosenRule->Inputs[j]->Name == ChosenRule->Outputs[i]->Name)
 				{
 					Found = true;
+					UE_LOG(LogTemp, Warning, TEXT("Found = true"));
 				}
 			}
-		}
+		} 
 
 		bool Result = true;
 		for (int32 i = 0; i < ChosenRule->Inputs.Num(); i++)
@@ -239,8 +259,19 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 				}
 			}
 			Result = GenerateInputs(ChosenRule->Inputs[i], ChosenRule, Depth + 1, CurrentPP, NewAccessiblePPs, ItemsInLevel);
+			if (Result)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Result is true"));
+			}
+			else 
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Result is false"));
+			}
+
+
 			if (ChosenRule->Outputs[0]->Name == ChosenRule->Inputs[i]->Name)
 			{
+				UE_LOG(LogTemp, Warning, TEXT("Last bit is true"));
 				StartTerm->DbItem = ChosenRule->Inputs[i]->DbItem;
 			}
 		}

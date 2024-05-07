@@ -33,7 +33,9 @@
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\inittext.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\initobject.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\initobject.generated.h",
-            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\gamepuzzlepoint.generated.h"
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\gamepuzzlepoint.generated.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\rule.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\rule.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

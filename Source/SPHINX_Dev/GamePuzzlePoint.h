@@ -39,6 +39,9 @@ public:
 	bool IsActive = false;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool HasPuzzle = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool InitSpawned = false;
 
 	FTransform PointTransform;

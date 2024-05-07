@@ -167,16 +167,16 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
     {
         UE_LOG(LogTemp, Error, TEXT("CHECKING IF PP IS NOT NULL"));
         AGamePuzzlePoint* OwningGPP = NewObject<AGamePuzzlePoint>(this, PP->OwningGamePP);
-        if (AccessiblePPs[0])
+        if (OwningGPP->IsActive)
         {
-            UE_LOG(LogTemp, Error, TEXT("Accessible[0] is not null"));
+            UE_LOG(LogTemp, Warning, TEXT("OwningGPP is Active"));
         }
-        if (Generator)
+        else
         {
-            UE_LOG(LogTemp, Error, TEXT("Generator is valid"));
+            UE_LOG(LogTemp, Warning, TEXT("OwningGPP is not active"));
         }
 
-        if (PP && OwningGPP && AccessiblePPs[0]) //need to add && OwningGPP->IsActive !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (PP && OwningGPP->IsActive && AccessiblePPs[0]) //need to add && OwningGPP->IsActive !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             URule* Root = Generator->GeneratePuzzleStartingFrom(PP, AccessiblePPs);
             if (Root)

@@ -3,6 +3,7 @@
 
 #include "PuzzlePoint.h"
 #include "GamePuzzlePoint.h"
+#include "Rule.h"
 
 
 UPuzzlePoint::UPuzzlePoint()
