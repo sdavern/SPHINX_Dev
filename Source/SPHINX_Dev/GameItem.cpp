@@ -111,21 +111,25 @@ void UGameItem::Spawn(UGameItem* Item)
 
 
 
-void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionButton, UPuzzlePoint* PP)
+void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionButton)
 {
-	bool NoAction = true;
+	//bool NoAction = true;
 	
 	APuzzleManager* Instance = APuzzleManager::GetInstance();
 	if (Instance)
 	{
-		TArray<URule*> Rules = Instance->RulesFor(this, PP);
+		UE_LOG(LogTemp, Warning, TEXT("OnGameItemClicked PM instance is valid, this is %s"), *this->Name);
+		TArray<URule*> Rules = Instance->RulesFor(this);
 		for (URule* PuzzleRule : Rules)
 		{
+			UE_LOG(LogTemp, Error, TEXT("Rule %s is in RulesFor"), *PuzzleRule->Action);
 			UE_LOG(LogTemp, Display, TEXT("Checking Rule %s fulfilled by %s ? %s"), *PuzzleRule->ToString(), *this->Name, (RuleFulfilled(PuzzleRule) ? TEXT("True") : TEXT("False")));
 			if (PuzzleRule && RuleFulfilled(PuzzleRule))
 			{
-				NoAction = false;
+				//NoAction = false;
+				UE_LOG(LogTemp, Error, TEXT("ActionButton is being initialized"));
                 ActionButton->InitializeButton(this, PuzzleRule);
+				break;
             }
 		}
 	}

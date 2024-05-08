@@ -52,7 +52,7 @@ public:
 
 	/* void OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP, bool Inventory); */
 
-	void OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionButton, UPuzzlePoint* PP);
+	void OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionButton);
 
 	void ExecuteRule(URule* Rule);
 

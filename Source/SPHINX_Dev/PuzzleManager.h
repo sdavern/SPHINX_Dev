@@ -76,7 +76,7 @@ public:
 
 	void GenerateForActivePuzzlePoints();
 
-	TArray<URule*> RulesFor(UGameItem* GameItem, UPuzzlePoint* PP);
+	TArray<URule*> RulesFor(UGameItem* GameItem);
 
 	void AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules);
 
@@ -180,7 +180,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	int MaxActivePuzzles;
 
-	int ActivePuzzles = 0;
+	int ActivePPs = 0;
+
+	int ActiveGeneratedPuzzles = 0;
 
 	void AssignPlayer();
 

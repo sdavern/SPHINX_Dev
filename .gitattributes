@@ -1,6 +1,8 @@
 .uasset filter=lfs diff=lfs merge=lfs -text
 .umap filter=lfs diff=lfs merge=lfs -text
 .pch filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-backup-2024.05.08-12.06.23.log filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-backup-2024.05.08-12.08.02.log filter=lfs diff=lfs merge=lfs -text
 .Engine.Cpp20.h.pch filter=lfs diff=lfs merge=lfs -text
 SharedPCH.Engine.Cpp20.h.pch filter=lfs diff=lfs merge=lfs -text
 SharedPCH.UnrealEd.Cpp20.h.pch filter=lfs diff=lfs merge=lfs -text

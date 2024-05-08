@@ -21,6 +21,9 @@ public:
 	AGamePuzzlePoint();
 
 	UPROPERTY(EditAnywhere)
+	FString Name;
+
+	UPROPERTY(EditAnywhere)
 	TSubclassOf<UPuzzlePoint> PuzzlePointBP;
 
 	UPROPERTY(EditAnywhere)

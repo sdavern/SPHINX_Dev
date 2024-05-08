@@ -24,6 +24,8 @@ void UActionBtn::InitializeButton(UGameItem* GameItem, URule* Rule)
 {
     LinkedGameItem = GameItem;
     LinkedRule = Rule;
+    UE_LOG(LogTemp, Warning, TEXT("ActionButton LinkedGameItem is %s and LinkedRule is %s"), *LinkedGameItem->Name, *LinkedRule->Action);
+
 
     if (ActionText && Rule)
     {
@@ -40,6 +42,7 @@ void UActionBtn::OnButtonClicked()
 {
     if (LinkedGameItem && LinkedRule)
     {
+        UE_LOG(LogTemp, Error, TEXT("ActionButton clicked"));
         // Execute the rule associated with the button
         LinkedGameItem->ExecuteRule(LinkedRule);
     }

@@ -547,6 +547,8 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
                 {
                     ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Add to Inventory"));
                 }
+                HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
+                UE_LOG(LogTemp, Warning, TEXT("OnGameItemClicked called"));
             }
             if (ActivePlayer)
             {

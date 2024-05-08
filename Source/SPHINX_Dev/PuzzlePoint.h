@@ -21,7 +21,6 @@ public:
 
 	UPuzzlePoint();
 
-
 	//was (Transient)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<AGamePuzzlePoint> OwningGamePP;

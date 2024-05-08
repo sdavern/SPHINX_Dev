@@ -93,15 +93,14 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 			}
 		}
 
-    	if (InventoryInstance != nullptr)
+    	if (InventoryInstance->Inventory.Num() > 0)
 		{
-			TArray<UGameItem*> Inventory = InventoryInstance->Inventory;
-			for (int i = 0; i < Inventory.Num(); i++)
+			for (int i = 0; i < InventoryInstance->Inventory.Num() - 1; i++)
 			{
-				if (Inventory[i] && Inventory[i]->DbItem)
+				if (InventoryInstance->Inventory[i] && InventoryInstance->Inventory[i]->DbItem)
 				{
-					ItemsInLevel.Add(Inventory[i]->DbItem);
-					UE_LOG(LogTemp, Warning, TEXT("%s added to ItemsInLevel"), *Inventory[i]->DbItem->Name);
+					ItemsInLevel.Add(InventoryInstance->Inventory[i]->DbItem);
+					UE_LOG(LogTemp, Warning, TEXT("%s added to ItemsInLevel"), *InventoryInstance->Inventory[i]->DbItem->Name);
 				}
 			}
 		}
