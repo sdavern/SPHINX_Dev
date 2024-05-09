@@ -69,14 +69,14 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
         if (PerformGeoSweep())
         {
             CreateActionMenu();
-            /* HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton, PP); */
+            HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
         }
         else
         {
             UGameItem* GameItem = Cast<UGameItem>(ActivePlayer->HeldGameItem->GetComponentByClass(UGameItem::StaticClass()));
             HitGameItem = GameItem;
             CreateActionMenu();
-            /* HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton, PP); */
+            HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
             ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Drop"));
         }
     }
@@ -85,7 +85,7 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
     {
         UE_LOG(LogTemp, Display, TEXT("GeoSweep = true"));
         CreateActionMenu();
-        /* HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton, PP); */
+        HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
     }
     else
     {

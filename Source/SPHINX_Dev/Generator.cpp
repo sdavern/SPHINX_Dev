@@ -93,16 +93,17 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 			}
 		}
 
-    	if (InventoryInstance->Inventory.Num() > 0)
+    	if (InventoryInstance->Inventory.Num() > 1)
 		{
-			for (int i = 0; i < InventoryInstance->Inventory.Num() - 1; i++)
+			UE_LOG(LogTemp, Warning, TEXT("Inventory has %d Items"), InventoryInstance->Inventory.Num());
+			for (int i = 0; i < InventoryInstance->Inventory.Num(); i++)
 			{
 				if (InventoryInstance->Inventory[i] && InventoryInstance->Inventory[i]->DbItem)
 				{
 					ItemsInLevel.Add(InventoryInstance->Inventory[i]->DbItem);
 					UE_LOG(LogTemp, Warning, TEXT("%s added to ItemsInLevel"), *InventoryInstance->Inventory[i]->DbItem->Name);
 				}
-			}
+			} 
 		}
 
     	if (PP != nullptr && PP->PuzzleGoals.Num() > 0)
@@ -141,23 +142,9 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
 {
     APuzzleManager* PMInstance = APuzzleManager::GetInstance();
-	if (StartTerm->DbItem)
-	{
-		UE_LOG(LogTemp, Display, TEXT("DBITEM IS VALID"));
-	}
-	else 
-	{
-		UE_LOG(LogTemp, Display, TEXT("DBITEM IS NULL"));
-	}
 
 	TArray<UItem*> MatchingItems = PMInstance->FindDbItemsFor(StartTerm, NewAccessiblePPs, ItemsInLevel); 
-	for (UItem* Item : MatchingItems)
-	{
-		if (Item)
-		{
-			UE_LOG(LogTemp, Error, TEXT("%s is in MatchingItems"), *Item->Name);
-		}
-	}
+
 	if (MatchingItems.Num() == 0)
 	{
 		if(!PMInstance->HasItemOfType(StartTerm, NewAccessiblePPs, ItemsInLevel))
@@ -194,11 +181,11 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 		{
 			if (StartTerm->DbItem)
 			{
-				UE_LOG(LogTemp, Display, TEXT("Found matching rule %s with output DbItem: %s"), *Rule->Outputs[0]->Name, *StartTerm->DbItem->Name);
+				UE_LOG(LogTemp, Display, TEXT("Found matching rule %s with output DbItem: %s"), *Rule->Action, *StartTerm->DbItem->Name);
 			}
 			UE_LOG(LogTemp, Error, TEXT("Adding rule %s"), *Rule->Action);
 			PossibleRules.Add(Rule);
-			UE_LOG(LogTemp, Display, TEXT("Rule[0] is %s, and depth is %d"), *Rule->Action, Depth);
+			UE_LOG(LogTemp, Display, TEXT("Rule[0] is %s, and depth is %d"), *PossibleRules[0]->Action, Depth);
 		}
 	}
 	

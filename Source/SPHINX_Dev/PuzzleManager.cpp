@@ -196,9 +196,10 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                     UE_LOG(LogTemp, Error, TEXT("ROOT is %s"), *Root->Action);	
                     FRulesStruct NewRules;
                     Leaves.Add(PP, NewRules);
-                    UE_LOG(LogTemp, Error, TEXT("Leaves.ADD"));
+                    UE_LOG(LogTemp, Error, TEXT("Leaves size is %d"), Leaves.Num());
                     PuzzleRules.Add(PP, NewRules);
                     FindLeaves(Root, PP);
+                    UE_LOG(LogTemp, Error, TEXT("Leaves size is %d"), Leaves.Num());
                     UE_LOG(LogTemp, Error, TEXT("RULES ADDED"));
 
                     FRulesStruct* LeavesRulesStruct = Leaves.Find(PP);
@@ -209,7 +210,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                             if (Rule)
                             {
                                 Rule->OwningPP = PP;
-                                UE_LOG(LogTemp, Error, TEXT("RULE ASSIGNED TO PP"));
+                                UE_LOG(LogTemp, Error, TEXT("RULE %s ASSIGNED TO PP"), *Rule->Action);
                             }
                         }
                     }
@@ -248,8 +249,15 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
 {
     UE_LOG(LogTemp, Error, TEXT("RulesFor called with GameItem %s"), *GameItem->Name);
     TArray<URule*> Rules;
+    UE_LOG(LogTemp, Warning, TEXT("Total Puzzle Points in Leaves: %d"), Leaves.Num());
+    if (Leaves.Num() == 0) 
+    {
+        UE_LOG(LogTemp, Error, TEXT("Leaves map is empty."));
+    }
     for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
     {
+        FRulesStruct* FoundLeavesRules = &Pair.Value;
+        UE_LOG(LogTemp, Warning, TEXT("RulesArray size for PP %p is %d"), Pair.Key, FoundLeavesRules->RulesArray.Num());
         UPuzzlePoint* PP = Pair.Key;
         if (PP)
         {
@@ -261,7 +269,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         }
 
 
-        FRulesStruct* FoundLeavesRules = &Pair.Value;
+        
         if (FoundLeavesRules)
         {
             UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid"));
@@ -384,11 +392,12 @@ void APuzzleManager::FindLeaves(URule* Parent, UPuzzlePoint* PP)
 {
     if (Parent->Children.Num() == 0)
     {
-        UE_LOG(LogTemp, Display, TEXT("Rule %s has no children"), *Parent->ToString());
+        UE_LOG(LogTemp, Error, TEXT("Rule %s has no children"), *Parent->ToString());
         Leaves.FindOrAdd(PP).RulesArray.Add(Parent);
     }
     else
     {
+        UE_LOG(LogTemp, Error, TEXT("Rule %s has %d children"), *Parent->ToString(), Parent->Children.Num());
         FRulesStruct* FoundRulesStruct = Leaves.Find(PP);
         if (FoundRulesStruct && !FoundRulesStruct->RulesArray.Contains(Parent))
         {
