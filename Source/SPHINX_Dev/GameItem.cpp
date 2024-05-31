@@ -118,11 +118,12 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionBut
 	APuzzleManager* Instance = APuzzleManager::GetInstance();
 	if (Instance)
 	{
+		Instance->ReturnLeaves();
 		UE_LOG(LogTemp, Warning, TEXT("OnGameItemClicked PM instance is valid, this is %s"), *this->Name);
 		TArray<URule*> Rules = Instance->RulesFor(this);
 		for (URule* PuzzleRule : Rules)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Rule %s is in RulesFor"), *PuzzleRule->Action);
+			UE_LOG(LogTemp, Error, TEXT("Rule %s is in RulesFor(GameItem)"), *PuzzleRule->Action);
 			UE_LOG(LogTemp, Display, TEXT("Checking Rule %s fulfilled by %s ? %s"), *PuzzleRule->ToString(), *this->Name, (RuleFulfilled(PuzzleRule) ? TEXT("True") : TEXT("False")));
 			if (PuzzleRule && RuleFulfilled(PuzzleRule))
 			{

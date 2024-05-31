@@ -146,6 +146,9 @@ public:
 
 	void ActivateMaxPuzzlePoints();
 
+	void ReturnLeaves();
+
+
 
 
 

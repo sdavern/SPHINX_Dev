@@ -190,11 +190,13 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	}
 	
 	UE_LOG(LogTemp, Display, TEXT("Number of possible rules: %d"), PossibleRules.Num());
+	
+
 
 
 	if (PossibleRules.Num() > 0 && Depth < CurrentPP->MaxDepth) //Need to verify below !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	{
-		UE_LOG(LogTemp, Warning, TEXT("PossibleRules > 0 && Depth < MaxDepth (%d)"), CurrentPP->MaxDepth);
+		UE_LOG(LogTemp, Warning, TEXT("PossibleRules > 0 (possible rule 1 is %s) && Depth < MaxDepth (%d)"), *PossibleRules[0]->Action, CurrentPP->MaxDepth);
 		URule* ChosenRule = PossibleRules[FMath::RandRange(0, PossibleRules.Num() - 1)];
 		UE_LOG(LogTemp, Warning, TEXT("ChosenRule is %s"), *ChosenRule->Action);
 		if (PossibleRules.Num() > 1)

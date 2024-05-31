@@ -81,7 +81,13 @@ void APuzzleManager::Tick(float DeltaTime)
     
     ActivateMaxPuzzlePoints();
     GenerateForActivePuzzlePoints();
+    //ReturnLeaves();
     
+}
+
+void APuzzleManager::ReturnLeaves()
+{
+    UE_LOG(LogTemp, Display, TEXT("Leaves is %d"), Leaves.Num());
 }
 
 void APuzzleManager::AssignPlayer()
@@ -146,10 +152,23 @@ APuzzleManager* APuzzleManager::GetInstance()
 {
     if (!Instance)
     {
-        Instance = NewObject<APuzzleManager>();
-        Instance->AddToRoot();
-        UE_LOG(LogTemp, Warning, TEXT("Puzzle Manager instance created."));
-        return Instance;
+        // Iterate over all world contexts to find the game world
+        for (const FWorldContext& Context : GEngine->GetWorldContexts())
+        {
+            if (Context.World() != nullptr)
+            {
+                for (TActorIterator<APuzzleManager> It(Context.World()); It; ++It)
+                {
+                    Instance = *It;
+                    break;
+                }
+            }
+        }
+
+        if (!Instance)
+        {
+            UE_LOG(LogTemp, Error, TEXT("PuzzleManager instance not found in GetInstance."));
+        }
     }
     UE_LOG(LogTemp, Display, TEXT("Puzzle Manager instance found."));
     return Instance;
@@ -160,7 +179,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
 {
     while (ActiveGeneratedPuzzles < MaxActivePuzzles)
     {
-        //UE_LOG(LogTemp, Error, TEXT("ATTEMPTING TO GENERATE PUZZLES"));
+        UE_LOG(LogTemp, Error, TEXT("ATTEMPTING TO GENERATE PUZZLES"));
         TArray<UPuzzlePoint*> PPPtrs;
         for (TSubclassOf<UPuzzlePoint> PP : PPAssets)
         {
@@ -170,7 +189,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                 PPPtrs.Add(PPPtr);
                 UE_LOG(LogTemp, Error, TEXT("PPPtr added"));
             }
-        }
+        } 
 
         for (UPuzzlePoint* PP : PPPtrs)
         {
@@ -184,7 +203,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                     OwningGPP = GPP;
                     break;
                 }
-            }      
+            }       
        
 
             if (PP && OwningGPP && OwningGPP->IsActive && AccessiblePPs[0] && !OwningGPP->HasPuzzle) //need to add && OwningGPP->IsActive !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -194,12 +213,11 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                 {
                     UE_LOG(LogTemp, Error, TEXT("Root is VALID"));
                     UE_LOG(LogTemp, Error, TEXT("ROOT is %s"), *Root->Action);	
+                    UE_LOG(LogTemp, Display, TEXT("PP is %s"), *PP->Name);
                     FRulesStruct NewRules;
                     Leaves.Add(PP, NewRules);
-                    UE_LOG(LogTemp, Error, TEXT("Leaves size is %d"), Leaves.Num());
                     PuzzleRules.Add(PP, NewRules);
                     FindLeaves(Root, PP);
-                    UE_LOG(LogTemp, Error, TEXT("Leaves size is %d"), Leaves.Num());
                     UE_LOG(LogTemp, Error, TEXT("RULES ADDED"));
 
                     FRulesStruct* LeavesRulesStruct = Leaves.Find(PP);
@@ -211,6 +229,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                             {
                                 Rule->OwningPP = PP;
                                 UE_LOG(LogTemp, Error, TEXT("RULE %s ASSIGNED TO PP"), *Rule->Action);
+                                UE_LOG(LogTemp, Error, TEXT("Leaves size is %d"), Leaves.Num());
                             }
                         }
                     }
@@ -240,20 +259,21 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
             else
             {
                 //UE_LOG(LogTemp, Error, TEXT("PP IS NULL"));
-            }
+            } 
         }
     }
 }
 
 TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
 {
-    UE_LOG(LogTemp, Error, TEXT("RulesFor called with GameItem %s"), *GameItem->Name);
     TArray<URule*> Rules;
     UE_LOG(LogTemp, Warning, TEXT("Total Puzzle Points in Leaves: %d"), Leaves.Num());
+
     if (Leaves.Num() == 0) 
     {
         UE_LOG(LogTemp, Error, TEXT("Leaves map is empty."));
     }
+
     for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
     {
         FRulesStruct* FoundLeavesRules = &Pair.Value;
@@ -272,7 +292,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         
         if (FoundLeavesRules)
         {
-            UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid"));
+            UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid and is %s"), *FoundLeavesRules->RulesArray[1]->Action);
         }
         else
         {
@@ -282,10 +302,11 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         
         for (URule* Rule: FoundLeavesRules->RulesArray) 
         {
-            UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found"), *Rule->Action);
-            if (Rule)
+            
+            if (Rule && Rule->Action != TEXT(""))
             {
                 AddApplicableRule(Rule, GameItem, Rules);
+                UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found"), *Rule->Action);
             } 
             else
             {
@@ -296,6 +317,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
     
     
         TArray<URule*> DbRules = GetRulesWithInput(GameItem->DbItem);
+        UE_LOG(LogTemp, Display, TEXT("GetRulesWithInput called"));
         for (int32 i  = DbRules.Num() - 1; i >= 0; i--)
         {
             DbRules[i]->Inputs[0]->GameItem = GameItem;
@@ -304,7 +326,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
                 Rules.Add(DbRules[i]);
             }
         }
-    
+    UE_LOG(LogTemp, Display, TEXT("Returning Rules with %s"), *Rules[0]->Action);
     return Rules;
 }
 
@@ -394,6 +416,7 @@ void APuzzleManager::FindLeaves(URule* Parent, UPuzzlePoint* PP)
     {
         UE_LOG(LogTemp, Error, TEXT("Rule %s has no children"), *Parent->ToString());
         Leaves.FindOrAdd(PP).RulesArray.Add(Parent);
+        UE_LOG(LogTemp, Display, TEXT("Rule added to RulesArray %s"), *Parent->Action);
     }
     else
     {
@@ -402,6 +425,7 @@ void APuzzleManager::FindLeaves(URule* Parent, UPuzzlePoint* PP)
         if (FoundRulesStruct && !FoundRulesStruct->RulesArray.Contains(Parent))
         {
             FoundRulesStruct->RulesArray.Add(Parent);
+            UE_LOG(LogTemp, Display, TEXT("Rule added to RulesArray %s"), *Parent->Action);
         }
         for (URule* Child : Parent->Children)
         {
@@ -822,7 +846,7 @@ TArray<UItem*> APuzzleManager::GetItemsInWorld()
 
 TArray<UGameItem*> APuzzleManager::GetGameItemsInWorld()
 {
-    UWorld* World = GetWorld();
+    UWorld* World = Instance->GetWorld();
     TArray<UGameItem*> GameItemsInWorld;
 
     if (World != nullptr)
