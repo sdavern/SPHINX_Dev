@@ -121,18 +121,22 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionBut
 		Instance->ReturnLeaves();
 		UE_LOG(LogTemp, Warning, TEXT("OnGameItemClicked PM instance is valid, this is %s"), *this->Name);
 		TArray<URule*> Rules = Instance->RulesFor(this);
-		for (URule* PuzzleRule : Rules)
+		if (Rules.Num() > 0)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Rule %s is in RulesFor(GameItem)"), *PuzzleRule->Action);
-			UE_LOG(LogTemp, Display, TEXT("Checking Rule %s fulfilled by %s ? %s"), *PuzzleRule->ToString(), *this->Name, (RuleFulfilled(PuzzleRule) ? TEXT("True") : TEXT("False")));
-			if (PuzzleRule && RuleFulfilled(PuzzleRule))
+			for (URule* PuzzleRule : Rules)
 			{
-				//NoAction = false;
-				UE_LOG(LogTemp, Error, TEXT("ActionButton is being initialized"));
-                ActionButton->InitializeButton(this, PuzzleRule);
-				break;
-            }
+				UE_LOG(LogTemp, Error, TEXT("Rule %s is in RulesFor(%s)"), *PuzzleRule->Action, *this->Name);
+				UE_LOG(LogTemp, Display, TEXT("Checking Rule %s fulfilled by %s ? %s"), *PuzzleRule->ToString(), *this->Name, (RuleFulfilled(PuzzleRule) ? TEXT("True") : TEXT("False")));
+				if (PuzzleRule && RuleFulfilled(PuzzleRule))
+				{
+					//NoAction = false;
+					UE_LOG(LogTemp, Error, TEXT("ActionButton is being initialized"));
+                	ActionButton->InitializeButton(this, PuzzleRule);
+					break;
+            	}
+			}
 		}
+		 
 	}
 		//Need to set NoAction on Player instance to NoAction from this. 
 
@@ -332,9 +336,12 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 
 bool UGameItem::RuleFulfilled(URule* Rule)
 {
+	AInventoryManager* InventoryManager = AInventoryManager::GetInstance();
+	
 	if (Rule != nullptr)
 	{
 		Rule->Inputs[0]->GameItem = this;
+		UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[0]->GameItem is %s"), *Rule->Inputs[0]->GameItem->Name);
 		if (!this->FulfillsProperties(Rule->Inputs[0]))
 		{
 			return false;
@@ -342,22 +349,29 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 
 		if (Rule->Inputs.Num() > 1)
 		{
-			int32 i = 1;
-			if (!Rule->bSelectedInput)
+			UE_LOG(LogTemp, Error, TEXT("Rule inputs > 1, %d"), Rule->Inputs.Num());
+			int i = 1;
+			if (Rule)
 			{
-				UGameItem* SelectedItem = AInventoryManager::GetInstance()->GetSelectedItem();
+				UGameItem* SelectedItem = InventoryManager->GetSelectedItem();
+				UE_LOG(LogTemp, Display, TEXT("GetSelectedItem called"));
 				if (SelectedItem != nullptr)
 				{
+					UE_LOG(LogTemp, Warning, TEXT("SelectedItem is %s"), *SelectedItem->Name);
+
 					if (SelectedItem->Name == Rule->Inputs[1]->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[1]->Name))
 					{
+						UE_LOG(LogTemp, Display, TEXT("SelectedItem == Input 1"));
 						if (SelectedItem->FulfillsProperties(Rule->Inputs[1]))
 						{
+							UE_LOG(LogTemp, Display, TEXT("SelectedItem does fulfill properties"));
 							Rule->Inputs[1]->GameItem = SelectedItem;
 							i = 2;
 						}
 					}
 					else
 					{
+						UE_LOG(LogTemp, Display, TEXT("Fulfill properties is false"));
 						return false;
 					}
 				}
@@ -366,12 +380,12 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 					return false;
 				}
 			}
-			AInventoryManager* InventoryManager = AInventoryManager::GetInstance();
 			TArray<UGameItem*> Inventory = InventoryManager->GetInventory();
 
 			if (Inventory.Num() == 0 && !Rule->HasPlayerInput())
 			{
-				return false;
+				UE_LOG(LogTemp, Display, TEXT("Rule does not have player input and inventory is 0"));
+				//return false;
 			}
 			for (; i < Rule->Inputs.Num(); i++)
 			{
@@ -401,6 +415,7 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 				}
 			}
 		}
+		UE_LOG(LogTemp, Display, TEXT("Returning TRUE"));
 		return true;
 	}
 	return false;

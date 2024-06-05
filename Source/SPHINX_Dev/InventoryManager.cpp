@@ -2,28 +2,51 @@
 
 
 #include "InventoryManager.h"
+#include "EngineUtils.h"
 #include "Kismet/GameplayStatics.h"
 #include "Avatar.h"
 
 AInventoryManager* AInventoryManager::Instance = nullptr;
 
+void AInventoryManager::BeginPlay()
+{
+    Super::BeginPlay();
+    Instance = GetInstance();
+    AssignPlayer();
+
+}
+
 AInventoryManager* AInventoryManager::GetInstance()
 {
-    if (Instance)
+    if (!Instance)
     {
-        return Instance;
-    }
-    else
-    {
-        Instance = NewObject<AInventoryManager>();
-        if (Instance)
+        // Iterate over all world contexts to find the game world
+        for (const FWorldContext& Context : GEngine->GetWorldContexts())
         {
-            return Instance;
+            if (Context.World() != nullptr)
+            {
+                for (TActorIterator<AInventoryManager> It(Context.World()); It; ++It)
+                {
+                    Instance = *It;
+                    break;
+                }
+            }
+        }
+
+        if (!Instance)
+        {
+            UE_LOG(LogTemp, Error, TEXT("InventoryManager instance not found in GetInstance."));
         }
     }
+    UE_LOG(LogTemp, Display, TEXT("Inventory Manager instance found."));
+    return Instance;
     
-    return nullptr;
-    
+}
+
+void AInventoryManager::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    Super::EndPlay(EndPlayReason);
+    Instance = nullptr;  
 }
 
 AInventoryManager::AInventoryManager()
@@ -47,13 +70,7 @@ void AInventoryManager::AssignPlayer()
     }
 }
 
-void AInventoryManager::BeginPlay()
-{
-    Super::BeginPlay();
-    GetInstance();
-    AssignPlayer();
 
-}
 
 void AInventoryManager::AddItemToInventory(UGameItem* Item)
 {

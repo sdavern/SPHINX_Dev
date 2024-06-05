@@ -11,6 +11,7 @@
 #include "Term.h"
 #include "GameItem.h"
 #include "GameArea.h"
+#include "PuzzleManager.h"
 #include "InventoryManager.h"
 #include "PuzzlePoint.h"
 #include "GamePuzzlePoint.h"
@@ -31,19 +32,27 @@ public:
 
 	static AGenerator* GetInstance();
 
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
 	static const bool DebugMode = true;
 
-	static void Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP);
+	void Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP);
 
-	URule* GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs);
+	URule* GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs, int depth);
 
-	static bool GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
+	bool GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel, AGenerator* GInstance);
 
 	AGamePuzzlePoint* FindGamePuzzlePoint(UPuzzlePoint* PP);
 
 	void GetAllAttachedActors(AActor* ParentActor, TArray<AActor*>& OutActors);
 
 	UWorld* GetWorldForGenerator();
+
+	int MAX_DEPTH = 20;
+
+	APuzzleManager* PMInstance;
+
+	AInventoryManager* InventoryInstance;
 
 protected:
 	// Called when the game starts or when spawned

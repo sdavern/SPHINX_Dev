@@ -33,6 +33,7 @@ void UActionBtn::InitializeButton(UGameItem* GameItem, URule* Rule)
         FString FormattedActionText = AddSpacesBeforeCaps(Rule->Action);
         ActionText->SetText(FText::FromString(FormattedActionText));
     }
+    
 
     OnClicked.AddDynamic(this, &UActionBtn::OnButtonClicked);
     

@@ -37,6 +37,8 @@ public:
 
 	APuzzleManager();
 
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
 	UArea* StartArea;
 
 	bool UseAllRules;

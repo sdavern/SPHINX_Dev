@@ -70,6 +70,7 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
         {
             CreateActionMenu();
             HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
+            return;
         }
         else
         {
@@ -78,6 +79,7 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
             CreateActionMenu();
             HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
             ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Drop"));
+            return;
         }
     }
 
@@ -86,11 +88,9 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
         UE_LOG(LogTemp, Display, TEXT("GeoSweep = true"));
         CreateActionMenu();
         HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
+        return;
     }
-    else
-    {
-        UE_LOG(LogTemp, Display, TEXT("GeoSweep = false"));
-    }
+
     
 }
 
@@ -160,6 +160,7 @@ void ASPHINX_DevPlayerController::GrabGameItem(UGameItem* GameItem)
             GameItemBP->SetActorRelativeLocation(RelativeLocation);
             ActivePlayer->HeldGameItem = GameItemBP;
             ActivePlayer->IsHoldingItem = true;
+            InventoryManager->SelectedItem = GameItem;
         }
     }
     
@@ -209,6 +210,8 @@ void ASPHINX_DevPlayerController::DropGameItem(AActor* GameItemBP)
     NewLocation.Z = 40.0f;
     GameItemRoot->SetWorldLocation(NewLocation);
     ActivePlayer->IsHoldingItem = false;
+    ActivePlayer->HeldGameItem = nullptr;
+    InventoryManager->SelectedItem = nullptr;
 
     EnableCollisionForActor(GameItemBP);
 }

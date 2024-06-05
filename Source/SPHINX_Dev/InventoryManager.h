@@ -23,6 +23,8 @@ public:
 
 	static AInventoryManager* GetInstance();
 
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
 	void AssignPlayer();
 
 	UFUNCTION(BlueprintCallable)

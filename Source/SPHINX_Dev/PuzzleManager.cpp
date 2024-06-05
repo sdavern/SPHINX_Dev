@@ -19,6 +19,7 @@ APuzzleManager::APuzzleManager()
     PPAssets = LoadPuzzlePointBPs();
     //Item
     ItemAssets = LoadItemBPs();
+    UE_LOG(LogTemp, Error, TEXT("ItemAssets has %d items"), ItemAssets.Num());
     //Rule
     RuleAssets = LoadRuleBPs();
     ActivateMaxPuzzlePoints();
@@ -27,7 +28,7 @@ APuzzleManager::APuzzleManager()
 void APuzzleManager::BeginPlay()
 {
     Super::BeginPlay();
-    GetInstance();
+    Instance = GetInstance();
 
     if (Everything != nullptr)
     {
@@ -73,6 +74,8 @@ void APuzzleManager::BeginPlay()
    
     AssignPlayer();
 
+    UE_LOG(LogTemp, Warning, TEXT("ItemAssets has %d items on BeginPlay"), ItemAssets.Num());
+
 }
 
 void APuzzleManager::Tick(float DeltaTime)
@@ -83,6 +86,12 @@ void APuzzleManager::Tick(float DeltaTime)
     GenerateForActivePuzzlePoints();
     //ReturnLeaves();
     
+}
+
+void APuzzleManager::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    Super::EndPlay(EndPlayReason);
+    Instance = nullptr;  
 }
 
 void APuzzleManager::ReturnLeaves()
@@ -208,7 +217,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
 
             if (PP && OwningGPP && OwningGPP->IsActive && AccessiblePPs[0] && !OwningGPP->HasPuzzle) //need to add && OwningGPP->IsActive !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
-                URule* Root = Generator->GeneratePuzzleStartingFrom(PP, AccessiblePPs);
+                URule* Root = Generator->GeneratePuzzleStartingFrom(PP, AccessiblePPs, 0);
                 if (Root)
                 {
                     UE_LOG(LogTemp, Error, TEXT("Root is VALID"));
@@ -272,6 +281,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
     if (Leaves.Num() == 0) 
     {
         UE_LOG(LogTemp, Error, TEXT("Leaves map is empty."));
+        return Rules;
     }
 
     for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
@@ -286,6 +296,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         else
         {
             UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is null"));
+            continue;
         }
 
 
@@ -297,6 +308,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         else
         {
             UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is null"));
+            continue;
         }
 
         
@@ -306,7 +318,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
             if (Rule && Rule->Action != TEXT(""))
             {
                 AddApplicableRule(Rule, GameItem, Rules);
-                UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found"), *Rule->Action);
+                UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found and added to RulesArray"), *Rule->Action);
             } 
             else
             {
@@ -316,9 +328,10 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
     }
     
     
-        TArray<URule*> DbRules = GetRulesWithInput(GameItem->DbItem);
-        UE_LOG(LogTemp, Display, TEXT("GetRulesWithInput called"));
-        for (int32 i  = DbRules.Num() - 1; i >= 0; i--)
+    TArray<URule*> DbRules = GetRulesWithInput(GameItem->DbItem);
+    for (int i  = DbRules.Num() - 1; i >= 0; i--)
+    {
+        if (DbRules.IsValidIndex(i) && DbRules[i]->Inputs.Num() > 0)
         {
             DbRules[i]->Inputs[0]->GameItem = GameItem;
             if (FindItemsForOutputs(DbRules[i]) && !Rules.Contains(DbRules[i]))
@@ -326,7 +339,16 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
                 Rules.Add(DbRules[i]);
             }
         }
-    UE_LOG(LogTemp, Display, TEXT("Returning Rules with %s"), *Rules[0]->Action);
+    }
+    if (Rules.Num() > 0)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Returning Rules with %s"), *Rules[0]->Action);
+    }
+    else
+    {
+        UE_LOG(LogTemp, Display, TEXT("No rules found for the given GameItem"));
+    }
+    
     return Rules;
 }
 
@@ -509,7 +531,9 @@ TArray<UItem*> APuzzleManager::GetItemsOfType(FString ItemName, TArray<UPuzzlePo
 
 TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
 {
+    UE_LOG(LogTemp, Warning, TEXT("FindDbItemsFor called and ItemAssets has %d items"), ItemAssets.Num());
     TArray<UItem*> MatchingItems;
+
     for (TSubclassOf<UItem> DbItem : ItemAssets)
     {
         if (DbItem != nullptr)
@@ -518,6 +542,7 @@ TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*>
             if (DbItemPtr && DbItemPtr->Matches(Term) && DbItemPtr->IsAccessible(AccessiblePPs, ItemsInLevel))
             {
                 MatchingItems.Add(DbItemPtr);
+                UE_LOG(LogTemp, Warning, TEXT("DbItem %s added to MatchingItems"), *DbItemPtr->Name);
             }
         }
     }
@@ -532,10 +557,16 @@ TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
         if (RuleAssets[i] != nullptr)
         {
             URule* RuleToAdd = NewObject<URule>(this, RuleAssets[i]);
-
-            if (RuleToAdd && RuleToAdd->Inputs.Num() > 0 && (RuleToAdd->Inputs[0]->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(RuleToAdd->Inputs[0]->Name)))
+		    RuleToAdd->ToInputsPtr();
+            if (RuleToAdd && RuleToAdd->Inputs.Num() > 0)
             {
-                Rules.Add(RuleToAdd);
+                for (UTerm* Input : RuleToAdd->Inputs)
+                {
+                    if (Input->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(Input->Name))
+                    {
+                        Rules.Add(RuleToAdd);
+                    }
+                }
             }
         }
     }
@@ -551,6 +582,7 @@ TArray<URule*> APuzzleManager::GetRulesWithOutput(UTerm* Term)
         if (RuleAssets[i] != nullptr)
         {
             URule* RuleToAdd = NewObject<URule>(this, RuleAssets[i]);
+            RuleToAdd->ToOutputsPtr();
 
             if (RuleToAdd && RuleToAdd->Outputs.Num() > 0 && RuleToAdd->Outputs[0]->Name == Term->Name && RuleToAdd->Outputs[0] != nullptr)
             {
@@ -846,7 +878,7 @@ TArray<UItem*> APuzzleManager::GetItemsInWorld()
 
 TArray<UGameItem*> APuzzleManager::GetGameItemsInWorld()
 {
-    UWorld* World = Instance->GetWorld();
+    UWorld* World = GEngine->GetWorld();
     TArray<UGameItem*> GameItemsInWorld;
 
     if (World != nullptr)

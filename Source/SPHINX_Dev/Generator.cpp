@@ -2,6 +2,8 @@
 
 
 #include "Generator.h"
+#include "EngineUtils.h"
+
 
 AGenerator* AGenerator::Instance = nullptr;
 FString AGenerator::PuzzleString = TEXT("");
@@ -18,11 +20,27 @@ AGenerator* AGenerator::GetInstance()
 {
 	if (!Instance)
     {
-        Instance = NewObject<AGenerator>();
-		UE_LOG(LogTemp, Warning, TEXT("Generator instance created."));
+        // Iterate over all world contexts to find the game world
+        for (const FWorldContext& Context : GEngine->GetWorldContexts())
+        {
+            if (Context.World() != nullptr)
+            {
+                for (TActorIterator<AGenerator> It(Context.World()); It; ++It)
+                {
+                    Instance = *It;
+                    break;
+                }
+            }
+        }
+
+        if (!Instance)
+        {
+            UE_LOG(LogTemp, Error, TEXT("Generator instance not found in GetInstance."));
+        }
     }
-	UE_LOG(LogTemp, Display, TEXT("Generator instance found."));
+    UE_LOG(LogTemp, Display, TEXT("Generator instance found."));
     return Instance;
+    
 	
 }
 
@@ -31,7 +49,9 @@ void AGenerator::BeginPlay()
 {
 	Super::BeginPlay();
 
-	GetInstance();
+	Instance = GetInstance();
+	PMInstance = APuzzleManager::GetInstance();
+	InventoryInstance = AInventoryManager::GetInstance();
 	
 }
 
@@ -42,11 +62,16 @@ void AGenerator::Tick(float DeltaTime)
 
 }
 
+void AGenerator::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+    Super::EndPlay(EndPlayReason);
+    Instance = nullptr;
+}
+
 void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP)
 {
 	bool Found = false;
-    APuzzleManager* PMInstance = APuzzleManager::GetInstance();
-    TArray<UGameItem*> ItemsInWorld = PMInstance->GetGameItemsInWorld();
+    TArray<UGameItem*> ItemsInWorld = Instance->PMInstance->GetGameItemsInWorld();
 
     for (int32 i = 0; i < ItemsInWorld.Num(); i++)
     {
@@ -66,23 +91,27 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
 	}
 }
 
-URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs)
+URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs, int depth = 0)
 {
+	if (depth >= MAX_DEPTH)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Max recursion depth reached"));
+        return nullptr;
+    }
+
 	UE_LOG(LogTemp, Error, TEXT("GENERATEPUZZLESTARTINGFROM CALLED"));
     URule* Root = NewObject<URule>(this, URule::StaticClass());
     TArray<UItem*> ItemsInLevel;
-    AInventoryManager* InventoryInstance = AInventoryManager::GetInstance();
-	APuzzleManager* PMInstance = APuzzleManager::GetInstance();
 
-	if (!InventoryInstance)
+	if (!Instance->InventoryInstance)
 	{
 		UE_LOG(LogTemp, Error, TEXT("InventoryInstance is null"));
 	}
 
-	if (InventoryInstance && PMInstance)
+	else if (Instance->InventoryInstance && Instance->PMInstance)
 	{
 		TArray<UGameItem*> ExistingGameItems;
-    	ExistingGameItems = PMInstance->GetGameItemsInWorld();
+    	ExistingGameItems = Instance->PMInstance->GetGameItemsInWorld();
 
     	for (int i = 0; i < ExistingGameItems.Num(); i++)
 		{
@@ -93,15 +122,15 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 			}
 		}
 
-    	if (InventoryInstance->Inventory.Num() > 1)
+    	if (Instance->InventoryInstance->Inventory.Num() > 1)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Inventory has %d Items"), InventoryInstance->Inventory.Num());
-			for (int i = 0; i < InventoryInstance->Inventory.Num(); i++)
+			UE_LOG(LogTemp, Warning, TEXT("Inventory has %d Items"), Instance->InventoryInstance->Inventory.Num());
+			for (int i = 0; i < Instance->InventoryInstance->Inventory.Num(); i++)
 			{
-				if (InventoryInstance->Inventory[i] && InventoryInstance->Inventory[i]->DbItem)
+				if (Instance->InventoryInstance->Inventory[i] && Instance->InventoryInstance->Inventory[i]->DbItem)
 				{
-					ItemsInLevel.Add(InventoryInstance->Inventory[i]->DbItem);
-					UE_LOG(LogTemp, Warning, TEXT("%s added to ItemsInLevel"), *InventoryInstance->Inventory[i]->DbItem->Name);
+					ItemsInLevel.Add(Instance->InventoryInstance->Inventory[i]->DbItem);
+					UE_LOG(LogTemp, Warning, TEXT("%s added to ItemsInLevel"), *Instance->InventoryInstance->Inventory[i]->DbItem->Name);
 				}
 			} 
 		}
@@ -113,7 +142,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 			if (Goal)
 			{
 				UE_LOG(LogTemp, Display, TEXT("PP goal: %s"), *Goal->Name);
-        		bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, PP, NewAccessiblePPs, ItemsInLevel);
+        		bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, PP, NewAccessiblePPs, ItemsInLevel, Instance);
         		if (SuccessfulInputs)
         		{
             		PMInstance->AddPuzzle(PP, PuzzleString);
@@ -123,7 +152,14 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
         		else
         		{
 					UE_LOG(LogTemp, Error, TEXT("NO SUCCESSFUL INPUTS"));
-            		Root = GeneratePuzzleStartingFrom(PP, NewAccessiblePPs);
+					if (depth < MAX_DEPTH)
+					{
+						Root = GeneratePuzzleStartingFrom(PP, NewAccessiblePPs, depth + 1);
+					}
+					else
+					{
+						UE_LOG(LogTemp, Display, TEXT("Max recursion depth reached"));
+					}
         		} 
 			}
 			else
@@ -139,15 +175,15 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 	return nullptr;
 }
 
-bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
+bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel, AGenerator* GInstance)
 {
-    APuzzleManager* PMInstance = APuzzleManager::GetInstance();
-
-	TArray<UItem*> MatchingItems = PMInstance->FindDbItemsFor(StartTerm, NewAccessiblePPs, ItemsInLevel); 
+	UE_LOG(LogTemp, Warning, TEXT("Calling FindDbItemsFor"));
+	//The PMInstance isn't the main one and ItemAssets is not populated when the game is run a second time.
+	TArray<UItem*> MatchingItems = GInstance->PMInstance->FindDbItemsFor(StartTerm, NewAccessiblePPs, ItemsInLevel); 
 
 	if (MatchingItems.Num() == 0)
 	{
-		if(!PMInstance->HasItemOfType(StartTerm, NewAccessiblePPs, ItemsInLevel))
+		if(!GInstance->PMInstance->HasItemOfType(StartTerm, NewAccessiblePPs, ItemsInLevel))
 		{
 			UE_LOG(LogTemp, Warning, TEXT("GRAMMAR ERROR: Couldn't find accessible item of type: %s"), *StartTerm->Name);
 			return false;
@@ -166,7 +202,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 
 	TArray<URule*> PossibleRules;
 	
-	TArray<URule*> AllRules = PMInstance->GetAllRules();
+	TArray<URule*> AllRules = GInstance->PMInstance->GetAllRules();
 	//UE_LOG(LogTemp, Error, TEXT("GETTING ALL RULES, no of rules = %d"), AllRules.Num());
 	for (URule* Rule : AllRules)
 	{	
@@ -246,7 +282,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 					}
 				}
 			}
-			Result = GenerateInputs(ChosenRule->Inputs[i], ChosenRule, Depth + 1, CurrentPP, NewAccessiblePPs, ItemsInLevel);
+			Result = GenerateInputs(ChosenRule->Inputs[i], ChosenRule, Depth + 1, CurrentPP, NewAccessiblePPs, ItemsInLevel, Instance);
 			if (Result)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("Result is true"));
@@ -272,7 +308,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	}
 
 	//Doesn't matter what GetWorld() is called on as there is only one UWorld*
-	UWorld* World = StartTerm->GetWorld();
+	UWorld* World = GEngine->GetWorld();
 	//Spawn(World, StartTerm->DbItem, ParentRule, CurrentPP);
 	UE_LOG(LogTemp, Display, TEXT("DbItem added to spawn list: %s"), *StartTerm->DbItem->Name);
 	return true;
