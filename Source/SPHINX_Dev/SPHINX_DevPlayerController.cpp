@@ -88,10 +88,12 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
         UE_LOG(LogTemp, Display, TEXT("GeoSweep = true"));
         CreateActionMenu();
         HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
+        if (ActionMenu->ActionText)
+        {
+            UE_LOG(LogTemp, Error, TEXT("ActionText is valid from menu"));
+        }
         return;
     }
-
-    
 }
 
 
@@ -550,8 +552,8 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
                 {
                     ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Add to Inventory"));
                 }
-                HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
-                UE_LOG(LogTemp, Warning, TEXT("OnGameItemClicked called"));
+                //HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
+                //UE_LOG(LogTemp, Warning, TEXT("OnGameItemClicked called"));
             }
             if (ActivePlayer)
             {
@@ -627,8 +629,8 @@ void ASPHINX_DevPlayerController::ClearSprites()
 
 
 
-
-/* void ASPHINX_DevPlayerController::SetupActionButton()
+/* 
+void ASPHINX_DevPlayerController::SetupActionButton()
 {
     if (ActionMenu && HitGameItem && ActionMenu->ActionButton)
     {
@@ -642,8 +644,8 @@ void ASPHINX_DevPlayerController::ClearSprites()
     }
     
 
-} */
-
+}
+ */
 /* void ASPHINX_DevPlayerController::OnActionButtonClicked()
 {
     if (HitGameItem)

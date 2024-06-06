@@ -4,7 +4,6 @@
 #include "ActionBtn.h"
 #include "GameItem.h"
 
-
 FString UActionBtn::AddSpacesBeforeCaps(const FString& InString)
 {
     FString Result;
@@ -27,12 +26,16 @@ void UActionBtn::InitializeButton(UGameItem* GameItem, URule* Rule)
     UE_LOG(LogTemp, Warning, TEXT("ActionButton LinkedGameItem is %s and LinkedRule is %s"), *LinkedGameItem->Name, *LinkedRule->Action);
 
 
-    if (ActionText && Rule)
+   /*  if (ActionText && Rule)
     {
         // Set the button's text
         FString FormattedActionText = AddSpacesBeforeCaps(Rule->Action);
         ActionText->SetText(FText::FromString(FormattedActionText));
     }
+    else
+    {
+        UE_LOG(LogTemp, Error, TEXT("ActionText is null"));
+    } */
     
 
     OnClicked.AddDynamic(this, &UActionBtn::OnButtonClicked);
@@ -45,6 +48,6 @@ void UActionBtn::OnButtonClicked()
     {
         UE_LOG(LogTemp, Error, TEXT("ActionButton clicked"));
         // Execute the rule associated with the button
-        LinkedGameItem->ExecuteRule(LinkedRule);
+        //LinkedGameItem->ExecuteRule(LinkedRule);
     }
 }

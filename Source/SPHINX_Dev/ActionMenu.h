@@ -45,8 +45,8 @@ public:
 	UPROPERTY(meta = (BindWidget))
     UTextBlock* HoldText;
 
-	UPROPERTY(meta = (BindWidget))
-    UTextBlock* ActionText;
+ 	UPROPERTY(meta = (BindWidget))
+    UTextBlock* ActionText; 
 
 	UPROPERTY(meta = (BindWidget))
     UTextBlock* InspectText;

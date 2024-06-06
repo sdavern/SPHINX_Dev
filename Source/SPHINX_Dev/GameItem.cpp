@@ -116,6 +116,7 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionBut
 	//bool NoAction = true;
 	
 	APuzzleManager* Instance = APuzzleManager::GetInstance();
+	
 	if (Instance)
 	{
 		Instance->ReturnLeaves();
@@ -131,6 +132,8 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionBut
 				{
 					//NoAction = false;
 					UE_LOG(LogTemp, Error, TEXT("ActionButton is being initialized"));
+					FString FormattedText = ActionButton->AddSpacesBeforeCaps(PuzzleRule->Action);
+					ActionMenu->ActionText->SetText(FText::FromString(FormattedText));
                 	ActionButton->InitializeButton(this, PuzzleRule);
 					break;
             	}
@@ -336,8 +339,51 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 
 bool UGameItem::RuleFulfilled(URule* Rule)
 {
+	//needo to fix this then go onto ExecuteRule()
 	AInventoryManager* InventoryManager = AInventoryManager::GetInstance();
 	
+/* 	if (Rule)
+	{
+		if (Rule->Inputs.Num() == 1)
+		{
+			if (this->FulfillsProperties(Rule->Inputs[0]))
+			{
+				return true;
+			}
+		}
+		
+		if (Rule->Inputs.Num() > 1)
+		{
+			UGameItem* SelectedItem = InventoryManager->GetSelectedItem();
+			UE_LOG(LogTemp, Display, TEXT("SelectedItem is %s"), *SelectedItem->Name);
+
+			if (SelectedItem)
+			{
+				for (UTerm* Input : Rule->Inputs)
+				{
+					if (SelectedItem->Name == Input->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Input->Name))
+					{
+						UE_LOG(LogTemp, Error, TEXT("SelectedItem is an Input"));
+						if (SelectedItem->FulfillsProperties(Input))
+						{
+							UE_LOG(LogTemp, Error, TEXT("SelectedItem fulfills input"));
+							return true;
+						}
+					}
+				}
+			}
+		}
+		
+	}
+	return false; */
+	
+
+
+
+
+
+
+
 	if (Rule != nullptr)
 	{
 		Rule->Inputs[0]->GameItem = this;
@@ -358,7 +404,7 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 				if (SelectedItem != nullptr)
 				{
 					UE_LOG(LogTemp, Warning, TEXT("SelectedItem is %s"), *SelectedItem->Name);
-
+					
 					if (SelectedItem->Name == Rule->Inputs[1]->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[1]->Name))
 					{
 						UE_LOG(LogTemp, Display, TEXT("SelectedItem == Input 1"));

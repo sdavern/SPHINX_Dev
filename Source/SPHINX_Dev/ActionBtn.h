@@ -19,11 +19,11 @@ class SPHINX_DEV_API UActionBtn : public UButton
 	
 public:
 
-    UPROPERTY(Meta = (BindWidget))
-    UActionBtn* ActionButton;
+    UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UActionBtn* ActionButton; 
 
-    UPROPERTY(Meta = (BindWidget))
-    UTextBlock* ActionText;
+    UPROPERTY(meta = (BindWidget))
+    UTextBlock* ActionText; 
 
     UFUNCTION(BlueprintCallable)
     void InitializeButton(UGameItem* GameItem, URule* Rule);
