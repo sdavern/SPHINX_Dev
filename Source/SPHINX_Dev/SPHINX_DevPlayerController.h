@@ -19,7 +19,7 @@
 class UInputMappingContext;
 class UInventoryButton;
 class UItemProperty;
-
+class ASpawnPoint;
 
 UCLASS()
 class SPHINX_DEV_API ASPHINX_DevPlayerController : public APlayerController
@@ -136,7 +136,7 @@ public:
 	void OpenInventoryMenu();
 
 	UFUNCTION()
-	void CloseInventoryMenu();\
+	void CloseInventoryMenu();
 
 	UFUNCTION()
 	void ClearSprites();

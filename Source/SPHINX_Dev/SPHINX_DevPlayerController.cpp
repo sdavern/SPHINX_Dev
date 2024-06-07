@@ -9,6 +9,7 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "InventoryButton.h"
+#include "SpawnPoint.h"
 
 void ASPHINX_DevPlayerController::BeginPlay()
 {
@@ -597,6 +598,7 @@ void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UInventoryButton* Button
             if (HitGameItem)
             {
                 CreateActionMenu();
+                HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
             }
         }
     }

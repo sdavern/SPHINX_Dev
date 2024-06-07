@@ -27,6 +27,7 @@ class AGenerator;
 class AGamePuzzlePoint;
 class AInventoryManager;
 class UPuzzlePoint;
+class ASpawnPoint;
 
 UCLASS()
 class SPHINX_DEV_API APuzzleManager : public AActor

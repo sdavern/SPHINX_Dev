@@ -10,6 +10,7 @@
 #include "InventoryManager.h"
 #include "GamePuzzlePoint.h"
 #include "PuzzlePoint.h"
+#include "SpawnPoint.h"
 
 APuzzleManager* APuzzleManager::Instance = nullptr;
 
@@ -304,27 +305,27 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         if (FoundLeavesRules)
         {
             UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid and is %s"), *FoundLeavesRules->RulesArray[1]->Action);
-        }
+            for (URule* Rule: FoundLeavesRules->RulesArray) 
+            {
+            
+                if (Rule && Rule->Action != TEXT(""))
+                {
+                    AddApplicableRule(Rule, GameItem, Rules);
+                    UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found and added to RulesArray"), *Rule->Action);
+                }    
+                else
+                {
+                    UE_LOG(LogTemp, Warning, TEXT("RulesFor called but no rules found"));
+                } 
+            }
+        }    
         else
         {
             UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is null"));
+            //RulesFor(GameItem);
             continue;
         }
-
         
-        for (URule* Rule: FoundLeavesRules->RulesArray) 
-        {
-            
-            if (Rule && Rule->Action != TEXT(""))
-            {
-                AddApplicableRule(Rule, GameItem, Rules);
-                UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found and added to RulesArray"), *Rule->Action);
-            } 
-            else
-            {
-                UE_LOG(LogTemp, Warning, TEXT("RulesFor called but no rules found"));
-            } 
-        }
     }
     
     

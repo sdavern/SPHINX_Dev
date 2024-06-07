@@ -9,6 +9,7 @@
 
 class UTerm;
 class UPuzzlePoint;
+class ASpawnPoint;
 
 
 UCLASS(Blueprintable)

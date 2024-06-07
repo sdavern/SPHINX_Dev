@@ -17,7 +17,7 @@
 #include "GamePuzzlePoint.h"
 #include "Generator.generated.h"
 
-
+class ASpawnPoint;
 
 //Make singleton, see GenerateForArea in PuzzleManager
 

@@ -16,6 +16,7 @@
 class AInventoryManager;
 class AAvatar;
 class UActionMenu;
+class ASpawnPoint;
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))

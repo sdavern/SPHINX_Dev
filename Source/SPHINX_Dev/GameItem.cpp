@@ -7,6 +7,7 @@
 #include "InventoryManager.h"
 #include "PlayerPawn.h"
 #include "ActionMenu.h"
+#include "SpawnPoint.h"
 
 
 // Sets default values
@@ -182,7 +183,7 @@ void UGameItem::ExecuteRule(URule* Rule)
 		this->ContainedValue = nullptr;
 		this->GetProperty("Contains")->RemoveProperty();
 	}
-	UWorld* World = GetWorld();
+	UWorld* World = GEngine->GetWorld();
 	ExecuteRule(World, Rule, true, this);
 	
 }
@@ -341,130 +342,53 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 {
 	//needo to fix this then go onto ExecuteRule()
 	AInventoryManager* InventoryManager = AInventoryManager::GetInstance();
-	
-/* 	if (Rule)
-	{
-		if (Rule->Inputs.Num() == 1)
-		{
-			if (this->FulfillsProperties(Rule->Inputs[0]))
-			{
-				return true;
-			}
-		}
-		
-		if (Rule->Inputs.Num() > 1)
-		{
-			UGameItem* SelectedItem = InventoryManager->GetSelectedItem();
-			UE_LOG(LogTemp, Display, TEXT("SelectedItem is %s"), *SelectedItem->Name);
+    
+    if (!Rule) 
+    {
+        return false;
+    }
 
-			if (SelectedItem)
-			{
-				for (UTerm* Input : Rule->Inputs)
-				{
-					if (SelectedItem->Name == Input->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Input->Name))
-					{
-						UE_LOG(LogTemp, Error, TEXT("SelectedItem is an Input"));
-						if (SelectedItem->FulfillsProperties(Input))
-						{
-							UE_LOG(LogTemp, Error, TEXT("SelectedItem fulfills input"));
-							return true;
-						}
-					}
-				}
-			}
-		}
-		
-	}
-	return false; */
-	
+    if (Rule->Inputs.Num() == 0) 
+    {
+        return false;
+    }
 
+    UGameItem* SelectedItem = InventoryManager->GetSelectedItem();
 
+	if (!SelectedItem || SelectedItem == this)
+    {
+        return false;
+    }
 
+    bool SelectedItemFulfilled = false;
+    bool ClickedItemFulfilled = false;
 
+    for (UTerm* Input : Rule->Inputs)
+    {
+        if (SelectedItem && (SelectedItem->Name == Input->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Input->Name)))
+        {
+            if (SelectedItem->FulfillsProperties(Input))
+            {
+                SelectedItemFulfilled = true;
+                break;
+            }
+        }
+    }
 
+    for (UTerm* Input : Rule->Inputs)
+    {
+        if (this->Name == Input->Name || this->DbItem->GetSuperTypes().Contains(Input->Name))
+        {
+            if (this->FulfillsProperties(Input))
+            {
+                ClickedItemFulfilled = true;
+                break;
+            }
+        }
+    }
 
+    return SelectedItemFulfilled && ClickedItemFulfilled;
 
-	if (Rule != nullptr)
-	{
-		Rule->Inputs[0]->GameItem = this;
-		UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[0]->GameItem is %s"), *Rule->Inputs[0]->GameItem->Name);
-		if (!this->FulfillsProperties(Rule->Inputs[0]))
-		{
-			return false;
-		}
-
-		if (Rule->Inputs.Num() > 1)
-		{
-			UE_LOG(LogTemp, Error, TEXT("Rule inputs > 1, %d"), Rule->Inputs.Num());
-			int i = 1;
-			if (Rule)
-			{
-				UGameItem* SelectedItem = InventoryManager->GetSelectedItem();
-				UE_LOG(LogTemp, Display, TEXT("GetSelectedItem called"));
-				if (SelectedItem != nullptr)
-				{
-					UE_LOG(LogTemp, Warning, TEXT("SelectedItem is %s"), *SelectedItem->Name);
-					
-					if (SelectedItem->Name == Rule->Inputs[1]->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[1]->Name))
-					{
-						UE_LOG(LogTemp, Display, TEXT("SelectedItem == Input 1"));
-						if (SelectedItem->FulfillsProperties(Rule->Inputs[1]))
-						{
-							UE_LOG(LogTemp, Display, TEXT("SelectedItem does fulfill properties"));
-							Rule->Inputs[1]->GameItem = SelectedItem;
-							i = 2;
-						}
-					}
-					else
-					{
-						UE_LOG(LogTemp, Display, TEXT("Fulfill properties is false"));
-						return false;
-					}
-				}
-				else 
-				{
-					return false;
-				}
-			}
-			TArray<UGameItem*> Inventory = InventoryManager->GetInventory();
-
-			if (Inventory.Num() == 0 && !Rule->HasPlayerInput())
-			{
-				UE_LOG(LogTemp, Display, TEXT("Rule does not have player input and inventory is 0"));
-				//return false;
-			}
-			for (; i < Rule->Inputs.Num(); i++)
-			{
-				bool Found = false;
-				if (Rule->Inputs[i]->Name == TEXT("Player"))
-				{
-					if (APuzzleManager::GetInstance()->GetPlayer()->FulfillsProperties(Rule->Inputs[1]))
-					{
-						Found = true;
-						Rule->Inputs[i]->GameItem = APuzzleManager::GetInstance()->GetPlayer();
-					}
-				}
-				for (UGameItem* InventoryItem : Inventory)
-				{
-					if (InventoryItem->Name == Rule->Inputs[i]->Name || InventoryItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[i]->Name))
-					{
-						if(InventoryItem->FulfillsProperties(Rule->Inputs[i]))
-						{
-							Found = true;
-							Rule->Inputs[i]->GameItem = InventoryItem;
-						}
-					}
-				}
-				if (!Found)
-				{
-					return false;
-				}
-			}
-		}
-		UE_LOG(LogTemp, Display, TEXT("Returning TRUE"));
-		return true;
-	}
-	return false;
 }
 
 bool UGameItem::FulfillsProperties(UTerm* Input)
@@ -572,3 +496,86 @@ FString UGameItem::ToString()
         UITextRef->SetText(FText::FromString(DbItem->Description));
     }
 } */
+
+//from RuleFulfilled()
+/* if (Rule != nullptr)
+	{
+		Rule->Inputs[0]->GameItem = this;
+		UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[0]->GameItem is %s"), *Rule->Inputs[0]->GameItem->Name);
+		if (!this->FulfillsProperties(Rule->Inputs[0]))
+		{
+			return false;
+		}
+
+		if (Rule->Inputs.Num() > 1)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Rule inputs > 1, %d"), Rule->Inputs.Num());
+			int i = 1;
+			if (Rule)
+			{
+				UGameItem* SelectedItem = InventoryManager->GetSelectedItem();
+				UE_LOG(LogTemp, Display, TEXT("GetSelectedItem called"));
+				if (SelectedItem != nullptr)
+				{
+					UE_LOG(LogTemp, Warning, TEXT("SelectedItem is %s"), *SelectedItem->Name);
+					
+					if (SelectedItem->Name == Rule->Inputs[1]->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[1]->Name))
+					{
+						UE_LOG(LogTemp, Display, TEXT("SelectedItem == Input 1"));
+						if (SelectedItem->FulfillsProperties(Rule->Inputs[1]))
+						{
+							UE_LOG(LogTemp, Display, TEXT("SelectedItem does fulfill properties"));
+							Rule->Inputs[1]->GameItem = SelectedItem;
+							i = 2;
+						}
+					}
+					else
+					{
+						UE_LOG(LogTemp, Display, TEXT("Fulfill properties is false"));
+						return false;
+					}
+				}
+				else 
+				{
+					return false;
+				}
+			}
+			TArray<UGameItem*> Inventory = InventoryManager->GetInventory();
+
+			if (Inventory.Num() == 0 && !Rule->HasPlayerInput())
+			{
+				UE_LOG(LogTemp, Display, TEXT("Rule does not have player input and inventory is 0"));
+				//return false;
+			}
+			for (; i < Rule->Inputs.Num(); i++)
+			{
+				bool Found = false;
+				if (Rule->Inputs[i]->Name == TEXT("Player"))
+				{
+					if (APuzzleManager::GetInstance()->GetPlayer()->FulfillsProperties(Rule->Inputs[1]))
+					{
+						Found = true;
+						Rule->Inputs[i]->GameItem = APuzzleManager::GetInstance()->GetPlayer();
+					}
+				}
+				for (UGameItem* InventoryItem : Inventory)
+				{
+					if (InventoryItem->Name == Rule->Inputs[i]->Name || InventoryItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[i]->Name))
+					{
+						if(InventoryItem->FulfillsProperties(Rule->Inputs[i]))
+						{
+							Found = true;
+							Rule->Inputs[i]->GameItem = InventoryItem;
+						}
+					}
+				}
+				if (!Found)
+				{
+					return false;
+				}
+			}
+		}
+		UE_LOG(LogTemp, Display, TEXT("Returning TRUE"));
+		return true;
+	}
+	return false; */

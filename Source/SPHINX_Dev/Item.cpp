@@ -2,6 +2,7 @@
 #include "Term.h"
 #include "Area.h"
 #include "PuzzlePoint.h"
+#include "SpawnPoint.h"
 
 UItem::UItem()
 {

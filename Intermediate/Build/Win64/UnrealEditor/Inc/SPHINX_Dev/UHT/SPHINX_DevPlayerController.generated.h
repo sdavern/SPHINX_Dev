@@ -20,6 +20,7 @@ class UInventoryButton;
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevPlayerController_h_27_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevPlayerController_h_27_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execClearSprites); \
 	DECLARE_FUNCTION(execCloseInventoryMenu); \
 	DECLARE_FUNCTION(execOpenInventoryMenu); \
 	DECLARE_FUNCTION(execOnSpriteButtonClicked); \

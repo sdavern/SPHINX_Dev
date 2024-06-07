@@ -3,7 +3,7 @@
 
 #include "Generator.h"
 #include "EngineUtils.h"
-
+#include "SpawnPoint.h"
 
 AGenerator* AGenerator::Instance = nullptr;
 FString AGenerator::PuzzleString = TEXT("");
