@@ -17,7 +17,8 @@ void ASpawnPoint::BeginPlay()
 {
 	Super::BeginPlay();
 	GetLocation();
-	ToPropPtrs();
+	ToSpawnPropPtrs();
+    UE_LOG(LogTemp, Error, TEXT("PropPtr is %s"), *PropPtrs[0]->Name);
 	
 }
 
@@ -33,8 +34,9 @@ void ASpawnPoint::GetLocation()
 	Location = GetActorLocation();
 }
 
-void ASpawnPoint::ToPropPtrs()
+void ASpawnPoint::ToSpawnPropPtrs()
 {
+    PropPtrs.Empty();
 	for (TSubclassOf<UItemProperty> Prop : SpawnableProperties)
     {
         if (Prop)

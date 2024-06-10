@@ -48,6 +48,10 @@ public:
 
 	UWorld* GetWorldForGenerator();
 
+	ASpawnPoint* GetSpawnPointFor(UItem* Item);
+
+	TArray<ASpawnPoint*> GetAllSpawnPoints();
+
 	int MAX_DEPTH = 20;
 
 	APuzzleManager* PMInstance;

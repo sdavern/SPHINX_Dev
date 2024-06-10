@@ -7,7 +7,7 @@
 UItem::UItem()
 {
     Name = TEXT("NewItem");
-    this->ToPropPtrs();
+    //ToPropPtrs();
     
 }
 
@@ -290,9 +290,10 @@ FVector UItem::GetNextSpawnPt()
 void UItem::PostInitProperties()
 {
     Super::PostInitProperties();
-
+    
     if (!HasAnyFlags(RF_ClassDefaultObject | RF_NeedLoad))
     {
+        ToPropPtrs();
         UItemProperty* Inspectable = NewObject<UItemProperty>(this, UItemProperty::StaticClass());
         if (Inspectable)
         {
@@ -320,6 +321,7 @@ UItem* UItem::Clone()
 
 void UItem::ToPropPtrs()
 {
+    Properties.Empty();
     for (TSubclassOf<UItemProperty> AssetClass : PropertiesBP)
     {
         if (AssetClass != nullptr)
@@ -327,6 +329,7 @@ void UItem::ToPropPtrs()
             UItemProperty* NewProp = NewObject<UItemProperty>(this, AssetClass);
             if (NewProp)
             {
+                UE_LOG(LogTemp, Warning, TEXT("For Item %s, prop %s added THIS IS FROM THE ITEM SCRIPT"), *Name, *NewProp->Name);
                 Properties.Add(NewProp);
             }
         }

@@ -16,10 +16,10 @@ public:
 	// Sets default values for this actor's properties
 	ASpawnPoint();
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector Location;
 	
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<UItemProperty>> SpawnableProperties;
 
 	TArray<UItemProperty*> PropPtrs;
@@ -29,7 +29,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void GetLocation();
 
-	void ToPropPtrs();
+	void ToSpawnPropPtrs();
 
 protected:
 	// Called when the game starts or when spawned

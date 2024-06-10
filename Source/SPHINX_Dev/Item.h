@@ -29,6 +29,7 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
 	TArray<TSubclassOf<UItemProperty>> PropertiesBP;
 
+	UPROPERTY(VisibleAnywhere)
     TArray<UItemProperty*> Properties;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")

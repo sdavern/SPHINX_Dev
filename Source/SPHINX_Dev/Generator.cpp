@@ -52,7 +52,6 @@ void AGenerator::BeginPlay()
 	Instance = GetInstance();
 	PMInstance = APuzzleManager::GetInstance();
 	InventoryInstance = AInventoryManager::GetInstance();
-	
 }
 
 // Called every frame
@@ -85,9 +84,15 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
 
 	if (!Found)
 	{
-		FVector NextSpawnPoint = Item->GetNextSpawnPt();
-		UE_LOG(LogTemp, Display, TEXT("Spawn point: %s ( %s )"), *NextSpawnPoint.ToString(), *Item->Name);
-		AActor* ItemGO = World->SpawnActor<AActor>(Item->ItemPrefab, NextSpawnPoint, FRotator::ZeroRotator);
+		ASpawnPoint* NextSpawnPoint = GetSpawnPointFor(Item);
+		if (NextSpawnPoint)
+		{
+			FVector NextSpawnVector = NextSpawnPoint->Location;
+			UE_LOG(LogTemp, Display, TEXT("Spawn point: %s ( %s )"), *NextSpawnVector.ToString(), *Item->Name);
+			//AActor* ItemGO = World->SpawnActor<AActor>(Item->ItemPrefab, NextSpawnVector, FRotator::ZeroRotator);
+			NextSpawnPoint->HasSpawnedItem = true;
+		}
+		
 	}
 }
 
@@ -323,10 +328,76 @@ AGamePuzzlePoint* AGenerator::FindGamePuzzlePoint(UPuzzlePoint* PP)
 	return FoundGamePuzzlePoint;
 }
 
+ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
+{
+	if (Item)
+	{
+		UE_LOG(LogTemp, Display, TEXT("Item has %d properties"), Item->Properties.Num());
+		//Item->ToPropPtrs();
+		TArray<ASpawnPoint*> AllSPs = GetAllSpawnPoints();
+		//UE_LOG(LogTemp, Error, TEXT("SP has %s as prop"), *AllSPs[0]->PropPtrs[0]->Name);
+		UE_LOG(LogTemp, Error, TEXT("Item has %s as prop THIS IS FROM THE GENERATOR SCRIPT"), *Item->Properties[0]->Name);
+		TArray<ASpawnPoint*> FoundSPs;
+		for (UItemProperty* Prop : Item->Properties)
+		{
+			if (Prop)
+			{
+				for (ASpawnPoint* SP : AllSPs)
+				{
+					if (SP)
+					{
+						UE_LOG(LogTemp, Error, TEXT("SP has %d Props"), SP->PropPtrs.Num());
+						UE_LOG(LogTemp, Warning, TEXT("SP is valid"));
+						if (SP->PropPtrs.Contains(Prop) && !SP->HasSpawnedItem)
+						{
+							UE_LOG(LogTemp, Warning, TEXT("SP added to FoundSPs"));
+							FoundSPs.Add(SP);
+						}
+					}
+					
+				}
+			}
+			
+		}
+
+		/* if (FoundSPs[0] && FoundSPs.Num() > 1)
+		{
+			int RandIndex = FMath::RandRange(0, FoundSPs.Num() - 1);
+			UE_LOG(LogTemp, Warning, TEXT("SpawnPoint chosen for item %s"), *Item->Name);
+			return FoundSPs[RandIndex];
+		}
+		else if (FoundSPs[0] && FoundSPs.Num() == 1)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Sole SpawnPoint for item %s"), *Item->Name);
+			return FoundSPs[0];
+		}
+		else 
+		{
+			UE_LOG(LogTemp, Error, TEXT("NO SPAWN POINT FOUND!!!"));
+			return nullptr;
+		} */
 
 
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Item is not valid"));
+	return nullptr;
+}
 
-
+TArray<ASpawnPoint*> AGenerator::GetAllSpawnPoints()
+{
+	UWorld* World = GetWorld();
+    TArray<ASpawnPoint*> SPsInWorld;
+    for (TActorIterator<ASpawnPoint> It(World); It; ++It)
+    {
+        ASpawnPoint* SP = *It;
+        if (SP != nullptr)
+        {
+            SPsInWorld.Add(SP);
+        }
+    }
+	UE_LOG(LogTemp, Error, TEXT("No. of Spawn Points: %d"), SPsInWorld.Num());
+    return SPsInWorld;
+}
 
 
 
