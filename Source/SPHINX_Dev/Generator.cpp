@@ -70,7 +70,7 @@ void AGenerator::EndPlay(const EEndPlayReason::Type EndPlayReason)
 void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP)
 {
 	bool Found = false;
-    TArray<UGameItem*> ItemsInWorld = Instance->PMInstance->GetGameItemsInWorld();
+    TArray<UGameItem*> ItemsInWorld = PMInstance->GetGameItemsInWorld();
 
     for (int32 i = 0; i < ItemsInWorld.Num(); i++)
     {
@@ -78,7 +78,7 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
         {
             ItemsInWorld[i]->Setup(Item->Name, Item);
             Found = true;
-            ItemsInWorld[i]->Name = TEXT(" ");
+            //ItemsInWorld[i]->Name = TEXT(" ");
         }
     }
 
@@ -89,10 +89,14 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
 		{
 			FVector NextSpawnVector = NextSpawnPoint->Location;
 			UE_LOG(LogTemp, Display, TEXT("Spawn point: %s ( %s )"), *NextSpawnVector.ToString(), *Item->Name);
-			//AActor* ItemGO = World->SpawnActor<AActor>(Item->ItemPrefab, NextSpawnVector, FRotator::ZeroRotator);
-			NextSpawnPoint->HasSpawnedItem = true;
+			if (Item->ItemPrefab && World)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("ItemPrefab is valid"));
+				UE_LOG(LogTemp, Error, TEXT("TRYING TO SPAWN %s"), *Item->Name);
+				AActor* ItemGO = World->SpawnActor<AActor>(Item->ItemPrefab.Get(), NextSpawnVector, FRotator::ZeroRotator);
+				NextSpawnPoint->HasSpawnedItem = true;
+			}
 		}
-		
 	}
 }
 
@@ -183,7 +187,6 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel, AGenerator* GInstance)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Calling FindDbItemsFor"));
-	//The PMInstance isn't the main one and ItemAssets is not populated when the game is run a second time.
 	TArray<UItem*> MatchingItems = GInstance->PMInstance->FindDbItemsFor(StartTerm, NewAccessiblePPs, ItemsInLevel); 
 
 	if (MatchingItems.Num() == 0)
@@ -198,6 +201,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	{
 		StartTerm->DbItem = MatchingItems[FMath::RandRange(0, MatchingItems.Num() - 1)];
 		UE_LOG(LogTemp, Warning, TEXT("StartTerm is %s and DbItem is %s"), *StartTerm->Name, *StartTerm->DbItem->Name);
+		//UE_LOG(LogTemp, Error, TEXT("DbItem %s has %d property %s %s"), *StartTerm->DbItem->Name, StartTerm->DbItem->Properties.Num(), *StartTerm->DbItem->Properties[0]->Name, *StartTerm->DbItem->Properties[0]->Value);
 		if (ItemsInLevel.Contains(StartTerm->DbItem))
 		{
 			UE_LOG(LogTemp, Error, TEXT("ITEMSINLEVEL CONTAINS STARTTERM->DBITEM"));
@@ -312,9 +316,8 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 		return false;
 	}
 
-	//Doesn't matter what GetWorld() is called on as there is only one UWorld*
-	UWorld* World = GEngine->GetWorld();
-	//Spawn(World, StartTerm->DbItem, ParentRule, CurrentPP);
+	UWorld* World = GetWorld();
+	Spawn(World, StartTerm->DbItem, ParentRule, CurrentPP);
 	UE_LOG(LogTemp, Display, TEXT("DbItem added to spawn list: %s"), *StartTerm->DbItem->Name);
 	return true;
 }
@@ -333,40 +336,39 @@ ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 	if (Item)
 	{
 		UE_LOG(LogTemp, Display, TEXT("Item has %d properties"), Item->Properties.Num());
-		//Item->ToPropPtrs();
 		TArray<ASpawnPoint*> AllSPs = GetAllSpawnPoints();
-		//UE_LOG(LogTemp, Error, TEXT("SP has %s as prop"), *AllSPs[0]->PropPtrs[0]->Name);
-		UE_LOG(LogTemp, Error, TEXT("Item has %s as prop THIS IS FROM THE GENERATOR SCRIPT"), *Item->Properties[0]->Name);
 		TArray<ASpawnPoint*> FoundSPs;
 		for (UItemProperty* Prop : Item->Properties)
 		{
 			if (Prop)
 			{
+				UE_LOG(LogTemp, Warning, TEXT("Property of %s in GetSpawnPointFor for loop is %s %s"), *Item->Name, *Prop->Name, *Prop->Value);
 				for (ASpawnPoint* SP : AllSPs)
 				{
 					if (SP)
 					{
 						UE_LOG(LogTemp, Error, TEXT("SP has %d Props"), SP->PropPtrs.Num());
 						UE_LOG(LogTemp, Warning, TEXT("SP is valid"));
-						if (SP->PropPtrs.Contains(Prop) && !SP->HasSpawnedItem)
+						for (UItemProperty* SPProp : SP->PropPtrs)
 						{
-							UE_LOG(LogTemp, Warning, TEXT("SP added to FoundSPs"));
-							FoundSPs.Add(SP);
+							if (SPProp && SPProp->Name == Prop->Name && SPProp->Value == Prop->Value/*  && !SP->HasSpawnedItem */)
+							{
+								UE_LOG(LogTemp, Warning, TEXT("SP added to FoundSPs"));
+								FoundSPs.Add(SP);
+							}
 						}
 					}
-					
 				}
 			}
-			
 		}
 
-		/* if (FoundSPs[0] && FoundSPs.Num() > 1)
+		if (FoundSPs.Num() > 1)
 		{
 			int RandIndex = FMath::RandRange(0, FoundSPs.Num() - 1);
 			UE_LOG(LogTemp, Warning, TEXT("SpawnPoint chosen for item %s"), *Item->Name);
 			return FoundSPs[RandIndex];
 		}
-		else if (FoundSPs[0] && FoundSPs.Num() == 1)
+		else if (FoundSPs.Num() == 1)
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Sole SpawnPoint for item %s"), *Item->Name);
 			return FoundSPs[0];
@@ -375,7 +377,7 @@ ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 		{
 			UE_LOG(LogTemp, Error, TEXT("NO SPAWN POINT FOUND!!!"));
 			return nullptr;
-		} */
+		} 
 
 
 	}

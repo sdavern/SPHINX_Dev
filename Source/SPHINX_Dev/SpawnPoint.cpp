@@ -18,8 +18,6 @@ void ASpawnPoint::BeginPlay()
 	Super::BeginPlay();
 	GetLocation();
 	ToSpawnPropPtrs();
-    UE_LOG(LogTemp, Error, TEXT("PropPtr is %s"), *PropPtrs[0]->Name);
-	
 }
 
 // Called every frame
@@ -45,7 +43,7 @@ void ASpawnPoint::ToSpawnPropPtrs()
             if (PropPtr)
             {
                 PropPtrs.Add(PropPtr);
-                UE_LOG(LogTemp, Error, TEXT("PropPtr added"));
+                UE_LOG(LogTemp, Error, TEXT("PropPtr %s %s added"), *PropPtr->Name, *PropPtr->Value);
             }
             
         }

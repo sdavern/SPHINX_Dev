@@ -67,6 +67,8 @@ public:
 
 	TArray<TSubclassOf<UItem>> ItemAssets;
 
+	TArray<UItem*> AllItems;
+
 	TArray<TSubclassOf<URule>> RuleAssets;
 
 	//TArray<TSubclassOf<UArea>> AreaAssets;
@@ -151,6 +153,7 @@ public:
 
 	void ReturnLeaves();
 
+	void ActivateProperties();
 
 
 

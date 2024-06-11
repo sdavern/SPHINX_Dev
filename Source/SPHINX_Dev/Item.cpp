@@ -293,7 +293,7 @@ void UItem::PostInitProperties()
     
     if (!HasAnyFlags(RF_ClassDefaultObject | RF_NeedLoad))
     {
-        ToPropPtrs();
+        //ToPropPtrs();
         UItemProperty* Inspectable = NewObject<UItemProperty>(this, UItemProperty::StaticClass());
         if (Inspectable)
         {

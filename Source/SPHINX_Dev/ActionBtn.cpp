@@ -48,6 +48,6 @@ void UActionBtn::OnButtonClicked()
     {
         UE_LOG(LogTemp, Error, TEXT("ActionButton clicked"));
         // Execute the rule associated with the button
-        //LinkedGameItem->ExecuteRule(LinkedRule);
+        LinkedGameItem->ExecuteRule(LinkedRule);
     }
 }

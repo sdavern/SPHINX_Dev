@@ -149,7 +149,6 @@ void ASPHINX_DevPlayerController::GrabGameItem(UGameItem* GameItem)
         if (ActivePlayer->IsHoldingItem)
         {
             UE_LOG(LogTemp, Display, TEXT("Player is already holding item"));
-            
             //open menu and allow for inspection, add to inventory or swap item in hand to new item by sending old item to inventory
         }
         else

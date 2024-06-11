@@ -3,8 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
 #include "Blueprint/UserWidget.h"
+#include "EngineUtils.h"
+#include "GameFramework/Actor.h"
+#include "Camera/PlayerCameraManager.h"
+#include "Kismet/GameplayStatics.h"
 #include "PaperSpriteComponent.h"
 #include "PaperSprite.h"
 #include "GameItem.h"
@@ -142,6 +147,7 @@ public:
 	void ClearSprites();
 
 	FString AddSpacesBeforeCaps(const FString& InString);
+	
 
 
 protected:

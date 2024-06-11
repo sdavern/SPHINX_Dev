@@ -31,6 +31,8 @@ void APuzzleManager::BeginPlay()
     Super::BeginPlay();
     Instance = GetInstance();
 
+    ActivateProperties();
+
     if (Everything != nullptr)
     {
         Everything->SetActorHiddenInGame(false);
@@ -304,10 +306,9 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         
         if (FoundLeavesRules)
         {
-            UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid and is %s"), *FoundLeavesRules->RulesArray[1]->Action);
+            //UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid and is %s"), *FoundLeavesRules->RulesArray[1]->Action);
             for (URule* Rule: FoundLeavesRules->RulesArray) 
             {
-            
                 if (Rule && Rule->Action != TEXT(""))
                 {
                     AddApplicableRule(Rule, GameItem, Rules);
@@ -388,9 +389,10 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
 
 void APuzzleManager::ExecuteRule(URule* Rule)
 {
+    UWorld* World = GetWorld();
     UPuzzlePoint* FoundPP = Rule->OwningPP;
     AGamePuzzlePoint* OwningGPP = nullptr;
-    for (TActorIterator<AGamePuzzlePoint> It(FoundPP->GetWorld()); It; ++It)
+    for (TActorIterator<AGamePuzzlePoint> It(World); It; ++It)
     {
         AGamePuzzlePoint* GPP = *It;
         if (GPP && GPP->Name == FoundPP->Name)  
@@ -401,7 +403,7 @@ void APuzzleManager::ExecuteRule(URule* Rule)
     }   
 
     FRulesStruct* FoundLeavesRules = Leaves.Find(FoundPP);
-    UWorld* World = GetWorld();
+    
     if (FoundLeavesRules->RulesArray.Contains(Rule))
     {
         UE_LOG(LogTemp, Display, TEXT("Execute: %s"), *Rule->Parent->Outputs[0]->Name);
@@ -532,21 +534,29 @@ TArray<UItem*> APuzzleManager::GetItemsOfType(FString ItemName, TArray<UPuzzlePo
 
 TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
 {
-    UE_LOG(LogTemp, Warning, TEXT("FindDbItemsFor called and ItemAssets has %d items"), ItemAssets.Num());
+    UE_LOG(LogTemp, Warning, TEXT("FindDbItemsFor called and AllItems has %d items"), AllItems.Num());
+    UE_LOG(LogTemp, Display, TEXT("AllItems[0] is %s and has %d properties: %s %s"), *AllItems[0]->Name, AllItems[0]->Properties.Num(), *AllItems[0]->Properties[0]->Name, *AllItems[0]->Properties[0]->Value);
+    
     TArray<UItem*> MatchingItems;
-
-    for (TSubclassOf<UItem> DbItem : ItemAssets)
+    for (UItem* DbItem : AllItems)
     {
-        if (DbItem != nullptr)
+        if (DbItem && DbItem->Matches(Term) && DbItem->IsAccessible(AccessiblePPs, ItemsInLevel))
         {
-            UItem* DbItemPtr = NewObject<UItem>(this, DbItem);
-            if (DbItemPtr && DbItemPtr->Matches(Term) && DbItemPtr->IsAccessible(AccessiblePPs, ItemsInLevel))
-            {
-                MatchingItems.Add(DbItemPtr);
-                UE_LOG(LogTemp, Warning, TEXT("DbItem %s added to MatchingItems"), *DbItemPtr->Name);
-            }
+            MatchingItems.Add(DbItem);
+            UE_LOG(LogTemp, Warning, TEXT("DbItem %s is valid and matches so it should work!!!!!!!!!!!!!!!!!!!!!!!!!!!"), *DbItem->Name);
         }
     }
+    
+    /* TArray<UItem*> NAllItems = GetAllItems();
+
+    for (UItem* DbItem : NAllItems)
+    {
+        if (DbItem && DbItem->Matches(Term) && DbItem->IsAccessible(AccessiblePPs, ItemsInLevel))
+        {
+            MatchingItems.Add(DbItem);
+            UE_LOG(LogTemp, Warning, TEXT("DbItem %s added to MatchingItems"), *DbItem->Name);
+        }
+    } */
     return MatchingItems;
 }
 
@@ -879,9 +889,8 @@ TArray<UItem*> APuzzleManager::GetItemsInWorld()
 
 TArray<UGameItem*> APuzzleManager::GetGameItemsInWorld()
 {
-    UWorld* World = GEngine->GetWorld();
+    UWorld* World = GetWorld();
     TArray<UGameItem*> GameItemsInWorld;
-
     if (World != nullptr)
     {
         for (TActorIterator<AActor> It(World); It; ++It)
@@ -934,7 +943,14 @@ TArray<AGamePuzzlePoint*> APuzzleManager::GetPPsInWorld()
     return PPsInWorld;
 }
 
-
+void APuzzleManager::ActivateProperties()
+{
+    AllItems = GetAllItems();
+    for (UItem* Item : AllItems)
+    {
+        Item->ToPropPtrs();
+    }
+}
 
 
 /* TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)

@@ -183,8 +183,11 @@ void UGameItem::ExecuteRule(URule* Rule)
 		this->ContainedValue = nullptr;
 		this->GetProperty("Contains")->RemoveProperty();
 	}
-	UWorld* World = GEngine->GetWorld();
-	ExecuteRule(World, Rule, true, this);
+	UWorld* World = GetWorld();
+	if (World)
+	{
+		ExecuteRule(World, Rule, true, this);
+	}
 	
 }
 
@@ -302,8 +305,10 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					FTransform Transform = ObjectsToDestroy[SpawnIndex]->GetTransform();
 					Transform.SetLocation(Transform.GetLocation() + FVector (0, 0, 100));
 					FActorSpawnParameters SpawnParams;
-					ItemGO = World->SpawnActor<AActor>(Output->DbItem->ItemPrefab, Transform, SpawnParams);
-        			
+					if (Output->DbItem->ItemPrefab && World)
+					{
+						ItemGO = World->SpawnActor<AActor>(Output->DbItem->ItemPrefab.Get(), Transform, SpawnParams);
+					}
 				}
 				else
 				{
@@ -327,7 +332,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 		FirstOutput = false;
 	}
 
-	PMInstance->ExecuteRule(Rule);
+	//PMInstance->ExecuteRule(Rule);
 
 	for (AActor* GO : ObjectsToDestroy)
 	{
