@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "ItemProperty.h"
+#include "GameItem.h"
+#include "Components/SphereComponent.h"
 #include "SpawnPoint.generated.h"
 
 UCLASS()
@@ -15,6 +17,9 @@ class SPHINX_DEV_API ASpawnPoint : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ASpawnPoint();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float SphereRadius = 32.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector Location;
@@ -30,6 +35,8 @@ public:
 	void GetLocation();
 
 	void ToSpawnPropPtrs();
+
+	void CheckForItem();
 
 protected:
 	// Called when the game starts or when spawned

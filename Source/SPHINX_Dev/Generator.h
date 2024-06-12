@@ -36,6 +36,9 @@ public:
 
 	static const bool DebugMode = true;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float FindSpawnDelay = 5.0f;
+
 	void Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP);
 
 	URule* GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs, int depth);
@@ -51,6 +54,11 @@ public:
 	ASpawnPoint* GetSpawnPointFor(UItem* Item);
 
 	TArray<ASpawnPoint*> GetAllSpawnPoints();
+
+	TArray<ASpawnPoint*> GetSPsInViewport();
+
+	UFUNCTION()
+	void RetryGetSpawnPointFor(UItem* Item);
 
 	int MAX_DEPTH = 20;
 

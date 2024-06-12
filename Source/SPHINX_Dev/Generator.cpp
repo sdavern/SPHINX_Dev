@@ -2,8 +2,17 @@
 
 
 #include "Generator.h"
+#include "Engine/World.h"
+#include "GameFramework/PlayerController.h"
+#include "Camera/PlayerCameraManager.h"
 #include "EngineUtils.h"
+#include "Kismet/GameplayStatics.h"
+#include "DrawDebugHelpers.h"
 #include "SpawnPoint.h"
+#include "SceneView.h"
+#include "TimerManager.h"
+#include "SceneViewExtension.h"
+#include "SceneManagement.h"
 
 AGenerator* AGenerator::Instance = nullptr;
 FString AGenerator::PuzzleString = TEXT("");
@@ -333,6 +342,8 @@ AGamePuzzlePoint* AGenerator::FindGamePuzzlePoint(UPuzzlePoint* PP)
 
 ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 {
+	TArray<ASpawnPoint*> SPsFound;
+	SPsFound = GetSPsInViewport();
 	if (Item)
 	{
 		UE_LOG(LogTemp, Display, TEXT("Item has %d properties"), Item->Properties.Num());
@@ -362,6 +373,18 @@ ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 			}
 		}
 
+		for (ASpawnPoint* SP : FoundSPs)
+		{
+			for (ASpawnPoint* VSP : SPsFound)
+			{
+				if (SP == VSP)
+				{
+					UE_LOG(LogTemp, Display, TEXT("SP removed"));
+					FoundSPs.Remove(SP);
+				}
+			}
+		} 
+
 		if (FoundSPs.Num() > 1)
 		{
 			int RandIndex = FMath::RandRange(0, FoundSPs.Num() - 1);
@@ -375,14 +398,38 @@ ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 		}
 		else 
 		{
-			UE_LOG(LogTemp, Error, TEXT("NO SPAWN POINT FOUND!!!"));
-			return nullptr;
+			UE_LOG(LogTemp, Error, TEXT("NO SPAWN POINT FOUND!!! Waiting %f seconds before trying to find new spawn point"), FindSpawnDelay);
+
+			FTimerDelegate TimerDel;
+			TimerDel.BindUFunction(this, FName("RetryGetSpawnPointFor"), Item);
+			FTimerHandle TimerHandle;
+			GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, FindSpawnDelay, false);
+
 		} 
-
-
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Item is not valid"));
 	return nullptr;
+}
+
+void AGenerator::RetryGetSpawnPointFor(UItem* Item)
+{
+	ASpawnPoint* NewSpawnPoint = GetSpawnPointFor(Item);
+    if (NewSpawnPoint)
+    {
+        UWorld* World = GetWorld();
+        if (World)
+        {
+            FVector NextSpawnVector = NewSpawnPoint->Location;
+            if (Item->ItemPrefab)
+            {
+                AActor* ItemGO = World->SpawnActor<AActor>(Item->ItemPrefab.Get(), NextSpawnVector, FRotator::ZeroRotator);
+                if (ItemGO)
+                {
+                    NewSpawnPoint->HasSpawnedItem = true;
+                }
+            }
+        }
+    }
 }
 
 TArray<ASpawnPoint*> AGenerator::GetAllSpawnPoints()
@@ -402,7 +449,84 @@ TArray<ASpawnPoint*> AGenerator::GetAllSpawnPoints()
 }
 
 
+TArray<ASpawnPoint*> AGenerator::GetSPsInViewport()
+{
+    TArray<ASpawnPoint*> FoundSPs;
+    UWorld* World = GetWorld();
+    if (!World)
+    {
+        UE_LOG(LogTemp, Error, TEXT("World is null"));
+        return FoundSPs;
+    }
 
+    APlayerController* PlayerController = World->GetFirstPlayerController();
+    if (!PlayerController)
+    {
+        UE_LOG(LogTemp, Error, TEXT("PlayerController is null"));
+        return FoundSPs;
+    }
+
+    FVector CameraLocation;
+    FRotator CameraRotation;
+    PlayerController->GetPlayerViewPoint(CameraLocation, CameraRotation);
+
+    int32 ViewportSizeX, ViewportSizeY;
+    PlayerController->GetViewportSize(ViewportSizeX, ViewportSizeY);
+
+    FSceneViewFamily::ConstructionValues ViewFamilyInit(
+        PlayerController->GetLocalPlayer()->ViewportClient->Viewport,
+        World->Scene,
+        PlayerController->GetLocalPlayer()->ViewportClient->EngineShowFlags);
+
+    FSceneViewFamilyContext ViewFamily(ViewFamilyInit);
+
+    FSceneViewInitOptions ViewInitOptions;
+    ViewInitOptions.SetViewRectangle(FIntRect(0, 0, ViewportSizeX, ViewportSizeY));
+    ViewInitOptions.ViewFamily = &ViewFamily;
+    ViewInitOptions.ViewOrigin = CameraLocation;
+    ViewInitOptions.ViewRotationMatrix = FInverseRotationMatrix(CameraRotation) * FMatrix(FPlane(0, 0, 1, 0), FPlane(1, 0, 0, 0), FPlane(0, 1, 0, 0), FPlane(0, 0, 0, 1));
+    ViewInitOptions.ProjectionMatrix = FReversedZPerspectiveMatrix(
+        FMath::Max(0.001f, PlayerController->PlayerCameraManager->GetFOVAngle()),
+        1.0f,
+        GNearClippingPlane,
+        GNearClippingPlane);
+
+    FSceneView* View = new FSceneView(ViewInitOptions);
+
+    FConvexVolume ViewFrustum;
+    GetViewFrustumBounds(ViewFrustum, View->ViewMatrices.GetViewProjectionMatrix(), true);
+
+    for (TActorIterator<ASpawnPoint> ActorItr(World); ActorItr; ++ActorItr)
+    {
+        ASpawnPoint* Actor = *ActorItr;
+        if (IsValid(Actor))
+        {
+            const FBoxSphereBounds Bounds = Actor->GetComponentsBoundingBox();
+            if (ViewFrustum.IntersectBox(Bounds.Origin, Bounds.BoxExtent))
+            {
+                FHitResult HitResult;
+                FCollisionQueryParams Params;
+                Params.AddIgnoredActor(PlayerController->GetPawn());
+                Params.AddIgnoredActor(Actor);
+
+                World->LineTraceSingleByChannel(
+                    HitResult,
+                    CameraLocation,
+                    Actor->GetActorLocation(),
+                    ECC_Visibility,
+                    Params
+                );
+
+                if (!HitResult.bBlockingHit || HitResult.GetActor() == Actor)
+                {
+                    FoundSPs.Add(Actor);
+                }
+            }
+        }
+    }
+	UE_LOG(LogTemp, Warning, TEXT("%d SPAWN POINTS ARE VISIBLE IN THE VIEWPORT"), FoundSPs.Num());
+    return FoundSPs;
+}
 
 
 

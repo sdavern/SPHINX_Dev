@@ -18,10 +18,8 @@ APuzzleManager::APuzzleManager()
 {
     PrimaryActorTick.bCanEverTick = true;
     PPAssets = LoadPuzzlePointBPs();
-    //Item
     ItemAssets = LoadItemBPs();
     UE_LOG(LogTemp, Error, TEXT("ItemAssets has %d items"), ItemAssets.Num());
-    //Rule
     RuleAssets = LoadRuleBPs();
     ActivateMaxPuzzlePoints();
 }
@@ -87,8 +85,6 @@ void APuzzleManager::Tick(float DeltaTime)
     
     ActivateMaxPuzzlePoints();
     GenerateForActivePuzzlePoints();
-    //ReturnLeaves();
-    
 }
 
 void APuzzleManager::EndPlay(const EEndPlayReason::Type EndPlayReason)

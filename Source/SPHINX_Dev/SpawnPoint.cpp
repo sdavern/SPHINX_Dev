@@ -2,6 +2,9 @@
 
 
 #include "SpawnPoint.h"
+#include "Engine/World.h"
+#include "GameFramework/Actor.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "EngineUtils.h"
 
 // Sets default values
@@ -9,6 +12,12 @@ ASpawnPoint::ASpawnPoint()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+    USphereComponent* SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
+    SphereComponent->SetupAttachment(RootComponent);
+    SphereComponent->SetSphereRadius(SphereRadius);  
+    SphereComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+    SphereComponent->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
+    SphereComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
 
 }
 
@@ -18,12 +27,14 @@ void ASpawnPoint::BeginPlay()
 	Super::BeginPlay();
 	GetLocation();
 	ToSpawnPropPtrs();
+    CheckForItem();
 }
 
 // Called every frame
 void ASpawnPoint::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+    CheckForItem();
 
 }
 
@@ -50,3 +61,39 @@ void ASpawnPoint::ToSpawnPropPtrs()
     }
 }
 
+void ASpawnPoint::CheckForItem()
+{
+    FVector SphereLocation = GetActorLocation();
+    
+    TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+    ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_WorldDynamic));
+    
+    TArray<AActor*> OverlappingActors;
+    UKismetSystemLibrary::SphereOverlapActors(
+        this,
+        SphereLocation,
+        SphereRadius,
+        ObjectTypes,
+        AActor::StaticClass(), 
+        TArray<AActor*>(),
+        OverlappingActors
+    );
+
+    for (AActor* Actor : OverlappingActors)
+    {
+        if (Actor && Actor->FindComponentByClass<UGameItem>())
+        {
+            HasSpawnedItem = true;
+        }
+        else
+        {
+            HasSpawnedItem = false;
+        }
+        
+    }
+
+
+
+
+
+}
