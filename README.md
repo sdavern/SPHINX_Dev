@@ -1,3 +1,3 @@
-Development of SPHINX: 
-Currently porting Unity code to UE5
+Development of SPHINX 2 (Procedural Narrative Puzzle Generator) and accompanying demo 
+
 Copyright Sam Davern 2024
