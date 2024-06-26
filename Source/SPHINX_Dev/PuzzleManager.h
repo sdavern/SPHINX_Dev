@@ -77,6 +77,8 @@ public:
 
 	TArray<UPuzzlePoint*> AccessiblePPs;
 
+	TMap<FString, UPuzzlePoint*> RulePPs;
+
 	static APuzzleManager* GetInstance();
 
 	void GenerateForActivePuzzlePoints();

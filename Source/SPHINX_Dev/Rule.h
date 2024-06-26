@@ -63,7 +63,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Name;
 
-
+	
 
 
 

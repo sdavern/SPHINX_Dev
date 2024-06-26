@@ -101,6 +101,10 @@
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\actionmenu.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\actionmenu.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\spawnpoint.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\spherecomponent.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\spherecomponent.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\spawnpoint.generated.h"
         ],
         "ImportedModules": [],

@@ -149,7 +149,6 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionBut
 void UGameItem::ExecuteRule(URule* Rule)
 {
 	AInventoryManager* Inventory = AInventoryManager::GetInstance();
-	
 
 	//Inpspect logic requires statistics class
 
@@ -196,14 +195,18 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 	TArray<AActor*> ObjectsToDestroy;
 	AInventoryManager* Inventory = AInventoryManager::GetInstance();
 	APuzzleManager* PMInstance = APuzzleManager::GetInstance();
-
+	//UE_LOG(LogTemp, Warning, TEXT("%s has %d properties, Rule has %d inputs"), *Rule->Inputs[0]->GameItem->Name, Rule->Inputs[0]->GameItem->Properties.Num(), Rule->Inputs.Num());
+	//UE_LOG(LogTemp, Warning, TEXT("Rules inputs are %s and %s"), *Rule->Inputs[0]->Name, *Rule->Inputs[1]->Name);
+	UE_LOG(LogTemp, Warning, TEXT("Input[0] is %s and has GameItem %s"), *Rule->Inputs[0]->Name, *Rule->Inputs[0]->GameItem->Name);
 	for (int32 i = 0; i < Rule->Inputs.Num(); i++)
 	{
-		bool Found = true;
+		UE_LOG(LogTemp, Display, TEXT("Rule %s has input %s at [%d]"), *Rule->Action, *Rule->Inputs[i]->Name, i);
+		bool Found = false;
 		for (UTerm* Output : Rule->Outputs)
 		{
 			if (Output->Name == Rule->Inputs[i]->Name)
 			{
+				UE_LOG(LogTemp, Display, TEXT("Output equals rule input"));
 				Found = true;
 				Output->GameItem = Rule->Inputs[i]->GameItem;
 				break;
@@ -234,7 +237,31 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 		}
 
 		UE_LOG(LogTemp, Display, TEXT("Input Item at %d : %s of rule %s"), i, *Rule->Inputs[i]->ToString(), *Rule->ToString());
-		if (!Found && Rule->Inputs[i]->GameItem->IsDestrutible())
+		
+		if (Rule)
+		{
+			UE_LOG(LogTemp, Display, TEXT("Rule is valid"));
+			if (Rule->Inputs[i])
+			{
+				UE_LOG(LogTemp, Display, TEXT("Inputs are valid, input is %s"), *Rule->Inputs[i]->Name);
+				{
+					//DbItem needs to be set for each input
+					if (Rule->Inputs[i]->GameItem)
+					{
+						UE_LOG(LogTemp, Display, TEXT("GameItem %s is valid"), *Rule->Inputs[i]->GameItem->Name);
+					}
+					else
+					{
+						UE_LOG(LogTemp, Error, TEXT("Inputs has %d items"), Rule->Inputs.Num());
+					}
+					
+				}
+			}
+		}
+
+
+		
+		/* if (!Found && Rule->Inputs[i]->GameItem->IsDestructible())
 		{
 			UE_LOG(LogTemp, Display, TEXT("Destroying: %s"), *Rule->Inputs[i]->Name);
 			if (i == 0)
@@ -249,23 +276,34 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 				}
 			}
 		}
+		else 
+		{
+			UE_LOG(LogTemp, Display, TEXT("Destruction sequence failed"));
+		} */
+	
 	}
+	
+
 	int32 SpawnIndex = 0;
 	bool FirstOutput = true;
 	for (UTerm* Output : Rule->Outputs)
 	{
+		UE_LOG(LogTemp, Display, TEXT("Rule %s has %d outputs"), *Rule->Action, Rule->Outputs.Num());
 		bool Found = false;
 		for (UTerm* Input : Rule->Inputs)
 		{
 			if (Output->Name == TEXT("Player"))
 			{
+				UE_LOG(LogTemp, Display, TEXT("Output->Name == player"));
 				for (UItemProperty* OutputProperty : Output->Properties)
 				{
+					UE_LOG(LogTemp, Display, TEXT("PlayerProperties being updated"));
 					APuzzleManager::GetInstance()->UpdatePlayerProperties(OutputProperty);
 				}
 			}
 			if (Output->Name == Input->Name)
 			{
+				UE_LOG(LogTemp, Error, TEXT("Output->Name == Input->Name"));
 				Found = true;
 				for (UItemProperty* OutputProperty : Output->Properties)
 				{
@@ -278,6 +316,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					}
 					else
 					{
+						UE_LOG(LogTemp, Display, TEXT("Adding OutputProperty"));
 						Input->GameItem->Properties.Add(OutputProperty);
 					}
 				}
@@ -285,6 +324,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 		}
 		if (!Found)
 		{
+			UE_LOG(LogTemp, Display, TEXT("Found = false"));
 			if (Output->DbItem != nullptr)
 			{
     			//SpawnParams.Owner = ItemGO;
@@ -296,6 +336,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 						GameItem = NewObject<UGameItem>(ItemGO, UGameItem::StaticClass());
 						if (GameItem)
 						{
+							UE_LOG(LogTemp, Display, TEXT("GameItem created"));
 							GameItem->RegisterComponent();
 						}
 				}
@@ -332,7 +373,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 		FirstOutput = false;
 	}
 
-	//PMInstance->ExecuteRule(Rule);
+	PMInstance->ExecuteRule(Rule);
 
 	for (AActor* GO : ObjectsToDestroy)
 	{
@@ -432,9 +473,9 @@ UItemProperty* UGameItem::GetProperty(FString PropertyName)
 	return nullptr;
 }
 
-bool UGameItem::IsDestrutible()
+bool UGameItem::IsDestructible()
 {
-	UItemProperty* Destructible = this->GetProperty(TEXT("Indestrucible"));
+	UItemProperty* Destructible = this->GetProperty(TEXT("Indestructible"));
 	if (Destructible != nullptr)
 	{
 		if(Destructible->Value == TEXT("True"))

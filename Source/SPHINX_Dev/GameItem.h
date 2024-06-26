@@ -63,7 +63,7 @@ public:
 
 	UItemProperty* GetProperty(FString PropertyName);
 
-	bool IsDestrutible();
+	bool IsDestructible();
 
 	FString ToString();
 
