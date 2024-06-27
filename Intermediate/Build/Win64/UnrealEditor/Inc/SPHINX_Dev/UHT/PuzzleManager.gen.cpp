@@ -72,8 +72,72 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FRulesStruct>()
 		}
 		return Z_Registration_Info_UScriptStruct_RulesStruct.InnerSingleton;
 	}
+	DEFINE_FUNCTION(APuzzleManager::execDelayedGenerateForPP)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->DelayedGenerateForPP();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(APuzzleManager::execGenerateForActivePuzzlePoints)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->GenerateForActivePuzzlePoints();
+		P_NATIVE_END;
+	}
 	void APuzzleManager::StaticRegisterNativesAPuzzleManager()
 	{
+		UClass* Class = APuzzleManager::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "DelayedGenerateForPP", &APuzzleManager::execDelayedGenerateForPP },
+			{ "GenerateForActivePuzzlePoints", &APuzzleManager::execGenerateForActivePuzzlePoints },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_APuzzleManager_DelayedGenerateForPP_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_APuzzleManager_DelayedGenerateForPP_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "PuzzleManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_APuzzleManager_DelayedGenerateForPP_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_APuzzleManager, nullptr, "DelayedGenerateForPP", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_APuzzleManager_DelayedGenerateForPP_Statics::Function_MetaDataParams), Z_Construct_UFunction_APuzzleManager_DelayedGenerateForPP_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_APuzzleManager_DelayedGenerateForPP()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_APuzzleManager_DelayedGenerateForPP_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_APuzzleManager_GenerateForActivePuzzlePoints_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_APuzzleManager_GenerateForActivePuzzlePoints_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "PuzzleManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_APuzzleManager_GenerateForActivePuzzlePoints_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_APuzzleManager, nullptr, "GenerateForActivePuzzlePoints", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_APuzzleManager_GenerateForActivePuzzlePoints_Statics::Function_MetaDataParams), Z_Construct_UFunction_APuzzleManager_GenerateForActivePuzzlePoints_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_APuzzleManager_GenerateForActivePuzzlePoints()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_APuzzleManager_GenerateForActivePuzzlePoints_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(APuzzleManager);
 	UClass* Z_Construct_UClass_APuzzleManager_NoRegister()
@@ -83,6 +147,7 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FRulesStruct>()
 	struct Z_Construct_UClass_APuzzleManager_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -134,6 +199,11 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FRulesStruct>()
 		(UObject* (*)())Z_Construct_UPackage__Script_SPHINX_Dev,
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_APuzzleManager_Statics::DependentSingletons) < 16);
+	const FClassFunctionLinkInfo Z_Construct_UClass_APuzzleManager_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_APuzzleManager_DelayedGenerateForPP, "DelayedGenerateForPP" }, // 3182962279
+		{ &Z_Construct_UFunction_APuzzleManager_GenerateForActivePuzzlePoints, "GenerateForActivePuzzlePoints" }, // 2311033518
+	};
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_APuzzleManager_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APuzzleManager_Statics::Class_MetaDataParams[] = {
 		{ "IncludePath", "PuzzleManager.h" },
@@ -228,11 +298,11 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FRulesStruct>()
 		"Engine",
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_APuzzleManager_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_APuzzleManager_Statics::PropPointers),
 		0,
 		0x009000A4u,
@@ -262,9 +332,9 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FRulesStruct>()
 		{ FRulesStruct::StaticStruct, Z_Construct_UScriptStruct_FRulesStruct_Statics::NewStructOps, TEXT("RulesStruct"), &Z_Registration_Info_UScriptStruct_RulesStruct, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FRulesStruct), 3490656299U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_APuzzleManager, APuzzleManager::StaticClass, TEXT("APuzzleManager"), &Z_Registration_Info_UClass_APuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APuzzleManager), 95122640U) },
+		{ Z_Construct_UClass_APuzzleManager, APuzzleManager::StaticClass, TEXT("APuzzleManager"), &Z_Registration_Info_UClass_APuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APuzzleManager), 835705514U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_914547573(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_1870999683(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ScriptStructInfo),
 		nullptr, 0);

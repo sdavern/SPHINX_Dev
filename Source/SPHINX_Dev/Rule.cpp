@@ -304,3 +304,30 @@ void URule::ToChildrenPtr()
         }
     }
 }
+
+FString URule::ToPMString()
+{
+    FString RuleAsString;
+    
+    RuleAsString += TEXT("-->") + Action + TEXT("");
+    for (UTerm* Input : Inputs)
+    {
+        RuleAsString += Input->Name;
+        if (Input != nullptr && Input->Properties.Num() > 0)
+        {
+            RuleAsString += TEXT("[");
+            for (int32 i = 0; i< Input->Properties.Num(); i++)
+            {
+                RuleAsString += Input->Properties[i]->Name + TEXT(":");
+                RuleAsString += Input->Properties[i]->Value;
+                if (i < Input->Properties.Num() - 1)
+                {
+                    RuleAsString += TEXT(",");
+                }
+            }
+            RuleAsString += TEXT("]");
+        }
+        else RuleAsString += TEXT("");
+    }
+    return RuleAsString;
+}

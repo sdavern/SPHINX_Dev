@@ -106,4 +106,6 @@ public:
 
 	void ToChildrenPtr();
 
+	FString ToPMString();
+
 };

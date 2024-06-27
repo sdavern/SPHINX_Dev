@@ -81,6 +81,7 @@ public:
 
 	static APuzzleManager* GetInstance();
 
+	UFUNCTION()
 	void GenerateForActivePuzzlePoints();
 
 	TArray<URule*> RulesFor(UGameItem* GameItem);
