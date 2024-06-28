@@ -54,6 +54,7 @@
 			"MyPawn.cpp.obj",
 			"PlayerPawn.cpp.obj",
 			"PuzzlePoint.cpp.obj",
+			"Rule.cpp.obj",
 			"SpawnPoint.cpp.obj",
 			"SPHINXHUD.cpp.obj",
 			"SPHINX_Dev.cpp.obj",
@@ -66,8 +67,7 @@
 			"TP_WeaponComponent.cpp.obj",
 			"PuzzleManager.gen.cpp.obj",
 			"SPHINX_Dev.init.gen.cpp.obj",
-			"PuzzleManager.cpp.obj",
-			"Rule.cpp.obj"
+			"PuzzleManager.cpp.obj"
 		]
 	}
 }

@@ -75,7 +75,6 @@ void APuzzleManager::BeginPlay()
     }
    
     AssignPlayer();
-
     UE_LOG(LogTemp, Warning, TEXT("ItemAssets has %d items on BeginPlay"), ItemAssets.Num());
 
 }
@@ -189,12 +188,7 @@ APuzzleManager* APuzzleManager::GetInstance()
 void APuzzleManager::GenerateForActivePuzzlePoints()
 {
     //need to delay this
-    float DelayTime = 5.0f;
-    FTimerDelegate TimerDel;
-    TimerDel.BindUFunction(this, FName("GenerateForActivePuzzlePoints"));
-    FTimerHandle TimerHandle;
-    GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, DelayTime, false);
-    if (ActiveGeneratedPuzzles < MaxActivePuzzles)
+    while (ActiveGeneratedPuzzles < MaxActivePuzzles)
     {
         UE_LOG(LogTemp, Error, TEXT("ATTEMPTING TO GENERATE PUZZLES"));
         TArray<UPuzzlePoint*> PPPtrs;
@@ -267,8 +261,6 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                     }
                     OwningGPP->HasPuzzle = true; 
                     ++ActiveGeneratedPuzzles;
-                    
-
                 }
                 else 
                 {
@@ -277,10 +269,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
             
             
             }
-            else
-            {
-                //UE_LOG(LogTemp, Error, TEXT("PP IS NULL"));
-            } 
+            
         }
     }
 }
@@ -476,7 +465,7 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                 DeactivatePuzzlePoint(OwningGPP);
                 RulePPs.Remove(Rule->ToPMString());
                 UE_LOG(LogTemp, Display, TEXT("ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
-                --ActiveGeneratedPuzzles;
+                //--ActiveGeneratedPuzzles;
                 //Activating next PP is handled in Tick()
             }
             break;

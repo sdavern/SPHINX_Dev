@@ -8,6 +8,26 @@ SPHINX_Dev-backup-2024.06.27-15.24.50.log filter=lfs diff=lfs merge=lfs -text
 SPHINX_Dev-backup-2024.06.27-15.26.46.log filter=lfs diff=lfs merge=lfs -text
 SPHINX_Dev-backup-2024.06.27-15.28.33.log filter=lfs diff=lfs merge=lfs -text
 SPHINX_Dev-backup-2024.06.27-15.35.32.log filter=lfs diff=lfs merge=lfs -text
+
+SPHINX_Dev-backup-2024.06.28-09.42.20.log filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-backup-2024.06.28-09.43.05.log filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-backup-2024.06.28-09.45.46.log filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-backup-2024.06.28-09.47.29.log filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-backup-2024.06.28-09.49.02.log filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-backup-2024.06.28-09.52.00.log filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-backup-2024.06.28-10.03.43.log filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev-backup-2024.06.28-10.12.13.log filter=lfs diff=lfs merge=lfs -text
+SPHINX_Dev.log filter=lfs diff=lfs merge=lfs -text
+
+
+
+
+
+
+
+
+
+
 .Engine.Cpp20.h.pch filter=lfs diff=lfs merge=lfs -text
 SharedPCH.Engine.Cpp20.h.pch filter=lfs diff=lfs merge=lfs -text
 SharedPCH.UnrealEd.Cpp20.h.pch filter=lfs diff=lfs merge=lfs -text
