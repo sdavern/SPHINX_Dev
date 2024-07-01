@@ -3,6 +3,7 @@
 
 #include "Rule.h"
 #include "Item.h"
+#include "PuzzleManager.h"
 
 URule::URule()
 {
@@ -330,4 +331,37 @@ FString URule::ToPMString()
         else RuleAsString += TEXT("");
     }
     return RuleAsString;
+}
+
+void URule::GetDbItems()
+{
+    APuzzleManager* PMInstance = APuzzleManager::GetInstance();
+
+    if (PMInstance)
+    {
+        for (UTerm* Input : Inputs)
+        {
+            if (Input)
+            {
+                UItem* DbItemMatch = PMInstance->GetObject(Input->Name);
+                Input->DbItem = DbItemMatch;
+            }
+        }
+
+        for (UTerm* Output : Outputs)
+        {
+            if (Output)
+            {
+                UItem* DbItemMatch = PMInstance->GetObject(Output->Name);
+                Output->DbItem = DbItemMatch;
+            } 
+        }
+    }
+}
+
+void URule::InitialiseRule()
+{
+    ToInputsPtr();
+    ToOutputsPtr();
+    GetDbItems();
 }

@@ -13,6 +13,8 @@
 #include "PuzzlePoint.h"
 #include "SpawnPoint.h"
 
+//Need to add in a completed puzzles tracker
+
 APuzzleManager* APuzzleManager::Instance = nullptr;
 
 APuzzleManager::APuzzleManager()
@@ -115,6 +117,7 @@ void APuzzleManager::AssignPlayer()
 
 void APuzzleManager::ActivateMaxPuzzlePoints()
 {
+    int SafetyCounter = 0;
     while (ActivePPs < MaxActivePuzzles)
     {
         TArray<AGamePuzzlePoint*> PPsInWorld = GetPPsInWorld();
@@ -140,6 +143,14 @@ void APuzzleManager::ActivateMaxPuzzlePoints()
             ++ActivePPs;
             UE_LOG(LogTemp, Error, TEXT("MAX PUZZLEPOINTS ACTIVATED"));
         }
+        SafetyCounter++;
+        if (SafetyCounter > MaxActivePuzzles)
+        {
+            UE_LOG(LogTemp, Display, TEXT("Safety Counter for PuzzlePoint Activation triggered"));
+            RandPP = nullptr;
+            PPsInWorld.Empty();
+            break;
+        }
     }
 }
 
@@ -150,6 +161,8 @@ void APuzzleManager::DeactivatePuzzlePoint(AGamePuzzlePoint* PP)
         PP->IsActive = false;
         PP->DespawnInit();
         PP->InitSpawned = false;
+        PP->HasPuzzle = false;
+        --ActivePPs;
         ActivePuzzlePoints.Remove(PP);
         AccessiblePPs.Remove(PP->PuzzlePointPtr);
         UE_LOG(LogTemp, Display, TEXT("PuzzlePoint deactivated"));
@@ -188,6 +201,8 @@ APuzzleManager* APuzzleManager::GetInstance()
 void APuzzleManager::GenerateForActivePuzzlePoints()
 {
     //need to delay this
+    int SafetyCounter = 0;
+
     while (ActiveGeneratedPuzzles < MaxActivePuzzles)
     {
         UE_LOG(LogTemp, Error, TEXT("ATTEMPTING TO GENERATE PUZZLES"));
@@ -261,6 +276,10 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                     }
                     OwningGPP->HasPuzzle = true; 
                     ++ActiveGeneratedPuzzles;
+                    if (ActiveGeneratedPuzzles >= MaxActivePuzzles)
+                    {
+                        return;
+                    }
                 }
                 else 
                 {
@@ -270,6 +289,16 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
             
             }
             
+        }
+        SafetyCounter++;
+        if (SafetyCounter > 1)
+        {
+            UE_LOG(LogTemp, Display, TEXT("Safety Counter triggered, there are %d active puzzle points in ActivePPs but there are %d in ActivePuzzlePoints"), ActivePPs, ActivePuzzlePoints.Num());
+            for (AGamePuzzlePoint* GPP : ActivePuzzlePoints)
+            {
+                UE_LOG(LogTemp, Display, TEXT("PP %s is Active"), *GPP->Name);
+            }
+            break;
         }
     }
 }
@@ -372,6 +401,11 @@ UItem* APuzzleManager::GetObject(FString ItemName)
 
 void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules)
 {
+    if (Rule->Inputs.Num() == 0)
+    {
+        Rule->ToInputsPtr();
+    }
+    
     if (Rule->Inputs[0]->DbItem != nullptr)
     {
         if (Rule->Inputs[0]->DbItem->Name == GameItem->DbItem->Name)
@@ -406,12 +440,16 @@ void APuzzleManager::ExecuteRule(URule* Rule)
     for (TActorIterator<AGamePuzzlePoint> It(World); It; ++It)
     {
         AGamePuzzlePoint* GPP = *It;
-        if (GPP && GPP->Name == FoundPP->Name)  
+        if (GPP && FoundPP)
         {
-            OwningGPP = GPP;
-            UE_LOG(LogTemp, Display, TEXT("OwningGPP = GPP"));
-            break;
+            if (GPP && GPP->Name == FoundPP->Name)  
+            {
+                OwningGPP = GPP;
+                UE_LOG(LogTemp, Display, TEXT("OwningGPP = GPP"));
+                break;
+            }
         }
+        
     } 
 
     FRulesStruct* FoundLeavesRules = Leaves.Find(FoundPP);
@@ -464,8 +502,8 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                 UE_LOG(LogTemp, Display, TEXT("OwningGPP is valid"));
                 DeactivatePuzzlePoint(OwningGPP);
                 RulePPs.Remove(Rule->ToPMString());
+                --ActiveGeneratedPuzzles;
                 UE_LOG(LogTemp, Display, TEXT("ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
-                //--ActiveGeneratedPuzzles;
                 //Activating next PP is handled in Tick()
             }
             break;

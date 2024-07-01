@@ -42,7 +42,6 @@
 			"ConditionalObject.cpp.obj",
 			"DialogueBox.cpp.obj",
 			"GameArea.cpp.obj",
-			"GameItem.cpp.obj",
 			"GamePuzzlePoint.cpp.obj",
 			"Generator.cpp.obj",
 			"InitNPC.cpp.obj",
@@ -51,13 +50,10 @@
 			"InventoryButton.cpp.obj",
 			"InventoryManager.cpp.obj",
 			"InventoryMenu.cpp.obj",
-			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
 			"MyPawn.cpp.obj",
 			"PlayerPawn.cpp.obj",
-			"PuzzleManager.cpp.obj",
 			"PuzzlePoint.cpp.obj",
-			"Rule.cpp.obj",
 			"SpawnPoint.cpp.obj",
 			"SPHINXHUD.cpp.obj",
 			"SPHINX_Dev.cpp.obj",
@@ -65,9 +61,13 @@
 			"SPHINX_DevGameMode.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj",
 			"SPHINX_DevProjectile.cpp.obj",
-			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
-			"TP_WeaponComponent.cpp.obj"
+			"TP_WeaponComponent.cpp.obj",
+			"GameItem.cpp.obj",
+			"Item.cpp.obj",
+			"PuzzleManager.cpp.obj",
+			"Rule.cpp.obj",
+			"Term.cpp.obj"
 		]
 	}
 }

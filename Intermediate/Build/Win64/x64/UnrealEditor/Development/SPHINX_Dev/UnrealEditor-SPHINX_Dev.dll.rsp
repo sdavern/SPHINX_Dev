@@ -36,8 +36,12 @@
 /FUNCTIONPADMIN:6
 "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\SPHINX_DevEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.obj"
 "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\Module.SPHINX_Dev.cpp.obj"
+"C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\GameItem.cpp.obj"
+"C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\Item.cpp.obj"
 "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\PuzzleManager.cpp.obj"
-"C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\PuzzleManager.gen.cpp.obj"
+"C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\Rule.cpp.obj"
+"C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\Term.cpp.obj"
+"C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\Item.gen.cpp.obj"
 "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\SPHINX_Dev.init.gen.cpp.obj"
 "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"

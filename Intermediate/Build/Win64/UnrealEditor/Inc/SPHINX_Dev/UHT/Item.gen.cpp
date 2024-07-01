@@ -68,6 +68,11 @@ void EmptyLinkFunctionForGeneratedCodeItem() {}
 		static void NewProp_SpecificSpawnPoints_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_SpecificSpawnPoints;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_IsIndestructible_MetaData[];
+#endif
+		static void NewProp_IsIndestructible_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsIndestructible;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_SpawnLength_MetaData[];
 #endif
 		static const UECodeGen_Private::FIntPropertyParams NewProp_SpawnLength;
@@ -162,6 +167,17 @@ void EmptyLinkFunctionForGeneratedCodeItem() {}
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UItem_Statics::NewProp_SpecificSpawnPoints = { "SpecificSpawnPoints", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UItem), &Z_Construct_UClass_UItem_Statics::NewProp_SpecificSpawnPoints_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UItem_Statics::NewProp_SpecificSpawnPoints_MetaData), Z_Construct_UClass_UItem_Statics::NewProp_SpecificSpawnPoints_MetaData) };
 #if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UItem_Statics::NewProp_IsIndestructible_MetaData[] = {
+		{ "Category", "Item" },
+		{ "ModuleRelativePath", "Item.h" },
+	};
+#endif
+	void Z_Construct_UClass_UItem_Statics::NewProp_IsIndestructible_SetBit(void* Obj)
+	{
+		((UItem*)Obj)->IsIndestructible = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UItem_Statics::NewProp_IsIndestructible = { "IsIndestructible", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UItem), &Z_Construct_UClass_UItem_Statics::NewProp_IsIndestructible_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UItem_Statics::NewProp_IsIndestructible_MetaData), Z_Construct_UClass_UItem_Statics::NewProp_IsIndestructible_MetaData) };
+#if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UItem_Statics::NewProp_SpawnLength_MetaData[] = {
 		{ "Category", "Item" },
 		{ "ModuleRelativePath", "Item.h" },
@@ -187,6 +203,7 @@ void EmptyLinkFunctionForGeneratedCodeItem() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItem_Statics::NewProp_SpawnPoints_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItem_Statics::NewProp_SpawnPoints,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItem_Statics::NewProp_SpecificSpawnPoints,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItem_Statics::NewProp_IsIndestructible,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItem_Statics::NewProp_SpawnLength,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItem_Statics::NewProp__index,
 	};
@@ -228,9 +245,9 @@ void EmptyLinkFunctionForGeneratedCodeItem() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UItem, UItem::StaticClass, TEXT("UItem"), &Z_Registration_Info_UClass_UItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItem), 1484251120U) },
+		{ Z_Construct_UClass_UItem, UItem::StaticClass, TEXT("UItem"), &Z_Registration_Info_UClass_UItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItem), 3719836624U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_2461439392(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_1987742061(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

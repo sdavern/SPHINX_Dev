@@ -195,12 +195,16 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 	TArray<AActor*> ObjectsToDestroy;
 	AInventoryManager* Inventory = AInventoryManager::GetInstance();
 	APuzzleManager* PMInstance = APuzzleManager::GetInstance();
+	Rule->ToInputsPtr();
+	Rule->ToOutputsPtr();
+	Rule->GetDbItems();
 	//UE_LOG(LogTemp, Warning, TEXT("%s has %d properties, Rule has %d inputs"), *Rule->Inputs[0]->GameItem->Name, Rule->Inputs[0]->GameItem->Properties.Num(), Rule->Inputs.Num());
 	//UE_LOG(LogTemp, Warning, TEXT("Rules inputs are %s and %s"), *Rule->Inputs[0]->Name, *Rule->Inputs[1]->Name);
-	UE_LOG(LogTemp, Warning, TEXT("Input[0] is %s and has GameItem %s"), *Rule->Inputs[0]->Name, *Rule->Inputs[0]->GameItem->Name);
+	UE_LOG(LogTemp, Error, TEXT("ExecuteRule called in GameItem"));
+	UE_LOG(LogTemp, Warning, TEXT("Input[0] is %s and has GameItem %s, the rule has %d outputs"), *Rule->Inputs[0]->Name, *Rule->Inputs[0]->GameItem->Name, Rule->Outputs.Num());
 	for (int32 i = 0; i < Rule->Inputs.Num(); i++)
 	{
-		UE_LOG(LogTemp, Display, TEXT("Rule %s has input %s at [%d]"), *Rule->Action, *Rule->Inputs[i]->Name, i);
+		//UE_LOG(LogTemp, Display, TEXT("Rule %s has input %s at [%d]"), *Rule->Action, *Rule->Inputs[i]->Name, i);
 		bool Found = false;
 		for (UTerm* Output : Rule->Outputs)
 		{
@@ -236,23 +240,23 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 			}
 		}
 
-		UE_LOG(LogTemp, Display, TEXT("Input Item at %d : %s of rule %s"), i, *Rule->Inputs[i]->ToString(), *Rule->ToString());
+		//UE_LOG(LogTemp, Display, TEXT("Input Item at %d : %s of rule %s"), i, *Rule->Inputs[i]->ToString(), *Rule->ToString());
 		
 		if (Rule)
 		{
-			UE_LOG(LogTemp, Display, TEXT("Rule is valid"));
+			//UE_LOG(LogTemp, Display, TEXT("Rule is valid"));
 			if (Rule->Inputs[i])
 			{
-				UE_LOG(LogTemp, Display, TEXT("Inputs are valid, input is %s"), *Rule->Inputs[i]->Name);
+				//UE_LOG(LogTemp, Display, TEXT("Inputs are valid, input is %s"), *Rule->Inputs[i]->Name);
 				{
 					//DbItem needs to be set for each input
 					if (Rule->Inputs[i]->GameItem)
 					{
-						UE_LOG(LogTemp, Display, TEXT("GameItem %s is valid"), *Rule->Inputs[i]->GameItem->Name);
+						//UE_LOG(LogTemp, Display, TEXT("GameItem %s is valid"), *Rule->Inputs[i]->GameItem->Name);
 					}
 					else
 					{
-						UE_LOG(LogTemp, Error, TEXT("Inputs has %d items"), Rule->Inputs.Num());
+						//UE_LOG(LogTemp, Error, TEXT("Inputs has %d items"), Rule->Inputs.Num());
 					}
 					
 				}
@@ -261,7 +265,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 
 
 		
-		/* if (!Found && Rule->Inputs[i]->GameItem->IsDestructible())
+		if (!Found && !Rule->Inputs[i]->DbItem->IsIndestructible)
 		{
 			UE_LOG(LogTemp, Display, TEXT("Destroying: %s"), *Rule->Inputs[i]->Name);
 			if (i == 0)
@@ -272,24 +276,31 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 			{
 				if (!Inventory->DeleteItemFromInventory(Rule->Inputs[i]->GameItem))
 				{
-					ObjectsToDestroy.Add(Rule->Inputs[i]->GameItem->GetOwner());
+					if (Rule->Inputs[i]->GameItem)
+					{
+						UE_LOG(LogTemp, Error, TEXT("GetOwner is valid"));
+					}
+					//ObjectsToDestroy.Add(Rule->Inputs[i]->GameItem->GetOwner()); need to have 
 				}
 			}
 		}
 		else 
 		{
 			UE_LOG(LogTemp, Display, TEXT("Destruction sequence failed"));
-		} */
+		} 
 	
 	}
 	
-
+	//Rule->ToOutputsPtr();
+	//Rule->GetDbItems();
 	int32 SpawnIndex = 0;
 	bool FirstOutput = true;
+	
 	for (UTerm* Output : Rule->Outputs)
 	{
-		UE_LOG(LogTemp, Display, TEXT("Rule %s has %d outputs"), *Rule->Action, Rule->Outputs.Num());
+		UE_LOG(LogTemp, Display, TEXT("Rule %s has %d outputs1"), *Rule->Action, Rule->Outputs.Num());
 		bool Found = false;
+		UE_LOG(LogTemp, Display, TEXT("Found is false 1"));
 		for (UTerm* Input : Rule->Inputs)
 		{
 			if (Output->Name == TEXT("Player"))
@@ -324,9 +335,11 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 		}
 		if (!Found)
 		{
-			UE_LOG(LogTemp, Display, TEXT("Found = false"));
-			if (Output->DbItem != nullptr)
+			UE_LOG(LogTemp, Display, TEXT("Found = false2"));
+			if (Output->DbItem->ItemPrefab != nullptr)
 			{
+				UE_LOG(LogTemp, Display, TEXT("DbItem %s for Output is valid"), *Output->DbItem->Name);
+				//Output DbItem needs to be initialised
     			//SpawnParams.Owner = ItemGO;
     			//SpawnParams.Instigator = ItemGO->GetInstigator();
 				AActor* ItemGO = nullptr;
@@ -349,6 +362,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					if (Output->DbItem->ItemPrefab && World)
 					{
 						ItemGO = World->SpawnActor<AActor>(Output->DbItem->ItemPrefab.Get(), Transform, SpawnParams);
+						UE_LOG(LogTemp, Warning, TEXT("Output %s has been spawned"), *Output->Name);
 					}
 				}
 				else
@@ -358,7 +372,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					//Position.Z = 0;
 					//ItemGO = GetWorld()->SpawnActor<AActor>(Output->DbItem->ItemPrefab, Position, FQuat::Identity);
 				}
-				GameItem->Setup(Output->DbItem->Name, Output->DbItem);
+				//GameItem->Setup(Output->DbItem->Name, Output->DbItem); need to have 
 
 				if (Rule->bInventory)
 				{
@@ -366,8 +380,12 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					{
 						Inventory->AddItemToInventory(GameItem);
 					}
-				}
+				} 
 				
+			}
+			else
+			{
+				UE_LOG(LogTemp, Display, TEXT("Output DbItem is null"));
 			}
 		}
 		FirstOutput = false;
@@ -463,19 +481,27 @@ bool UGameItem::HasProperty(UItemProperty* PropertyToCheck)
 
 UItemProperty* UGameItem::GetProperty(FString PropertyName)
 {
-	for (UItemProperty* Property : Properties)
+	if (DbItem->Properties.Num() > 0)
 	{
-		if (Property->Name == PropertyName)
+		for (UItemProperty* Property : DbItem->Properties)
 		{
-			return Property;
+			if (Property)
+			{
+				if (Property->Name == PropertyName)
+				{
+					return Property;
+				}
+			}
+			
 		}
 	}
+	
 	return nullptr;
 }
 
 bool UGameItem::IsDestructible()
 {
-	UItemProperty* Destructible = this->GetProperty(TEXT("Indestructible"));
+	UItemProperty* Destructible = GetProperty(TEXT("Indestructible"));
 	if (Destructible != nullptr)
 	{
 		if(Destructible->Value == TEXT("True"))

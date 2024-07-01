@@ -8,6 +8,8 @@
 #include "PuzzlePoint.h"
 #include "Rule.generated.h"
 
+class APuzzleManager;
+
 /**
  * 
  */
@@ -107,5 +109,9 @@ public:
 	void ToChildrenPtr();
 
 	FString ToPMString();
+
+	void GetDbItems();
+
+	void InitialiseRule();
 
 };
