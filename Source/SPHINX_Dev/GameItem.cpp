@@ -8,7 +8,7 @@
 #include "PlayerPawn.h"
 #include "ActionMenu.h"
 #include "SpawnPoint.h"
-
+#include "Avatar.h"
 
 // Sets default values
 UGameItem::UGameItem()
@@ -198,6 +198,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 	Rule->ToInputsPtr();
 	Rule->ToOutputsPtr();
 	Rule->GetDbItems();
+	UGameItem* HeldItem = PMInstance->Player->HeldGameItem->FindComponentByClass<UGameItem>();
 	//UE_LOG(LogTemp, Warning, TEXT("%s has %d properties, Rule has %d inputs"), *Rule->Inputs[0]->GameItem->Name, Rule->Inputs[0]->GameItem->Properties.Num(), Rule->Inputs.Num());
 	//UE_LOG(LogTemp, Warning, TEXT("Rules inputs are %s and %s"), *Rule->Inputs[0]->Name, *Rule->Inputs[1]->Name);
 	UE_LOG(LogTemp, Error, TEXT("ExecuteRule called in GameItem"));
@@ -252,35 +253,40 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					//DbItem needs to be set for each input
 					if (Rule->Inputs[i]->GameItem)
 					{
-						//UE_LOG(LogTemp, Display, TEXT("GameItem %s is valid"), *Rule->Inputs[i]->GameItem->Name);
+						UE_LOG(LogTemp, Display, TEXT("GameItem %s is valid"), *Rule->Inputs[i]->GameItem->Name);
 					}
 					else
 					{
-						//UE_LOG(LogTemp, Error, TEXT("Inputs has %d items"), Rule->Inputs.Num());
+						UE_LOG(LogTemp, Error, TEXT("GameItem for input %s is not valid"), *Rule->Inputs[i]->Name);
 					}
 					
 				}
 			}
 		}
 
-
-		
 		if (!Found && !Rule->Inputs[i]->DbItem->IsIndestructible)
 		{
 			UE_LOG(LogTemp, Display, TEXT("Destroying: %s"), *Rule->Inputs[i]->Name);
-			if (i == 0)
+			if (Rule->Inputs.Num() < 1)
 			{
 				ObjectsToDestroy.Add(GameI->GetOwner());
+				UE_LOG(LogTemp, Warning, TEXT("i == 0"));
 			}
 			else
 			{
+				if (Rule->Inputs[i]->Name == HeldItem->Name)
+				{
+					ObjectsToDestroy.Add(PMInstance->Player->HeldGameItem);
+				}
+
 				if (!Inventory->DeleteItemFromInventory(Rule->Inputs[i]->GameItem))
 				{
+					UE_LOG(LogTemp, Display, TEXT("Attempting to add %s to ObjectsToDestroy"), *Rule->Inputs[i]->Name);
 					if (Rule->Inputs[i]->GameItem)
 					{
+						ObjectsToDestroy.Add(Rule->Inputs[i]->GameItem->GetOwner());
 						UE_LOG(LogTemp, Error, TEXT("GetOwner is valid"));
 					}
-					//ObjectsToDestroy.Add(Rule->Inputs[i]->GameItem->GetOwner()); need to have 
 				}
 			}
 		}
@@ -357,20 +363,13 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 				if (ObjectsToDestroy.Num() > SpawnIndex)
 				{
 					FTransform Transform = ObjectsToDestroy[SpawnIndex]->GetTransform();
-					Transform.SetLocation(Transform.GetLocation() + FVector (0, 0, 100));
+					Transform.SetLocation(Transform.GetLocation() + FVector (0, 0, 0));
 					FActorSpawnParameters SpawnParams;
 					if (Output->DbItem->ItemPrefab && World)
 					{
 						ItemGO = World->SpawnActor<AActor>(Output->DbItem->ItemPrefab.Get(), Transform, SpawnParams);
 						UE_LOG(LogTemp, Warning, TEXT("Output %s has been spawned"), *Output->Name);
 					}
-				}
-				else
-				{
-					//Logic for moving location of item relative to player
-					//FVector Position = APlayerPawn::GetInstance()->GetTransform->GetLocation() + FVector (0, 20, 0);
-					//Position.Z = 0;
-					//ItemGO = GetWorld()->SpawnActor<AActor>(Output->DbItem->ItemPrefab, Position, FQuat::Identity);
 				}
 				//GameItem->Setup(Output->DbItem->Name, Output->DbItem); need to have 
 
@@ -392,7 +391,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 	}
 
 	PMInstance->ExecuteRule(Rule);
-
+	UE_LOG(LogTemp, Warning, TEXT("ObjectsToDestroy has %d actors"), ObjectsToDestroy.Num());
 	for (AActor* GO : ObjectsToDestroy)
 	{
 		if (GO)

@@ -105,7 +105,15 @@
             "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\spherecomponent.generated.h",
-            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\spawnpoint.generated.h"
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\spawnpoint.generated.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\avatar.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\plugins\\marketplace\\paperzd\\source\\paperzd\\public\\paperzdcharacter.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\plugins\\2d\\paper2d\\source\\paper2d\\classes\\papercharacter.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\plugins\\2d\\paper2d\\intermediate\\build\\win64\\unrealeditor\\inc\\paper2d\\uht\\papercharacter.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\plugins\\marketplace\\paperzd\\source\\paperzd\\public\\sequencer\\ipaperzdsequencersource.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\plugins\\marketplace\\paperzd\\intermediate\\build\\win64\\unrealeditor\\inc\\paperzd\\uht\\ipaperzdsequencersource.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\plugins\\marketplace\\paperzd\\intermediate\\build\\win64\\unrealeditor\\inc\\paperzd\\uht\\paperzdcharacter.generated.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\avatar.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

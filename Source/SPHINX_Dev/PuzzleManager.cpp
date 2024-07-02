@@ -253,6 +253,9 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                         {
                             if (Rule)
                             {
+                                Rule->ToInputsPtr();
+	                            Rule->ToOutputsPtr();
+	                            Rule->GetDbItems();
                                 RulePPs.Add(Rule->ToPMString(), PP);
                                 Rule->OwningPP = PP;
                                 UE_LOG(LogTemp, Error, TEXT("RULE %s ASSIGNED TO PP %s"), *Rule->Action, *PP->Name);
@@ -269,6 +272,9 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                         {
                             if (Rule)
                             {
+                                Rule->ToInputsPtr();
+	                            Rule->ToOutputsPtr();
+	                            Rule->GetDbItems();
                                 RulePPs.Add(Rule->ToPMString(), PP);
                                 Rule->OwningPP = PP;
                             }
@@ -401,18 +407,13 @@ UItem* APuzzleManager::GetObject(FString ItemName)
 
 void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules)
 {
-    if (Rule->Inputs.Num() == 0)
+    if (Rule->Inputs[0] != nullptr)
     {
-        Rule->ToInputsPtr();
-    }
-    
-    if (Rule->Inputs[0]->DbItem != nullptr)
-    {
-        if (Rule->Inputs[0]->DbItem->Name == GameItem->DbItem->Name)
+        if (Rule->Inputs[0]->Name == GameItem->Name)
         {
             if (!Rules.Contains(Rule))
             {
-                UE_LOG(LogTemp, Display, TEXT("Found: %s %s"), *GameItem->DbItem->Name, *Rule->Action);
+                UE_LOG(LogTemp, Display, TEXT("Found: %s %s"), *GameItem->Name, *Rule->Action);
                 Rule->Inputs[0]->GameItem = GameItem;
                 UE_LOG(LogTemp, Error, TEXT("GameItem is %s"), *GameItem->Name);
 
@@ -424,6 +425,7 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
 
 void APuzzleManager::ExecuteRule(URule* Rule)
 {
+    UE_LOG(LogTemp, Display, TEXT("PMInstance->ExecuteRule called"));
     UWorld* World = GetWorld();
     UPuzzlePoint* FoundPP = nullptr;
     UPuzzlePoint** FoundPuzzlePoint = RulePPs.Find(Rule->ToPMString()); 
@@ -468,47 +470,35 @@ void APuzzleManager::ExecuteRule(URule* Rule)
 
     for (URule* SRule : FoundLeavesRules->RulesArray)
     {
-        UE_LOG(LogTemp, Display, TEXT("%s has %d inputs and %d outputs"), *SRule->ToPMString(), SRule->Inputs.Num(), SRule->Outputs.Num());
-        if (RuleString == SRule->ToPMString())
+        if (SRule)
         {
-            Rule = SRule;
-            for (URule* ARule : FoundLeavesRules->RulesArray)
+            UE_LOG(LogTemp, Display, TEXT("%s has %d inputs and %d outputs"), *SRule->ToPMString(), SRule->Inputs.Num(), SRule->Outputs.Num());
+            if (RuleString == SRule->ToPMString())
             {
-                if (Rule->ToPMString() == ARule->ToPMString())
+                Rule = SRule;
+                for (URule* ARule : FoundLeavesRules->RulesArray)
                 {
-                    FoundLeavesRules->RulesArray.Remove(ARule);
-                    break;
-                } 
-            }
-
-            /* if (Rule->Parent->Parent)
-            {
-                UE_LOG(LogTemp, Display, TEXT("Rule->Parent is valid"));
-                URule* Parent = Rule->Parent;
-                Parent->Children.Remove(Rule);
-                if (Parent->Children.Num() == 0)
-                {
-                    FoundLeavesRules->RulesArray.Add(Parent);
-                    if (Parent->bAutomatic)
+                    if (Rule->ToPMString() == ARule->ToPMString())
                     {
-                        UGameItem::ExecuteRule(World, Parent, true, Parent->Inputs[0]->GameItem);
+                        FoundLeavesRules->RulesArray.Remove(ARule);
+                        break;
                     } 
-                } 
-            } */
+                }
             
-            UE_LOG(LogTemp, Display, TEXT("Puzzle for PP: %s completed!"), *FoundPP->Name);
-            if (OwningGPP)
-            {
-                UE_LOG(LogTemp, Display, TEXT("OwningGPP is valid"));
-                DeactivatePuzzlePoint(OwningGPP);
-                RulePPs.Remove(Rule->ToPMString());
-                --ActiveGeneratedPuzzles;
-                UE_LOG(LogTemp, Display, TEXT("ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
-                //Activating next PP is handled in Tick()
+                UE_LOG(LogTemp, Display, TEXT("Puzzle for PP: %s completed!"), *FoundPP->Name);
+                if (OwningGPP)
+                {
+                    UE_LOG(LogTemp, Display, TEXT("OwningGPP is valid"));
+                    DeactivatePuzzlePoint(OwningGPP);
+                    RulePPs.Remove(Rule->ToPMString());
+                    --ActiveGeneratedPuzzles;
+                    UE_LOG(LogTemp, Display, TEXT("ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
+                }
+                break;
             }
-            break;
-        } 
-    }
+        }
+         
+    } 
 }
 
 void APuzzleManager::FindLeaves(URule* Parent, UPuzzlePoint* PP)
