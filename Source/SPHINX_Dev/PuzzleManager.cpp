@@ -12,7 +12,7 @@
 #include "GamePuzzlePoint.h"
 #include "PuzzlePoint.h"
 #include "SpawnPoint.h"
-
+#include "SPHINX_DevPlayerController.h"
 //Need to add in a completed puzzles tracker
 
 APuzzleManager* APuzzleManager::Instance = nullptr;
@@ -33,6 +33,8 @@ void APuzzleManager::BeginPlay()
     Instance = GetInstance();
 
     ActivateProperties();
+
+    PlayerController = ReturnPC();
 
     if (Everything != nullptr)
     {
@@ -407,7 +409,7 @@ UItem* APuzzleManager::GetObject(FString ItemName)
 
 void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules)
 {
-    if (Rule->Inputs[0] != nullptr)
+    if (Rule && Rule->Inputs.Num() > 0 && Rule->Inputs[0] != nullptr)
     {
         if (Rule->Inputs[0]->Name == GameItem->Name)
         {
@@ -486,6 +488,25 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                 }
             
                 UE_LOG(LogTemp, Display, TEXT("Puzzle for PP: %s completed!"), *FoundPP->Name);
+                if (SolvedSoundCue)
+                {
+                    FVector Location = FVector(0.0f, 0.0f, 0.0f);
+                    UGameplayStatics::PlaySoundAtLocation(this, SolvedSoundCue, Location);
+                }
+                if (PlayerController)
+                {
+                    if (Player->IsHoldingItem)
+                    {
+                        if (Player->HeldGameItem)
+                        {
+                            PlayerController->DropGameItem(Player->HeldGameItem);
+                        }
+                        if (PlayerController->ActionMenu)
+                        {
+                            PlayerController->OnExitButtonClicked();
+                        }
+                    }
+                } 
                 if (OwningGPP)
                 {
                     UE_LOG(LogTemp, Display, TEXT("OwningGPP is valid"));
@@ -1017,6 +1038,23 @@ void APuzzleManager::ActivateProperties()
         Item->ToPropPtrs();
     }
 }
+
+ASPHINX_DevPlayerController* APuzzleManager::ReturnPC()
+{
+    ASPHINX_DevPlayerController* SDPC = Cast<ASPHINX_DevPlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
+
+    if (SDPC)
+    {
+        return SDPC;
+    }
+
+    return nullptr;
+}
+
+
+
+
+
 
 
 /* TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UArea*> NewAccessibleAreas, TArray<UItem*> ItemsInLevel)

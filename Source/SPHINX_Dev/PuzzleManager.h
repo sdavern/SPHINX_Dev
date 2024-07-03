@@ -5,10 +5,12 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Math/UnrealMathUtility.h"
+#include "Sound/SoundCue.h"
 #include "AssetRegistry/AssetRegistryModule.h"
 #include "Item.h"
 #include "Rule.h"
 #include "Area.h"
+#include "SPHINX_DevPlayerController.h"
 #include "ConditionalObject.h"
 #include "PuzzleManager.generated.h"
 
@@ -28,6 +30,7 @@ class AGamePuzzlePoint;
 class AInventoryManager;
 class UPuzzlePoint;
 class ASpawnPoint;
+class ASPHINX_DevPlayerController;
 
 UCLASS()
 class SPHINX_DEV_API APuzzleManager : public AActor
@@ -43,6 +46,8 @@ public:
 	UArea* StartArea;
 
 	bool UseAllRules;
+
+	ASPHINX_DevPlayerController* PlayerController;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AAvatar* Player;
@@ -61,6 +66,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AActor* FinalFade;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
+	USoundCue* SolvedSoundCue;
 
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	//AActor* Statistics;
@@ -158,6 +166,7 @@ public:
 
 	void ActivateProperties();
 
+	ASPHINX_DevPlayerController* ReturnPC();
 
 
 

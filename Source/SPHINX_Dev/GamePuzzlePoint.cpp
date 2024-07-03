@@ -65,6 +65,7 @@ UPuzzlePoint* AGamePuzzlePoint::PPToPtr()
 
 void AGamePuzzlePoint::SpawnInit()
 {
+	//need to wait until spawn is out of viewport
 	if (GetWorld())
 	{
 		if (PuzzlePointPtr)

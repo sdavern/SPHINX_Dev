@@ -47,6 +47,10 @@ void EmptyLinkFunctionForGeneratedCodeAvatar() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_SpeedModifier_MetaData[];
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_SpeedModifier;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HalvedSpeedModifier_MetaData[];
+#endif
+		static const UECodeGen_Private::FFloatPropertyParams NewProp_HalvedSpeedModifier;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -101,16 +105,24 @@ void EmptyLinkFunctionForGeneratedCodeAvatar() {}
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AAvatar_Statics::NewProp_GameItem = { "GameItem", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAvatar, GameItem), Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AAvatar_Statics::NewProp_GameItem_MetaData), Z_Construct_UClass_AAvatar_Statics::NewProp_GameItem_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAvatar_Statics::NewProp_SpeedModifier_MetaData[] = {
-		{ "Category", "Avatar" },
+		{ "Category", "Movement" },
 		{ "ModuleRelativePath", "Avatar.h" },
 	};
 #endif
-	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAvatar_Statics::NewProp_SpeedModifier = { "SpeedModifier", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAvatar, SpeedModifier), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AAvatar_Statics::NewProp_SpeedModifier_MetaData), Z_Construct_UClass_AAvatar_Statics::NewProp_SpeedModifier_MetaData) };
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAvatar_Statics::NewProp_SpeedModifier = { "SpeedModifier", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAvatar, SpeedModifier), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AAvatar_Statics::NewProp_SpeedModifier_MetaData), Z_Construct_UClass_AAvatar_Statics::NewProp_SpeedModifier_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AAvatar_Statics::NewProp_HalvedSpeedModifier_MetaData[] = {
+		{ "Category", "Movement" },
+		{ "ModuleRelativePath", "Avatar.h" },
+	};
+#endif
+	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AAvatar_Statics::NewProp_HalvedSpeedModifier = { "HalvedSpeedModifier", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AAvatar, HalvedSpeedModifier), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AAvatar_Statics::NewProp_HalvedSpeedModifier_MetaData), Z_Construct_UClass_AAvatar_Statics::NewProp_HalvedSpeedModifier_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AAvatar_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAvatar_Statics::NewProp_DefaultMappingContext,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAvatar_Statics::NewProp_MoveAction,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAvatar_Statics::NewProp_GameItem,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAvatar_Statics::NewProp_SpeedModifier,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AAvatar_Statics::NewProp_HalvedSpeedModifier,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_AAvatar_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<AAvatar>::IsAbstract,
@@ -150,9 +162,9 @@ void EmptyLinkFunctionForGeneratedCodeAvatar() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Avatar_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AAvatar, AAvatar::StaticClass, TEXT("AAvatar"), &Z_Registration_Info_UClass_AAvatar, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAvatar), 1394665815U) },
+		{ Z_Construct_UClass_AAvatar, AAvatar::StaticClass, TEXT("AAvatar"), &Z_Registration_Info_UClass_AAvatar, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAvatar), 632961084U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Avatar_h_1085247526(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Avatar_h_860551211(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Avatar_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Avatar_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

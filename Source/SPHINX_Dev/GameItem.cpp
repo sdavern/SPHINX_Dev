@@ -9,7 +9,7 @@
 #include "ActionMenu.h"
 #include "SpawnPoint.h"
 #include "Avatar.h"
-
+#include "PuzzleManager.h"
 // Sets default values
 UGameItem::UGameItem()
 {

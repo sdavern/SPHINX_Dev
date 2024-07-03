@@ -43,8 +43,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
     UGameItem* GameItem;
 
-	UPROPERTY(EditAnywhere)
-	float SpeedModifier = 0.1f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
+	float SpeedModifier = 18.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement")
+	float HalvedSpeedModifier = 12.5f;
 
 	FVector LastMovementDirection;
 

@@ -144,6 +144,12 @@ bool ASPHINX_DevPlayerController::PerformGeoSweep()
 
 void ASPHINX_DevPlayerController::GrabGameItem(UGameItem* GameItem)
 {
+    if (GrabSoundCue)
+    {
+        FVector Location = FVector(0.0f, 0.0f, 0.0f);
+        UGameplayStatics::PlaySoundAtLocation(this, GrabSoundCue, Location);
+    }
+
     if (GameItem)
     {
         if (ActivePlayer->IsHoldingItem)
@@ -163,6 +169,9 @@ void ASPHINX_DevPlayerController::GrabGameItem(UGameItem* GameItem)
             ActivePlayer->HeldGameItem = GameItemBP;
             ActivePlayer->IsHoldingItem = true;
             InventoryManager->SelectedItem = GameItem;
+            SelectedGameItem = GameItem;
+
+            
         }
     }
     
@@ -204,18 +213,26 @@ void ASPHINX_DevPlayerController::OnRightMouseDown()
 
 void ASPHINX_DevPlayerController::DropGameItem(AActor* GameItemBP)
 {
+    if (DropSoundCue)
+    {
+        FVector Location = FVector(0.0f, 0.0f, 0.0f);
+        UGameplayStatics::PlaySoundAtLocation(this, DropSoundCue, Location);
+    }
+
     USceneComponent* GameItemRoot = GameItemBP->GetRootComponent();
     GameItemRoot->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
-
-    // Ensure the item has a slight offset when dropped; sometimes helps with collision detection
     FVector NewLocation = GameItemRoot->GetComponentLocation() + FVector(10.0f, 0.0f, 0.0f);
     NewLocation.Z = 40.0f;
     GameItemRoot->SetWorldLocation(NewLocation);
+
     ActivePlayer->IsHoldingItem = false;
     ActivePlayer->HeldGameItem = nullptr;
     InventoryManager->SelectedItem = nullptr;
+    SelectedGameItem = nullptr;
 
     EnableCollisionForActor(GameItemBP);
+
+
 }
 
 void ASPHINX_DevPlayerController::EnableCollisionForActor(AActor* ActorToEnable)
@@ -257,7 +274,44 @@ void ASPHINX_DevPlayerController::SetupHoldButton()
 
 void ASPHINX_DevPlayerController::OnHoldButtonClicked()
 {
-    if (HitGameItem && !ActivePlayer->IsHoldingItem)
+    if (HitGameItem->IsNPC && !HitNPC)
+    {
+        DialogueBox = CreateWidget<UDialogueBox>(this, DialogueBoxClass);
+        if (DialogueBox)
+        {
+            DialogueBox->AddToViewport(0);
+            DialogueBox->SetVisibility(ESlateVisibility::Visible);
+            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Apologise"));
+
+            if (HitGameItem->DbItem)
+            {
+                DialogueBox->ChangeInspectText(DialogueBox->InspectText, TEXT("'Oi! What do you think you're doing!?!'"));
+            }
+            InspectOpen = true;
+            FSlateColor NewColor = FSlateColor(FLinearColor(0.652479f, 0.662771f, 0.697917f)); 
+            ActionMenu->ExitText->SetColorAndOpacity(NewColor);
+            HitNPC = true;
+        }
+    }
+    else if (HitGameItem && HitNPC)
+    {
+        if (DialogueBox)
+        {
+            DialogueBox->RemoveFromParent();
+            DialogueBox = nullptr;
+            InspectOpen = false;
+            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Hold"));
+            FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f)); 
+            ActionMenu->ExitText->SetColorAndOpacity(NewColor);
+            HitNPC = false;
+        }
+    }
+    else if (ActivePlayer->IsHoldingItem && HitGameItem != SelectedGameItem)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Already holding item"));
+    }
+
+    else if (HitGameItem && !ActivePlayer->IsHoldingItem)
     {
         if (HitGameItem->InInventory && InventoryManager && InventoryMenu)
         {
@@ -271,6 +325,8 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
         UE_LOG(LogTemp, Display, TEXT("%s grabbed!"), *HitGameItem->Name);
         if (ActivePlayer->IsHoldingItem && ActionMenu) 
         {
+            FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f)); 
+            ActionMenu->HoldText->SetColorAndOpacity(NewColor);
             ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Drop"));
         }
     }
@@ -528,6 +584,11 @@ FString ASPHINX_DevPlayerController::AddSpacesBeforeCaps(const FString& InString
 
 void ASPHINX_DevPlayerController::CreateActionMenu()
 {
+    if (ClickSoundCue)
+    {
+        FVector Location = FVector(0.0f, 0.0f, 0.0f);
+        UGameplayStatics::PlaySoundAtLocation(this, ClickSoundCue, Location);
+    }
     if (!ActionMenu)
     {
         ActionMenu = CreateWidget<UActionMenu>(this, ActionMenuClass);
@@ -552,6 +613,19 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
                 {
                     ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Add to Inventory"));
                 }
+
+                if (SelectedGameItem != HitGameItem && ActivePlayer->IsHoldingItem)
+                {
+                    FSlateColor NewColor = FSlateColor(FLinearColor(0.652479f, 0.662771f, 0.697917f)); 
+                    ActionMenu->HoldText->SetColorAndOpacity(NewColor);
+                    ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Your hands are full!"));
+                }
+                else
+                {
+                    FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f));  
+                    ActionMenu->HoldText->SetColorAndOpacity(NewColor);
+                }
+                
                 //HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
                 //UE_LOG(LogTemp, Warning, TEXT("OnGameItemClicked called"));
             }
@@ -564,6 +638,7 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
             
             }
             ActionMenuOpen = true;
+            
         }
         else
         {

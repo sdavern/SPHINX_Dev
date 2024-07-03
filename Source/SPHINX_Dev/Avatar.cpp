@@ -61,19 +61,37 @@ void AAvatar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void AAvatar::Move(const FInputActionValue& Value)
 {
-	// input is a Vector2D
-	FVector2D MovementVector = Value.Get<FVector2D>() * SpeedModifier;
-	
-	if (Controller != nullptr)
-	{
-		// add movement 
-		AddMovementInput(GetActorForwardVector(), MovementVector.Y);
-		AddMovementInput(GetActorRightVector(), MovementVector.X);
-		if (this->GetVelocity().Size() > 0)
-		{
-			LastMovementDirection = this->GetVelocity().GetSafeNormal();
-		}
-	}
+    // Input is a Vector2D
+    FVector2D MovementVector = Value.Get<FVector2D>();
+
+    if (Controller != nullptr)
+    {
+        // Calculate the intended movement direction and speed
+        float InputMagnitude = MovementVector.Size();
+        if (InputMagnitude > 0)
+        {
+            // Check if both axes are being used for movement
+            bool isDiagonalMovement = (FMath::Abs(MovementVector.X) > 0 && FMath::Abs(MovementVector.Y) > 0);
+            float appliedSpeedModifier = isDiagonalMovement ? HalvedSpeedModifier : SpeedModifier;
+
+            // Scale the movement vector by the speed modifier
+            MovementVector *= appliedSpeedModifier;
+
+            // Apply movement scaled by delta time
+            FVector ForwardMovement = GetActorForwardVector() * MovementVector.Y * GetWorld()->GetDeltaSeconds();
+            FVector RightMovement = GetActorRightVector() * MovementVector.X * GetWorld()->GetDeltaSeconds();
+
+            // Add movement input
+            AddMovementInput(ForwardMovement);
+            AddMovementInput(RightMovement);
+
+            // Update last movement direction if there is movement
+            if (this->GetVelocity().Size() > 0)
+            {
+                LastMovementDirection = this->GetVelocity().GetSafeNormal();
+            }
+        }
+    }
 }
 
 

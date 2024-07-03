@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Components/TextBlock.h"
-#include "PuzzleManager.h"
 #include "Item.h"
 #include "ItemProperty.h"
 #include "Rule.h"
@@ -18,6 +17,7 @@ class AAvatar;
 class UActionMenu;
 class ASpawnPoint;
 class AAvatar;
+class APuzzleManager;
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -43,6 +43,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool Selected;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool IsNPC = false;
 
 	void SetupDbItem();
 

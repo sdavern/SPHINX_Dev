@@ -7,6 +7,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Blueprint/UserWidget.h"
 #include "EngineUtils.h"
+#include "Sound/SoundCue.h"
 #include "GameFramework/Actor.h"
 #include "Camera/PlayerCameraManager.h"
 #include "Kismet/GameplayStatics.h"
@@ -46,6 +47,9 @@ public:
 	UPROPERTY()
 	AInventoryManager* InventoryManager;
 
+	UPROPERTY(VisibleAnywhere)
+	AAvatar* ActivePlayer;
+
 protected:
 
 	/** Input Mapping Context to be used for player input */
@@ -58,8 +62,7 @@ protected:
 
 private:
 
-	UPROPERTY(VisibleAnywhere)
-	AAvatar* ActivePlayer;
+	
 
 	void OnLeftMouseDown();
 
@@ -77,17 +80,28 @@ private:
 	
 	void AssignInventoryManager();
 
-	void DropGameItem(AActor* GameItemBP);
-
 	void DisableCollisionForActor(AActor* ActorToDisable);
 
 	void EnableCollisionForActor(AActor* ActorToEnable);
 	
 	UGameItem* HitGameItem;
 
+	UGameItem* SelectedGameItem;
+
 public:
 
+	void DropGameItem(AActor* GameItemBP);
+
 	void GrabGameItem(UGameItem* GameItem);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
+	USoundCue* GrabSoundCue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
+	USoundCue* DropSoundCue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
+	USoundCue* ClickSoundCue;
 
 	UActionMenu* ActionMenu;
 
@@ -100,6 +114,8 @@ public:
 	bool InventoryOpen = false;
 
 	bool ActionMenuOpen = false;
+
+	bool HitNPC = false;
 
 	void SetupHoldButton();
 
