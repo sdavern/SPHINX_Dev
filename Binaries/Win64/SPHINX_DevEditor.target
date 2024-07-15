@@ -3486,6 +3486,18 @@
 			"Type": "RequiredResource"
 		},
 		{
+			"Path": "$(ProjectDir)/Plugins/CPPEditorUtilityPlugin/Binaries/Win64/UnrealEditor-CPPEditorUtilityPlugin.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/CPPEditorUtilityPlugin/Binaries/Win64/UnrealEditor-CPPEditorUtilityPlugin.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/CPPEditorUtilityPlugin/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
+		},
+		{
 			"Path": "$(ProjectDir)/Plugins/ItemUI/Binaries/Win64/UnrealEditor-ItemUI.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -24781,6 +24793,10 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/XGEController/XGEController.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/CPPEditorUtilityPlugin/CPPEditorUtilityPlugin.uplugin",
 			"Type": "UFS"
 		},
 		{

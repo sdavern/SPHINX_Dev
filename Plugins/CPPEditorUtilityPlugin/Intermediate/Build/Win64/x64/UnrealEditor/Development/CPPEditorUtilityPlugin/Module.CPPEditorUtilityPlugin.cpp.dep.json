@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\cppeditorutilityplugin\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\cppeditorutilityplugin\\module.cppeditorutilityplugin.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\x64\\sphinx_deveditor\\development\\unrealed\\sharedpch.unrealed.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\cppeditorutilityplugin\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\cppeditorutilityplugin\\definitions.cppeditorutilityplugin.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\cppeditorutilityplugin\\source\\cppeditorutilityplugin\\private\\cppeditorutilityplugin.cpp",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\cppeditorutilityplugin\\source\\cppeditorutilityplugin\\public\\cppeditorutilityplugin.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

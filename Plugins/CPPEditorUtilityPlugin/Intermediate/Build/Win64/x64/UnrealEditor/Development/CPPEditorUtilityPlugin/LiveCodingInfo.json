@@ -1,0 +1,8 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.CPPEditorUtilityPlugin.cpp.obj": [
+			"CPPEditorUtilityPlugin.cpp.obj"
+		]
+	}
+}
