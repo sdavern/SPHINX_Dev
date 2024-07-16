@@ -24,6 +24,7 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/Rule.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/SpawnPoint.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/SPHINXHUD.gen.cpp"
+#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/SPHINX_Dev.init.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/SPHINX_DevCharacter.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/SPHINX_DevGameMode.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/SPHINX_DevPlayerController.gen.cpp"

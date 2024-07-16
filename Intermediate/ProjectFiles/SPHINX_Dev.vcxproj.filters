@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\SPHINX_Dev.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\SPHINX_Dev.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\SPHINX_DevEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.gitattributes" />
+    <None Include="..\..\.ignore" />
+    <None Include="..\..\.vsconfig" />
+    <None Include="..\..\README.md" />
+    <None Include="..\..\SPHINX_Dev.code-workspace" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Plugins">
+      <UniqueIdentifier>{BB38096A-B391-30DC-A0D4-4F3EA6B44507}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\CPPEditorUtilityPlugin">
+      <UniqueIdentifier>{72E46944-15EE-3B5E-9BC2-242AA5C3193B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\CPPEditorUtilityPlugin\Source">
+      <UniqueIdentifier>{F1290D97-72D6-3C5B-AA62-4538326BAD3A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\CPPEditorUtilityPlugin\Source\CPPEditorUtilityPlugin">
+      <UniqueIdentifier>{DECA8D59-88F2-39A2-AF84-D14268AB1BC8}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\CPPEditorUtilityPlugin\Source\CPPEditorUtilityPlugin\CPPEditorUtilityPlugin.Build.cs">
+      <Filter>Plugins\CPPEditorUtilityPlugin\Source\CPPEditorUtilityPlugin</Filter>
+    </None>
+    <Filter Include="Plugins\CPPEditorUtilityPlugin\Source\CPPEditorUtilityPlugin\Private">
+      <UniqueIdentifier>{7CBA26C2-3948-3C64-8C7A-426D43D83910}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\CPPEditorUtilityPlugin\Source\CPPEditorUtilityPlugin\Private\CPPEditorUtilityPlugin.cpp">
+      <Filter>Plugins\CPPEditorUtilityPlugin\Source\CPPEditorUtilityPlugin\Private</Filter>
+    </ClCompile>
+    <Filter Include="Plugins\CPPEditorUtilityPlugin\Source\CPPEditorUtilityPlugin\Public">
+      <UniqueIdentifier>{E0F3B734-7426-301D-89C6-658D40E79793}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\CPPEditorUtilityPlugin\Source\CPPEditorUtilityPlugin\Public\CPPEditorUtilityPlugin.h">
+      <Filter>Plugins\CPPEditorUtilityPlugin\Source\CPPEditorUtilityPlugin\Public</Filter>
+    </ClInclude>
+    <None Include="..\..\Plugins\CPPEditorUtilityPlugin\CPPEditorUtilityPlugin.uplugin">
+      <Filter>Plugins\CPPEditorUtilityPlugin</Filter>
+    </None>
+    <Filter Include="Plugins\CPPEditorUtilityPlugin\Resources">
+      <UniqueIdentifier>{7A5418D7-EBC4-3EB9-B5C4-BD811E2A6F59}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\CPPEditorUtilityPlugin\Resources\Icon128.png">
+      <Filter>Plugins\CPPEditorUtilityPlugin\Resources</Filter>
+    </None>
+    <Filter Include="Plugins\ItemUI">
+      <UniqueIdentifier>{8D420712-CAF8-366A-ADEF-EA82C9F35777}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ItemUI\ItemUI.uplugin">
+      <Filter>Plugins\ItemUI</Filter>
+    </None>
+    <Filter Include="Plugins\ItemUI\Resources">
+      <UniqueIdentifier>{A6BD7C26-6833-3FE2-9E3C-1F5ABD311C2E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ItemUI\Resources\Icon128.png">
+      <Filter>Plugins\ItemUI\Resources</Filter>
+    </None>
+    <None Include="..\..\Plugins\ItemUI\Resources\PlaceholderButtonIcon.svg">
+      <Filter>Plugins\ItemUI\Resources</Filter>
+    </None>
+    <Filter Include="Plugins\SlateQuickstartWindow">
+      <UniqueIdentifier>{BB146667-17F7-35CD-8E2E-A63FBF992646}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\SlateQuickstartWindow\SlateQuickstartWindow.uplugin">
+      <Filter>Plugins\SlateQuickstartWindow</Filter>
+    </None>
+    <Filter Include="Plugins\SlateQuickstartWindow\Resources">
+      <UniqueIdentifier>{6BD92B46-B808-3D3C-AC3E-5020FDAC10EA}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\SlateQuickstartWindow\Resources\Icon128.png">
+      <Filter>Plugins\SlateQuickstartWindow\Resources</Filter>
+    </None>
+    <None Include="..\..\Plugins\SlateQuickstartWindow\Resources\PlaceholderButtonIcon.svg">
+      <Filter>Plugins\SlateQuickstartWindow\Resources</Filter>
+    </None>
+    <Filter Include="Plugins\ItemUI\Source">
+      <UniqueIdentifier>{6F539D45-8E85-3A69-82C4-84449D9CEB5C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\ItemUI\Source\ItemUI">
+      <UniqueIdentifier>{2CB8B7DD-D4EF-3BC1-822F-D94E56B88444}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\ItemUI\Source\ItemUI\ItemUI.Build.cs">
+      <Filter>Plugins\ItemUI\Source\ItemUI</Filter>
+    </None>
+    <Filter Include="Plugins\ItemUI\Source\ItemUI\Private">
+      <UniqueIdentifier>{1D7D71BF-B1C3-3B6F-B6FE-1D42EFAC5CE3}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\ItemUI\Source\ItemUI\Private\ItemUI.cpp">
+      <Filter>Plugins\ItemUI\Source\ItemUI\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ItemUI\Source\ItemUI\Private\ItemUICommands.cpp">
+      <Filter>Plugins\ItemUI\Source\ItemUI\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\ItemUI\Source\ItemUI\Private\ItemUIStyle.cpp">
+      <Filter>Plugins\ItemUI\Source\ItemUI\Private</Filter>
+    </ClCompile>
+    <Filter Include="Plugins\ItemUI\Source\ItemUI\Public">
+      <UniqueIdentifier>{C477B181-D24A-3405-A2F8-F8F14F927872}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\ItemUI\Source\ItemUI\Public\ItemUI.h">
+      <Filter>Plugins\ItemUI\Source\ItemUI\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\ItemUI\Source\ItemUI\Public\ItemUICommands.h">
+      <Filter>Plugins\ItemUI\Source\ItemUI\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\ItemUI\Source\ItemUI\Public\ItemUIStyle.h">
+      <Filter>Plugins\ItemUI\Source\ItemUI\Public</Filter>
+    </ClInclude>
+    <Filter Include="Plugins\SlateQuickstartWindow\Source">
+      <UniqueIdentifier>{924816C2-B7BF-3184-B442-FDE242700A68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow">
+      <UniqueIdentifier>{1A15127A-42C0-3AD8-ADFA-89B7FD9811CF}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\SlateQuickstartWindow.Build.cs">
+      <Filter>Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow</Filter>
+    </None>
+    <Filter Include="Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Private">
+      <UniqueIdentifier>{D952FE71-C651-37E1-9B13-6510AA35AF9E}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Private\SlateQuickstartWindow.cpp">
+      <Filter>Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Private\SlateQuickstartWindowCommands.cpp">
+      <Filter>Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Private\SlateQuickstartWindowStyle.cpp">
+      <Filter>Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Private</Filter>
+    </ClCompile>
+    <Filter Include="Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Public">
+      <UniqueIdentifier>{3DAC87E6-05C0-3449-93BD-41C178687B9B}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Public\SlateQuickstartWindow.h">
+      <Filter>Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Public\SlateQuickstartWindowCommands.h">
+      <Filter>Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Public\SlateQuickstartWindowStyle.h">
+      <Filter>Plugins\SlateQuickstartWindow\Source\SlateQuickstartWindow\Public</Filter>
+    </ClInclude>
+    <Filter Include="Source\SPHINX_Dev">
+      <UniqueIdentifier>{E348F1E3-AA2D-3723-AE9A-75BFBF0E3311}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\ActionBtn.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\ActionBtn.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\ActionMenu.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\ActionMenu.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\Area.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\Area.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\Avatar.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\Avatar.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\ConditionalObject.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\ConditionalObject.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\DialogueBox.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\DialogueBox.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\GameArea.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\GameArea.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\GameItem.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\GameItem.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\GamePuzzlePoint.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\GamePuzzlePoint.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\Generator.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\Generator.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\InitNPC.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\InitNPC.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\InitObject.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\InitObject.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\InitText.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\InitText.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\InventoryButton.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\InventoryButton.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\InventoryManager.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\InventoryManager.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\InventoryMenu.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\InventoryMenu.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\Item.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\Item.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\ItemProperty.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\ItemProperty.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\MyPawn.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\MyPawn.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\PlayerPawn.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\PlayerPawn.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\PuzzleManager.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\PuzzleManager.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\PuzzlePoint.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\PuzzlePoint.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\Rule.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\Rule.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\SpawnPoint.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\SpawnPoint.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\SPHINXHUD.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\SPHINXHUD.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <None Include="..\..\Source\SPHINX_Dev\SPHINX_Dev.Build.cs">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\SPHINX_Dev.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\SPHINX_Dev.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\SPHINX_DevCharacter.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\SPHINX_DevCharacter.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\SPHINX_DevGameMode.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\SPHINX_DevGameMode.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\SPHINX_DevPlayerController.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\SPHINX_DevPlayerController.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\SPHINX_DevProjectile.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\SPHINX_DevProjectile.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\Term.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\Term.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\TP_PickUpComponent.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\TP_PickUpComponent.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\TP_WeaponComponent.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\TP_WeaponComponent.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

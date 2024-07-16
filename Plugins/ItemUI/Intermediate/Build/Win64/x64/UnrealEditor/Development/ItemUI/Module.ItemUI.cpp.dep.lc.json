@@ -1,0 +1,37 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\itemui\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\itemui\\module.itemui.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\x64\\sphinx_deveditor\\development\\unrealed\\sharedpch.unrealed.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\itemui\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\itemui\\definitions.itemui.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\itemui\\source\\itemui\\private\\itemui.cpp",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\itemui\\source\\itemui\\public\\itemui.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\itemui\\source\\itemui\\public\\itemuistyle.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\itemui\\source\\itemui\\public\\itemuicommands.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\editor\\leveleditor\\public\\leveleditor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\editor\\leveleditor\\public\\ileveleditor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\public\\elements\\framework\\engineelementslibrary.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\engineelementslibrary.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\editor\\leveleditor\\public\\viewporttypedefinition.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\editor\\leveleditor\\public\\leveleditoroutlinersettings.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\developer\\toolwidgets\\public\\filters\\genericfilter.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\developer\\toolwidgets\\public\\filters\\filterbase.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\itemui\\source\\itemui\\private\\itemuicommands.cpp",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\plugins\\itemui\\source\\itemui\\private\\itemuistyle.cpp",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\slatecore\\public\\styling\\slatestyleregistry.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\public\\slate\\slategameresources.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\interfaces\\ipluginmanager.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\plugindescriptor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\custombuildsteps.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\localizationdescriptor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\moduledescriptor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\pluginreferencedescriptor.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\projects\\public\\versescope.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\slatecore\\public\\styling\\slatestylemacros.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

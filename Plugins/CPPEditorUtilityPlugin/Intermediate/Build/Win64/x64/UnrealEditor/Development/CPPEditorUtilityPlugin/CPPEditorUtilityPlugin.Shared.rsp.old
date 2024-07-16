@@ -257,6 +257,9 @@
 /I "Developer\PhysicsUtilities\Public"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\WidgetRegistration\UHT"
 /I "Developer\WidgetRegistration\Public"
+/I "..\Intermediate\Build\Win64\UnrealEditor\Inc\Blutility\UHT"
+/I "Editor\Blutility\Classes"
+/I "Editor\Blutility\Public"
 /I "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Plugins\CPPEditorUtilityPlugin\Source"
 /I "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Plugins\CPPEditorUtilityPlugin\Source\CPPEditorUtilityPlugin\Public"
 /external:W0

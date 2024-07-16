@@ -1,0 +1,3 @@
+Name,Description,Property 1 Type,Property 1 Name,Property 1 Value,Property 2 Type,Property 2 Name,Property 2 Value,Property 3 Type,Property 3 Name,Property 3 Value,Property 4 Type,Property 4 Name,Property 4 Value,Property 5 Type,Property 5 Name,Property 5 Value
+CSVItem1,test1,bool,locked,false,string,isa,lock,,,,,,,,,
+CSVItem2,test2,bool,open,true,string,isa,door,,,,,,,,,
