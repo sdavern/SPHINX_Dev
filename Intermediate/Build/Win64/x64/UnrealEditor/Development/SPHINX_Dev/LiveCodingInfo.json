@@ -17,7 +17,6 @@
 			"InventoryButton.gen.cpp.obj",
 			"InventoryManager.gen.cpp.obj",
 			"InventoryMenu.gen.cpp.obj",
-			"Item.gen.cpp.obj",
 			"ItemProperty.gen.cpp.obj",
 			"MyPawn.gen.cpp.obj",
 			"PlayerPawn.gen.cpp.obj",
@@ -49,7 +48,6 @@
 			"InventoryButton.cpp.obj",
 			"InventoryManager.cpp.obj",
 			"InventoryMenu.cpp.obj",
-			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
 			"MyPawn.cpp.obj",
 			"PlayerPawn.cpp.obj",
@@ -67,7 +65,9 @@
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
 			"Avatar.gen.cpp.obj",
-			"SPHINX_Dev.init.gen.cpp.obj"
+			"Item.gen.cpp.obj",
+			"SPHINX_Dev.init.gen.cpp.obj",
+			"Item.cpp.obj"
 		]
 	}
 }

@@ -8,13 +8,6 @@ TYPE_MAPPING = {
     'int': 'IntProperty'
 }
 
-def open_file_dialog():
-    dialog = unreal.SystemLibrary.get_editor_property('file_dialog')
-    file_path = dialog.open_file_dialog(None, 'Select File', '', '', 'CSV Files (*.csv)|*.csv', 1)
-    if file_path and len(file_path) > 0:
-        return file_path[0]
-    return ""
-
 def process_file(file_path):
     # Check if the file path is valid
     if not file_path:
@@ -49,17 +42,19 @@ def process_file(file_path):
         duplicated_blueprint_generated_class = unreal.EditorAssetLibrary.load_blueprint_class(duplicated_blueprint.get_path_name())
         duplicated_blueprint_instance = unreal.get_default_object(duplicated_blueprint_generated_class)
 
+        if not duplicated_blueprint_instance:
+            unreal.log_error("Duplicated instance is not valid")
+            continue
+
         # Set the Name and Description
-        duplicated_blueprint_instance.Name = item_name
-        duplicated_blueprint_instance.Description = item_description
+        unreal.EditorAssetLibrary.set_editor_property(duplicated_blueprint_instance, "Name", item_name)
+        unreal.EditorAssetLibrary.set_editor_property(duplicated_blueprint_instance, "Description", item_description)
 
-        # Create an actor with the item component
-        actor = unreal.EditorLevelLibrary.spawn_actor_from_class(unreal.Actor, unreal.Vector(0,0,0))
-        item_component = unreal.GameplayStatics.add_actor_component(actor, unreal.GameItem, item_name)
+        # Initialize properties array if not already present
+        properties_array = unreal.EditorAssetLibrary.get_editor_property(duplicated_blueprint_instance, "PropertiesBP")
+        if properties_array is None:
+            properties_array = []
 
-        # Assign the component to the duplicated blueprint
-        duplicated_blueprint_instance.AddInstanceComponent(item_component)
-        
         # Process item properties
         for i in range(1, 6):
             prop_type = row.get(f'Property {i} Type')
@@ -71,26 +66,31 @@ def process_file(file_path):
 
                 # Duplicate the property blueprint
                 original_property_blueprint_path = "/Game/BPsForWidgets/MyItemProperty"
+                itemprop_path = "/Game/Resources/Properties/"
                 new_property_blueprint_name = f"{item_name}_{prop_name}_BP"
-                duplicated_property_blueprint = asset_tools.duplicate_asset(new_property_blueprint_name, destination_path, original_property_blueprint_path)
+
+                original_property_blueprint = unreal.EditorAssetLibrary.load_asset(original_property_blueprint_path)
+
+                duplicated_property_blueprint = asset_tools.duplicate_asset(new_property_blueprint_name, itemprop_path, original_property_blueprint)
                 duplicated_property_blueprint_generated_class = unreal.EditorAssetLibrary.load_blueprint_class(duplicated_property_blueprint.get_path_name())
                 duplicated_property_blueprint_instance = unreal.get_default_object(duplicated_property_blueprint_generated_class)
 
                 # Set the property values
-                duplicated_property_blueprint_instance.Name = prop_name
+                unreal.EditorAssetLibrary.set_editor_property(duplicated_property_blueprint_instance, "Name", prop_name)
                 if prop_enum == 'BoolProperty':
-                    duplicated_property_blueprint_instance.Value = prop_value.lower() == 'true'
+                    if isinstance(prop_value, str):
+                        value = 'true' if prop_value.lower() == 'true' else 'false'
+                    else:
+                        value = 'true' if prop_value else 'false'
                 elif prop_enum == 'IntProperty':
-                    duplicated_property_blueprint_instance.Value = int(prop_value)
+                    value = str(int(prop_value))
                 else:
-                    duplicated_property_blueprint_instance.Value = prop_value
+                    value = str(prop_value)
+
+                unreal.EditorAssetLibrary.set_editor_property(duplicated_property_blueprint_instance, "Value", value)
 
                 # Add the property to the duplicated item blueprint
-                duplicated_blueprint_instance.Properties.append(duplicated_property_blueprint_instance)
+                unreal.EditorAssetLibrary.set_editor_property(duplicated_blueprint_instance, "PropertiesBP", properties_array)
         
         # Save the duplicated item blueprint
         unreal.EditorAssetLibrary.save_asset(duplicated_blueprint.get_path_name())
-
-# Example usage
-# file_path = open_file_dialog()
-# process_file(file_path)

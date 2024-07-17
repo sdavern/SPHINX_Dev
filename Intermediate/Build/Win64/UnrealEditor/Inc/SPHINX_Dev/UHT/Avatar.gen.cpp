@@ -162,9 +162,9 @@ void EmptyLinkFunctionForGeneratedCodeAvatar() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Avatar_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AAvatar, AAvatar::StaticClass, TEXT("AAvatar"), &Z_Registration_Info_UClass_AAvatar, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAvatar), 3835114757U) },
+		{ Z_Construct_UClass_AAvatar, AAvatar::StaticClass, TEXT("AAvatar"), &Z_Registration_Info_UClass_AAvatar, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AAvatar), 632961084U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Avatar_h_2402628111(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Avatar_h_860551211(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Avatar_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Avatar_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);
