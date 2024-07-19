@@ -32,7 +32,7 @@ def process_file(file_path):
         # Define the paths
         original_item_blueprint_path = "/Game/BPsForWidgets/MyItem"
         destination_path = "/Game/Resources/Items/"
-        new_blueprint_name = f"{item_name}_BP"
+        new_blueprint_name = f"{item_name}"
 
         # Load the original item blueprint
         original_blueprint = unreal.EditorAssetLibrary.load_asset(original_item_blueprint_path)
@@ -49,6 +49,20 @@ def process_file(file_path):
         # Set the Name and Description
         unreal.EditorAssetLibrary.set_editor_property(duplicated_blueprint_instance, "Name", item_name)
         unreal.EditorAssetLibrary.set_editor_property(duplicated_blueprint_instance, "Description", item_description)
+
+        original_actor_path = "/Game/BPsForWidgets/MyActor"
+        actor_path = "/Game/Resources/ItemBPs/"
+        actor_name = f"BP_{item_name}"
+        
+        original_actor = unreal.EditorAssetLibrary.load_asset(original_actor_path)
+
+        duplicated_actor = asset_tools.duplicate_asset(actor_name, actor_path, original_actor)
+        duplicated_actor_generated_class = unreal.EditorAssetLibrary.load_blueprint_class(duplicated_actor.get_path_name())
+        #duplicated_actor_instance = unreal.get_default_object(duplicated_actor_generated_class)
+
+        # Define the Blueprint class type
+      
+        unreal.EditorAssetLibrary.set_editor_property(duplicated_blueprint_instance, "ItemPrefab", duplicated_actor_generated_class)
 
         # Initialize properties array if not already present
         properties_array = unreal.EditorAssetLibrary.get_editor_property(duplicated_blueprint_instance, "PropertiesBP")

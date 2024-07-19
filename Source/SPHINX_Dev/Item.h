@@ -32,7 +32,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TArray<UItemProperty*> Properties;
 
-    UPROPERTY(VisibleAnywhere)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TSubclassOf<AActor> ItemPrefab;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
