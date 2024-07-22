@@ -1,0 +1,2 @@
+Input1,Input2,Action,Output1,Output2,Output3,Output4
+Axe isa Tool,Tree,ChopDown,Axe isa Tool,Wood is Burnable isa Fuel,,
