@@ -89,13 +89,14 @@ public:
 
 	static APuzzleManager* GetInstance();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void GenerateForActivePuzzlePoints();
 
 	TArray<URule*> RulesFor(UGameItem* GameItem);
 
 	void AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules);
 
+	UFUNCTION(BlueprintCallable)
 	void ExecuteRule(URule* Rule);
 
 	void FindLeaves(URule* Parent, UPuzzlePoint* PP);

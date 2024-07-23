@@ -9,6 +9,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class URule;
 #ifdef SPHINX_DEV_PuzzleManager_generated_h
 #error "PuzzleManager.generated.h already included, missing '#pragma once' in PuzzleManager.h"
 #endif
@@ -26,6 +27,7 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<struct FRulesStruct>();
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_38_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_38_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execExecuteRule); \
 	DECLARE_FUNCTION(execGenerateForActivePuzzlePoints);
 
 
