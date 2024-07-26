@@ -20,6 +20,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RefreshDatabase();
 
+	UFUNCTION(BlueprintCallable)
+	void LoadBaseItems(const FString& FilePath);
+
+	UFUNCTION(BlueprintCallable)
+	void AppendProperties(TArray<FString> BaseProps, TArray<FString> AppProps);
+
 private:
 	
 };
