@@ -14,8 +14,11 @@
     <None Include="..\..\.gitattributes" />
     <None Include="..\..\.ignore" />
     <None Include="..\..\.vsconfig" />
+    <None Include="..\..\ItemDatabase.csv" />
     <None Include="..\..\README.md" />
+    <None Include="..\..\RuleDatabase.csv" />
     <None Include="..\..\SPHINX_Dev.code-workspace" />
+    <None Include="..\..\UpgradeLog.htm" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
@@ -197,6 +200,12 @@
       <Filter>Source\SPHINX_Dev</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\SPHINX_Dev\ConditionalObject.h">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\SPHINX_Dev\DatabaseBuilder.cpp">
+      <Filter>Source\SPHINX_Dev</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\SPHINX_Dev\DatabaseBuilder.h">
       <Filter>Source\SPHINX_Dev</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\SPHINX_Dev\DialogueBox.cpp">
