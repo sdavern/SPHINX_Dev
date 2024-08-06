@@ -410,12 +410,6 @@
 			]
 		},
 		{
-			"ShaderMapHash": "2B4DF0A062A920B633F5C6369A9951A569A7437B",
-			"Assets": [
-				"/Game/M_UnlitPixelPerfectMaterial"
-			]
-		},
-		{
 			"ShaderMapHash": "533210A191DDE777697662714A8C479C4C8D8B94",
 			"Assets": [
 				"/Engine/EditorMaterials/PreviewShadowIndicatorMaterial"
@@ -536,6 +530,12 @@
 			]
 		},
 		{
+			"ShaderMapHash": "8AA2E9E902B6BB26CD2FCAAAD3E45A82B86B4D55",
+			"Assets": [
+				"/Game/M_UnlitPixelPerfectMaterial"
+			]
+		},
+		{
 			"ShaderMapHash": "4927A6EE827CB91675EF41CFDDA067ADA2E25093",
 			"Assets": [
 				"/Interchange/gltf/MaterialInstances/MI_Default_Mask"
@@ -570,6 +570,12 @@
 			"ShaderMapHash": "9CC9BCFB1252CD82B805F55F219E2DC1B1C5BCF4",
 			"Assets": [
 				"/Interchange/gltf/MaterialInstances/MI_Default_Blend_DS"
+			]
+		},
+		{
+			"ShaderMapHash": "050144FDDD81E48C39520E7B24450FCDEFC51F0A",
+			"Assets": [
+				"/Paper2D/DefaultLitSpriteMaterial"
 			]
 		},
 		{

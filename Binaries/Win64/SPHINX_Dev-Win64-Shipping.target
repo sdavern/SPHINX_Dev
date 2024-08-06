@@ -3039,6 +3039,10 @@
 			"Type": "UFS"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/EasyFileDialog/EasyFileDialog.uplugin",
+			"Type": "UFS"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Marketplace/PaperZD/PaperZD.uplugin",
 			"Type": "UFS"
 		},
@@ -3281,6 +3285,10 @@
 		{
 			"Path": "$(ProjectDir)/Binaries/Win64/tbbmalloc.pdb",
 			"Type": "DebugNonUFS"
+		},
+		{
+			"Path": "$(ProjectDir)/Plugins/CPPEditorUtilityPlugin/CPPEditorUtilityPlugin.uplugin",
+			"Type": "UFS"
 		},
 		{
 			"Path": "$(ProjectDir)/SPHINX_Dev.uproject",
