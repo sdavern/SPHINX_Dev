@@ -3,7 +3,7 @@
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\CPPEditorUtilityPlugin\\Source\\CPPEditorUtilityPlugin\\CPPEditorUtilityPlugin.Build.cs",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\CPPEditorUtilityPlugin.42.rsp"
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\CPPEditorUtilityPlugin.41.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
@@ -11,7 +11,7 @@
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\CPPEditorUtilityPlugin\\Source\\CPPEditorUtilityPlugin\\Private\\CPPEditorUtilityPlugin.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\CPPEditorUtilityPlugin.42.rsp"
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\CPPEditorUtilityPlugin.41.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
@@ -19,7 +19,7 @@
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\CPPEditorUtilityPlugin\\Source\\CPPEditorUtilityPlugin\\Public\\CPPEditorUtilityPlugin.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\CPPEditorUtilityPlugin.42.rsp"
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\CPPEditorUtilityPlugin.41.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
@@ -27,7 +27,7 @@
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\ItemUI\\Source\\ItemUI\\ItemUI.Build.cs",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.43.rsp"
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.42.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
@@ -35,7 +35,7 @@
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\ItemUI\\Source\\ItemUI\\Private\\ItemUI.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.43.rsp"
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.42.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
@@ -43,7 +43,7 @@
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\ItemUI\\Source\\ItemUI\\Private\\ItemUICommands.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.43.rsp"
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.42.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
@@ -51,7 +51,7 @@
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\ItemUI\\Source\\ItemUI\\Private\\ItemUIStyle.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.43.rsp"
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.42.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
@@ -59,7 +59,7 @@
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\ItemUI\\Source\\ItemUI\\Public\\ItemUI.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.43.rsp"
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.42.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
@@ -67,7 +67,7 @@
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\ItemUI\\Source\\ItemUI\\Public\\ItemUICommands.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.43.rsp"
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.42.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
@@ -75,7 +75,7 @@
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Plugins\\ItemUI\\Source\\ItemUI\\Public\\ItemUIStyle.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.43.rsp"
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\ItemUI.42.rsp"
 		],
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
@@ -153,22 +153,6 @@
 	},
 	{
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\ConditionalObject.h",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\DatabaseBuilder.cpp",
-		"arguments": [
-			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
-			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
-		],
-		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\DatabaseBuilder.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
@@ -361,6 +345,22 @@
 	},
 	{
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\Item.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\ItemEditor.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\ItemEditor.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_Default\\SPHINX_Dev.1.rsp"

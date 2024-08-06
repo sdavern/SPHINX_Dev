@@ -34,7 +34,7 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_OwningGamePP_MetaData[];
 #endif
-		static const UECodeGen_Private::FClassPropertyParams NewProp_OwningGamePP;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OwningGamePP;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Name_MetaData[];
 #endif
@@ -85,17 +85,10 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 #endif
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_OwningGamePP_MetaData[] = {
-		{ "Category", "PuzzlePoint" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//was (Transient)\n" },
-#endif
 		{ "ModuleRelativePath", "PuzzlePoint.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "was (Transient)" },
-#endif
 	};
 #endif
-	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_OwningGamePP = { "OwningGamePP", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPuzzlePoint, OwningGamePP), Z_Construct_UClass_UClass, Z_Construct_UClass_AGamePuzzlePoint_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_OwningGamePP_MetaData), Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_OwningGamePP_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_OwningGamePP = { "OwningGamePP", nullptr, (EPropertyFlags)0x0010000000002000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPuzzlePoint, OwningGamePP), Z_Construct_UClass_AGamePuzzlePoint_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_OwningGamePP_MetaData), Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_OwningGamePP_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_Name_MetaData[] = {
 		{ "Category", "PuzzlePoint" },
@@ -199,9 +192,9 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UPuzzlePoint, UPuzzlePoint::StaticClass, TEXT("UPuzzlePoint"), &Z_Registration_Info_UClass_UPuzzlePoint, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPuzzlePoint), 2215999549U) },
+		{ Z_Construct_UClass_UPuzzlePoint, UPuzzlePoint::StaticClass, TEXT("UPuzzlePoint"), &Z_Registration_Info_UClass_UPuzzlePoint, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPuzzlePoint), 3084109995U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_285844931(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_1892630995(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

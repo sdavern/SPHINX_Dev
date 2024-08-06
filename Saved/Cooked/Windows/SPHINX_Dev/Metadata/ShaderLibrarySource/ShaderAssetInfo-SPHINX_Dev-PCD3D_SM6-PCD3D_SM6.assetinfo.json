@@ -129,6 +129,12 @@
 			]
 		},
 		{
+			"ShaderMapHash": "C5A0913468014FAD9356BC6F225BBFCC1F6ED2D5",
+			"Assets": [
+				"/Game/M_UnlitPixelPerfectMaterial"
+			]
+		},
+		{
 			"ShaderMapHash": "295E27370D68D6F64A9BFEC63B855D2678657E1D",
 			"Assets": [
 				"/Interchange/gltf/MaterialInstances/MI_Default_Mask"
@@ -205,12 +211,6 @@
 			"ShaderMapHash": "53763660661F9E9A32FC9453052912986B3A94BD",
 			"Assets": [
 				"/Interchange/gltf/MaterialInstances/MI_Unlit_Opaque_DS"
-			]
-		},
-		{
-			"ShaderMapHash": "AB555267C70577FB9AEB2608FF7DAD07A3C6A3F3",
-			"Assets": [
-				"/Paper2D/DefaultLitSpriteMaterial"
 			]
 		},
 		{
@@ -504,12 +504,6 @@
 			"ShaderMapHash": "5424A7E0A8EB60FCA2F17EF8B328D2BAF15BABC6",
 			"Assets": [
 				"/MeshModelingToolset/Materials/M_DynamicMeshComponentVtxColor"
-			]
-		},
-		{
-			"ShaderMapHash": "097389E1E1093B9578F5E8982D7159E7236E877D",
-			"Assets": [
-				"/Game/M_UnlitPixelPerfectMaterial"
 			]
 		},
 		{
