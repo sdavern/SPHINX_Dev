@@ -28,7 +28,6 @@
 			"Rule.gen.cpp.obj",
 			"SpawnPoint.gen.cpp.obj",
 			"SPHINXHUD.gen.cpp.obj",
-			"SPHINX_Dev.init.gen.cpp.obj",
 			"SPHINX_DevCharacter.gen.cpp.obj",
 			"SPHINX_DevGameMode.gen.cpp.obj",
 			"SPHINX_DevPlayerController.gen.cpp.obj",
@@ -41,6 +40,7 @@
 			"Area.cpp.obj",
 			"Avatar.cpp.obj",
 			"ConditionalObject.cpp.obj",
+			"DatabaseBuilder.cpp.obj",
 			"DialogueBox.cpp.obj",
 			"GameArea.cpp.obj",
 			"GameItem.cpp.obj",
@@ -69,7 +69,9 @@
 			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
-			"DatabaseBuilder.cpp.obj"
+			"MainMenu.gen.cpp.obj",
+			"SPHINX_Dev.init.gen.cpp.obj",
+			"MainMenu.cpp.obj"
 		]
 	}
 }

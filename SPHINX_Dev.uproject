@@ -11,20 +11,11 @@
 			"AdditionalDependencies": [
 				"CoreUObject",
 				"Engine",
-				"UMG",
-				"PaperZD",
-				"Blutility"
+				"PaperZD"
 			]
 		}
 	],
 	"Plugins": [
-		{
-			"Name": "ModelingToolsEditorMode",
-			"Enabled": true,
-			"TargetAllowList": [
-				"Editor"
-			]
-		},
 		{
 			"Name": "SlateQuickstartWindow",
 			"Enabled": false
@@ -38,6 +29,19 @@
 			"Name": "EasyFileDialog",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/bcf64fe2e00c48189d8385a9c39b6e61"
+		},
+		{
+			"Name": "Bridge",
+			"Enabled": false,
+			"SupportedTargetPlatforms": [
+				"Win64",
+				"Mac",
+				"Linux"
+			]
+		},
+		{
+			"Name": "ChaosEditor",
+			"Enabled": false
 		}
 	]
 }

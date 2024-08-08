@@ -16,6 +16,9 @@ void ASPHINX_DevPlayerController::BeginPlay()
 	Super::BeginPlay();
 	AssignPlayer();
     AssignInventoryManager();
+    bShowMouseCursor = true; 
+    bEnableClickEvents = true;
+    bEnableMouseOverEvents = true;
 
 }
 
@@ -62,6 +65,12 @@ void ASPHINX_DevPlayerController::SetupInputComponent()
 void ASPHINX_DevPlayerController::OnLeftMouseDown()
 {
 	UE_LOG(LogTemp, Display, TEXT("Left mouse has been clicked!"));
+
+    if (!ActivePlayer)
+    {
+        return;
+    }
+
 
     UPuzzlePoint* PP = NewObject<UPuzzlePoint>(this, UPuzzlePoint::StaticClass());
 

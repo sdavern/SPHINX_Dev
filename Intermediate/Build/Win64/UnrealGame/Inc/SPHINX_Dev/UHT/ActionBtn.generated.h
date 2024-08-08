@@ -31,7 +31,7 @@ private: \
 	static void StaticRegisterNativesUActionBtn(); \
 	friend struct Z_Construct_UClass_UActionBtn_Statics; \
 public: \
-	DECLARE_CLASS(UActionBtn, UUserWidget, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/SPHINX_Dev"), NO_API) \
+	DECLARE_CLASS(UActionBtn, UButton, COMPILED_IN_FLAGS(0), CASTCLASS_None, TEXT("/Script/SPHINX_Dev"), NO_API) \
 	DECLARE_SERIALIZER(UActionBtn)
 
 

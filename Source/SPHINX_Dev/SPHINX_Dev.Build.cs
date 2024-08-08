@@ -1,5 +1,3 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 using UnrealBuildTool;
 
 public class SPHINX_Dev : ModuleRules
@@ -8,7 +6,7 @@ public class SPHINX_Dev : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "AssetRegistry", "Paper2D", "PaperZD", "Slate", "SlateCore", "EditorScriptingUtilities", "Blutility", "UMG", "UMGEditor", "UnrealEd" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "AssetRegistry", "Paper2D", "PaperZD", "Slate", "SlateCore", "UMG" });
 		
 	}
 }

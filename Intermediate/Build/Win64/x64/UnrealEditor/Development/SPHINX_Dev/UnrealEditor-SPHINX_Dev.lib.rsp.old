@@ -8,8 +8,8 @@
 /NODEFAULTLIB
 "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\SPHINX_DevEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.obj"
 "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\Module.SPHINX_Dev.cpp.obj"
-"C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\DatabaseBuilder.cpp.obj"
-"C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\DatabaseBuilder.gen.cpp.obj"
+"C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\MainMenu.cpp.obj"
+"C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\MainMenu.gen.cpp.obj"
 "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\SPHINX_Dev.init.gen.cpp.obj"
 "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\Default.rc2.res"
 /OUT:"C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Intermediate\Build\Win64\x64\UnrealEditor\Development\SPHINX_Dev\UnrealEditor-SPHINX_Dev.lib"
