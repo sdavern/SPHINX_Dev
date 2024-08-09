@@ -39,3 +39,4 @@ SPHINX_Dev.pdb filter=lfs diff=lfs merge=lfs -text
 SPHINX_Dev-Win64-Shipping.exe filter=lfs diff=lfs merge=lfs -text
 SPHINX_Dev-Win64-Shipping.pdb filter=lfs diff=lfs merge=lfs -text
 SPHINX_Dev-Windows.ucas filter=lfs diff=lfs merge=lfs -text
+Suikoden_II_-_Heart_Softening_Theme___HQ_theme__1__extended_to_20_minutes_.uasset filter=lfs diff=lfs merge=lfs -text
