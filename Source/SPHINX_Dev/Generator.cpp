@@ -267,6 +267,8 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 		ParentRule->AddChildRule(ChosenRule);
 		CurrentPP->CurrentPuzzleRules.Add(ChosenRule);
 		UE_LOG(LogTemp, Warning, TEXT("ChosenRule %s has %d inputs"), *ChosenRule->Action, ChosenRule->Inputs.Num());
+		UE_LOG(LogTemp, Error, TEXT("ChosenRule as string: %s"), *ChosenRule->ToString());
+		PuzzleString += ChosenRule->ToString() + TEXT("\n ->");
 
 
 		for (int32 i = 0; i < ChosenRule->Inputs.Num() - 1; i++)
@@ -322,6 +324,13 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	if (StartTerm->DbItem == nullptr && StartTerm->Name != TEXT("Player"))
 	{
 		UE_LOG(LogTemp, Display, TEXT("GRAMMAR ERROR: No terminal or non-terminal match for term: %s"), *StartTerm->Name);
+		return false;
+	}
+
+	//Check if puzzle has already been generated
+	if (PMInstance->PuzzlesGeneratedStrings.Contains(PuzzleString))
+	{
+		UE_LOG(LogTemp, Display, TEXT("Puzzle %s has already been generated"), *PuzzleString);
 		return false;
 	}
 

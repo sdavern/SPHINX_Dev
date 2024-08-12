@@ -2662,6 +2662,18 @@
 			"Type": "RequiredResource"
 		},
 		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/TypewriterPlugin/Binaries/Win64/UnrealEditor-TypewriterPlugin.dll",
+			"Type": "DynamicLibrary"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/TypewriterPlugin/Binaries/Win64/UnrealEditor-TypewriterPlugin.pdb",
+			"Type": "SymbolFile"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/TypewriterPlugin/Binaries/Win64/UnrealEditor.modules",
+			"Type": "RequiredResource"
+		},
+		{
 			"Path": "$(EngineDir)/Plugins/Media/AndroidMedia/Binaries/Win64/UnrealEditor-AndroidMediaEditor.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -39573,6 +39585,10 @@
 		},
 		{
 			"Path": "$(EngineDir)/Plugins/Marketplace/PaperZD/PaperZD.uplugin",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(EngineDir)/Plugins/Marketplace/TypewriterPlugin/TypewriterPlugin.uplugin",
 			"Type": "UFS"
 		},
 		{

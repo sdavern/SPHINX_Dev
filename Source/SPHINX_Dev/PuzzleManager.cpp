@@ -488,6 +488,7 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                 }
             
                 UE_LOG(LogTemp, Display, TEXT("Puzzle for PP: %s completed!"), *FoundPP->Name);
+                ++CompletedPuzzles;
                 if (SolvedSoundCue)
                 {
                     FVector Location = FVector(0.0f, 0.0f, 0.0f);
@@ -583,6 +584,8 @@ bool APuzzleManager::FindItemsForOutputs(URule* Rule)
 void APuzzleManager::AddPuzzle(UPuzzlePoint* PP, FString Puzzle)
 {
     PuzzlesGenerated.Add(PP, Puzzle);
+    PuzzlesGeneratedStrings.Add(Puzzle);
+    UE_LOG(LogTemp, Error, TEXT("Puzzle added to PuzzlesGenerated: %s"), *Puzzle);
 }
 
 bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
@@ -999,6 +1002,13 @@ bool APuzzleManager::CheckIfPuzzleToBeGenerated()
     {
         return false;
     }
+
+    //For demo only
+    else if (CompletedPuzzles >= MaxPuzzles)
+    {
+        return false;
+    }
+
     else
     {
         return true;

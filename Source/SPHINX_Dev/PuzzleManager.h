@@ -169,7 +169,14 @@ public:
 
 	ASPHINX_DevPlayerController* ReturnPC();
 
+	TArray<FString> PuzzlesGeneratedStrings;
 
+	//For demo only
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int CompletedPuzzles = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int MaxPuzzles = 5;
 
 
 
