@@ -10,6 +10,7 @@
 #include "Item.h"
 #include "Rule.h"
 #include "Area.h"
+#include "PuzzleTracker.h"
 #include "SPHINX_DevPlayerController.h"
 #include "ConditionalObject.h"
 #include "PuzzleManager.generated.h"
@@ -177,6 +178,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int MaxPuzzles = 5;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPuzzleTracker* PuzzleTracker;
 
 
 

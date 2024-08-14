@@ -50,6 +50,9 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	AAvatar* ActivePlayer;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool IsPlayingScene = false;
+
 protected:
 
 	/** Input Mapping Context to be used for player input */

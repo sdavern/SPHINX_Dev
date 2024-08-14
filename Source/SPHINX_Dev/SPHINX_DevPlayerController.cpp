@@ -210,7 +210,15 @@ void ASPHINX_DevPlayerController::DisableCollisionForActor(AActor* ActorToDisabl
 void ASPHINX_DevPlayerController::OnRightMouseDown()
 {
     UE_LOG(LogTemp, Display, TEXT("Right mouse has been clicked!"));
-    if (!InventoryOpen)
+    if (!ActivePlayer)
+    {
+        return;
+    }
+    else if (IsPlayingScene)
+    {
+        return;
+    }
+    else if (!InventoryOpen)
     {
         OpenInventoryMenu();
     }

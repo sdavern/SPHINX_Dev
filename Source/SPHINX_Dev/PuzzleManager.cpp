@@ -489,6 +489,10 @@ void APuzzleManager::ExecuteRule(URule* Rule)
             
                 UE_LOG(LogTemp, Display, TEXT("Puzzle for PP: %s completed!"), *FoundPP->Name);
                 ++CompletedPuzzles;
+                if (PuzzleTracker)
+                {
+                    PuzzleTracker->UpdateText(CompletedPuzzles); //need to expose to BPs
+                }
                 if (SolvedSoundCue)
                 {
                     FVector Location = FVector(0.0f, 0.0f, 0.0f);
