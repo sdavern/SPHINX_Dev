@@ -22,7 +22,6 @@ APuzzleManager::APuzzleManager()
     PrimaryActorTick.bCanEverTick = true;
     PPAssets = LoadPuzzlePointBPs();
     ItemAssets = LoadItemBPs();
-    UE_LOG(LogTemp, Error, TEXT("ItemAssets has %d items"), ItemAssets.Num());
     RuleAssets = LoadRuleBPs();
     ActivateMaxPuzzlePoints();
 }

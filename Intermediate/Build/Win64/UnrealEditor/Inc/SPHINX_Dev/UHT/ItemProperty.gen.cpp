@@ -49,6 +49,7 @@ void EmptyLinkFunctionForGeneratedCodeItemProperty() {}
 		{ "IntProperty.DisplayName", "Int Property" },
 		{ "IntProperty.Name", "EItemProperty::IntProperty" },
 		{ "ModuleRelativePath", "ItemProperty.h" },
+		{ "ScriptName", "ItemPropertyEnum" },
 		{ "StringProperty.DisplayName", "String Property" },
 		{ "StringProperty.Name", "EItemProperty::StringProperty" },
 	};
@@ -124,7 +125,7 @@ void EmptyLinkFunctionForGeneratedCodeItemProperty() {}
 		{ "ModuleRelativePath", "ItemProperty.h" },
 	};
 #endif
-	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UItemProperty_Statics::NewProp_Type = { "Type", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UItemProperty, Type), Z_Construct_UEnum_SPHINX_Dev_EItemProperty, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UItemProperty_Statics::NewProp_Type_MetaData), Z_Construct_UClass_UItemProperty_Statics::NewProp_Type_MetaData) }; // 2409907138
+	const UECodeGen_Private::FEnumPropertyParams Z_Construct_UClass_UItemProperty_Statics::NewProp_Type = { "Type", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Enum, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UItemProperty, Type), Z_Construct_UEnum_SPHINX_Dev_EItemProperty, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UItemProperty_Statics::NewProp_Type_MetaData), Z_Construct_UClass_UItemProperty_Statics::NewProp_Type_MetaData) }; // 973540946
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UItemProperty_Statics::NewProp_Name_MetaData[] = {
 		{ "Category", "Property" },
@@ -184,12 +185,12 @@ void EmptyLinkFunctionForGeneratedCodeItemProperty() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FEnumRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::EnumInfo[] = {
-		{ EItemProperty_StaticEnum, TEXT("EItemProperty"), &Z_Registration_Info_UEnum_EItemProperty, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2409907138U) },
+		{ EItemProperty_StaticEnum, TEXT("EItemProperty"), &Z_Registration_Info_UEnum_EItemProperty, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 973540946U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UItemProperty, UItemProperty::StaticClass, TEXT("UItemProperty"), &Z_Registration_Info_UClass_UItemProperty, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItemProperty), 1602335173U) },
+		{ Z_Construct_UClass_UItemProperty, UItemProperty::StaticClass, TEXT("UItemProperty"), &Z_Registration_Info_UClass_UItemProperty, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItemProperty), 2606022319U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_2377012924(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_3232482033(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::EnumInfo));

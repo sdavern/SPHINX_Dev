@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "Avatar.h"
 #include "SPHINX_DevGameMode.generated.h"
 
 UCLASS(minimalapi)

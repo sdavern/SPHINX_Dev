@@ -1,0 +1,43 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/UI_BPs/IntroScene.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/GUI_Sprites/ActionMenuGUI.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Characters/sphinx.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/Sprites/Items/resources_basic.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/Sprites/Items/spritesheet.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/Sprites/Items/spritesheet_16x16.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/Sprites/Items/Food.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/Sprites/Items/sprite.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Characters/Sprite_Sheets/chara4.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/Tilesets/inside_TileSet.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/CastleInterior.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/BigInterior.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/BigInteriorUpstairs.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/PNGs/insidePadded.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/Interior.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/SmallInterior.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/Tavern.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/GUI_Sprites/SprActionMenu.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/Tilesets/house_TileSet.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/PNGs/housePadded.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/Tilesets/castle_TileSet.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/World.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/WorldAvatarOverlayLayer.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/PNGs/castlePadded.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/Tilesets/terrain_TileSet.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Tilemaps/PNGs/terrainPadded.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/FirstPerson/Blueprints/BP_FirstPersonGameMode.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/FirstPerson/Maps/ManagerLevel.umap",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/FirstPerson/Maps/MainMenuLevel.umap",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/FirstPerson/Blueprints/BP_DebugIntroGameMode.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/UI_BPs/BP_MainMenuDebugTest.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/FirstPerson/Maps/DebugIntroLevel.umap"
+			]
+		}
+	]
+}

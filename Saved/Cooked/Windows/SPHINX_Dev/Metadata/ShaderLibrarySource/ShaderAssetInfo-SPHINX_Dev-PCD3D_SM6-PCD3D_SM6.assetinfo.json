@@ -8,6 +8,12 @@
 			]
 		},
 		{
+			"ShaderMapHash": "1CAF15021BE5B6C571C74EA6D89BD897956F3BC0",
+			"Assets": [
+				"/Game/FPWeapon/Materials/BaseMaterial"
+			]
+		},
+		{
 			"ShaderMapHash": "D2BC7304E19C92A116A21E6CBBD2D54C88B35EFF",
 			"Assets": [
 				"/Interchange/gltf/MaterialInstances/MI_Sheen_Mask"
@@ -110,13 +116,6 @@
 			]
 		},
 		{
-			"ShaderMapHash": "C1489D335069EFC4061DB4D0DEED77459AE8B024",
-			"Assets": [
-				"/Game/Pirate/Materials/M_Pirate_Body_1",
-				"/Game/Pirate/Materials/M_Pirate_Details_Weapon"
-			]
-		},
-		{
 			"ShaderMapHash": "295E27370D68D6F64A9BFEC63B855D2678657E1D",
 			"Assets": [
 				"/Interchange/gltf/MaterialInstances/MI_Default_Mask"
@@ -196,12 +195,6 @@
 			]
 		},
 		{
-			"ShaderMapHash": "AB555267C70577FB9AEB2608FF7DAD07A3C6A3F3",
-			"Assets": [
-				"/Paper2D/DefaultLitSpriteMaterial"
-			]
-		},
-		{
 			"ShaderMapHash": "F1649467B3C6052EEF75DDF6BBE9FFF9808BD8BB",
 			"Assets": [
 				"/Engine/EngineMaterials/M_InvalidLightmapSettings"
@@ -256,6 +249,12 @@
 			]
 		},
 		{
+			"ShaderMapHash": "73D047832781D0B2A300E7A04AEB765F47581D19",
+			"Assets": [
+				"/Game/LevelPrototyping/Materials/MI_PrototypeGrid_TopDark"
+			]
+		},
+		{
 			"ShaderMapHash": "3B4752835D57D94907883619BFBC63ADF22851EC",
 			"Assets": [
 				"/Engine/EngineMaterials/DefaultDeferredDecalMaterial"
@@ -271,6 +270,12 @@
 			"ShaderMapHash": "D9FD7485A64CCF2B9676DDE29211A3E242EC8007",
 			"Assets": [
 				"/Engine/OpenWorldTemplate/LandscapeMaterial/MI_ProcGrid"
+			]
+		},
+		{
+			"ShaderMapHash": "854319872FFA2B644901C802379CA7D888C4AF1A",
+			"Assets": [
+				"/Game/LevelPrototyping/Materials/M_Solid"
 			]
 		},
 		{
@@ -376,6 +381,12 @@
 			]
 		},
 		{
+			"ShaderMapHash": "A63127AF75EC1838644E27C9968844AF5CC44C89",
+			"Assets": [
+				"/Game/FPWeapon/Materials/M_FPGun"
+			]
+		},
+		{
 			"ShaderMapHash": "7596DBB5FF57EA6A8846041B7D3860CB19F43F7D",
 			"Assets": [
 				"/Interchange/gltf/MaterialInstances/MI_ClearCoat_Mask"
@@ -394,9 +405,10 @@
 			]
 		},
 		{
-			"ShaderMapHash": "974AB6C23BBC209907C27A841D844EBB7DAF7EE5",
+			"ShaderMapHash": "55B2E6BCB54953AEF56E025009FA6AEEE6FD2453",
 			"Assets": [
-				"/Game/Pirate/Materials/M_Pirate_Hair_1"
+				"/Game/LevelPrototyping/Materials/M_PrototypeGrid",
+				"/Game/LevelPrototyping/Materials/MI_PrototypeGrid_Gray_02"
 			]
 		},
 		{
@@ -418,6 +430,12 @@
 			]
 		},
 		{
+			"ShaderMapHash": "52FEAFC9D949A94C29846FD50C5B20495AFDDCAB",
+			"Assets": [
+				"/Game/LevelPrototyping/Materials/MI_PrototypeGrid_Gray"
+			]
+		},
+		{
 			"ShaderMapHash": "50C76DCBA6D7FED0DF2D3B030E81E0189C9E6243",
 			"Assets": [
 				"/Engine/EngineSky/VolumetricClouds/m_SimpleVolumetricCloud"
@@ -427,12 +445,6 @@
 			"ShaderMapHash": "FC05AECBB6C43F0C9D054FC16E9D7742BE56251B",
 			"Assets": [
 				"/ControlRig/M_Manip"
-			]
-		},
-		{
-			"ShaderMapHash": "42ABAAD216F19E2F653A97A7CB3433EDB89E7B03",
-			"Assets": [
-				"/Game/Pirate/Materials/M_Pirate_Cloth"
 			]
 		},
 		{

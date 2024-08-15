@@ -4,7 +4,7 @@
 #include "UObject/Object.h"
 #include "ItemProperty.generated.h"
 
-UENUM(BlueprintType)
+UENUM(BlueprintType, meta = (ScriptName = "ItemPropertyEnum"))
 enum class EItemProperty : uint8
 {
 	StringProperty UMETA(DisplayName = "String Property"),

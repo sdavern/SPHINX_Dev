@@ -192,6 +192,22 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
 	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\EndLevelGameMode.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\EndLevelGameMode.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\GameArea.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
@@ -464,6 +480,22 @@
 		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
 	},
 	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\PuzzleTracker.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\PuzzleTracker.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\Rule.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
@@ -593,6 +625,22 @@
 	},
 	{
 		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SpawnPoint.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SphinxActor.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"
+		],
+		"directory": "C:\\Program Files\\Epic Games\\UE_5.3\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\Source\\SPHINX_Dev\\SphinxActor.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.37.32822\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Users\\valey\\Documents\\Unreal Projects\\SPHINX_Dev\\.vscode\\compileCommands_SPHINX_Dev\\SPHINX_Dev.1.rsp"

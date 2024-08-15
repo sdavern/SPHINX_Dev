@@ -264,105 +264,6 @@
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/Animation/IKRig/IKRig.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "IK Rig",
-				"Description": "",
-				"Category": "Other",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": true,
-				"Modules": [
-					{
-						"Name": "IKRig",
-						"Type": "Runtime",
-						"LoadingPhase": "PreDefault"
-					},
-					{
-						"Name": "IKRigDeveloper",
-						"Type": "UncookedOnly",
-						"LoadingPhase": "PreDefault"
-					},
-					{
-						"Name": "IKRigEditor",
-						"Type": "Editor",
-						"LoadingPhase": "PostEngineInit"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "ControlRig",
-						"Enabled": true
-					},
-					{
-						"Name": "FullBodyIK",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Bridge/Bridge.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 24,
-				"VersionName": "2023.0.8",
-				"FriendlyName": "Bridge",
-				"Description": "Megascans Link for Quixel Bridge.",
-				"Category": "Editor",
-				"CreatedBy": "Quixel",
-				"CreatedByURL": "https://www.quixel.se",
-				"DocsURL": "https://support.fab.com/s/?ProductOrigin=Quixeltier1",
-				"MarketplaceURL": "",
-				"SupportURL": "https://support.fab.com/s/?ProductOrigin=Quixeltier1",
-				"EngineVersion": "5.3.0",
-				"EnabledByDefault": true,
-				"CanContainContent": true,
-				"SupportedTargetPlatforms": [
-					"Win64",
-					"Mac",
-					"Linux"
-				],
-				"Modules": [
-					{
-						"Name": "Bridge",
-						"Type": "Editor",
-						"LoadingPhase": "PostDefault",
-						"PlatformAllowList": [
-							"Win64",
-							"Mac",
-							"Linux"
-						]
-					},
-					{
-						"Name": "MegascansPlugin",
-						"Type": "Editor",
-						"LoadingPhase": "PostDefault",
-						"PlatformAllowList": [
-							"Win64",
-							"Mac",
-							"Linux"
-						]
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "EditorScriptingUtilities",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../Engine/Plugins/Cameras/CameraShakePreviewer/CameraShakePreviewer.uplugin",
 			"Descriptor": 
 			{
@@ -591,65 +492,6 @@
 						"Name": "BlueprintHeaderView",
 						"Type": "Editor",
 						"LoadingPhase": "Default"
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Editor/EditorScriptingUtilities/EditorScriptingUtilities.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "Editor Scripting Utilities",
-				"Description": "Helper functions to script your own UE editor functionalities with Blueprint or other scripting tools.",
-				"Category": "Scripting",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": false,
-				"IsBetaVersion": true,
-				"Modules": [
-					{
-						"Name": "EditorScriptingUtilities",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Editor/FacialAnimation/FacialAnimation.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "Facial Animation Bulk Importer",
-				"Description": "Bulk importer for facial animation curves and audio. Imports facial animation curve tables (from FBX) into sound waves.",
-				"Category": "Editor",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": false,
-				"IsBetaVersion": true,
-				"Modules": [
-					{
-						"Name": "FacialAnimation",
-						"Type": "Runtime",
-						"LoadingPhase": "PreDefault"
-					},
-					{
-						"Name": "FacialAnimationEditor",
-						"Type": "Editor",
-						"LoadingPhase": "PreDefault"
 					}
 				]
 			}
@@ -1107,228 +949,6 @@
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/Experimental/ChaosCaching/ChaosCaching.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "ChaosCaching",
-				"Description": "Chaos Cache asset support for recording and playing back physics simulations",
-				"Category": "Physics",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"IsBetaVersion": true,
-				"IsExperimentalVersion": true,
-				"Modules": [
-					{
-						"Name": "ChaosCaching",
-						"Type": "Runtime",
-						"LoadingPhase": "PreDefault"
-					},
-					{
-						"Name": "ChaosCachingEditor",
-						"Type": "Editor",
-						"LoadingPhase": "PreDefault"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "Takes",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Experimental/ChaosClothEditor/ChaosClothEditor.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "Chaos Cloth Editor",
-				"Description": "Editor module accompanying the Chaos Cloth runtime module.",
-				"Category": "Physics",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": true,
-				"Modules": [
-					{
-						"Name": "ChaosClothEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "ChaosCloth",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Experimental/ChaosCloth/ChaosCloth.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "Chaos Cloth",
-				"Description": "Adds Chaos Cloth Module.",
-				"Category": "Physics",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": false,
-				"Modules": [
-					{
-						"Name": "ChaosCloth",
-						"Type": "Runtime",
-						"LoadingPhase": "PostConfigInit"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "ChaosCaching",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Experimental/ChaosEditor/ChaosEditor.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "ChaosEditor",
-				"Description": "Destruction Tools",
-				"Category": "Editor",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": false,
-				"IsBetaVersion": true,
-				"Modules": [
-					{
-						"Name": "FractureEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "PlanarCut",
-						"Enabled": true,
-						"TargetAllowList": [
-							"Editor"
-						]
-					},
-					{
-						"Name": "GeometryCollectionPlugin",
-						"Enabled": true
-					},
-					{
-						"Name": "MeshModelingToolsetExp",
-						"Enabled": true,
-						"TargetAllowList": [
-							"Editor"
-						]
-					},
-					{
-						"Name": "EditorScriptingUtilities",
-						"Enabled": true
-					},
-					{
-						"Name": "Fracture",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Experimental/ChaosNiagara/ChaosNiagara.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "0.1",
-				"FriendlyName": "Chaos Niagara",
-				"Description": "Import destruction data from Chaos into Niagara to generate secondary destruction effects.",
-				"Category": "",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": true,
-				"IsBetaVersion": true,
-				"Modules": [
-					{
-						"Name": "ChaosNiagara",
-						"Type": "Runtime",
-						"LoadingPhase": "Default"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "Niagara",
-						"Enabled": true
-					},
-					{
-						"Name": "ChaosSolverPlugin",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Experimental/ChaosSolverPlugin/ChaosSolverPlugin.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "0.1",
-				"FriendlyName": "Chaos Solver",
-				"Description": "Physics Solver",
-				"Category": "Physics",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": true,
-				"IsBetaVersion": true,
-				"Modules": [
-					{
-						"Name": "ChaosSolverEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../Engine/Plugins/Experimental/ChaosUserDataPT/ChaosUserDataPT.uplugin",
 			"Descriptor": 
 			{
@@ -1431,143 +1051,6 @@
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/Experimental/Fracture/Fracture.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "0.1",
-				"FriendlyName": "Fracture",
-				"Description": "Adds Module for FractureEditor",
-				"Category": "Physics",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "http://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": false,
-				"IsBetaVersion": true,
-				"Modules": [
-					{
-						"Name": "FractureEngine",
-						"Type": "Runtime",
-						"LoadingPhase": "PostEngineInit"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "PlanarCut",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Experimental/FullBodyIK/FullBodyIK.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "Full Body IK",
-				"Description": "",
-				"Category": "Other",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"CanContainContent": true,
-				"Modules": [
-					{
-						"Name": "FullBodyIK",
-						"Type": "Runtime",
-						"LoadingPhase": "PreDefault"
-					},
-					{
-						"Name": "PBIK",
-						"Type": "Runtime",
-						"LoadingPhase": "PreDefault"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "ControlRig",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Experimental/GeometryCollectionPlugin/GeometryCollectionPlugin.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "0.1",
-				"FriendlyName": "Geometry",
-				"Description": "Adds Geometry Collection Container.",
-				"Category": "Geometry",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"IsBetaVersion": true,
-				"Modules": [
-					{
-						"Name": "GeometryCollectionEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "GeometryCollectionTracks",
-						"Type": "Runtime",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "GeometryCollectionSequencer",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "GeometryCollectionNodes",
-						"Type": "Runtime",
-						"LoadingPhase": "Default"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "ProceduralMeshComponent",
-						"Enabled": true
-					},
-					{
-						"Name": "ChaosSolverPlugin",
-						"Enabled": true
-					},
-					{
-						"Name": "Dataflow",
-						"Enabled": true
-					},
-					{
-						"Name": "PlanarCut",
-						"Enabled": true
-					},
-					{
-						"Name": "GeometryProcessing",
-						"Enabled": true
-					},
-					{
-						"Name": "Fracture",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../Engine/Plugins/Experimental/LocalizableMessage/LocalizableMessage.uplugin",
 			"Descriptor": 
 			{
@@ -1629,39 +1112,6 @@
 						"PlatformAllowList": [
 							"Win64"
 						]
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Experimental/PlanarCutPlugin/PlanarCut.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "0.1",
-				"FriendlyName": "Planar Cut",
-				"Description": "Adds Module for Planar Cuts.",
-				"Category": "Physics",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": false,
-				"IsBetaVersion": true,
-				"Modules": [
-					{
-						"Name": "PlanarCut",
-						"Type": "Runtime",
-						"LoadingPhase": "PostEngineInit"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "GeometryProcessing",
-						"Enabled": true
 					}
 				]
 			}
@@ -2140,12 +1590,42 @@
 			}
 		},
 		{
+			"File": "../../../Engine/Plugins/Marketplace/EasyFileDialog/EasyFileDialog.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Easy File Dialog",
+				"Description": "An easy file dialog system",
+				"Category": "File",
+				"CreatedBy": "Firefly Studio",
+				"CreatedByURL": "http://www.fire-fly.studio",
+				"DocsURL": "",
+				"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/bcf64fe2e00c48189d8385a9c39b6e61",
+				"SupportURL": "http://www.fire-fly.studio",
+				"EngineVersion": "5.3.0",
+				"CanContainContent": true,
+				"Installed": true,
+				"Modules": [
+					{
+						"Name": "EasyFileDialog",
+						"Type": "Runtime",
+						"LoadingPhase": "PreLoadingScreen",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../Engine/Plugins/Marketplace/PaperZD/PaperZD.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
-				"Version": 22,
-				"VersionName": "2.0.6",
+				"Version": 26,
+				"VersionName": "2.1.2",
 				"FriendlyName": "PaperZD",
 				"Description": "Animation Graph and Notify Support for 2D Development",
 				"Category": "Other",
@@ -2185,67 +1665,43 @@
 					{
 						"Name": "Paper2D",
 						"Enabled": true
+					},
+					{
+						"Name": "Niagara",
+						"Enabled": true
 					}
 				]
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/Media/AvfMedia/AvfMedia.uplugin",
+			"File": "../../../Engine/Plugins/Marketplace/TypewriterPlugin/TypewriterPlugin.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
-				"Version": 2,
-				"VersionName": "2.0",
-				"FriendlyName": "AVF Media Player",
-				"Description": "Implements a media player using Apple AV Foundation.",
-				"Category": "Media Players",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "https://forums.unrealengine.com/showthread.php?46879-Media-Framework-Documentation-for-4-5-Preview",
-				"MarketplaceURL": "",
+				"Version": 1,
+				"VersionName": "1.2",
+				"FriendlyName": "Typewriter Plugin",
+				"Description": "SixLineStudio",
+				"Category": "UI",
+				"CreatedBy": "Mykhailo Oliinyk",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/5796d04c2eba4cffa4bd7df597220967",
 				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": false,
+				"EngineVersion": "5.3.0",
+				"CanContainContent": true,
+				"Installed": true,
 				"Modules": [
 					{
-						"Name": "AvfMedia",
-						"Type": "RuntimeNoCommandlet",
+						"Name": "TypewriterPlugin",
+						"Type": "Runtime",
 						"LoadingPhase": "PreLoadingScreen",
 						"PlatformAllowList": [
-							"IOS",
+							"Win64",
 							"Mac",
-							"TVOS"
-						]
-					},
-					{
-						"Name": "AvfMediaEditor",
-						"Type": "Editor",
-						"LoadingPhase": "PostEngineInit"
-					},
-					{
-						"Name": "AvfMediaFactory",
-						"Type": "Editor",
-						"LoadingPhase": "PostEngineInit"
-					},
-					{
-						"Name": "AvfMediaFactory",
-						"Type": "RuntimeNoCommandlet",
-						"LoadingPhase": "PostEngineInit",
-						"PlatformAllowList": [
-							"IOS",
 							"Linux",
-							"Mac",
-							"TVOS",
-							"Win64"
-						]
-					},
-					{
-						"Name": "AvfMediaCapture",
-						"Type": "RuntimeNoCommandlet",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
 							"IOS",
-							"Mac"
+							"Android"
 						]
 					}
 				]
@@ -3053,48 +2509,6 @@
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/Runtime/AndroidFileServer/AndroidFileServer.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "AndroidFileServer",
-				"Description": "Adds support for remote file management to Android projects.",
-				"Category": "Android",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": false,
-				"Modules": [
-					{
-						"Name": "AndroidFileServer",
-						"Type": "Runtime",
-						"LoadingPhase": "PreLoadingScreen",
-						"PlatformAllowList": [
-							"Android",
-							"Win64",
-							"Mac",
-							"Linux"
-						]
-					},
-					{
-						"Name": "AndroidFileServerEditor",
-						"Type": "Editor",
-						"LoadingPhase": "PostEngineInit",
-						"PlatformAllowList": [
-							"Win64",
-							"Mac",
-							"Linux"
-						]
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../Engine/Plugins/Runtime/AndroidPermission/AndroidPermission.uplugin",
 			"Descriptor": 
 			{
@@ -3507,48 +2921,6 @@
 						"Name": "DynamicMesh",
 						"Type": "Runtime",
 						"LoadingPhase": "Default"
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Runtime/GooglePAD/GooglePAD.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "GooglePAD",
-				"Description": "Google Play Asset Delivery for Android.",
-				"Category": "Android",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": false,
-				"Modules": [
-					{
-						"Name": "GooglePAD",
-						"Type": "Runtime",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Android",
-							"Win64",
-							"Mac",
-							"Linux"
-						]
-					},
-					{
-						"Name": "GooglePADEditor",
-						"Type": "Editor",
-						"LoadingPhase": "PostEngineInit",
-						"PlatformAllowList": [
-							"Win64",
-							"Mac",
-							"Linux"
-						]
 					}
 				]
 			}
@@ -4168,66 +3540,26 @@
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/VirtualProduction/Takes/Takes.uplugin",
+			"File": "../../../SPHINX_Dev/Plugins/CPPEditorUtilityPlugin/CPPEditorUtilityPlugin.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
 				"Version": 1,
 				"VersionName": "1.0",
-				"FriendlyName": "Take Recorder",
-				"Description": "A suite of tools and interfaces designed for recording, reviewing and playing back takes in a virtual production environment.",
-				"Category": "Virtual Production",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
+				"FriendlyName": "CPPEditorUtilityPlugin",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
 				"DocsURL": "",
 				"MarketplaceURL": "",
 				"SupportURL": "",
 				"CanContainContent": true,
 				"Modules": [
 					{
-						"Name": "TakesCore",
-						"Type": "UncookedOnly",
-						"LoadingPhase": "PostDefault"
-					},
-					{
-						"Name": "TakeTrackRecorders",
-						"Type": "UncookedOnly",
-						"LoadingPhase": "PostDefault"
-					},
-					{
-						"Name": "TakeRecorderSources",
-						"Type": "UncookedOnly",
-						"LoadingPhase": "PostDefault"
-					},
-					{
-						"Name": "TakeRecorder",
-						"Type": "UncookedOnly",
-						"LoadingPhase": "PostDefault"
-					},
-					{
-						"Name": "TakeMovieScene",
-						"Type": "Runtime",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "TakeSequencer",
+						"Name": "CPPEditorUtilityPlugin",
 						"Type": "Editor",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "CacheTrackRecorder",
-						"Type": "UncookedOnly",
-						"LoadingPhase": "PostDefault"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "AudioCapture",
-						"Enabled": true
-					},
-					{
-						"Name": "LevelSequenceEditor",
-						"Enabled": true
+						"LoadingPhase": "PostEngineInit"
 					}
 				]
 			}
