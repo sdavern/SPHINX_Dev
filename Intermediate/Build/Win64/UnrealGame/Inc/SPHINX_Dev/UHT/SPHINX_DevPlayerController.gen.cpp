@@ -523,7 +523,6 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_DevPlayerController() {}
 	{
 		return ASPHINX_DevPlayerController::StaticClass();
 	}
-	ASPHINX_DevPlayerController::ASPHINX_DevPlayerController(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(ASPHINX_DevPlayerController);
 	ASPHINX_DevPlayerController::~ASPHINX_DevPlayerController() {}
 	struct Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevPlayerController_h_Statics

@@ -7,6 +7,7 @@
 #include "Math/UnrealMathUtility.h"
 #include "Sound/SoundCue.h"
 #include "AssetRegistry/AssetRegistryModule.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "Item.h"
 #include "Rule.h"
 #include "Area.h"
@@ -80,9 +81,13 @@ public:
 
 	TArray<TSubclassOf<URule>> RuleAssets;
 
+	TArray<URule*> RulePointers;
+
 	//TArray<TSubclassOf<UArea>> AreaAssets;
 
 	TArray<TSubclassOf<UPuzzlePoint>> PPAssets;
+
+	TArray<UPuzzlePoint*> PuzzlePointPtrs;
 
 	TArray<UPuzzlePoint*> AccessiblePPs;
 
@@ -182,7 +187,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UPuzzleTracker* PuzzleTracker;
 
+	void PrintLeaves();
 
+	void PopulateRulePointers();
+
+	void PrintAllRules();
+
+	void InitialisePPPtrs();
+
+	void SetupDbItemsOnStart();
 
 
 protected:

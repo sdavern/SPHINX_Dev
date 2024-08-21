@@ -10,12 +10,19 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "InventoryButton.h"
 #include "SpawnPoint.h"
+#include "PuzzleManager.h"
+
+ASPHINX_DevPlayerController::ASPHINX_DevPlayerController()
+{
+
+}
 
 void ASPHINX_DevPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 	AssignPlayer();
     AssignInventoryManager();
+    PMInstance = APuzzleManager::GetInstance();
     bShowMouseCursor = true; 
     bEnableClickEvents = true;
     bEnableMouseOverEvents = true;
@@ -34,6 +41,7 @@ void ASPHINX_DevPlayerController::AssignPlayer()
         {
             ActivePlayer = Avatar;
         }
+            
     }
 }
 
@@ -70,7 +78,6 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
     {
         return;
     }
-
 
     UPuzzlePoint* PP = NewObject<UPuzzlePoint>(this, UPuzzlePoint::StaticClass());
 
@@ -109,6 +116,55 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
 
 bool ASPHINX_DevPlayerController::PerformGeoSweep()
 {
+
+    /* if (!ActivePlayer)
+    {
+        return false;
+    }
+
+    DrawDebugCapsule(GetWorld(), ActivePlayer->GetActorLocation(), 70.0f, 45.0f, FQuat::Identity, FColor::Red, false, 30.0f, 0, 1.0f);
+
+    TArray<AActor*> OverlappingActors;
+    CapsuleCollider->GetOverlappingActors(OverlappingActors);
+    UE_LOG(LogTemp, Display, TEXT("OverlappingActors has %d actors"), OverlappingActors.Num());
+
+    float ClosestDistance = FLT_MAX;
+
+    AActor* ClosestActor = nullptr;
+    UGameItem* ClosestGameItem = nullptr;
+
+    FVector PlayerLocation = ActivePlayer->GetActorLocation();
+
+    for (AActor* Actor : OverlappingActors)
+    {
+        if (Actor && Actor != ActivePlayer)
+        {
+            UGameItem* GameItem = Actor->FindComponentByClass<UGameItem>();
+            if (GameItem)
+            {
+                UE_LOG(LogTemp, Display, TEXT("GameItem is valid"));
+                float Distance = FVector::Dist(PlayerLocation, Actor->GetActorLocation());
+                if (Distance < ClosestDistance)
+                {
+                    ClosestDistance = Distance;
+                    ClosestActor = Actor;
+                    ClosestGameItem = GameItem;
+                }
+            }
+            UE_LOG(LogTemp, Display, TEXT("GameItem not found"));
+        }
+        UE_LOG(LogTemp, Display, TEXT("Did not pass first for check"));
+    }
+
+    if (ClosestGameItem)
+    {
+        HitGameItem = ClosestGameItem;
+        return true;
+    }
+
+    return false; */
+
+
     if (!ActivePlayer) return false;
 
     FVector CurrentVelocity = ActivePlayer->GetVelocity();
@@ -148,7 +204,7 @@ bool ASPHINX_DevPlayerController::PerformGeoSweep()
             return true;
         }
     }
-    return false;
+    return false; 
 }
 
 void ASPHINX_DevPlayerController::GrabGameItem(UGameItem* GameItem)
@@ -221,10 +277,12 @@ void ASPHINX_DevPlayerController::OnRightMouseDown()
     else if (!InventoryOpen)
     {
         OpenInventoryMenu();
+        PMInstance->PrintAllRules();
     }
     else if (InventoryOpen)
     {
         CloseInventoryMenu();
+        PMInstance->PrintAllRules();
     }
 }
 

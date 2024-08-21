@@ -13,17 +13,14 @@
 #include "PuzzlePoint.h"
 #include "SpawnPoint.h"
 #include "SPHINX_DevPlayerController.h"
-//Need to add in a completed puzzles tracker
 
 APuzzleManager* APuzzleManager::Instance = nullptr;
 
 APuzzleManager::APuzzleManager()
 {
     PrimaryActorTick.bCanEverTick = true;
-    PPAssets = LoadPuzzlePointBPs();
-    ItemAssets = LoadItemBPs();
-    RuleAssets = LoadRuleBPs();
-    ActivateMaxPuzzlePoints();
+    
+    
 }
 
 void APuzzleManager::BeginPlay()
@@ -31,6 +28,11 @@ void APuzzleManager::BeginPlay()
     Super::BeginPlay();
     Instance = GetInstance();
 
+    PPAssets = LoadPuzzlePointBPs();
+    ItemAssets = LoadItemBPs();
+    RuleAssets = LoadRuleBPs();
+    
+    ActivateMaxPuzzlePoints();
     ActivateProperties();
 
     PlayerController = ReturnPC();
@@ -79,7 +81,9 @@ void APuzzleManager::BeginPlay()
    
     AssignPlayer();
     UE_LOG(LogTemp, Warning, TEXT("ItemAssets has %d items on BeginPlay"), ItemAssets.Num());
-
+    InitialisePPPtrs();
+    PopulateRulePointers();
+   
 }
 
 void APuzzleManager::Tick(float DeltaTime)
@@ -206,28 +210,31 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
 
     while (ActiveGeneratedPuzzles < MaxActivePuzzles)
     {
-        UE_LOG(LogTemp, Error, TEXT("ATTEMPTING TO GENERATE PUZZLES"));
-        TArray<UPuzzlePoint*> PPPtrs;
+        UE_LOG(LogTemp, Error, TEXT("ATTEMPTING TO GENERATE PUZZLES, PuzzlePointPtrs has %d ptrs"), PuzzlePointPtrs.Num());
+        /* TArray<UPuzzlePoint*> PPPtrs;
         for (TSubclassOf<UPuzzlePoint> PP : PPAssets)
         {
             if (PP)
             {
                 UPuzzlePoint* PPPtr = NewObject<UPuzzlePoint>(this, PP);
                 PPPtrs.Add(PPPtr);
-                UE_LOG(LogTemp, Error, TEXT("PPPtr added"));
+                UE_LOG(LogTemp, Error, TEXT("PPPtr %s added"), *PPPtr->Name);
             }
-        } 
+        }  */
 
-        for (UPuzzlePoint* PP : PPPtrs)
+        for (UPuzzlePoint* PP : PuzzlePointPtrs)
         {
-            //UE_LOG(LogTemp, Error, TEXT("CHECKING IF PP IS NOT NULL"));
+            UE_LOG(LogTemp, Error, TEXT("CHECKING IF PP IS NOT NULL"));
             AGamePuzzlePoint* OwningGPP = nullptr;
             for (TActorIterator<AGamePuzzlePoint> It(PP->GetWorld()); It; ++It)
             {
+                UE_LOG(LogTemp, Display, TEXT("Iterating through GamePuzzlePoints"));
                 AGamePuzzlePoint* GPP = *It;
+                UE_LOG(LogTemp, Display, TEXT("PP name: %s, GPP name: %s"), *PP->Name, *GPP->Name);
                 if (GPP && GPP->Name == PP->Name)  
                 {
                     OwningGPP = GPP;
+                    UE_LOG(LogTemp, Display, TEXT("OwningGPP = GPP"));
                     break;
                 }
             }       
@@ -340,19 +347,23 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         
         if (FoundLeavesRules)
         {
-            //UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid and is %s"), *FoundLeavesRules->RulesArray[1]->Action);
-            for (URule* Rule: FoundLeavesRules->RulesArray) 
+            if (FoundLeavesRules->RulesArray.Num() > 0)
             {
-                if (Rule && Rule->Inputs.Num() > 0)
+                for (URule* Rule: FoundLeavesRules->RulesArray) 
                 {
-                    AddApplicableRule(Rule, GameItem, Rules);
-                    UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found and added to RulesArray"), *Rule->Action);
-                }    
-                else
-                {
-                    UE_LOG(LogTemp, Warning, TEXT("RulesFor called but no rules found"));
-                } 
+                    if (Rule && Rule->Inputs.Num() > 0)
+                    {
+                        //AddApplicableRule(Rule, GameItem, Rules);
+                        UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found and added to RulesArray"), *Rule->Action);
+                    }    
+                    else
+                    {
+                        UE_LOG(LogTemp, Warning, TEXT("RulesFor called but no rules found"));
+                    } 
+                }
             }
+            //UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid and is %s"), *FoundLeavesRules->RulesArray[1]->Action);
+           
         }    
         else
         {
@@ -400,6 +411,7 @@ UItem* APuzzleManager::GetObject(FString ItemName)
             //UE_LOG(LogTemp, Error, TEXT("NewItem that has been created has the name: %s"), *NewItem->Name);
             return NewItem; // Return the newly created item if it matches the requested name.
         }
+
     }
 
     UE_LOG(LogTemp, Error, TEXT("GetObject called with Name: %s. No Item found."), *ItemName);
@@ -589,6 +601,11 @@ void APuzzleManager::AddPuzzle(UPuzzlePoint* PP, FString Puzzle)
     PuzzlesGenerated.Add(PP, Puzzle);
     PuzzlesGeneratedStrings.Add(Puzzle);
     UE_LOG(LogTemp, Error, TEXT("Puzzle added to PuzzlesGenerated: %s"), *Puzzle);
+    
+    if (GEngine)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Puzzle added: %s"), *Puzzle));
+    }
 }
 
 bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
@@ -628,7 +645,7 @@ TArray<UItem*> APuzzleManager::GetItemsOfType(FString ItemName, TArray<UPuzzlePo
 TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
 {
     UE_LOG(LogTemp, Warning, TEXT("FindDbItemsFor called and AllItems has %d items"), AllItems.Num());
-    UE_LOG(LogTemp, Display, TEXT("AllItems[0] is %s and has %d properties: %s %s"), *AllItems[0]->Name, AllItems[0]->Properties.Num(), *AllItems[0]->Properties[0]->Name, *AllItems[0]->Properties[0]->Value);
+    //UE_LOG(LogTemp, Display, TEXT("AllItems[0] is %s and has %d properties: %s %s"), *AllItems[0]->Name, AllItems[0]->Properties.Num(), *AllItems[0]->Properties[0]->Name, *AllItems[0]->Properties[0]->Value);
     
     TArray<UItem*> MatchingItems;
     for (UItem* DbItem : AllItems)
@@ -656,7 +673,7 @@ TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*>
 TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
 {
     TArray<URule*> Rules;
-    for (int32 i = 0; i < RuleAssets.Num(); i++)
+    /* for (int32 i = 0; i < RuleAssets.Num(); i++)
     {
         if (RuleAssets[i] != nullptr)
         {
@@ -674,7 +691,31 @@ TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
             }
         }
     }
+    return Rules; */
+
+    for (URule* RuleToCheck : RulePointers)
+    {
+        if (RuleToCheck && RuleToCheck->Inputs.Num() > 0 && DbItem)
+        {
+            for (UTerm* Input : RuleToCheck->Inputs)
+            {
+                if (Input->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(Input->Name))
+                {
+                    Rules.Add(RuleToCheck);
+                }
+            }
+        }
+        else
+        {
+            UE_LOG(LogTemp, Display, TEXT("Something, probs DbItem is wrong"));
+        }
+        
+    }
+
     return Rules;
+
+
+
 }
 
 TArray<URule*> APuzzleManager::GetRulesWithOutput(UTerm* Term)
@@ -856,7 +897,7 @@ TArray<TSubclassOf<UPuzzlePoint>> APuzzleManager::LoadPuzzlePointBPs()
     FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
     FARFilter Filter;
     Filter.bRecursivePaths = true;
-    Filter.PackagePaths.Add("/Game/Resources/PuzzlePoints");
+    Filter.PackagePaths.Add("/Game/Resources/PuzzlePoints/PuzzlePoints");
 
     // Query the Asset Registry
     TArray<FAssetData> AssetData;
@@ -876,7 +917,15 @@ TArray<TSubclassOf<UPuzzlePoint>> APuzzleManager::LoadPuzzlePointBPs()
                 LoadedPPClasses.Add(AssetClass);
                 UE_LOG(LogTemp, Display, TEXT("PuzzlePoint '%s' loaded from database."), *AssetClass->GetName());
             }
+            else
+            {
+                UE_LOG(LogTemp, Display, TEXT("PP not loaded from database"));
+            }
 
+        }
+        else 
+        {
+            UE_LOG(LogTemp, Display, TEXT("Generated class path for PP is empty"));
         }
     }
     PPLoaded = true;
@@ -920,6 +969,7 @@ TArray<TSubclassOf<UItem>> APuzzleManager::LoadItemBPs()
   /*   UE_LOG(LogTemp, Display, TEXT("Broadcasting OnDatabaseLoaded."));
     OnDatabaseLoaded.Broadcast(); */
     ItemsLoaded = true;
+    //SetupDbItemsOnStart();
     return LoadedItemClasses;
     
 }
@@ -1063,6 +1113,117 @@ ASPHINX_DevPlayerController* APuzzleManager::ReturnPC()
 
     return nullptr;
 }
+
+void APuzzleManager::PrintLeaves()
+{
+    for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
+    {
+        FRulesStruct* FoundLeavesRules = &Pair.Value;
+        UE_LOG(LogTemp, Warning, TEXT("RulesArray size for PP %p is %d"), Pair.Key, FoundLeavesRules->RulesArray.Num());
+        UPuzzlePoint* PP = Pair.Key;
+        if (PP)
+        {
+            UE_LOG(LogTemp, Warning, TEXT("PP in PrintLeaves is valid"));
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("PP in PrintLeaves is null"));
+            continue;
+        }
+
+
+        
+        if (FoundLeavesRules)
+        {
+            //UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid and is %s"), *FoundLeavesRules->RulesArray[1]->Action);
+            for (URule* Rule: FoundLeavesRules->RulesArray) 
+            {
+                if (Rule && Rule->Inputs.Num() > 0)
+                {
+                    //AddApplicableRule(Rule, GameItem, Rules);
+                    UE_LOG(LogTemp, Warning, TEXT("Rule %s in PrintLeaves found and added to RulesArray"), *Rule->Action);
+                }    
+                else
+                {
+                    UE_LOG(LogTemp, Warning, TEXT("PrintLeaves called but no rules found"));
+                } 
+            }
+        }    
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in PrintLeaves is null"));
+            //RulesFor(GameItem);
+            continue;
+        }
+        
+    }
+}
+
+void APuzzleManager::PopulateRulePointers()
+{
+    for (TSubclassOf<URule> Rule : RuleAssets)
+    {
+        if (Rule)
+        {
+            URule* RulePtr = NewObject<URule>(this, Rule);
+            if (RulePtr)
+            {
+                RulePtr->InitialiseRule();
+                RulePointers.Add(RulePtr);
+                UE_LOG(LogTemp, Display, TEXT("Rule %s added to RulesPointers"), *RulePtr->ToPMString());
+            }
+        }
+        
+    }
+}
+
+void APuzzleManager::PrintAllRules()
+{
+    for (URule* Rule : RulePointers)
+    {
+        UE_LOG(LogTemp, Display, TEXT("%s"), *Rule->ToPMString());
+        UKismetSystemLibrary::PrintString(GEngine->GetWorld(), *Rule->ToPMString());
+    }
+}
+
+void APuzzleManager::InitialisePPPtrs()
+{
+    for (TSubclassOf<UPuzzlePoint> PP : PPAssets)
+    {
+        if (PP)
+        {
+            UPuzzlePoint* Pointer = NewObject<UPuzzlePoint>(this, PP);
+            if (Pointer)
+            {
+                PuzzlePointPtrs.Add(Pointer);
+                UE_LOG(LogTemp, Display, TEXT("PP pointer %s initialised"), *Pointer->Name);
+            }
+        } 
+    }
+}
+
+void APuzzleManager::SetupDbItemsOnStart()
+{
+    UWorld* World = GetWorld();
+    if (World != nullptr)
+    {
+        for (TActorIterator<AActor> It(World); It; ++It)
+        {
+            AActor* Actor = *It;
+            UGameItem* GameItem = Actor->FindComponentByClass<UGameItem>();
+            if (GameItem)
+            {
+                GameItem->SetupDbItem();
+            }
+        }
+    }
+    
+}
+
+
+
+
+
 
 
 

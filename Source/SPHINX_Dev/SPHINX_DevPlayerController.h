@@ -6,6 +6,7 @@
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/CapsuleComponent.h"
 #include "EngineUtils.h"
 #include "Sound/SoundCue.h"
 #include "GameFramework/Actor.h"
@@ -26,6 +27,7 @@ class UInputMappingContext;
 class UInventoryButton;
 class UItemProperty;
 class ASpawnPoint;
+class APuzzleManager;
 
 UCLASS()
 class SPHINX_DEV_API ASPHINX_DevPlayerController : public APlayerController
@@ -34,6 +36,8 @@ class SPHINX_DEV_API ASPHINX_DevPlayerController : public APlayerController
 	
 
 public:
+
+	ASPHINX_DevPlayerController();
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UActionMenu> ActionMenuClass;
@@ -91,6 +95,9 @@ private:
 
 	UGameItem* SelectedGameItem;
 
+	APuzzleManager* PMInstance;
+
+	
 public:
 
 	void DropGameItem(AActor* GameItemBP);

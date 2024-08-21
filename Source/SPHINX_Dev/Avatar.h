@@ -54,6 +54,7 @@ public:
 	AActor* HeldGameItem;
 
 	bool IsHoldingItem;
+	
 
 protected:
 	/** Called for movement input */

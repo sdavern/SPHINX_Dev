@@ -6,6 +6,7 @@
 
 void UPuzzleTracker::UpdateText(int PuzzleNumber)
 {
+    UE_LOG(LogTemp, Display, TEXT("Update text called on PuzzleTracker"));
     if (PuzzleNumber == 1)
     {
         TrackerText->SetText(FText::FromString(TEXT("Completed Puzzles: 1")));
@@ -27,3 +28,4 @@ void UPuzzleTracker::UpdateText(int PuzzleNumber)
         TrackerText->SetText(FText::FromString(TEXT("Go talk to the Sphinx")));
     }
 }
+
