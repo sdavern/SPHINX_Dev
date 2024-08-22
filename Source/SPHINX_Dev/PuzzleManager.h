@@ -34,6 +34,7 @@ class UPuzzlePoint;
 class ASpawnPoint;
 class ASPHINX_DevPlayerController;
 
+
 UCLASS()
 class SPHINX_DEV_API APuzzleManager : public AActor
 {

@@ -22,7 +22,8 @@ UGameItem::UGameItem()
 void UGameItem::BeginPlay()
 {
 	Super::BeginPlay();
-	SetupDbItem();
+	//SetupDbItem(); called in PM instead as GameItem initialises before PM
+	
 	
 }
 

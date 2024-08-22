@@ -83,7 +83,7 @@ void APuzzleManager::BeginPlay()
     UE_LOG(LogTemp, Warning, TEXT("ItemAssets has %d items on BeginPlay"), ItemAssets.Num());
     InitialisePPPtrs();
     PopulateRulePointers();
-   
+    SetupDbItemsOnStart();
 }
 
 void APuzzleManager::Tick(float DeltaTime)
@@ -969,7 +969,8 @@ TArray<TSubclassOf<UItem>> APuzzleManager::LoadItemBPs()
   /*   UE_LOG(LogTemp, Display, TEXT("Broadcasting OnDatabaseLoaded."));
     OnDatabaseLoaded.Broadcast(); */
     ItemsLoaded = true;
-    //SetupDbItemsOnStart();
+    
+
     return LoadedItemClasses;
     
 }
@@ -1204,6 +1205,7 @@ void APuzzleManager::InitialisePPPtrs()
 
 void APuzzleManager::SetupDbItemsOnStart()
 {
+    UE_LOG(LogTemp, Warning, TEXT("SetupDbItemsOnStart called"));
     UWorld* World = GetWorld();
     if (World != nullptr)
     {
@@ -1213,6 +1215,7 @@ void APuzzleManager::SetupDbItemsOnStart()
             UGameItem* GameItem = Actor->FindComponentByClass<UGameItem>();
             if (GameItem)
             {
+                UE_LOG(LogTemp, Warning, TEXT("GameItem %s found by SetupDbItemsOnStart"), *GameItem->Name);
                 GameItem->SetupDbItem();
             }
         }

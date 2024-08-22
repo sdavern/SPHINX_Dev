@@ -58,7 +58,6 @@
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/FirstPerson/Blueprints/BP_PickUp_Rifle.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/PuzzlePoints/TestPP4.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/GamePuzzlePoints/TestGPP4.uasset",
-				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/GamePuzzlePoints/MyPuzzlePoint.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/GamePuzzlePoints/MyGamePuzzlePoint.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/PuzzlePoints/MyPuzzlePoint.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/PuzzlePoints/TestPP2_1.uasset",
@@ -66,8 +65,8 @@
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/GamePuzzlePoints/TestGPP2_1.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/GamePuzzlePoints/TestGPP3_1.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/UI_BPs/BP_PuzzleTracker.uasset",
-				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/PuzzlePoints/MyPuzzlePoint.uasset",
-				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/GamePuzzlePoints/MyGamePuzzlePoint.uasset"
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/UI_BPs/ExitWidget.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/GamePuzzlePoints/MyPuzzlePoint.uasset"
 			]
 		}
 	]
