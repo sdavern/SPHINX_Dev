@@ -328,6 +328,20 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         return Rules;
     }
 
+    /* for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
+    {
+        FRulesStruct* FoundLeavesRules = &Pair.Value;
+        UE_LOG(LogTemp, Warning, TEXT("RulesArray size for PP %p is %d"), Pair.Key, FoundLeavesRules->RulesArray.Num());
+        UPuzzlePoint* PP = Pair.Key;
+        if (PP)
+        {
+            UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is valid"));
+        }
+        else
+        {
+            UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is null"));
+            continue;
+        } */
     for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
     {
         FRulesStruct* FoundLeavesRules = &Pair.Value;
@@ -355,6 +369,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
                     {
                         //AddApplicableRule(Rule, GameItem, Rules);
                         UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found and added to RulesArray"), *Rule->Action);
+                        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Rule added from RulesFor: %s"), *Rule->Action));
                     }    
                     else
                     {
@@ -362,6 +377,11 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
                     } 
                 }
             }
+            else
+            {
+                UE_LOG(LogTemp, Display, TEXT("FoundLeavesRules->RulesArray.Num() is 0"));
+            }
+            
             //UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid and is %s"), *FoundLeavesRules->RulesArray[1]->Action);
            
         }    
@@ -376,6 +396,13 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
     
     
     TArray<URule*> DbRules = GetRulesWithInput(GameItem->DbItem);
+
+    if (DbRules.Num() == 0)
+    {
+        UE_LOG(LogTemp, Display, TEXT("DbRules in RulesFor is 0"));
+        return DbRules;
+    }
+
     for (int i  = DbRules.Num() - 1; i >= 0; i--)
     {
         if (DbRules.IsValidIndex(i) && DbRules[i]->Inputs.Num() > 0)
@@ -673,6 +700,16 @@ TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*>
 TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
 {
     TArray<URule*> Rules;
+    if (!DbItem)
+    {
+        UE_LOG(LogTemp, Display, TEXT("DbItem in GetRulesWithInput is null"));
+        return Rules;
+    }
+    else
+    {
+        UE_LOG(LogTemp, Display, TEXT("DbItem in GetRulesWithInput is not null and is %s"), *DbItem->Name);
+    }
+    
     /* for (int32 i = 0; i < RuleAssets.Num(); i++)
     {
         if (RuleAssets[i] != nullptr)

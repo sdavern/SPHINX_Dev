@@ -22,7 +22,7 @@ UGameItem::UGameItem()
 void UGameItem::BeginPlay()
 {
 	Super::BeginPlay();
-	//SetupDbItem(); called in PM instead as GameItem initialises before PM
+	SetupDbItem(); //called in PM instead as GameItem initialises before PM
 	
 	
 }
@@ -140,6 +140,10 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionBut
 					break;
             	}
 			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Display, TEXT("Couldn't find any rules"));
 		}
 		 
 	}
