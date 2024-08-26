@@ -49,8 +49,8 @@
 			"DialogueBox.cpp.obj",
 			"EndLevelGameMode.cpp.obj",
 			"GameArea.cpp.obj",
+			"GameItem.cpp.obj",
 			"GamePuzzlePoint.cpp.obj",
-			"Generator.cpp.obj",
 			"InitNPC.cpp.obj",
 			"InitObject.cpp.obj",
 			"InitText.cpp.obj",
@@ -64,7 +64,6 @@
 			"PlayerPawn.cpp.obj",
 			"PuzzlePoint.cpp.obj",
 			"PuzzleTracker.cpp.obj",
-			"Rule.cpp.obj",
 			"SpawnPoint.cpp.obj",
 			"SphinxActor.cpp.obj",
 			"SPHINXHUD.cpp.obj",
@@ -73,11 +72,12 @@
 			"SPHINX_DevGameMode.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj",
 			"SPHINX_DevProjectile.cpp.obj",
-			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
-			"GameItem.cpp.obj",
-			"PuzzleManager.cpp.obj"
+			"Generator.cpp.obj",
+			"PuzzleManager.cpp.obj",
+			"Rule.cpp.obj",
+			"Term.cpp.obj"
 		]
 	}
 }

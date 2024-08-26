@@ -224,8 +224,8 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	//UE_LOG(LogTemp, Error, TEXT("GETTING ALL RULES, no of rules = %d"), AllRules.Num());
 	for (URule* Rule : AllRules)
 	{	
-		Rule->ToOutputsPtr();
-		Rule->ToInputsPtr();
+		//Rule->ToOutputsPtr();
+		//Rule->ToInputsPtr();
 		if (Rule->Outputs[0])
 		{
 			//UE_LOG(LogTemp, Error, TEXT("Output[0] is %s"), *Rule->Outputs[0]->Name);

@@ -249,9 +249,11 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                     UE_LOG(LogTemp, Error, TEXT("ROOT is %s"), *Root->Action);	
                     UE_LOG(LogTemp, Display, TEXT("PP is %s"), *PP->Name);
                     FRulesStruct NewRules;
-                    Leaves.Add(PP, NewRules);
+                    Leaves.Add(MakePP, NewRules);
                     PuzzleRules.Add(PP, NewRules);
-                    FindLeaves(Root, PP);
+                    URule* RootClone = Root->Clone();
+                    UE_LOG(LogTemp, Display, TEXT("RootClone is %s"), *RootClone->Action);
+                    FindLeaves(RootClone, PP);
                     UE_LOG(LogTemp, Error, TEXT("RULES ADDED"));
 
                     FRulesStruct* LeavesRulesStruct = Leaves.Find(PP);
@@ -261,9 +263,9 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                         {
                             if (Rule)
                             {
-                                Rule->ToInputsPtr();
-	                            Rule->ToOutputsPtr();
-	                            Rule->GetDbItems();
+                                //Rule->ToInputsPtr();
+	                            //Rule->ToOutputsPtr();
+	                            //Rule->GetDbItems();
                                 RulePPs.Add(Rule->ToPMString(), PP);
                                 Rule->OwningPP = PP;
                                 UE_LOG(LogTemp, Error, TEXT("RULE %s ASSIGNED TO PP %s"), *Rule->Action, *PP->Name);
@@ -280,9 +282,9 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                         {
                             if (Rule)
                             {
-                                Rule->ToInputsPtr();
-	                            Rule->ToOutputsPtr();
-	                            Rule->GetDbItems();
+                                //Rule->ToInputsPtr();
+	                            //Rule->ToOutputsPtr();
+	                            //Rule->GetDbItems();
                                 RulePPs.Add(Rule->ToPMString(), PP);
                                 Rule->OwningPP = PP;
                             }
@@ -328,20 +330,6 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         return Rules;
     }
 
-    /* for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
-    {
-        FRulesStruct* FoundLeavesRules = &Pair.Value;
-        UE_LOG(LogTemp, Warning, TEXT("RulesArray size for PP %p is %d"), Pair.Key, FoundLeavesRules->RulesArray.Num());
-        UPuzzlePoint* PP = Pair.Key;
-        if (PP)
-        {
-            UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is valid"));
-        }
-        else
-        {
-            UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is null"));
-            continue;
-        } */
     for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
     {
         FRulesStruct* FoundLeavesRules = &Pair.Value;
@@ -349,7 +337,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         UPuzzlePoint* PP = Pair.Key;
         if (PP)
         {
-            UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is valid"));
+            UE_LOG(LogTemp, Warning, TEXT("PP %s in RulesFor is valid"), *PP->Name);
         }
         else
         {
@@ -794,19 +782,7 @@ TArray<UItem*> APuzzleManager::GetAllItems()
 
 TArray<URule*> APuzzleManager::GetAllRules()
 {
-    TArray<URule*> Objects;
-    for (TSubclassOf<URule> AssetClass : RuleAssets)
-    {
-        if (AssetClass != nullptr)
-        {
-            URule* NewRule = NewObject<URule>(this, AssetClass);
-            if (NewRule)
-            {
-                Objects.Add(NewRule);
-            }
-        }
-    }
-    return Objects;
+    return RulePointers;
 }
 
 
@@ -1154,7 +1130,7 @@ ASPHINX_DevPlayerController* APuzzleManager::ReturnPC()
 
 void APuzzleManager::PrintLeaves()
 {
-    for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
+    /* for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
     {
         FRulesStruct* FoundLeavesRules = &Pair.Value;
         UE_LOG(LogTemp, Warning, TEXT("RulesArray size for PP %p is %d"), Pair.Key, FoundLeavesRules->RulesArray.Num());
@@ -1194,7 +1170,7 @@ void APuzzleManager::PrintLeaves()
             continue;
         }
         
-    }
+    } */
 }
 
 void APuzzleManager::PopulateRulePointers()
