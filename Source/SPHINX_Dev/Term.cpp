@@ -4,7 +4,6 @@
 #include "Term.h"
 #include "Item.h"
 #include "GameItem.h"
-#include "PuzzleManager.h"
 
 UTerm::UTerm()
 {

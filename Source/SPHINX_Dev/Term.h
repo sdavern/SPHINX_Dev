@@ -9,7 +9,6 @@
 
 class UItem;
 class UGameItem;
-class APuzzleManager;
 
 
 UCLASS(Blueprintable)

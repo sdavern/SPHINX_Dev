@@ -22,9 +22,9 @@ URule::URule()
         Outputs.Add(OutputTerm);
     }  */
 
-    //this->ToInputsPtr();
-    //this->ToOutputsPtr();
-    //this->ToChildrenPtr();
+    this->ToInputsPtr();
+    this->ToOutputsPtr();
+    this->ToChildrenPtr();
     
 }
 
@@ -262,8 +262,6 @@ URule* URule::Clone()
 
 void URule::ToOutputsPtr()
 {
-    Outputs.Empty();
-
     for (TSubclassOf<UTerm> AssetClass : OutputsBP)
     {
         if (AssetClass != nullptr)
@@ -280,8 +278,6 @@ void URule::ToOutputsPtr()
 
 void URule::ToInputsPtr()
 {
-    Inputs.Empty();
-
     for (TSubclassOf<UTerm> AssetClass : InputsBP)
     {
         if (AssetClass != nullptr)
@@ -297,8 +293,6 @@ void URule::ToInputsPtr()
 
 void URule::ToChildrenPtr()
 {
-    Children.Empty();
-
     for (TSubclassOf<URule> AssetClass : ChildrenBP)
     {
         if (AssetClass != nullptr)
