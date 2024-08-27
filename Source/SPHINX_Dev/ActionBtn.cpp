@@ -25,6 +25,14 @@ void UActionBtn::InitializeButton(UGameItem* GameItem, URule* Rule)
     LinkedRule = Rule;
     UE_LOG(LogTemp, Warning, TEXT("ActionButton LinkedGameItem is %s and LinkedRule is %s"), *LinkedGameItem->Name, *LinkedRule->Action);
 
+    this->SetRenderOpacity(1.0f);
+
+    if (ActionText)
+    {
+        FSlateColor TextColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f));
+        ActionText->SetColorAndOpacity(TextColor);
+    }
+    
 
    /*  if (ActionText && Rule)
     {

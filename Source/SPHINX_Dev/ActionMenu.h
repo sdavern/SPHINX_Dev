@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
+#include "Components/Image.h"
 #include "Delegates/Delegate.h"
 #include "ActionBtn.h"
 #include "ActionMenu.generated.h"
@@ -28,6 +29,12 @@ public:
 	void ChangeButtonText(UTextBlock* ButtonText, const FString& NewText);
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	TArray<UActionBtn*> ActionButtons;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UImage* BackBottom;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UButton* HoldButton;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
@@ -35,6 +42,15 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UActionBtn* ActionButton;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UActionBtn* ActionButton_1;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UActionBtn* ActionButton_2;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	UActionBtn* ActionButton_3;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UButton* InventoryButton;
@@ -46,7 +62,16 @@ public:
     UTextBlock* HoldText;
 
  	UPROPERTY(meta = (BindWidget))
-    UTextBlock* ActionText; 
+    UTextBlock* ActionText;
+
+	UPROPERTY(meta = (BindWidget))
+    UTextBlock* ActionText_1;
+
+	UPROPERTY(meta = (BindWidget))
+    UTextBlock* ActionText_2;
+
+	UPROPERTY(meta = (BindWidget))
+    UTextBlock* ActionText_3; 
 
 	UPROPERTY(meta = (BindWidget))
     UTextBlock* InspectText;

@@ -68,6 +68,8 @@ void ASPHINX_DevPlayerController::SetupInputComponent()
 
     InputComponent->BindAction("RightClick", IE_Pressed, this, &ASPHINX_DevPlayerController::OnRightMouseDown);
 	UE_LOG(LogTemp, Display, TEXT("RightClick bound to mouse."));
+
+    
 }
 
 void ASPHINX_DevPlayerController::OnLeftMouseDown()
@@ -86,7 +88,7 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
         if (PerformGeoSweep())
         {
             CreateActionMenu();
-            HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
+            HitGameItem->OnGameItemClicked(ActionMenu);
             return;
         }
         else
@@ -94,7 +96,7 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
             UGameItem* GameItem = Cast<UGameItem>(ActivePlayer->HeldGameItem->GetComponentByClass(UGameItem::StaticClass()));
             HitGameItem = GameItem;
             CreateActionMenu();
-            HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
+            HitGameItem->OnGameItemClicked(ActionMenu);
             ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Drop"));
             return;
         }
@@ -104,7 +106,7 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
     {
         UE_LOG(LogTemp, Display, TEXT("GeoSweep = true"));
         CreateActionMenu();
-        HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
+        HitGameItem->OnGameItemClicked(ActionMenu);
         if (ActionMenu->ActionText)
         {
             UE_LOG(LogTemp, Error, TEXT("ActionText is valid from menu"));
@@ -338,6 +340,12 @@ void ASPHINX_DevPlayerController::SetupHoldButton()
     {
         ActionMenu->HoldButton->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnHoldButtonClicked);
         UE_LOG(LogTemp, Display, TEXT("HoldButton set up"));
+        if (HitGameItem->DbItem->IsStationary)
+        {
+            ActionMenu->HoldButton->SetIsEnabled(false);
+            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Can't hold"));
+
+        }
     }
     else
     {
@@ -553,6 +561,11 @@ void ASPHINX_DevPlayerController::SetupInventoryButton()
     {
         ActionMenu->InventoryButton->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnInventoryButtonClicked);
         UE_LOG(LogTemp, Display, TEXT("InventoryButton set up"));
+        if (HitGameItem->DbItem->IsStationary)
+        {
+            ActionMenu->InventoryButton->SetIsEnabled(false);
+            ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Can't add to Inventory"));
+        }
     }
     else
     {
@@ -747,7 +760,7 @@ void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UInventoryButton* Button
             if (HitGameItem)
             {
                 CreateActionMenu();
-                HitGameItem->OnGameItemClicked(ActionMenu, ActionMenu->ActionButton);
+                HitGameItem->OnGameItemClicked(ActionMenu);
             }
         }
     }
@@ -777,7 +790,6 @@ void ASPHINX_DevPlayerController::ClearSprites()
         }
     }
 }
-
 
 
 /* 

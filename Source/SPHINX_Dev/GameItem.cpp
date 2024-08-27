@@ -113,11 +113,12 @@ void UGameItem::Spawn(UGameItem* Item)
 
 
 
-void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionButton)
+void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
 {
 	//bool NoAction = true;
 	
 	APuzzleManager* Instance = APuzzleManager::GetInstance();
+	TArray<URule*> ButtonRules;
 	
 	if (Instance)
 	{
@@ -133,14 +134,29 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionBut
 				UE_LOG(LogTemp, Display, TEXT("Checking Rule %s fulfilled by %s ? %s"), *PuzzleRule->ToString(), *this->Name, (RuleFulfilled(PuzzleRule) ? TEXT("True") : TEXT("False")));
 				if (PuzzleRule && RuleFulfilled(PuzzleRule))
 				{
-					//NoAction = false;
-					UE_LOG(LogTemp, Error, TEXT("ActionButton is being initialized"));
-					FString FormattedText = ActionButton->AddSpacesBeforeCaps(PuzzleRule->Action);
-					ActionMenu->ActionText->SetText(FText::FromString(FormattedText));
-                	ActionButton->InitializeButton(this, PuzzleRule);
-					break;
+					ButtonRules.Add(PuzzleRule);
             	}
 			}
+
+			for (int i = 0; i <= ButtonRules.Num(); i++)
+			{
+				if (ActionMenu && ActionMenu->ActionButtons[i])
+				{
+					UE_LOG(LogTemp, Error, TEXT("ActionButton is being initialized"));
+					FString FormattedText = ActionMenu->ActionButtons[i]->AddSpacesBeforeCaps(ButtonRules[i]->Action);
+					ActionMenu->ActionButtons[i]->ActionText->SetText(FText::FromString(FormattedText));
+                	ActionMenu->ActionButtons[i]->InitializeButton(this, ButtonRules[i]);
+				}
+				
+			}
+
+			if (ButtonRules.Num() > 1 && ActionMenu && ActionMenu->BackBottom)
+			{
+				float AddedY = ButtonRules.Num() * 81;
+				FVector2D NewPosition = FVector2D(ActionMenu->BackBottom->RenderTransform.Translation.X, ActionMenu->BackBottom->RenderTransform.Translation.Y + AddedY);
+				ActionMenu->BackBottom->SetRenderTranslation(NewPosition);
+			}
+			
 		}
 		else
 		{

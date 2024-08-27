@@ -57,7 +57,7 @@ public:
 
 	/* void OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP, bool Inventory); */
 
-	void OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionButton);
+	void OnGameItemClicked(UActionMenu* ActionMenu);
 
 	void ExecuteRule(URule* Rule);
 

@@ -48,6 +48,9 @@ public:
 	bool SpecificSpawnPoints;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
+	bool IsStationary = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
 	bool IsIndestructible = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")

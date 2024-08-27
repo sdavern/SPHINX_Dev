@@ -7,6 +7,18 @@
 void UActionMenu::NativeConstruct()
 {
     Super::NativeConstruct();
+
+    ActionButtons[0] = ActionButton;
+    ActionButtons[1] = ActionButton_1;
+    ActionButtons[2] = ActionButton_2;
+    ActionButtons[3] = ActionButton_3;
+
+    ActionButtons[0]->ActionText = ActionText;
+    ActionButtons[1]->ActionText = ActionText_1;
+    ActionButtons[2]->ActionText = ActionText_2;
+    ActionButtons[3]->ActionText = ActionText_3;
+
+    
     
 }
 
