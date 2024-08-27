@@ -36,11 +36,21 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_OutputsBP_MetaData[];
 #endif
 		static const UECodeGen_Private::FArrayPropertyParams NewProp_OutputsBP;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Outputs_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Outputs_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_Outputs;
 		static const UECodeGen_Private::FClassPropertyParams NewProp_InputsBP_Inner;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputsBP_MetaData[];
 #endif
 		static const UECodeGen_Private::FArrayPropertyParams NewProp_InputsBP;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Inputs_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Inputs_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_Inputs;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Action_MetaData[];
 #endif
@@ -62,6 +72,11 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ChildrenBP_MetaData[];
 #endif
 		static const UECodeGen_Private::FArrayPropertyParams NewProp_ChildrenBP;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Children_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Children_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_Children;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_bAutomatic_MetaData[];
 #endif
@@ -113,6 +128,13 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_URule_Statics::NewProp_OutputsBP = { "OutputsBP", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(URule, OutputsBP), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_URule_Statics::NewProp_OutputsBP_MetaData), Z_Construct_UClass_URule_Statics::NewProp_OutputsBP_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_URule_Statics::NewProp_Outputs_Inner = { "Outputs", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UTerm_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URule_Statics::NewProp_Outputs_MetaData[] = {
+		{ "ModuleRelativePath", "Rule.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_URule_Statics::NewProp_Outputs = { "Outputs", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(URule, Outputs), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_URule_Statics::NewProp_Outputs_MetaData), Z_Construct_UClass_URule_Statics::NewProp_Outputs_MetaData) };
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_URule_Statics::NewProp_InputsBP_Inner = { "InputsBP", nullptr, (EPropertyFlags)0x0004000000000000, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UClass, Z_Construct_UClass_UTerm_NoRegister, METADATA_PARAMS(0, nullptr) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URule_Statics::NewProp_InputsBP_MetaData[] = {
@@ -121,6 +143,13 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_URule_Statics::NewProp_InputsBP = { "InputsBP", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(URule, InputsBP), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_URule_Statics::NewProp_InputsBP_MetaData), Z_Construct_UClass_URule_Statics::NewProp_InputsBP_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_URule_Statics::NewProp_Inputs_Inner = { "Inputs", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UTerm_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URule_Statics::NewProp_Inputs_MetaData[] = {
+		{ "ModuleRelativePath", "Rule.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_URule_Statics::NewProp_Inputs = { "Inputs", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(URule, Inputs), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_URule_Statics::NewProp_Inputs_MetaData), Z_Construct_UClass_URule_Statics::NewProp_Inputs_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URule_Statics::NewProp_Action_MetaData[] = {
 		{ "Category", "Rule" },
@@ -157,6 +186,13 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_URule_Statics::NewProp_ChildrenBP = { "ChildrenBP", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(URule, ChildrenBP), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_URule_Statics::NewProp_ChildrenBP_MetaData), Z_Construct_UClass_URule_Statics::NewProp_ChildrenBP_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_URule_Statics::NewProp_Children_Inner = { "Children", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_URule_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URule_Statics::NewProp_Children_MetaData[] = {
+		{ "ModuleRelativePath", "Rule.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_URule_Statics::NewProp_Children = { "Children", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(URule, Children), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_URule_Statics::NewProp_Children_MetaData), Z_Construct_UClass_URule_Statics::NewProp_Children_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_URule_Statics::NewProp_bAutomatic_MetaData[] = {
 		{ "Category", "Rule" },
@@ -207,14 +243,20 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_URule_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_OutputsBP_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_OutputsBP,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Outputs_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Outputs,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_InputsBP_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_InputsBP,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Inputs_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Inputs,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Action,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_OwningPP,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Hint,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Parent,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_ChildrenBP_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_ChildrenBP,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Children_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_Children,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_bAutomatic,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_bSelectedInput,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_URule_Statics::NewProp_bInventory,
@@ -259,9 +301,9 @@ void EmptyLinkFunctionForGeneratedCodeRule() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_URule, URule::StaticClass, TEXT("URule"), &Z_Registration_Info_UClass_URule, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(URule), 1061935990U) },
+		{ Z_Construct_UClass_URule, URule::StaticClass, TEXT("URule"), &Z_Registration_Info_UClass_URule, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(URule), 3180376821U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_589657145(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_2842426256(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

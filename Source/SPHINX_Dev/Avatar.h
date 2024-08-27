@@ -51,6 +51,7 @@ public:
 
 	FVector LastMovementDirection;
 
+	UPROPERTY()
 	AActor* HeldGameItem;
 
 	bool IsHoldingItem;

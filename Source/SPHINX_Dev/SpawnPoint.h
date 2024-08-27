@@ -27,6 +27,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<UItemProperty>> SpawnableProperties;
 
+	UPROPERTY()
 	TArray<UItemProperty*> PropPtrs;
 
 	bool HasSpawnedItem = false;

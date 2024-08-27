@@ -123,6 +123,7 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu, UActionBtn* ActionBut
 	{
 		Instance->ReturnLeaves();
 		UE_LOG(LogTemp, Warning, TEXT("OnGameItemClicked PM instance is valid, this is %s"), *this->Name);
+
 		TArray<URule*> Rules = Instance->RulesFor(this);
 		if (Rules.Num() > 0)
 		{
@@ -200,9 +201,9 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 	TArray<AActor*> ObjectsToDestroy;
 	AInventoryManager* Inventory = AInventoryManager::GetInstance();
 	APuzzleManager* PMInstance = APuzzleManager::GetInstance();
-	Rule->ToInputsPtr();
-	Rule->ToOutputsPtr();
-	Rule->GetDbItems();
+	//Rule->ToInputsPtr();
+	//Rule->ToOutputsPtr();
+	//Rule->GetDbItems();
 	UGameItem* HeldItem = PMInstance->Player->HeldGameItem->FindComponentByClass<UGameItem>();
 	//UE_LOG(LogTemp, Warning, TEXT("%s has %d properties, Rule has %d inputs"), *Rule->Inputs[0]->GameItem->Name, Rule->Inputs[0]->GameItem->Properties.Num(), Rule->Inputs.Num());
 	//UE_LOG(LogTemp, Warning, TEXT("Rules inputs are %s and %s"), *Rule->Inputs[0]->Name, *Rule->Inputs[1]->Name);

@@ -220,12 +220,12 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 
 	TArray<URule*> PossibleRules;
 	
-	TArray<URule*> AllRules = GInstance->PMInstance->GetAllRules();
+	TArray<URule*> AllRules = GInstance->PMInstance->GetRulePointers();
 	//UE_LOG(LogTemp, Error, TEXT("GETTING ALL RULES, no of rules = %d"), AllRules.Num());
 	for (URule* Rule : AllRules)
 	{	
-		Rule->ToOutputsPtr();
-		Rule->ToInputsPtr();
+		//Rule->ToOutputsPtr();
+		//Rule->ToInputsPtr();
 		if (Rule->Outputs[0])
 		{
 			//UE_LOG(LogTemp, Error, TEXT("Output[0] is %s"), *Rule->Outputs[0]->Name);
@@ -355,6 +355,7 @@ ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 	SPsFound = GetSPsInViewport();
 	if (Item)
 	{
+		Item->ToPropPtrs();
 		UE_LOG(LogTemp, Display, TEXT("Item has %d properties"), Item->Properties.Num());
 		TArray<ASpawnPoint*> AllSPs = GetAllSpawnPoints();
 		TArray<ASpawnPoint*> FoundSPs;

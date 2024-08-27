@@ -244,7 +244,7 @@ void ASPHINX_DevPlayerController::GrabGameItem(UGameItem* GameItem)
 
 void ASPHINX_DevPlayerController::DisableCollisionForActor(AActor* ActorToDisable)
 {
-     if (ActorToDisable != nullptr)
+    if (ActorToDisable != nullptr)
     {
         TArray<UPrimitiveComponent*> Components;
         ActorToDisable->GetComponents<UPrimitiveComponent>(Components);
@@ -277,12 +277,12 @@ void ASPHINX_DevPlayerController::OnRightMouseDown()
     else if (!InventoryOpen)
     {
         OpenInventoryMenu();
-        PMInstance->PrintAllRules();
+        //PMInstance->PrintAllRules();
     }
     else if (InventoryOpen)
     {
         CloseInventoryMenu();
-        PMInstance->PrintAllRules();
+        //PMInstance->PrintAllRules();
     }
 }
 

@@ -20,10 +20,56 @@
 USTRUCT()
 struct FRulesStruct
 {
-
 	GENERATED_BODY()
+
+    // The array that holds the URule pointers
+    UPROPERTY()
     TArray<URule*> RulesArray;
+
+    // Default constructor
+    FRulesStruct() = default;
+
+    // Copy constructor
+    FRulesStruct(const FRulesStruct& Other)
+    {
+        RulesArray = Other.RulesArray;
+    }
+
+    // Copy assignment operator
+    FRulesStruct& operator=(const FRulesStruct& Other)
+    {
+        if (this != &Other)
+        {
+            RulesArray = Other.RulesArray;
+        }
+        return *this;
+    }
+
+    // Move constructor
+    FRulesStruct(FRulesStruct&& Other) noexcept
+    {
+        RulesArray = MoveTemp(Other.RulesArray);
+    }
+
+    // Move assignment operator
+    FRulesStruct& operator=(FRulesStruct&& Other) noexcept
+    {
+        if (this != &Other)
+        {
+            RulesArray = MoveTemp(Other.RulesArray);
+        }
+        return *this;
+    }
 };
+
+USTRUCT()
+struct FSharedRulesStruct
+{
+	GENERATED_BODY()
+	TArray<TSharedPtr<URule>> SharedRulesArray;
+};
+
+
 
 class UGameItem;
 class AAvatar;
@@ -46,11 +92,16 @@ public:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
+	UPROPERTY()
 	UArea* StartArea;
 
 	bool UseAllRules;
 
+	UPROPERTY()
 	ASPHINX_DevPlayerController* PlayerController;
+
+	UPROPERTY()
+	TMap<UPuzzlePoint*, FRulesStruct> Leaves;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AAvatar* Player;
@@ -76,22 +127,29 @@ public:
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	//AActor* Statistics;
 
+	UPROPERTY()
 	TArray<TSubclassOf<UItem>> ItemAssets;
 
+	UPROPERTY()
 	TArray<UItem*> AllItems;
 
+	UPROPERTY()
 	TArray<TSubclassOf<URule>> RuleAssets;
 
 	TArray<URule*> RulePointers;
 
 	//TArray<TSubclassOf<UArea>> AreaAssets;
 
+	UPROPERTY()
 	TArray<TSubclassOf<UPuzzlePoint>> PPAssets;
 
+	UPROPERTY()
 	TArray<UPuzzlePoint*> PuzzlePointPtrs;
 
+	UPROPERTY()
 	TArray<UPuzzlePoint*> AccessiblePPs;
 
+	UPROPERTY()
 	TMap<FString, UPuzzlePoint*> RulePPs;
 
 	static APuzzleManager* GetInstance();
@@ -176,6 +234,7 @@ public:
 
 	ASPHINX_DevPlayerController* ReturnPC();
 
+	UPROPERTY()
 	TArray<FString> PuzzlesGeneratedStrings;
 
 	//For demo only
@@ -198,6 +257,8 @@ public:
 
 	void SetupDbItemsOnStart();
 
+	TArray<URule*> GetRulePointers();
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -207,21 +268,23 @@ protected:
 private:
 
 	static APuzzleManager* Instance;
-	
+
+	UPROPERTY()
 	UArea* CurrentArea;
 
 	UPROPERTY(EditAnywhere)
 	TArray<URule*> GameOverRules;
 
-	
-
+	UPROPERTY()
 	TArray<AGamePuzzlePoint*> ActivePuzzlePoints;
 
-	UPROPERTY(EditAnywhere)
-	TMap<UPuzzlePoint*, FRulesStruct> Leaves;
+	//UPROPERTY(EditAnywhere)
+	
 
-	TMap<UPuzzlePoint*, FRulesStruct> PuzzleRules;
+	TMap<TSharedPtr<UPuzzlePoint>, FSharedRulesStruct> SharedLeaves;
 
+	//TMap<UPuzzlePoint*, FRulesStruct> PuzzleRules;
+	UPROPERTY()
 	TMap<UPuzzlePoint*, FString> PuzzlesGenerated;
 
 	UPROPERTY(EditAnywhere)

@@ -52,10 +52,13 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	UPuzzlePoint* PuzzlePointPtr;
 
+	UPROPERTY()
 	AInitNPC* InitNPC;
 	
+	UPROPERTY()
 	AInitText* InitText;
 
+	UPROPERTY()
 	AInitObject* InitObject;
 
 	bool ActivePuzzleCompleted = false;

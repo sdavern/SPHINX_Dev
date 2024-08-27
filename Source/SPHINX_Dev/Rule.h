@@ -26,11 +26,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<UTerm>> OutputsBP;
 
+	UPROPERTY()
 	TArray<UTerm*> Outputs;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<UTerm>> InputsBP;
 
+	UPROPERTY()
 	TArray<UTerm*> Inputs;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -48,6 +50,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<URule>> ChildrenBP;
 
+	UPROPERTY()
 	TArray<URule*> Children;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

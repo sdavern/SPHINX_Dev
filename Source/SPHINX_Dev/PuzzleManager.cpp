@@ -250,7 +250,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                     UE_LOG(LogTemp, Display, TEXT("PP is %s"), *PP->Name);
                     FRulesStruct NewRules;
                     Leaves.Add(PP, NewRules);
-                    PuzzleRules.Add(PP, NewRules);
+                    //PuzzleRules.Add(PP, NewRules);
                     FindLeaves(Root, PP);
                     UE_LOG(LogTemp, Error, TEXT("RULES ADDED"));
 
@@ -261,9 +261,9 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                         {
                             if (Rule)
                             {
-                                Rule->ToInputsPtr();
-	                            Rule->ToOutputsPtr();
-	                            Rule->GetDbItems();
+                                //Rule->ToInputsPtr();
+	                            //Rule->ToOutputsPtr();
+	                            //Rule->GetDbItems();
                                 RulePPs.Add(Rule->ToPMString(), PP);
                                 Rule->OwningPP = PP;
                                 UE_LOG(LogTemp, Error, TEXT("RULE %s ASSIGNED TO PP %s"), *Rule->Action, *PP->Name);
@@ -273,21 +273,23 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                     }
             
 
-                    FRulesStruct* PuzzleRulesStruct = PuzzleRules.Find(PP);
+                    /* FRulesStruct* PuzzleRulesStruct = PuzzleRules.Find(PP);
                     if (PuzzleRulesStruct != nullptr)
                     {
                         for (URule* Rule : PuzzleRulesStruct->RulesArray)
                         {
                             if (Rule)
                             {
-                                Rule->ToInputsPtr();
-	                            Rule->ToOutputsPtr();
-	                            Rule->GetDbItems();
+                                //Rule->ToInputsPtr();
+	                            //Rule->ToOutputsPtr();
+	                            //Rule->GetDbItems();
                                 RulePPs.Add(Rule->ToPMString(), PP);
                                 Rule->OwningPP = PP;
                             }
                         }
-                    }
+                    } */
+
+                   
                     OwningGPP->HasPuzzle = true; 
                     ++ActiveGeneratedPuzzles;
                     if (ActiveGeneratedPuzzles >= MaxActivePuzzles)
@@ -365,11 +367,11 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
             {
                 for (URule* Rule: FoundLeavesRules->RulesArray) 
                 {
-                    if (Rule && Rule->Inputs.Num() > 0)
+                    if (IsValid(Rule) && Rule && Rule->Inputs.Num() > 0)
                     {
-                        //AddApplicableRule(Rule, GameItem, Rules);
+                        AddApplicableRule(Rule, GameItem, Rules);
                         UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found and added to RulesArray"), *Rule->Action);
-                        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Rule added from RulesFor: %s"), *Rule->Action));
+                        //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Rule added from RulesFor: %s"), *Rule->Action));
                     }    
                     else
                     {
@@ -414,7 +416,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
                 Rules.Add(DbRules[i]);
             }
         }
-    }
+    } 
     if (Rules.Num() > 0)
     {
         UE_LOG(LogTemp, Display, TEXT("Returning Rules with %s"), *Rules[0]->Action);
@@ -628,11 +630,6 @@ void APuzzleManager::AddPuzzle(UPuzzlePoint* PP, FString Puzzle)
     PuzzlesGenerated.Add(PP, Puzzle);
     PuzzlesGeneratedStrings.Add(Puzzle);
     UE_LOG(LogTemp, Error, TEXT("Puzzle added to PuzzlesGenerated: %s"), *Puzzle);
-    
-    if (GEngine)
-    {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Puzzle added: %s"), *Puzzle));
-    }
 }
 
 bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
@@ -1220,7 +1217,7 @@ void APuzzleManager::PrintAllRules()
     for (URule* Rule : RulePointers)
     {
         UE_LOG(LogTemp, Display, TEXT("%s"), *Rule->ToPMString());
-        UKismetSystemLibrary::PrintString(GEngine->GetWorld(), *Rule->ToPMString());
+        //UKismetSystemLibrary::PrintString(GEngine->GetWorld(), *Rule->ToPMString());
     }
 }
 
@@ -1260,6 +1257,10 @@ void APuzzleManager::SetupDbItemsOnStart()
     
 }
 
+TArray<URule*> APuzzleManager::GetRulePointers()
+{
+    return RulePointers;
+}
 
 
 

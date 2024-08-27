@@ -91,10 +91,13 @@ private:
 
 	void EnableCollisionForActor(AActor* ActorToEnable);
 	
+	UPROPERTY()
 	UGameItem* HitGameItem;
 
+	UPROPERTY()
 	UGameItem* SelectedGameItem;
 
+	UPROPERTY()
 	APuzzleManager* PMInstance;
 
 	
@@ -113,10 +116,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
 	USoundCue* ClickSoundCue;
 
+	UPROPERTY()
 	UActionMenu* ActionMenu;
 
+	UPROPERTY()
 	UDialogueBox* DialogueBox;
 
+	UPROPERTY()
 	UInventoryMenu* InventoryMenu;
 
 	bool InspectOpen = false;

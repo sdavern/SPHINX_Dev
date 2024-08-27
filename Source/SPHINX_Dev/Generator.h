@@ -62,8 +62,10 @@ public:
 
 	int MAX_DEPTH = 20;
 
+	UPROPERTY()
 	APuzzleManager* PMInstance;
 
+	UPROPERTY()
 	AInventoryManager* InventoryInstance;
 
 protected:
@@ -71,6 +73,7 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
+
 
 	static AGenerator* Instance;
 

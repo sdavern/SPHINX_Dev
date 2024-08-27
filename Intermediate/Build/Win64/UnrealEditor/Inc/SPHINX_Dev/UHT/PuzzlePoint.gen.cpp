@@ -14,6 +14,7 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 	SPHINX_DEV_API UClass* Z_Construct_UClass_AGamePuzzlePoint_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UPuzzlePoint();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UPuzzlePoint_NoRegister();
+	SPHINX_DEV_API UClass* Z_Construct_UClass_URule_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UTerm_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_SPHINX_Dev();
 // End Cross Module References
@@ -63,6 +64,20 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_PuzzleGoals_MetaData[];
 #endif
 		static const UECodeGen_Private::FArrayPropertyParams NewProp_PuzzleGoals;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_MainGoal_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_MainGoal;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_PuzzleGoalsPtrs_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_PuzzleGoalsPtrs_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_PuzzleGoalsPtrs;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_CurrentPuzzleRules_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_CurrentPuzzleRules_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_CurrentPuzzleRules;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -151,6 +166,26 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoals = { "PuzzleGoals", nullptr, (EPropertyFlags)0x0014000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPuzzlePoint, PuzzleGoals), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoals_MetaData), Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoals_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_MainGoal_MetaData[] = {
+		{ "ModuleRelativePath", "PuzzlePoint.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_MainGoal = { "MainGoal", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPuzzlePoint, MainGoal), Z_Construct_UClass_UTerm_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_MainGoal_MetaData), Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_MainGoal_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoalsPtrs_Inner = { "PuzzleGoalsPtrs", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UTerm_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoalsPtrs_MetaData[] = {
+		{ "ModuleRelativePath", "PuzzlePoint.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoalsPtrs = { "PuzzleGoalsPtrs", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPuzzlePoint, PuzzleGoalsPtrs), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoalsPtrs_MetaData), Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoalsPtrs_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_CurrentPuzzleRules_Inner = { "CurrentPuzzleRules", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_URule_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_CurrentPuzzleRules_MetaData[] = {
+		{ "ModuleRelativePath", "PuzzlePoint.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_CurrentPuzzleRules = { "CurrentPuzzleRules", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPuzzlePoint, CurrentPuzzleRules), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_CurrentPuzzleRules_MetaData), Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_CurrentPuzzleRules_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPuzzlePoint_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_OwningGamePP,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_Name,
@@ -160,6 +195,11 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_MaxDepth,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoals_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoals,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_MainGoal,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoalsPtrs_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_PuzzleGoalsPtrs,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_CurrentPuzzleRules_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPuzzlePoint_Statics::NewProp_CurrentPuzzleRules,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UPuzzlePoint_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UPuzzlePoint>::IsAbstract,
@@ -199,9 +239,9 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UPuzzlePoint, UPuzzlePoint::StaticClass, TEXT("UPuzzlePoint"), &Z_Registration_Info_UClass_UPuzzlePoint, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPuzzlePoint), 2215999549U) },
+		{ Z_Construct_UClass_UPuzzlePoint, UPuzzlePoint::StaticClass, TEXT("UPuzzlePoint"), &Z_Registration_Info_UClass_UPuzzlePoint, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPuzzlePoint), 3957293498U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_285844931(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_3126263228(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

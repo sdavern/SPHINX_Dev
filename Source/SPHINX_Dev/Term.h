@@ -9,6 +9,7 @@
 
 class UItem;
 class UGameItem;
+class APuzzleManager;
 
 
 UCLASS(Blueprintable)
@@ -25,6 +26,7 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TArray<TSubclassOf<UItemProperty>> PropertiesBP;
 
+    UPROPERTY()
     TArray<UItemProperty*> Properties;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)

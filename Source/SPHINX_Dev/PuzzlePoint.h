@@ -43,10 +43,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<UTerm>> PuzzleGoals;
 
+	UPROPERTY()
 	UTerm* MainGoal;
 
+	UPROPERTY()
 	TArray<UTerm*> PuzzleGoalsPtrs;
 
+	UPROPERTY()
 	TArray<URule*> CurrentPuzzleRules;
 
 	void ToPuzzleGoalPtrs();
