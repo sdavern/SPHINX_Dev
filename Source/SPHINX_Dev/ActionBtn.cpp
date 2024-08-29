@@ -4,6 +4,11 @@
 #include "ActionBtn.h"
 #include "GameItem.h"
 
+UActionBtn::UActionBtn()
+{
+
+}
+
 FString UActionBtn::AddSpacesBeforeCaps(const FString& InString)
 {
     FString Result;
@@ -21,6 +26,7 @@ FString UActionBtn::AddSpacesBeforeCaps(const FString& InString)
 
 void UActionBtn::InitializeButton(UGameItem* GameItem, URule* Rule)
 {
+    SetIsEnabled(true);
     LinkedGameItem = GameItem;
     LinkedRule = Rule;
     UE_LOG(LogTemp, Warning, TEXT("ActionButton LinkedGameItem is %s and LinkedRule is %s"), *LinkedGameItem->Name, *LinkedRule->Action);
@@ -54,6 +60,7 @@ void UActionBtn::OnButtonClicked()
 {
     if (LinkedGameItem && LinkedRule)
     {
+        UE_LOG(LogTemp, Display, TEXT("LinkedGameItem is %s and LinkedRule is %s"), *LinkedGameItem->Name, *LinkedRule->Name);
         UE_LOG(LogTemp, Error, TEXT("ActionButton clicked"));
         // Execute the rule associated with the button
         LinkedGameItem->ExecuteRule(LinkedRule);

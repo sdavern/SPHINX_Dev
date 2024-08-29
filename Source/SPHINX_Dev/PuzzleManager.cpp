@@ -322,6 +322,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
 TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
 {
     TArray<URule*> Rules;
+    TArray<URule*> DbRules;
     UE_LOG(LogTemp, Warning, TEXT("Total Puzzle Points in Leaves: %d"), Leaves.Num());
 
     if (Leaves.Num() == 0) 
@@ -396,9 +397,11 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         
     }
     
-    
-    TArray<URule*> DbRules = GetRulesWithInput(GameItem->DbItem);
-
+    if (GameItem && GameItem->DbItem)
+    {
+        DbRules = GetRulesWithInput(GameItem->DbItem);
+    }
+     
     if (DbRules.Num() == 0)
     {
         UE_LOG(LogTemp, Display, TEXT("DbRules in RulesFor is 0"));
@@ -733,23 +736,25 @@ TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
         {
             for (UTerm* Input : RuleToCheck->Inputs)
             {
-                if (Input->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(Input->Name))
+                if (Input)
                 {
-                    Rules.Add(RuleToCheck);
+                    if (Input->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(Input->Name))
+                    {
+                        Rules.Add(RuleToCheck);
+                    }
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Display, TEXT("Input in GetRulesWithInput is null"));
                 }
             }
         }
         else
         {
             UE_LOG(LogTemp, Display, TEXT("Something, probs DbItem is wrong"));
-        }
-        
+        } 
     }
-
     return Rules;
-
-
-
 }
 
 TArray<URule*> APuzzleManager::GetRulesWithOutput(UTerm* Term)

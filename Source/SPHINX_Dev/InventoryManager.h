@@ -65,6 +65,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	UGameItem* SelectedItem;
 
+	UPROPERTY(EditAnywhere)
+	UGameItem* HitGameItem;
+
 	UPROPERTY(VisibleAnywhere)
 	AAvatar* ActivePlayer;
 	

@@ -19,6 +19,8 @@ class SPHINX_DEV_API UActionBtn : public UButton
 	
 public:
 
+    UActionBtn();
+
     UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
     UActionBtn* ActionButton; 
 

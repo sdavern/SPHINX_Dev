@@ -102,7 +102,10 @@ TArray<FString> UItem::GetSuperTypes()
     TArray<UItemProperty*> IsaProperties = GetPropertiesWithName("isa");
     for (UItemProperty* Prop : IsaProperties)
     {
-        Types.Add(Prop->Value);
+        if (Prop && Prop->Value != TEXT(""))
+        {
+            Types.Add(Prop->Value);
+        }
     }
     return Types;
 }

@@ -225,7 +225,6 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 	{
 		return UActionBtn::StaticClass();
 	}
-	UActionBtn::UActionBtn(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
 	DEFINE_VTABLE_PTR_HELPER_CTOR(UActionBtn);
 	UActionBtn::~UActionBtn() {}
 	struct Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_Statics

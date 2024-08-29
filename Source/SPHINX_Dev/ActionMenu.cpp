@@ -8,6 +8,8 @@ void UActionMenu::NativeConstruct()
 {
     Super::NativeConstruct();
 
+    ActionButtons.SetNum(4);
+
     ActionButtons[0] = ActionButton;
     ActionButtons[1] = ActionButton_1;
     ActionButtons[2] = ActionButton_2;

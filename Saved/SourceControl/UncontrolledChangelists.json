@@ -68,10 +68,16 @@
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/UI_BPs/ExitWidget.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Blueprints/BP_SPHINXPlayerController.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/UI_BPs/BP_ActionMenu.uasset",
-				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/SprActionMenu2.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/ActionMenuMiddle.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/ActionMenuTop.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/ActionMenuBottom.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/Rules/Rule_2.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/Rules/Rule_3.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/UI_BPs/IntroScene2.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/UI_BPs/EndScene.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/UI_BPs/EndScene2.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/UI_BPs/MidScene.uasset",
+				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/UI/SprActionMenu2.uasset",
 				"C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Resources/PuzzlePoints/GamePuzzlePoints/MyPuzzlePoint.uasset"
 			]
 		}

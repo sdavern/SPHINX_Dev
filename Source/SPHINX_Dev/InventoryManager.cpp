@@ -183,7 +183,12 @@ UGameItem* AInventoryManager::GetSelectedItem()
 {
     if (SelectedItem != nullptr)
     {
+        UE_LOG(LogTemp, Display, TEXT("SelectedItem in InventoryManager is %s"), *SelectedItem->Name);
         return SelectedItem;
+    }
+    else
+    {
+        UE_LOG(LogTemp, Display, TEXT("SelectedItem is null in InventoryManager"));
     }
     return nullptr;
 }

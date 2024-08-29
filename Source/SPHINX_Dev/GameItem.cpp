@@ -138,7 +138,13 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
             	}
 			}
 
-			for (int i = 0; i <= ButtonRules.Num(); i++)
+			if (ActionMenu->ActionButtons.Num() == 0)
+			{
+				UE_LOG(LogTemp, Display, TEXT("ActionMenu has no ActionButtons"));
+				return;
+			}
+
+			for (int i = 0; i <= ButtonRules.Num() - 1; i++)
 			{
 				if (ActionMenu && ActionMenu->ActionButtons[i])
 				{
@@ -152,11 +158,13 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
 
 			if (ButtonRules.Num() > 1 && ActionMenu && ActionMenu->BackBottom)
 			{
-				float AddedY = ButtonRules.Num() * 81;
-				FVector2D NewPosition = FVector2D(ActionMenu->BackBottom->RenderTransform.Translation.X, ActionMenu->BackBottom->RenderTransform.Translation.Y + AddedY);
-				ActionMenu->BackBottom->SetRenderTranslation(NewPosition);
+				float AddedY = (ButtonRules.Num() - 1) * 81;
+				FWidgetTransform CurrentTransform = ActionMenu->BackBottom->GetRenderTransform();
+				FVector2D NewPosition = FVector2D(CurrentTransform.Translation.X, CurrentTransform.Translation.Y + AddedY);
+				CurrentTransform.Translation = NewPosition;
+				ActionMenu->BackBottom->SetRenderTransform(CurrentTransform);
 			}
-			
+
 		}
 		else
 		{
@@ -207,6 +215,7 @@ void UGameItem::ExecuteRule(URule* Rule)
 	UWorld* World = GetWorld();
 	if (World)
 	{
+		UE_LOG(LogTemp, Display, TEXT("Switching to second ExecuteRule in GameItem"));
 		ExecuteRule(World, Rule, true, this);
 	}
 	
@@ -220,20 +229,31 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 	//Rule->ToInputsPtr();
 	//Rule->ToOutputsPtr();
 	//Rule->GetDbItems();
-	UGameItem* HeldItem = PMInstance->Player->HeldGameItem->FindComponentByClass<UGameItem>();
+	
+	//UGameItem* HeldItem = PMInstance->Player->HeldGameItem->FindComponentByClass<UGameItem>();
+	
+	UGameItem* HeldItem = Inventory->SelectedItem;
+	UGameItem* HitGameItem = Inventory->HitGameItem;
+
+	if (!HeldItem && !HitGameItem)
+	{
+		UE_LOG(LogTemp, Display, TEXT("GameItem->ExecuteRule HeldItem && HitGameItem is not valid"));
+		return;
+	}
+	
 	//UE_LOG(LogTemp, Warning, TEXT("%s has %d properties, Rule has %d inputs"), *Rule->Inputs[0]->GameItem->Name, Rule->Inputs[0]->GameItem->Properties.Num(), Rule->Inputs.Num());
 	//UE_LOG(LogTemp, Warning, TEXT("Rules inputs are %s and %s"), *Rule->Inputs[0]->Name, *Rule->Inputs[1]->Name);
-	UE_LOG(LogTemp, Error, TEXT("ExecuteRule called in GameItem"));
-	UE_LOG(LogTemp, Warning, TEXT("Input[0] is %s and has GameItem %s, the rule has %d outputs"), *Rule->Inputs[0]->Name, *Rule->Inputs[0]->GameItem->Name, Rule->Outputs.Num());
+	UE_LOG(LogTemp, Error, TEXT("HeldItem is valid, beginning ExecuteRule"));
+	//UE_LOG(LogTemp, Warning, TEXT("Input[0] is %s and has GameItem %s, the rule has %d outputs"), *Rule->Inputs[0]->Name, *Rule->Inputs[0]->GameItem->Name, Rule->Outputs.Num());
 	for (int32 i = 0; i < Rule->Inputs.Num(); i++)
 	{
 		//UE_LOG(LogTemp, Display, TEXT("Rule %s has input %s at [%d]"), *Rule->Action, *Rule->Inputs[i]->Name, i);
 		bool Found = false;
 		for (UTerm* Output : Rule->Outputs)
 		{
-			if (Output->Name == Rule->Inputs[i]->Name)
+			if (Output && Output->Name == Rule->Inputs[i]->Name)
 			{
-				UE_LOG(LogTemp, Display, TEXT("Output equals rule input"));
+				UE_LOG(LogTemp, Display, TEXT("Output equals rule input, Found = true"));
 				Found = true;
 				Output->GameItem = Rule->Inputs[i]->GameItem;
 				break;
@@ -293,13 +313,18 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 			{
 				ObjectsToDestroy.Add(GameI->GetOwner());
 				UE_LOG(LogTemp, Warning, TEXT("i == 0"));
-			}
+			}  
 			else
 			{
-				if (Rule->Inputs[i]->Name == HeldItem->Name)
+				if (HeldItem)
 				{
-					ObjectsToDestroy.Add(PMInstance->Player->HeldGameItem);
+					if (Rule->Inputs[i]->Name == HeldItem->Name)
+					{
+						UE_LOG(LogTemp, Display, TEXT("Adding HeldItem to ObjectsToDestroy"));
+						ObjectsToDestroy.Add(PMInstance->Player->HeldGameItem);
+					}
 				}
+				
 
 				if (!Inventory->DeleteItemFromInventory(Rule->Inputs[i]->GameItem))
 				{
@@ -430,50 +455,101 @@ bool UGameItem::RuleFulfilled(URule* Rule)
     
     if (!Rule) 
     {
+		UE_LOG(LogTemp, Display, TEXT("No rule in rule fulfilled"));
         return false;
     }
 
     if (Rule->Inputs.Num() == 0) 
     {
+		UE_LOG(LogTemp, Display, TEXT("Rule in RuleFulfilled is valid but has no inputs"));
         return false;
     }
 
     UGameItem* SelectedItem = InventoryManager->GetSelectedItem();
+	UGameItem* HitGameItem = InventoryManager->HitGameItem;
 
-	if (!SelectedItem || SelectedItem == this)
+	if (HitGameItem && !SelectedItem)
+	{
+		bool ClickedItemFulfilled = false;
+		UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s"), *HitGameItem->Name);
+		for (UTerm* Input : Rule->Inputs)
+    	{
+			UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s and Input is %s"), *HitGameItem->Name, *Input->Name);
+        	if (HitGameItem && (HitGameItem->Name == Input->Name || HitGameItem->DbItem->GetSuperTypes().Contains(Input->Name)))
+        	{
+				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 succeeded"));
+            	if (HitGameItem->FulfillsProperties(Input))
+            	{
+                	ClickedItemFulfilled = true;
+					UE_LOG(LogTemp, Display, TEXT("HitGameItem check 2 succeeded"));
+                	break;
+            	}
+				else
+				{
+					UE_LOG(LogTemp, Display, TEXT("HitGameItem check 2 failed"));
+				}
+        	}
+			else
+			{
+				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 failed"));
+			}
+    	}
+		if (ClickedItemFulfilled)
+		{
+			return true;
+		}
+	}
+
+	if (SelectedItem && HitGameItem)
+	{
+		bool SelectedItemFulfilled = false;
+    	bool ClickedItemFulfilled = false;
+
+    	for (UTerm* Input : Rule->Inputs)
+    	{
+        	if (SelectedItem && (SelectedItem->Name == Input->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Input->Name)))
+        	{
+				UE_LOG(LogTemp, Display, TEXT("SelectedItem is %s and Input is %s"), *SelectedItem->Name, *Input->Name);
+            	if (SelectedItem->FulfillsProperties(Input))
+            	{
+                	SelectedItemFulfilled = true;
+                	break;
+            	}
+        	}
+		
+    	}
+
+    	for (UTerm* Input : Rule->Inputs)
+    	{
+			UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s and Input is %s"), *HitGameItem->Name, *Input->Name);
+        	if (HitGameItem && (HitGameItem->Name == Input->Name || HitGameItem->DbItem->GetSuperTypes().Contains(Input->Name)))
+        	{
+				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 succeeded"));
+            	if (HitGameItem->FulfillsProperties(Input))
+            	{
+                	ClickedItemFulfilled = true;
+					UE_LOG(LogTemp, Display, TEXT("HitGameItem check 2 succeeded"));
+                	break;
+            	}
+				else
+				{
+					UE_LOG(LogTemp, Display, TEXT("HitGameItem check 2 failed"));
+				}
+        	}
+			else
+			{
+				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 failed"));
+			}
+    	}
+
+    	return SelectedItemFulfilled && ClickedItemFulfilled;
+	}
+	/* if (!SelectedItem || SelectedItem == this)
     {
+		UE_LOG(LogTemp, Display, TEXT("SelectedItem check is false"));
         return false;
-    }
-
-    bool SelectedItemFulfilled = false;
-    bool ClickedItemFulfilled = false;
-
-    for (UTerm* Input : Rule->Inputs)
-    {
-        if (SelectedItem && (SelectedItem->Name == Input->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Input->Name)))
-        {
-            if (SelectedItem->FulfillsProperties(Input))
-            {
-                SelectedItemFulfilled = true;
-                break;
-            }
-        }
-    }
-
-    for (UTerm* Input : Rule->Inputs)
-    {
-        if (this->Name == Input->Name || this->DbItem->GetSuperTypes().Contains(Input->Name))
-        {
-            if (this->FulfillsProperties(Input))
-            {
-                ClickedItemFulfilled = true;
-                break;
-            }
-        }
-    }
-
-    return SelectedItemFulfilled && ClickedItemFulfilled;
-
+    } */
+   return false;
 }
 
 bool UGameItem::FulfillsProperties(UTerm* Input)

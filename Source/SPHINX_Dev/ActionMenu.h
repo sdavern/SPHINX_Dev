@@ -58,31 +58,31 @@ public:
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UButton* ExitButton;
 
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
     UTextBlock* HoldText;
 
- 	UPROPERTY(meta = (BindWidget))
+ 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
     UTextBlock* ActionText;
 
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
     UTextBlock* ActionText_1;
 
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
     UTextBlock* ActionText_2;
 
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
     UTextBlock* ActionText_3; 
 
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
     UTextBlock* InspectText;
 
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
     UTextBlock* ExitText;
 
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
     UTextBlock* NameText;
 
-	UPROPERTY(meta = (BindWidget))
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
     UTextBlock* AddText;
 
 

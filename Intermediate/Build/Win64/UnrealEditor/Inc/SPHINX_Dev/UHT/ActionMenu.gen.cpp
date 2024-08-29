@@ -221,75 +221,84 @@ void EmptyLinkFunctionForGeneratedCodeActionMenu() {}
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionMenu_Statics::NewProp_HoldText_MetaData[] = {
 		{ "BindWidget", "" },
+		{ "Category", "ActionMenu" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "ActionMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_HoldText = { "HoldText", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, HoldText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_HoldText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_HoldText_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_HoldText = { "HoldText", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, HoldText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_HoldText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_HoldText_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_MetaData[] = {
 		{ "BindWidget", "" },
+		{ "Category", "ActionMenu" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "ActionMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText = { "ActionText", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, ActionText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText = { "ActionText", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, ActionText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_1_MetaData[] = {
 		{ "BindWidget", "" },
+		{ "Category", "ActionMenu" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "ActionMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_1 = { "ActionText_1", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, ActionText_1), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_1_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_1_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_1 = { "ActionText_1", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, ActionText_1), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_1_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_1_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_2_MetaData[] = {
 		{ "BindWidget", "" },
+		{ "Category", "ActionMenu" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "ActionMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_2 = { "ActionText_2", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, ActionText_2), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_2_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_2_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_2 = { "ActionText_2", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, ActionText_2), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_2_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_2_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_3_MetaData[] = {
 		{ "BindWidget", "" },
+		{ "Category", "ActionMenu" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "ActionMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_3 = { "ActionText_3", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, ActionText_3), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_3_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_3_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_3 = { "ActionText_3", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, ActionText_3), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_3_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionText_3_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionMenu_Statics::NewProp_InspectText_MetaData[] = {
 		{ "BindWidget", "" },
+		{ "Category", "ActionMenu" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "ActionMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_InspectText = { "InspectText", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, InspectText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_InspectText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_InspectText_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_InspectText = { "InspectText", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, InspectText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_InspectText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_InspectText_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionMenu_Statics::NewProp_ExitText_MetaData[] = {
 		{ "BindWidget", "" },
+		{ "Category", "ActionMenu" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "ActionMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_ExitText = { "ExitText", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, ExitText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_ExitText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_ExitText_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_ExitText = { "ExitText", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, ExitText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_ExitText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_ExitText_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionMenu_Statics::NewProp_NameText_MetaData[] = {
 		{ "BindWidget", "" },
+		{ "Category", "ActionMenu" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "ActionMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_NameText = { "NameText", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, NameText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_NameText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_NameText_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_NameText = { "NameText", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, NameText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_NameText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_NameText_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText_MetaData[] = {
 		{ "BindWidget", "" },
+		{ "Category", "ActionMenu" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "ActionMenu.h" },
 	};
 #endif
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText = { "AddText", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, AddText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText = { "AddText", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UActionMenu, AddText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText_MetaData), Z_Construct_UClass_UActionMenu_Statics::NewProp_AddText_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UActionMenu_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionButtons_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UActionMenu_Statics::NewProp_ActionButtons,
@@ -351,9 +360,9 @@ void EmptyLinkFunctionForGeneratedCodeActionMenu() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UActionMenu, UActionMenu::StaticClass, TEXT("UActionMenu"), &Z_Registration_Info_UClass_UActionMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionMenu), 2267764528U) },
+		{ Z_Construct_UClass_UActionMenu, UActionMenu::StaticClass, TEXT("UActionMenu"), &Z_Registration_Info_UClass_UActionMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionMenu), 3808362912U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_403693285(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_4169164224(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

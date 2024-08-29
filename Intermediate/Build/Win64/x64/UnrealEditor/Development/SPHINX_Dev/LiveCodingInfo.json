@@ -2,7 +2,6 @@
 	"RemapUnityFiles": 
 	{
 		"Module.SPHINX_Dev.1.cpp.obj": [
-			"ActionBtn.gen.cpp.obj",
 			"Area.gen.cpp.obj",
 			"Avatar.gen.cpp.obj",
 			"ConditionalObject.gen.cpp.obj",
@@ -17,16 +16,17 @@
 			"InitObject.gen.cpp.obj",
 			"InitText.gen.cpp.obj",
 			"InventoryButton.gen.cpp.obj",
-			"InventoryManager.gen.cpp.obj",
 			"InventoryMenu.gen.cpp.obj",
+			"Item.gen.cpp.obj",
 			"ItemProperty.gen.cpp.obj",
 			"MainMenu.gen.cpp.obj",
 			"MyPawn.gen.cpp.obj",
 			"PlayerPawn.gen.cpp.obj",
 			"PuzzleManager.gen.cpp.obj",
 			"PuzzlePoint.gen.cpp.obj",
+			"ActionBtn.gen.cpp.obj",
 			"ActionMenu.gen.cpp.obj",
-			"Item.gen.cpp.obj"
+			"InventoryManager.gen.cpp.obj"
 		],
 		"Module.SPHINX_Dev.2.cpp.obj": [
 			"PuzzleTracker.gen.cpp.obj",
@@ -54,13 +54,11 @@
 			"InitObject.cpp.obj",
 			"InitText.cpp.obj",
 			"InventoryButton.cpp.obj",
-			"InventoryManager.cpp.obj",
 			"InventoryMenu.cpp.obj",
 			"ItemProperty.cpp.obj",
 			"MainMenu.cpp.obj",
 			"MyPawn.cpp.obj",
 			"PlayerPawn.cpp.obj",
-			"PuzzleManager.cpp.obj",
 			"PuzzlePoint.cpp.obj",
 			"PuzzleTracker.cpp.obj",
 			"Rule.cpp.obj",
@@ -78,7 +76,9 @@
 			"ActionBtn.cpp.obj",
 			"ActionMenu.cpp.obj",
 			"GameItem.cpp.obj",
+			"InventoryManager.cpp.obj",
 			"Item.cpp.obj",
+			"PuzzleManager.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj"
 		]
 	}

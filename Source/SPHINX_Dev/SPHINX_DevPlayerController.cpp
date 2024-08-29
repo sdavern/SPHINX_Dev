@@ -106,7 +106,11 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
     {
         UE_LOG(LogTemp, Display, TEXT("GeoSweep = true"));
         CreateActionMenu();
-        HitGameItem->OnGameItemClicked(ActionMenu);
+        if (ActionMenu)
+        {
+            HitGameItem->OnGameItemClicked(ActionMenu);
+        }
+        
         if (ActionMenu->ActionText)
         {
             UE_LOG(LogTemp, Error, TEXT("ActionText is valid from menu"));
@@ -203,6 +207,7 @@ bool ASPHINX_DevPlayerController::PerformGeoSweep()
         if (HitGameItem)
         {
             UE_LOG(LogTemp, Display, TEXT("%s clicked on!"), *HitGameItem->Name);
+            InventoryManager->HitGameItem = HitGameItem;
             return true;
         }
     }
@@ -454,6 +459,7 @@ void ASPHINX_DevPlayerController::OnExitButtonClicked()
         }
         ActionMenuOpen = false;
         HitGameItem = nullptr;
+        InventoryManager->HitGameItem = nullptr;
     }
     
 }
@@ -513,6 +519,10 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
             DialogueBox->AddToViewport(0);
             DialogueBox->SetVisibility(ESlateVisibility::Visible);
             ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Exit Inspect"));
+            if (HitGameItem->IsNPC)
+            {
+                ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Leave"));
+            }
 
             if (HitGameItem->DbItem)
             {
@@ -521,6 +531,7 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
             
             FSlateColor NewColor = FSlateColor(FLinearColor(0.652479f, 0.662771f, 0.697917f)); 
             ActionMenu->ExitText->SetColorAndOpacity(NewColor);
+            ActionMenu->ExitButton->SetIsEnabled(false);
             
             InspectOpen = true;
         }
@@ -535,6 +546,7 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
             ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Inspect"));
             FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f)); 
             ActionMenu->ExitText->SetColorAndOpacity(NewColor);
+            ActionMenu->ExitButton->SetIsEnabled(true);
         }
     }
 }
@@ -579,6 +591,10 @@ void ASPHINX_DevPlayerController::SetupInspectButton()
 {
     if (ActionMenu && HitGameItem && ActionMenu->InspectButton)
     {
+        if (HitGameItem->IsNPC)
+        {
+            ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Talk"));
+        }
         ActionMenu->InspectButton->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnInspectButtonClicked);
         UE_LOG(LogTemp, Display, TEXT("InspectButton set up"));
     }
@@ -682,6 +698,7 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
         ActionMenu = CreateWidget<UActionMenu>(this, ActionMenuClass);
         if (ActionMenu)
         {
+            UE_LOG(LogTemp, Display, TEXT("ActionMenu is valid"));
             ActionMenu->AddToViewport(1);
             ActionMenu->SetVisibility(ESlateVisibility::Visible);
             SetupActionMenuButtons();
@@ -725,7 +742,7 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
                 UE_LOG(LogTemp, Display, TEXT("ActivePlayer movement stopped."));
             
             }
-            ActionMenuOpen = true;
+            ActionMenuOpen = true; 
             
         }
         else
