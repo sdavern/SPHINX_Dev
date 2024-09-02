@@ -59,7 +59,6 @@
 			"MainMenu.cpp.obj",
 			"MyPawn.cpp.obj",
 			"PlayerPawn.cpp.obj",
-			"PuzzleManager.cpp.obj",
 			"PuzzlePoint.cpp.obj",
 			"PuzzleTracker.cpp.obj",
 			"Rule.cpp.obj",
@@ -79,6 +78,7 @@
 			"GameItem.cpp.obj",
 			"InventoryManager.cpp.obj",
 			"Item.cpp.obj",
+			"PuzzleManager.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj"
 		]
 	}
