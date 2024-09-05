@@ -21,6 +21,7 @@
 #include "InventoryMenu.h"
 #include "Avatar.h"
 #include "InventoryManager.h"
+#include "InitNPC.h"
 #include "SPHINX_DevPlayerController.generated.h"
 
 class UInputMappingContext;
@@ -28,6 +29,7 @@ class UInventoryButton;
 class UItemProperty;
 class ASpawnPoint;
 class APuzzleManager;
+
 
 UCLASS()
 class SPHINX_DEV_API ASPHINX_DevPlayerController : public APlayerController
@@ -57,6 +59,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool IsPlayingScene = false;
 
+	UPROPERTY()
+	bool NPCIsHit = false;
+
 protected:
 
 	/** Input Mapping Context to be used for player input */
@@ -81,7 +86,7 @@ private:
 	float MaxGrabDistance = 400;
 
 	UPROPERTY(EditAnywhere)
-	float GrabRadius = 10;
+	float GrabRadius = 30;
 
 	void AssignPlayer();
 	
@@ -124,6 +129,9 @@ public:
 
 	UPROPERTY()
 	UInventoryMenu* InventoryMenu;
+
+	UPROPERTY()
+	AInitNPC* HitInitNPC;
 
 	bool InspectOpen = false;
 

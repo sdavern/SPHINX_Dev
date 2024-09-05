@@ -77,6 +77,7 @@ void AGamePuzzlePoint::SpawnInit()
     			SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 				int32 i = FMath::RandRange(0, InitNPCs.Num() - 1);
 				InitNPC = GetWorld()->SpawnActor<AInitNPC>(InitNPCs[i], PointTransform, SpawnParams);
+				InitNPC->OwningPP = PuzzlePointPtr;
 				UE_LOG(LogTemp, Display, TEXT("InitNPC spawned."));
 				InitSpawned = true;
 			}

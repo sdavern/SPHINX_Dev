@@ -123,6 +123,10 @@
 				"IOS",
 				"TVOS"
 			]
+		},
+		{
+			"Name": "EditorScriptingUtilities",
+			"Enabled": true
 		}
 	]
 }

@@ -122,94 +122,51 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
 
 bool ASPHINX_DevPlayerController::PerformGeoSweep()
 {
-
-    /* if (!ActivePlayer)
-    {
-        return false;
-    }
-
-    DrawDebugCapsule(GetWorld(), ActivePlayer->GetActorLocation(), 70.0f, 45.0f, FQuat::Identity, FColor::Red, false, 30.0f, 0, 1.0f);
-
-    TArray<AActor*> OverlappingActors;
-    CapsuleCollider->GetOverlappingActors(OverlappingActors);
-    UE_LOG(LogTemp, Display, TEXT("OverlappingActors has %d actors"), OverlappingActors.Num());
-
-    float ClosestDistance = FLT_MAX;
-
-    AActor* ClosestActor = nullptr;
-    UGameItem* ClosestGameItem = nullptr;
-
-    FVector PlayerLocation = ActivePlayer->GetActorLocation();
-
-    for (AActor* Actor : OverlappingActors)
-    {
-        if (Actor && Actor != ActivePlayer)
-        {
-            UGameItem* GameItem = Actor->FindComponentByClass<UGameItem>();
-            if (GameItem)
-            {
-                UE_LOG(LogTemp, Display, TEXT("GameItem is valid"));
-                float Distance = FVector::Dist(PlayerLocation, Actor->GetActorLocation());
-                if (Distance < ClosestDistance)
-                {
-                    ClosestDistance = Distance;
-                    ClosestActor = Actor;
-                    ClosestGameItem = GameItem;
-                }
-            }
-            UE_LOG(LogTemp, Display, TEXT("GameItem not found"));
-        }
-        UE_LOG(LogTemp, Display, TEXT("Did not pass first for check"));
-    }
-
-    if (ClosestGameItem)
-    {
-        HitGameItem = ClosestGameItem;
-        return true;
-    }
-
-    return false; */
-
-
     if (!ActivePlayer) return false;
 
-    FVector CurrentVelocity = ActivePlayer->GetVelocity();
-    FVector Direction;
-
-    if (CurrentVelocity.Size() > 0)
-    {
-        Direction = CurrentVelocity.GetSafeNormal();
-        ActivePlayer->LastMovementDirection = Direction;
-    }
-    else
-    {
-        Direction = ActivePlayer->LastMovementDirection;
-    }
-
-
     FVector Start = ActivePlayer->GetActorLocation();
-    FVector End = Start + FVector(Direction.X, Direction.Y, 0) * MaxGrabDistance;
+    FVector End = Start + 0.01f;//FVector(Direction.X, Direction.Y, 0) * MaxGrabDistance;
     
     
     FHitResult HitResult;
     FCollisionQueryParams QueryParams;
     QueryParams.AddIgnoredActor(ActivePlayer);
 
-    DrawDebugLine(GetWorld(), Start, End, FColor::Red, false, 5.0f);
-
     FCollisionShape Sphere = FCollisionShape::MakeSphere(GrabRadius);
     bool bHit = GetWorld()->SweepSingleByChannel(HitResult, Start, End, FQuat::Identity, ECC_GameTraceChannel2, Sphere, QueryParams);
 
     if (bHit && HitResult.GetActor() != nullptr)
     {
-        DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, GrabRadius, 32, FColor::Blue, false, 5.0f);
-        HitGameItem = HitResult.GetActor()->FindComponentByClass<UGameItem>();
-        if (HitGameItem)
+        DrawDebugSphere(GetWorld(), Start, GrabRadius, 32, FColor::Blue, false, 5.0f);
+
+        AInitNPC* InitNPC = Cast<AInitNPC>(HitResult.GetActor());
+        if (InitNPC)
         {
-            UE_LOG(LogTemp, Display, TEXT("%s clicked on!"), *HitGameItem->Name);
-            InventoryManager->HitGameItem = HitGameItem;
-            return true;
+            UE_LOG(LogTemp, Display, TEXT("Cast to InitNPC succeeded"));
+            NPCIsHit = true;
+            HitGameItem = HitResult.GetActor()->FindComponentByClass<UGameItem>();
+            if (HitGameItem)
+            {
+                UE_LOG(LogTemp, Display, TEXT("%s clicked on!"), *HitGameItem->Name);
+                InventoryManager->HitGameItem = HitGameItem;
+                HitInitNPC = InitNPC;
+                return true;
+            }
         }
+        else
+        {
+            UE_LOG(LogTemp, Display, TEXT("Cast to InitNPC failed"));
+            NPCIsHit = false;
+            HitGameItem = HitResult.GetActor()->FindComponentByClass<UGameItem>();
+            if (HitGameItem)
+            {
+                UE_LOG(LogTemp, Display, TEXT("%s clicked on!"), *HitGameItem->Name);
+                InventoryManager->HitGameItem = HitGameItem;
+                return true;
+            }
+        }
+
+        
     }
     return false; 
 }
@@ -348,7 +305,7 @@ void ASPHINX_DevPlayerController::SetupHoldButton()
         if (HitGameItem->DbItem->IsStationary)
         {
             ActionMenu->HoldButton->SetIsEnabled(false);
-            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Can't hold"));
+            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Too heavy to grab!"));
 
         }
     }
@@ -444,6 +401,14 @@ void ASPHINX_DevPlayerController::OnExitButtonClicked()
         ActionMenu = nullptr;
         UE_LOG(LogTemp, Display, TEXT("Exit button clicked!"));
 
+        if (ActivePlayer)
+        {
+            ActivePlayer->GetCharacterMovement()->StopMovementImmediately();
+            ActivePlayer->LastMovementDirection = FVector::ZeroVector;
+            ActivePlayer->DisableInput(this);
+            ActivePlayer->EnableInput(this);
+        }
+
         
         FInputModeGameOnly InputMode;
         InputMode.SetConsumeCaptureMouseDown(false); // Ensure mouse down events are not consumed by the UI
@@ -460,7 +425,15 @@ void ASPHINX_DevPlayerController::OnExitButtonClicked()
         ActionMenuOpen = false;
         HitGameItem = nullptr;
         InventoryManager->HitGameItem = nullptr;
+        NPCIsHit = false;
+        HitInitNPC = nullptr;
     }
+    if (ActivePlayer)
+    {
+        ActivePlayer->GetCharacterMovement()->Velocity = FVector::ZeroVector;
+        UE_LOG(LogTemp, Display, TEXT("Character velocity set to 0"));
+    }
+    
     
 }
 
@@ -519,12 +492,36 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
             DialogueBox->AddToViewport(0);
             DialogueBox->SetVisibility(ESlateVisibility::Visible);
             ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Exit Inspect"));
-            if (HitGameItem->IsNPC)
+            if (HitGameItem->IsNPC || NPCIsHit)
             {
                 ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Leave"));
             }
-
-            if (HitGameItem->DbItem)
+            if (NPCIsHit)
+            {
+                UE_LOG(LogTemp, Display, TEXT("NPCIsHit = true (from OnInspect)"));
+                if (HitInitNPC)
+                {
+                    UE_LOG(LogTemp, Display, TEXT("HitInitNPC is valid"));
+                    if (HitInitNPC->OwningPP)
+                    {
+                        UE_LOG(LogTemp, Display, TEXT("HitInitNPC->OwningPP is valid"));
+                        if (!HitInitNPC->OwningPP->GoalDialogue.IsEmpty())
+                        {
+                            UE_LOG(LogTemp, Display, TEXT("GoalDialogue is valid"));
+                            DialogueBox->ChangeInspectText(DialogueBox->InspectText, HitInitNPC->OwningPP->GoalDialogue);
+                        }
+                        else
+                        {
+                            UE_LOG(LogTemp, Display, TEXT("GoalDialogue is not valid"));
+                        }
+                    } 
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Display, TEXT("Some aspect of NPC check failed in OnInspectButtonClicked"));
+                }
+            }
+            else if (HitGameItem->DbItem)
             {
                 DialogueBox->ChangeInspectText(DialogueBox->InspectText, HitGameItem->DbItem->Description);
             }
@@ -591,7 +588,7 @@ void ASPHINX_DevPlayerController::SetupInspectButton()
 {
     if (ActionMenu && HitGameItem && ActionMenu->InspectButton)
     {
-        if (HitGameItem->IsNPC)
+        if (HitGameItem->IsNPC || NPCIsHit)
         {
             ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Talk"));
         }
@@ -706,6 +703,7 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
             InputMode.SetWidgetToFocus(ActionMenu->TakeWidget());
             InputMode.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
             SetInputMode(InputMode);
+
             if (HitGameItem)
             {
                 FString ItemName = AddSpacesBeforeCaps(HitGameItem->Name);

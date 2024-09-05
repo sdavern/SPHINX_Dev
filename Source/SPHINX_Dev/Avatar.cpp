@@ -24,6 +24,8 @@ AAvatar::AAvatar()
 	LastMovementDirection = FVector(0, 1, 0);
 
 	IsHoldingItem = false;
+
+
     
 
 }

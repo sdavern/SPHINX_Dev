@@ -14,6 +14,7 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_DevPlayerController() {}
 	ENGINE_API UClass* Z_Construct_UClass_USoundCue_NoRegister();
 	ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputMappingContext_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_AAvatar_NoRegister();
+	SPHINX_DEV_API UClass* Z_Construct_UClass_AInitNPC_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_AInventoryManager_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_APuzzleManager_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_ASPHINX_DevPlayerController();
@@ -337,6 +338,11 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_DevPlayerController() {}
 		static void NewProp_IsPlayingScene_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsPlayingScene;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_NPCIsHit_MetaData[];
+#endif
+		static void NewProp_NPCIsHit_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_NPCIsHit;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_InputMappingContext_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_InputMappingContext;
@@ -384,6 +390,10 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_DevPlayerController() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_InventoryMenu_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_InventoryMenu;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HitInitNPC_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_HitInitNPC;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -456,6 +466,16 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_DevPlayerController() {}
 		((ASPHINX_DevPlayerController*)Obj)->IsPlayingScene = 1;
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_IsPlayingScene = { "IsPlayingScene", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ASPHINX_DevPlayerController), &Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_IsPlayingScene_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_IsPlayingScene_MetaData), Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_IsPlayingScene_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_NPCIsHit_MetaData[] = {
+		{ "ModuleRelativePath", "SPHINX_DevPlayerController.h" },
+	};
+#endif
+	void Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_NPCIsHit_SetBit(void* Obj)
+	{
+		((ASPHINX_DevPlayerController*)Obj)->NPCIsHit = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_NPCIsHit = { "NPCIsHit", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ASPHINX_DevPlayerController), &Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_NPCIsHit_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_NPCIsHit_MetaData), Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_NPCIsHit_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_InputMappingContext_MetaData[] = {
 		{ "Category", "Input" },
@@ -545,6 +565,12 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_DevPlayerController() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_InventoryMenu = { "InventoryMenu", nullptr, (EPropertyFlags)0x0010000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASPHINX_DevPlayerController, InventoryMenu), Z_Construct_UClass_UInventoryMenu_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_InventoryMenu_MetaData), Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_InventoryMenu_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_HitInitNPC_MetaData[] = {
+		{ "ModuleRelativePath", "SPHINX_DevPlayerController.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_HitInitNPC = { "HitInitNPC", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ASPHINX_DevPlayerController, HitInitNPC), Z_Construct_UClass_AInitNPC_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_HitInitNPC_MetaData), Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_HitInitNPC_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_ActionMenuClass,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_DialogueBoxClass,
@@ -552,6 +578,7 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_DevPlayerController() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_InventoryManager,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_ActivePlayer,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_IsPlayingScene,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_NPCIsHit,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_InputMappingContext,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_MaxGrabDistance,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_GrabRadius,
@@ -564,6 +591,7 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_DevPlayerController() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_ActionMenu,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_DialogueBox,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_InventoryMenu,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::NewProp_HitInitNPC,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_ASPHINX_DevPlayerController_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<ASPHINX_DevPlayerController>::IsAbstract,
@@ -603,9 +631,9 @@ void EmptyLinkFunctionForGeneratedCodeSPHINX_DevPlayerController() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevPlayerController_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_ASPHINX_DevPlayerController, ASPHINX_DevPlayerController::StaticClass, TEXT("ASPHINX_DevPlayerController"), &Z_Registration_Info_UClass_ASPHINX_DevPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASPHINX_DevPlayerController), 4212287389U) },
+		{ Z_Construct_UClass_ASPHINX_DevPlayerController, ASPHINX_DevPlayerController::StaticClass, TEXT("ASPHINX_DevPlayerController"), &Z_Registration_Info_UClass_ASPHINX_DevPlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASPHINX_DevPlayerController), 3360909174U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevPlayerController_h_3473431956(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevPlayerController_h_3168811630(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevPlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SPHINX_DevPlayerController_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

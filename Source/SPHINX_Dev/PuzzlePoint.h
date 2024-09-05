@@ -52,6 +52,9 @@ public:
 	UPROPERTY()
 	TArray<URule*> CurrentPuzzleRules;
 
+	UPROPERTY()
+	FString GoalDialogue;
+
 	void ToPuzzleGoalPtrs();
 
 	void SetInitType();

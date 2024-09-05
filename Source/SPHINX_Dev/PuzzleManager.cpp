@@ -170,6 +170,7 @@ void APuzzleManager::DeactivatePuzzlePoint(AGamePuzzlePoint* PP)
         --ActivePPs;
         ActivePuzzlePoints.Remove(PP);
         AccessiblePPs.Remove(PP->PuzzlePointPtr);
+        PP->PuzzlePointPtr->GoalDialogue.Empty();
         UE_LOG(LogTemp, Display, TEXT("PuzzlePoint deactivated"));
         //may need to remove rule and pp from tmap
     }
@@ -291,6 +292,12 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
 
                    
                     OwningGPP->HasPuzzle = true; 
+                    if (OwningGPP->InitNPC != nullptr)
+                    {
+                        OwningGPP->InitNPC->OwningPP = PP;
+                        UE_LOG(LogTemp, Error, TEXT("OwningGPP has set OwningPP for InitNPC"));
+                    }
+
                     ++ActiveGeneratedPuzzles;
                     if (ActiveGeneratedPuzzles >= MaxActivePuzzles)
                     {
@@ -736,9 +743,10 @@ TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
         {
             for (UTerm* Input : RuleToCheck->Inputs)
             {
-                if (Input)
+                if (Input != nullptr && DbItem != nullptr) 
                 {
-                    if (Input->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(Input->Name))
+                    const TArray<FString>& SuperTypes = DbItem->GetSuperTypes();
+                    if (Input->Name == DbItem->Name || (SuperTypes.Num() > 0 && SuperTypes.Contains(Input->Name)))
                     {
                         Rules.Add(RuleToCheck);
                     }

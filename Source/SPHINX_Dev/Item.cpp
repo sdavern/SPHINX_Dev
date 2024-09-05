@@ -38,7 +38,7 @@ TArray<UItemProperty*> UItem::GetPropertiesWithName(const FString& PropertyName)
 
     for (UItemProperty* Property : Properties)
     {
-        if (Property && Property->Name.Equals(PropertyName, ESearchCase::IgnoreCase))
+        if (Property && PropertyName.IsEmpty() && Property->Name.Equals(PropertyName, ESearchCase::IgnoreCase))
         {
             PropertiesToReturn.Add(Property);
         }
@@ -102,7 +102,7 @@ TArray<FString> UItem::GetSuperTypes()
     TArray<UItemProperty*> IsaProperties = GetPropertiesWithName("isa");
     for (UItemProperty* Prop : IsaProperties)
     {
-        if (Prop && Prop->Value != TEXT(""))
+        if (Prop && !Prop->Value.IsEmpty())
         {
             Types.Add(Prop->Value);
         }

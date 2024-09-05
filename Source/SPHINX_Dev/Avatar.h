@@ -38,7 +38,6 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-
 	// Called to bind functionality to input
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
     UGameItem* GameItem;

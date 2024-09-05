@@ -450,7 +450,6 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 
 bool UGameItem::RuleFulfilled(URule* Rule)
 {
-	//needo to fix this then go onto ExecuteRule()
 	AInventoryManager* InventoryManager = AInventoryManager::GetInstance();
     
     if (!Rule) 
@@ -458,19 +457,19 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 		UE_LOG(LogTemp, Display, TEXT("No rule in rule fulfilled"));
         return false;
     }
-
+ 
     if (Rule->Inputs.Num() == 0) 
     {
 		UE_LOG(LogTemp, Display, TEXT("Rule in RuleFulfilled is valid but has no inputs"));
         return false;
     }
 
-    UGameItem* SelectedItem = InventoryManager->GetSelectedItem();
-	UGameItem* HitGameItem = InventoryManager->HitGameItem;
+    UGameItem* SelectedItem = InventoryManager->GetSelectedItem(); //gets held gameitem
+	UGameItem* HitGameItem = InventoryManager->HitGameItem; //gets item hit by geosweep
 
-	if (HitGameItem && !SelectedItem)
+	if (HitGameItem && !SelectedItem) //if item hit by geosweep is valid and player is not holding item
 	{
-		bool ClickedItemFulfilled = false;
+		bool ClickedItemFulfilled = true;
 		UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s"), *HitGameItem->Name);
 		for (UTerm* Input : Rule->Inputs)
     	{
@@ -478,9 +477,9 @@ bool UGameItem::RuleFulfilled(URule* Rule)
         	if (HitGameItem && (HitGameItem->Name == Input->Name || HitGameItem->DbItem->GetSuperTypes().Contains(Input->Name)))
         	{
 				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 succeeded"));
-            	if (HitGameItem->FulfillsProperties(Input))
+            	if (!HitGameItem->FulfillsProperties(Input))
             	{
-                	ClickedItemFulfilled = true;
+                	ClickedItemFulfilled = false;
 					UE_LOG(LogTemp, Display, TEXT("HitGameItem check 2 succeeded"));
                 	break;
             	}
@@ -492,6 +491,8 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 			else
 			{
 				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 failed"));
+				ClickedItemFulfilled = false;
+				break;
 			}
     	}
 		if (ClickedItemFulfilled)
@@ -500,7 +501,7 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 		}
 	}
 
-	if (SelectedItem && HitGameItem)
+	if (SelectedItem && HitGameItem) //if player is holding item and has hit a game item in the world
 	{
 		bool SelectedItemFulfilled = false;
     	bool ClickedItemFulfilled = false;

@@ -44,6 +44,12 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString InitPointType;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FString GoalDialogue;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FString ThanksDialogue;
+
 
 	UTerm(const FString& Name);
 

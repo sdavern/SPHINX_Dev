@@ -160,6 +160,19 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 			if (Goal)
 			{
 				UE_LOG(LogTemp, Display, TEXT("PP goal: %s"), *Goal->Name);
+
+				if (!Goal->GoalDialogue.IsEmpty())
+				{
+					UE_LOG(LogTemp, Display, TEXT("GoalDialogue is %s"), *Goal->GoalDialogue);
+					PP->GoalDialogue = Goal->GoalDialogue;
+				} 
+				else
+				{
+					UE_LOG(LogTemp, Display, TEXT("GoalDialogue is empty"));
+				}
+
+
+
         		bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, PP, NewAccessiblePPs, ItemsInLevel, Instance);
         		if (SuccessfulInputs)
         		{
@@ -178,7 +191,9 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 					{
 						UE_LOG(LogTemp, Display, TEXT("Max recursion depth reached"));
 					}
-        		} 
+        		}
+
+				
 			}
 			else
 			{

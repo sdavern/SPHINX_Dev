@@ -709,6 +709,7 @@ Engine:/Script/HardwareTargeting.HardwareTargetingSettings:TargetedHardwareClass
 Engine:/Script/HardwareTargeting.HardwareTargetingSettings:AppliedTargetedHardwareClass:0=Desktop
 Engine:/Script/HardwareTargeting.HardwareTargetingSettings:DefaultGraphicsPerformance:0=Maximum
 Engine:/Script/HardwareTargeting.HardwareTargetingSettings:AppliedDefaultGraphicsPerformance:0=Maximum
+Engine:/Script/PythonScriptPlugin.PythonScriptPluginSettings:bDeveloperMode:0=True
 Game:/Script/DeveloperToolSettings.PlatformsMenuSettings:StagingDirectory:0=(Path="C/Users/valey/Desktop/TestBuilds/TestBuild2")
 Game:/Script/DeveloperToolSettings.PlatformsMenuSettings:PerPlatformBuildConfig:0=(("Windows", PPBC_Development),("TVOS", PPBC_Development))
 Game:/Script/DeveloperToolSettings.PlatformsMenuSettings:LaunchOnTarget:0=
