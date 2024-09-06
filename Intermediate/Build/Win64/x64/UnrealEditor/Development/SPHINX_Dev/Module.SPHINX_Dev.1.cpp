@@ -11,6 +11,7 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/GameItem.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/GamePuzzlePoint.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/Generator.gen.cpp"
+#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/InitNPC.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/InitObject.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/InitText.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/InventoryButton.gen.cpp"
@@ -22,3 +23,4 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/MyPawn.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/PlayerPawn.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/PuzzleManager.gen.cpp"
+#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/PuzzlePoint.gen.cpp"

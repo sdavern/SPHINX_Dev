@@ -77,7 +77,9 @@
 			"SPHINX_DevGameMode.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj",
 			"SPHINX_DevProjectile.cpp.obj",
-			"Term.cpp.obj",
+			"Term.cpp.obj"
+		],
+		"Module.SPHINX_Dev.3.cpp.obj": [
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj"
 		]

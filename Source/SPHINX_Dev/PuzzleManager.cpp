@@ -944,7 +944,7 @@ TArray<TSubclassOf<UPuzzlePoint>> APuzzleManager::LoadPuzzlePointBPs()
     FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
     FARFilter Filter;
     Filter.bRecursivePaths = true;
-    Filter.PackagePaths.Add("/Game/Resources/PuzzlePoints/PuzzlePoints");
+    Filter.PackagePaths.Add("/Game/Resources/PuzzlePoints/");
 
     // Query the Asset Registry
     TArray<FAssetData> AssetData;
