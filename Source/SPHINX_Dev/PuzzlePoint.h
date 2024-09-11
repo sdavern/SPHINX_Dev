@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
+#include "UObject/Object.h"
 #include "Term.h"
 #include "PuzzlePoint.generated.h"
 
@@ -38,7 +38,7 @@ public:
 	bool IsObject = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 MaxDepth;
+	int32 MaxDepth = 5;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TSubclassOf<UTerm>> PuzzleGoals;

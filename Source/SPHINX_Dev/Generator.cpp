@@ -346,6 +346,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	if (PMInstance->PuzzlesGeneratedStrings.Contains(PuzzleString))
 	{
 		UE_LOG(LogTemp, Display, TEXT("Puzzle %s has already been generated"), *PuzzleString);
+		
 		return false;
 	}
 

@@ -28,9 +28,10 @@ void APuzzleManager::BeginPlay()
     Super::BeginPlay();
     Instance = GetInstance();
 
-    PPAssets = LoadPuzzlePointBPs();
+    PuzzlesGeneratedStrings.Empty();
     ItemAssets = LoadItemBPs();
     RuleAssets = LoadRuleBPs();
+    PPAssets = LoadPuzzlePointBPs();
     
     ActivateMaxPuzzlePoints();
     ActivateProperties();
@@ -944,7 +945,8 @@ TArray<TSubclassOf<UPuzzlePoint>> APuzzleManager::LoadPuzzlePointBPs()
     FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
     FARFilter Filter;
     Filter.bRecursivePaths = true;
-    Filter.PackagePaths.Add("/Game/Resources/PuzzlePoints/");
+    Filter.PackagePaths.Add("/Game/Resources/PuzzlePoints/PuzzlePointsBPs");
+    Filter.ClassNames.Add(UBlueprint::StaticClass()->GetFName());
 
     // Query the Asset Registry
     TArray<FAssetData> AssetData;
@@ -954,6 +956,7 @@ TArray<TSubclassOf<UPuzzlePoint>> APuzzleManager::LoadPuzzlePointBPs()
     // Load each asset class
     for (const FAssetData& Asset : AssetData)
     {
+        UE_LOG(LogTemp, Display, TEXT("PPAssets has %d assets in for loop"), AssetData.Num());
         // Get the generated class from the blueprint asset
         const FString GeneratedClassPath = Asset.GetTagValueRef<FString>(FName("GeneratedClass"));
         if (!GeneratedClassPath.IsEmpty())
@@ -962,19 +965,19 @@ TArray<TSubclassOf<UPuzzlePoint>> APuzzleManager::LoadPuzzlePointBPs()
             if (AssetClass && AssetClass->IsChildOf(UPuzzlePoint::StaticClass()))
             {
                 LoadedPPClasses.Add(AssetClass);
-                UE_LOG(LogTemp, Display, TEXT("PuzzlePoint '%s' loaded from database."), *AssetClass->GetName());
+                UE_LOG(LogTemp, Display, TEXT("PuzzlePoint '%s' loaded from database and added to PPAssets."), *AssetClass->GetName());
             }
             else
             {
-                UE_LOG(LogTemp, Display, TEXT("PP not loaded from database"));
+                UE_LOG(LogTemp, Display, TEXT("PuzzlePoint not added to PPAssets"));
             }
-
         }
-        else 
+        else
         {
-            UE_LOG(LogTemp, Display, TEXT("Generated class path for PP is empty"));
+            UE_LOG(LogTemp, Display, TEXT("Generated Class path is empty"));
         }
     }
+
     PPLoaded = true;
     return LoadedPPClasses;
     
@@ -1236,6 +1239,7 @@ void APuzzleManager::PrintAllRules()
 
 void APuzzleManager::InitialisePPPtrs()
 {
+    UE_LOG(LogTemp, Display, TEXT("InitialisePPPtrs PPAssets has %d assets"), PPAssets.Num());
     for (TSubclassOf<UPuzzlePoint> PP : PPAssets)
     {
         if (PP)
@@ -1246,6 +1250,14 @@ void APuzzleManager::InitialisePPPtrs()
                 PuzzlePointPtrs.Add(Pointer);
                 UE_LOG(LogTemp, Display, TEXT("PP pointer %s initialised"), *Pointer->Name);
             }
+            else
+            {
+                UE_LOG(LogTemp, Display, TEXT("PuzzlePointPtr not initialised"));
+            }
+        }
+        else
+        {
+            UE_LOG(LogTemp, Display, TEXT("PP from assets is not valid"));
         } 
     }
 }
