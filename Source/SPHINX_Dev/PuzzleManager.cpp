@@ -946,7 +946,7 @@ TArray<TSubclassOf<UPuzzlePoint>> APuzzleManager::LoadPuzzlePointBPs()
     FARFilter Filter;
     Filter.bRecursivePaths = true;
     Filter.PackagePaths.Add("/Game/Resources/PuzzlePoints/PuzzlePointsBPs");
-    Filter.ClassNames.Add(UBlueprint::StaticClass()->GetFName());
+    Filter.ClassPaths.Add(UBlueprint::StaticClass()->GetClassPathName());
 
     // Query the Asset Registry
     TArray<FAssetData> AssetData;

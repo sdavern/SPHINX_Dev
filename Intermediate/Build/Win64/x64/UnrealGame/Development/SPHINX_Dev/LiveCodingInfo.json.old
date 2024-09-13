@@ -2,7 +2,6 @@
 	"RemapUnityFiles": 
 	{
 		"Module.SPHINX_Dev.1.cpp.obj": [
-			"ActionBtn.cpp.obj",
 			"ActionBtn.gen.cpp.obj",
 			"ActionMenu.gen.cpp.obj",
 			"Area.gen.cpp.obj",
@@ -27,7 +26,9 @@
 			"MyPawn.gen.cpp.obj",
 			"PlayerPawn.gen.cpp.obj",
 			"PuzzleManager.gen.cpp.obj",
-			"PuzzlePoint.gen.cpp.obj",
+			"PuzzlePoint.gen.cpp.obj"
+		],
+		"Module.SPHINX_Dev.2.cpp.obj": [
 			"PuzzleTracker.gen.cpp.obj",
 			"Rule.gen.cpp.obj",
 			"SpawnPoint.gen.cpp.obj",
@@ -40,9 +41,8 @@
 			"SPHINX_DevProjectile.gen.cpp.obj",
 			"Term.gen.cpp.obj",
 			"TP_PickUpComponent.gen.cpp.obj",
-			"TP_WeaponComponent.gen.cpp.obj"
-		],
-		"Module.SPHINX_Dev.2.cpp.obj": [
+			"TP_WeaponComponent.gen.cpp.obj",
+			"ActionBtn.cpp.obj",
 			"ActionMenu.cpp.obj",
 			"Area.cpp.obj",
 			"Avatar.cpp.obj",
@@ -75,11 +75,13 @@
 			"SPHINX_DevPlayerController.cpp.obj",
 			"SPHINX_DevProjectile.cpp.obj",
 			"Term.cpp.obj",
-			"TP_PickUpComponent.cpp.obj",
-			"TP_WeaponComponent.cpp.obj",
 			"Generator.cpp.obj",
 			"PuzzleManager.cpp.obj",
 			"PuzzlePoint.cpp.obj"
+		],
+		"Module.SPHINX_Dev.3.cpp.obj": [
+			"TP_PickUpComponent.cpp.obj",
+			"TP_WeaponComponent.cpp.obj"
 		]
 	}
 }
