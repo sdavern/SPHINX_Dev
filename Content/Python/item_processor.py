@@ -70,7 +70,7 @@ def process_file(file_path):
             properties_array = []
 
         # Process item properties
-        for i in range(1, 6):
+        for i in range(1, 7):
             prop_type = row.get(f'Property {i} Type')
             prop_name = row.get(f'Property {i} Name')
             prop_value = row.get(f'Property {i} Value')
