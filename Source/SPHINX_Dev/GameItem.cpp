@@ -450,6 +450,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 
 bool UGameItem::RuleFulfilled(URule* Rule)
 {
+	UE_LOG(LogTemp, Display, TEXT("RuleFulfilled called for %s"), *Rule->ToString());
 	AInventoryManager* InventoryManager = AInventoryManager::GetInstance();
     
     if (!Rule) 
@@ -467,14 +468,18 @@ bool UGameItem::RuleFulfilled(URule* Rule)
     UGameItem* SelectedItem = InventoryManager->GetSelectedItem(); //gets held gameitem
 	UGameItem* HitGameItem = InventoryManager->HitGameItem; //gets item hit by geosweep
 
-	if (HitGameItem && !SelectedItem) //if item hit by geosweep is valid and player is not holding item
+	if (HitGameItem && !SelectedItem && Rule->Inputs.Num() == 1) //if item hit by geosweep is valid and player is not holding item
 	{
 		bool ClickedItemFulfilled = true;
 		UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s"), *HitGameItem->Name);
 		for (UTerm* Input : Rule->Inputs)
     	{
+			if (HitGameItem->FulfillsProperties(Input))
+			{
+				UE_LOG(LogTemp, Display, TEXT("HitGameItem %s fulfills properties of rule %s"), *HitGameItem->Name, *Rule->ToString());
+			}
 			UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s and Input is %s"), *HitGameItem->Name, *Input->Name);
-        	if (HitGameItem && (HitGameItem->Name == Input->Name || HitGameItem->DbItem->GetSuperTypes().Contains(Input->Name)))
+        	if (HitGameItem) /* && (HitGameItem->Name == Input->Name || HitGameItem->DbItem->GetSuperTypes().Contains(Input->Name)) */
         	{
 				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 succeeded"));
             	if (!HitGameItem->FulfillsProperties(Input))
@@ -508,7 +513,7 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 
     	for (UTerm* Input : Rule->Inputs)
     	{
-        	if (SelectedItem && (SelectedItem->Name == Input->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Input->Name)))
+        	if (SelectedItem) //&& (SelectedItem->Name == Input->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Input->Name)))
         	{
 				UE_LOG(LogTemp, Display, TEXT("SelectedItem is %s and Input is %s"), *SelectedItem->Name, *Input->Name);
             	if (SelectedItem->FulfillsProperties(Input))
@@ -523,7 +528,7 @@ bool UGameItem::RuleFulfilled(URule* Rule)
     	for (UTerm* Input : Rule->Inputs)
     	{
 			UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s and Input is %s"), *HitGameItem->Name, *Input->Name);
-        	if (HitGameItem && (HitGameItem->Name == Input->Name || HitGameItem->DbItem->GetSuperTypes().Contains(Input->Name)))
+        	if (HitGameItem) //&& (HitGameItem->Name == Input->Name || HitGameItem->DbItem->GetSuperTypes().Contains(Input->Name)))
         	{
 				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 succeeded"));
             	if (HitGameItem->FulfillsProperties(Input))
@@ -567,6 +572,7 @@ bool UGameItem::FulfillsProperties(UTerm* Input)
 
 bool UGameItem::HasProperty(UItemProperty* PropertyToCheck)
 {
+	UE_LOG(LogTemp, Display, TEXT("HasProperty called for %s %s"), *PropertyToCheck->Name, *PropertyToCheck->Value);
 	for (UItemProperty* Property : Properties)
 	{
 		if (Property->Equals(PropertyToCheck))

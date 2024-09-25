@@ -19,7 +19,14 @@ UItemProperty::UItemProperty(EItemProperty NewType, const FString& NewName, cons
 
 bool UItemProperty::Equals(UItemProperty* OtherProperty)
 {
-    return OtherProperty->Name == Name && OtherProperty->Value == Value;
+    if (OtherProperty->Name == this->Name && OtherProperty->Value == this->Value)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("%s %s equals %s %s"), *OtherProperty->Name, *this->Name, *OtherProperty->Value, *this->Value);
+        return true;
+    }
+
+    UE_LOG(LogTemp, Warning, TEXT("%s %s does not equal %s %s"), *OtherProperty->Name, *this->Name, *OtherProperty->Value, *this->Value);
+    return false;
 }
 
 void UItemProperty::RemoveProperty()

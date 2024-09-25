@@ -67,7 +67,7 @@ bool UItem::HasProperty(UItemProperty* PropertyToCheck)
     }
     for (UItemProperty* Prop : Properties)
     {
-        if (Prop && Prop->Name == PropertyToCheck->Name)
+        if (Prop && Prop->Name == PropertyToCheck->Name && Prop->Value == PropertyToCheck->Value)
         {
             return true;
         }
@@ -112,27 +112,39 @@ TArray<FString> UItem::GetSuperTypes()
 
 bool UItem::Matches(UTerm* Term)
 {
+    //UE_LOG(LogTemp, Display, TEXT("Term in Matches() is %s"), *Term->Name);
+    Term->ToPropPtrs();
     if (Term->Name != Name)
     {
-        bool Found = false;
         for (FString Type : GetSuperTypes())
         {
             //UE_LOG(LogTemp, Warning, TEXT("%s type in SuperTypes of %s"), *Type, *Name);
             if (Type == Term->Name)
             {
-                Found = true;
+                return true;
             }
         }
-        if (!Found) return false;
     }
+    else
+    {
+        return true;
+    }
+
+    //UE_LOG(LogTemp, Display, TEXT("Starting property loop check, Term %s has %d properties"), *Term->Name, Term->Properties.Num());
     for (UItemProperty* Property : Term->Properties)
     {
-        if (!HasProperty(Property))
+        if (Property)
         {
-            return false;
+            //UE_LOG(LogTemp, Display, TEXT("Property in Matches() is %s %s"), *Property->Name, *Property->Value);
+
+            if (HasProperty(Property))
+            {
+                UE_LOG(LogTemp, Display, TEXT("HasProperty is true for %s"), *Name);
+                return true;
+            }
         }
     }
-    return true;
+    return false;
 }
 
 bool UItem::IsOfType(UTerm* Term)

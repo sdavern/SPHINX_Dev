@@ -213,16 +213,6 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
     while (ActiveGeneratedPuzzles < MaxActivePuzzles)
     {
         UE_LOG(LogTemp, Error, TEXT("ATTEMPTING TO GENERATE PUZZLES, PuzzlePointPtrs has %d ptrs"), PuzzlePointPtrs.Num());
-        /* TArray<UPuzzlePoint*> PPPtrs;
-        for (TSubclassOf<UPuzzlePoint> PP : PPAssets)
-        {
-            if (PP)
-            {
-                UPuzzlePoint* PPPtr = NewObject<UPuzzlePoint>(this, PP);
-                PPPtrs.Add(PPPtr);
-                UE_LOG(LogTemp, Error, TEXT("PPPtr %s added"), *PPPtr->Name);
-            }
-        }  */
 
         for (UPuzzlePoint* PP : PuzzlePointPtrs)
         {
@@ -424,6 +414,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
             DbRules[i]->Inputs[0]->GameItem = GameItem; //Incorrect GameItem is being set here
             if (FindItemsForOutputs(DbRules[i]) && !Rules.Contains(DbRules[i]))
             {
+                UE_LOG(LogTemp, Display, TEXT("%s added to Rules in RulesFor"), *DbRules[i]->ToString());
                 Rules.Add(DbRules[i]);
             }
         }
@@ -561,6 +552,10 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                         {
                             PlayerController->OnExitButtonClicked();
                         }
+                    }
+                    else
+                    {
+                        PlayerController->OnExitButtonClicked();
                     }
                 } 
                 if (OwningGPP)
@@ -717,26 +712,6 @@ TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
     {
         UE_LOG(LogTemp, Display, TEXT("DbItem in GetRulesWithInput is not null and is %s"), *DbItem->Name);
     }
-    
-    /* for (int32 i = 0; i < RuleAssets.Num(); i++)
-    {
-        if (RuleAssets[i] != nullptr)
-        {
-            URule* RuleToAdd = NewObject<URule>(this, RuleAssets[i]);
-		    RuleToAdd->ToInputsPtr();
-            if (RuleToAdd && RuleToAdd->Inputs.Num() > 0)
-            {
-                for (UTerm* Input : RuleToAdd->Inputs)
-                {
-                    if (Input->Name == DbItem->Name || DbItem->GetSuperTypes().Contains(Input->Name))
-                    {
-                        Rules.Add(RuleToAdd);
-                    }
-                }
-            }
-        }
-    }
-    return Rules; */
 
     for (URule* RuleToCheck : RulePointers)
     {
@@ -750,13 +725,36 @@ TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
                     if (Input->Name == DbItem->Name || (SuperTypes.Num() > 0 && SuperTypes.Contains(Input->Name)))
                     {
                         Rules.Add(RuleToCheck);
+                        break;
                     }
                 }
                 else
                 {
                     UE_LOG(LogTemp, Display, TEXT("Input in GetRulesWithInput is null"));
                 }
+
+                for (UItemProperty* DbItemProp : DbItem->Properties)
+                {
+                    if (DbItemProp && Input)
+                    {
+                        UE_LOG(LogTemp, Display, TEXT("DbItem: %s has prop %s %s"), *DbItem->Name, *DbItemProp->Name, *DbItemProp->Value);
+                        for (UItemProperty* InputProp : Input->Properties)
+                        {
+                            if (InputProp)
+                            {
+                                UE_LOG(LogTemp, Display, TEXT("Input: %s has prop %s %s"), *Input->Name, *InputProp->Name, *InputProp->Value);
+                                if (DbItemProp->Name == InputProp->Name && DbItemProp->Value == InputProp->Value)
+                                {
+                                    UE_LOG(LogTemp, Display, TEXT("Adding rule %s to Rules in GetRulesWithInput"), *RuleToCheck->ToString());
+                                    Rules.Add(RuleToCheck);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                } 
             }
+            
         }
         else
         {

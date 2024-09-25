@@ -172,7 +172,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 				}
 
 
-
+				//Goal->ToPropPtrs();
         		bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, PP, NewAccessiblePPs, ItemsInLevel, Instance);
         		if (SuccessfulInputs)
         		{
