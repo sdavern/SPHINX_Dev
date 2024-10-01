@@ -41,7 +41,7 @@ def process_rules(file_path):
             output_terms += parse_terms(row.get(col, ''))
 
         original_rule_blueprint_path = "/Game/BPsForWidgets/MyRule"
-        destination_path = "/Game/Resources/Rules/"
+        destination_path = "/Game/Test/NewRules"
         new_blueprint_name = f"{rule_name}"
 
         original_blueprint = unreal.EditorAssetLibrary.load_asset(original_rule_blueprint_path)
@@ -83,7 +83,7 @@ def create_iterm_blueprint(term, rule_name):
     asset_tools = unreal.AssetToolsHelpers.get_asset_tools()
     
     original_term_blueprint_path = "/Game/BPsForWidgets/MyTerm"
-    term_path = "/Game/Resources/Terms/"
+    term_path = "/Game/Test/NewTerms"
     new_term_blueprint_name = f"{rule_name}_{term['name']}_Input_BP"
 
     original_term_blueprint = unreal.EditorAssetLibrary.load_asset(original_term_blueprint_path)
@@ -115,7 +115,7 @@ def create_oterm_blueprint(term, rule_name):
     asset_tools = unreal.AssetToolsHelpers.get_asset_tools()
     
     original_term_blueprint_path = "/Game/BPsForWidgets/MyTerm"
-    term_path = "/Game/Resources/Terms/"
+    term_path = "/Game/Test/NewTerms"
     new_term_blueprint_name = f"{rule_name}_{term['name']}_Output_BP"
 
     original_term_blueprint = unreal.EditorAssetLibrary.load_asset(original_term_blueprint_path)
@@ -147,7 +147,7 @@ def create_oproperty_blueprint(prop, term_name, rule_name):
     asset_tools = unreal.AssetToolsHelpers.get_asset_tools()
 
     original_property_blueprint_path = "/Game/BPsForWidgets/MyItemProperty"
-    property_path = "/Game/Resources/Properties/"
+    property_path = "/Game/Test/NewProps"
     new_property_blueprint_name = f"{rule_name}_{term_name}_{prop['name']}_{prop['value']}_Output_BP"
 
     original_property_blueprint = unreal.EditorAssetLibrary.load_asset(original_property_blueprint_path)
@@ -170,7 +170,7 @@ def create_iproperty_blueprint(prop, term_name, rule_name):
     asset_tools = unreal.AssetToolsHelpers.get_asset_tools()
 
     original_property_blueprint_path = "/Game/BPsForWidgets/MyItemProperty"
-    property_path = "/Game/Resources/Properties/"
+    property_path = "/Game/Test/NewProps"
     new_property_blueprint_name = f"{rule_name}_{term_name}_{prop['name']}_Input_BP"
 
     original_property_blueprint = unreal.EditorAssetLibrary.load_asset(original_property_blueprint_path)
