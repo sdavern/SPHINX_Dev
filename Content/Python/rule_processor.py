@@ -84,7 +84,7 @@ def create_iterm_blueprint(term, rule_name):
     
     original_term_blueprint_path = "/Game/BPsForWidgets/MyTerm"
     term_path = "/Game/Test/NewTerms"
-    new_term_blueprint_name = f"{rule_name}_{term['name']}_Input_BP"
+    new_term_blueprint_name = f"{rule_name}_Input_{term['name']}_BP"
 
     original_term_blueprint = unreal.EditorAssetLibrary.load_asset(original_term_blueprint_path)
     duplicated_term_blueprint = asset_tools.duplicate_asset(new_term_blueprint_name, term_path, original_term_blueprint)
@@ -116,7 +116,7 @@ def create_oterm_blueprint(term, rule_name):
     
     original_term_blueprint_path = "/Game/BPsForWidgets/MyTerm"
     term_path = "/Game/Test/NewTerms"
-    new_term_blueprint_name = f"{rule_name}_{term['name']}_Output_BP"
+    new_term_blueprint_name = f"{rule_name}_Output_{term['name']}_BP"
 
     original_term_blueprint = unreal.EditorAssetLibrary.load_asset(original_term_blueprint_path)
     duplicated_term_blueprint = asset_tools.duplicate_asset(new_term_blueprint_name, term_path, original_term_blueprint)
@@ -147,8 +147,8 @@ def create_oproperty_blueprint(prop, term_name, rule_name):
     asset_tools = unreal.AssetToolsHelpers.get_asset_tools()
 
     original_property_blueprint_path = "/Game/BPsForWidgets/MyItemProperty"
-    property_path = "/Game/Test/NewProps"
-    new_property_blueprint_name = f"{rule_name}_{term_name}_{prop['name']}_{prop['value']}_Output_BP"
+    property_path = "/Game/Test/NewRuleProps"
+    new_property_blueprint_name = f"{rule_name}_Output_{term_name}_{prop['name']}_{prop['value']}_BP"
 
     original_property_blueprint = unreal.EditorAssetLibrary.load_asset(original_property_blueprint_path)
     duplicated_property_blueprint = asset_tools.duplicate_asset(new_property_blueprint_name, property_path, original_property_blueprint)
@@ -170,8 +170,8 @@ def create_iproperty_blueprint(prop, term_name, rule_name):
     asset_tools = unreal.AssetToolsHelpers.get_asset_tools()
 
     original_property_blueprint_path = "/Game/BPsForWidgets/MyItemProperty"
-    property_path = "/Game/Test/NewProps"
-    new_property_blueprint_name = f"{rule_name}_{term_name}_{prop['name']}_Input_BP"
+    property_path = "/Game/Test/NewRuleProps"
+    new_property_blueprint_name = f"{rule_name}_Input_{term_name}_{prop['name']}_{prop['value']}_BP"
 
     original_property_blueprint = unreal.EditorAssetLibrary.load_asset(original_property_blueprint_path)
     duplicated_property_blueprint = asset_tools.duplicate_asset(new_property_blueprint_name, property_path, original_property_blueprint)
