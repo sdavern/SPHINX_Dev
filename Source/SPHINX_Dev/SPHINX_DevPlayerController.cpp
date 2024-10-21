@@ -302,10 +302,17 @@ void ASPHINX_DevPlayerController::SetupHoldButton()
     {
         ActionMenu->HoldButton->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnHoldButtonClicked);
         UE_LOG(LogTemp, Display, TEXT("HoldButton set up"));
+        if (!HitGameItem->DbItem)
+        {
+            UE_LOG(LogTemp, Display, TEXT("DBItem not valid for %s"), *HitGameItem->Name);
+            return;
+        }
         if (HitGameItem->DbItem->IsStationary)
         {
             ActionMenu->HoldButton->SetIsEnabled(false);
             ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Too heavy to grab!"));
+
+            UE_LOG(LogTemp, Display, TEXT("IsStationary is true"));
 
         }
     }
