@@ -577,6 +577,11 @@ void ASPHINX_DevPlayerController::SetupInventoryButton()
     {
         ActionMenu->InventoryButton->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnInventoryButtonClicked);
         UE_LOG(LogTemp, Display, TEXT("InventoryButton set up"));
+        if (!HitGameItem->DbItem)
+        {
+            UE_LOG(LogTemp, Display, TEXT("DBItem not valid for %s"), *HitGameItem->Name);
+            return;
+        }
         if (HitGameItem->DbItem->IsStationary)
         {
             ActionMenu->InventoryButton->SetIsEnabled(false);
