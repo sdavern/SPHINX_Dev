@@ -45,4 +45,5 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/SPHINX_Dev.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/SPHINX_DevCharacter.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/SPHINX_DevGameMode.cpp"
+#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/SPHINX_DevPlayerController.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/SPHINX_DevProjectile.cpp"

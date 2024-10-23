@@ -75,8 +75,8 @@
 			"SPHINX_Dev.cpp.obj",
 			"SPHINX_DevCharacter.cpp.obj",
 			"SPHINX_DevGameMode.cpp.obj",
-			"SPHINX_DevProjectile.cpp.obj",
-			"SPHINX_DevPlayerController.cpp.obj"
+			"SPHINX_DevPlayerController.cpp.obj",
+			"SPHINX_DevProjectile.cpp.obj"
 		],
 		"Module.SPHINX_Dev.3.cpp.obj": [
 			"Term.cpp.obj",
