@@ -97,6 +97,7 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
 		if (NextSpawnPoint)
 		{
 			FVector NextSpawnVector = NextSpawnPoint->Location;
+			NextSpawnVector.Z = 40;
 			UE_LOG(LogTemp, Display, TEXT("Spawn point: %s ( %s )"), *NextSpawnVector.ToString(), *Item->Name);
 			if (Item->ItemPrefab && World)
 			{
