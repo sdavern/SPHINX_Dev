@@ -30,13 +30,14 @@ def process_terms(file_path):
     for index, row in df.iterrows():
         term_data = parse_term(row.get('Goal', ''))
         goal_dialogue = row.get('GoalDialogue', '')
+        thanks_dialogue = row.get('ThanksDialogue', '')
         
         if not term_data:
             continue
         
-        create_term_blueprint(term_data, goal_dialogue)
+        create_term_blueprint(term_data, goal_dialogue, thanks_dialogue)
 
-def create_term_blueprint(term, goal_dialogue):
+def create_term_blueprint(term, goal_dialogue, thanks_dialogue):
     asset_tools = unreal.AssetToolsHelpers.get_asset_tools()
 
     property_str = "_".join([f"{prop['name']}_{prop['value']}" for prop in term['properties']])
@@ -59,6 +60,9 @@ def create_term_blueprint(term, goal_dialogue):
 
     if goal_dialogue:
         unreal.EditorAssetLibrary.set_editor_property(duplicated_term_blueprint_instance, "GoalDialogue", goal_dialogue)
+
+    if thanks_dialogue:
+        unreal.EditorAssetLibrary.set_editor_property(duplicated_term_blueprint_instance, "ThanksDialogue", thanks_dialogue)
 
     properties_array = unreal.EditorAssetLibrary.get_editor_property(duplicated_term_blueprint_instance, "PropertiesBP")
     if properties_array is None:
