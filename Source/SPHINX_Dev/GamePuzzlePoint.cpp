@@ -28,10 +28,6 @@ void AGamePuzzlePoint::BeginPlay()
 	Super::BeginPlay();
 
 	PointTransform = this->GetActorTransform();
-
-	
-	
-
 		
 }
 

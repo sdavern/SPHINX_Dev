@@ -112,7 +112,7 @@ TArray<FString> UItem::GetSuperTypes()
 
 bool UItem::Matches(UTerm* Term)
 {
-    //UE_LOG(LogTemp, Display, TEXT("Term in Matches() is %s"), *Term->Name);
+    UE_LOG(LogTemp, Display, TEXT("Term in Matches() is %s"), *Term->Name);
     Term->ToPropPtrs();
     if (Term->Name != Name)
     {
@@ -130,12 +130,12 @@ bool UItem::Matches(UTerm* Term)
         return true;
     }
 
-    //UE_LOG(LogTemp, Display, TEXT("Starting property loop check, Term %s has %d properties"), *Term->Name, Term->Properties.Num());
+    UE_LOG(LogTemp, Display, TEXT("Starting property loop check, Term %s has %d properties"), *Term->Name, Term->Properties.Num());
     for (UItemProperty* Property : Term->Properties)
     {
         if (Property)
         {
-            //UE_LOG(LogTemp, Display, TEXT("Property in Matches() is %s %s"), *Property->Name, *Property->Value);
+            UE_LOG(LogTemp, Display, TEXT("Property in Matches() is %s %s"), *Property->Name, *Property->Value);
 
             if (HasProperty(Property))
             {
@@ -235,7 +235,7 @@ bool UItem::IsCopyable()
 
 bool UItem::IsSpawnable()
 {
-    if (GetPropertyWithName("spawnable") == nullptr)
+    /* if (GetPropertyWithName("spawnable") == nullptr)
     {
         return true;
     }
@@ -243,8 +243,8 @@ bool UItem::IsSpawnable()
     if (GetPropertyWithName("spawnable")->Value =="True")
     {
         return true;
-    }
-    return false;
+    } */
+    return true;
 }
 
 bool UItem::IsInspectable()

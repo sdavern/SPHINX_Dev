@@ -680,6 +680,15 @@ TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*>
     TArray<UItem*> MatchingItems;
     for (UItem* DbItem : AllItems)
     {
+        if (DbItem && DbItem->Matches(Term))
+        {
+            UE_LOG(LogTemp, Display, TEXT("DbItem: '%s' matches term '%s'"), *DbItem->Name, *Term->Name);
+        }
+        else
+        {
+            UE_LOG(LogTemp, Display, TEXT("DbItem: '%s'  does not match term '%s'"), *DbItem->Name, *Term->Name);
+        }
+        
         if (DbItem && DbItem->Matches(Term) && DbItem->IsAccessible(AccessiblePPs, ItemsInLevel))
         {
             MatchingItems.Add(DbItem);

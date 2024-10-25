@@ -218,7 +218,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	{
 		if(!GInstance->PMInstance->HasItemOfType(StartTerm, NewAccessiblePPs, ItemsInLevel))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("GRAMMAR ERROR: Couldn't find accessible item of type: %s"), *StartTerm->Name);
+			UE_LOG(LogTemp, Warning, TEXT("GRAMMAR ERROR: Couldn't find accessible item of type: '%s'"), *StartTerm->Name);
 			return false;
 		}
 	}
