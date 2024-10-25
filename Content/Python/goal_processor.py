@@ -44,7 +44,7 @@ def create_term_blueprint(term, goal_dialogue, thanks_dialogue):
     full_term_name = f"Goal_{term['name']}_{property_str}_BP" if property_str else f"Goal_{term['name']}_BP"
 
     original_term_blueprint_path = "/Game/BPsForWidgets/MyTerm"
-    term_path = "/Game/Test/NewTerms"
+    term_path = "/Game/Test/NewGoals"
     new_term_blueprint_name = full_term_name
 
     original_term_blueprint = unreal.EditorAssetLibrary.load_asset(original_term_blueprint_path)
@@ -82,7 +82,7 @@ def create_property_blueprint(prop, term_name):
     asset_tools = unreal.AssetToolsHelpers.get_asset_tools()
 
     original_property_blueprint_path = "/Game/BPsForWidgets/MyItemProperty"
-    property_path = "/Game/Test/NewProperties"
+    property_path = "/Game/Test/NewGoalProperties"
     new_property_blueprint_name = f"{term_name}_{prop['name']}_{prop['value']}_BP"
 
     original_property_blueprint = unreal.EditorAssetLibrary.load_asset(original_property_blueprint_path)
