@@ -61,17 +61,22 @@ UItemProperty* UItem::GetPropertyWithName(const FString& PropertyName) const
 
 bool UItem::HasProperty(UItemProperty* PropertyToCheck)
 {
+    //UE_LOG(LogTemp, Display, TEXT("Checking HasProperty for %s %s in Item %s"), *PropertyToCheck->Name, *PropertyToCheck->Value, *Name);
     if (!PropertyToCheck)
     {
+        //UE_LOG(LogTemp, Display, TEXT("PropertyToCheck in HasProperty is null"));
         return false;
     }
     for (UItemProperty* Prop : Properties)
     {
+        //UE_LOG(LogTemp, Display, TEXT("Property in HasPropertyLoop is %s %s"), *PropertyToCheck->Name, *PropertyToCheck->Value);
         if (Prop && Prop->Name == PropertyToCheck->Name && Prop->Value == PropertyToCheck->Value)
         {
+            //UE_LOG(LogTemp, Error, TEXT("HasProperty for %s and %s %s is true"), *Name, *PropertyToCheck->Name, *PropertyToCheck->Value);
             return true;
         }
     }
+    //UE_LOG(LogTemp, Display, TEXT("%s does not contain property %s %s"), *Name, *PropertyToCheck->Name, *PropertyToCheck->Value);
     return false;
 }
 
@@ -112,13 +117,13 @@ TArray<FString> UItem::GetSuperTypes()
 
 bool UItem::Matches(UTerm* Term)
 {
-    UE_LOG(LogTemp, Display, TEXT("Term in Matches() is %s"), *Term->Name);
+    //UE_LOG(LogTemp, Display, TEXT("Term in Matches() is %s"), *Term->Name);
     Term->ToPropPtrs();
     if (Term->Name != Name)
     {
         for (FString Type : GetSuperTypes())
         {
-            //UE_LOG(LogTemp, Warning, TEXT("%s type in SuperTypes of %s"), *Type, *Name);
+            UE_LOG(LogTemp, Warning, TEXT("%s type in SuperTypes of %s"), *Type, *Name);
             if (Type == Term->Name)
             {
                 return true;
@@ -130,16 +135,17 @@ bool UItem::Matches(UTerm* Term)
         return true;
     }
 
-    UE_LOG(LogTemp, Display, TEXT("Starting property loop check, Term %s has %d properties"), *Term->Name, Term->Properties.Num());
+    //UE_LOG(LogTemp, Display, TEXT("Starting property loop check, Term %s has %d properties"), *Term->Name, Term->Properties.Num());
     for (UItemProperty* Property : Term->Properties)
     {
         if (Property)
         {
-            UE_LOG(LogTemp, Display, TEXT("Property in Matches() is %s %s"), *Property->Name, *Property->Value);
+            //UE_LOG(LogTemp, Display, TEXT("Property in Matches() is %s %s"), *Property->Name, *Property->Value);
 
             if (HasProperty(Property))
             {
-                UE_LOG(LogTemp, Display, TEXT("HasProperty is true for %s"), *Name);
+
+                //UE_LOG(LogTemp, Display, TEXT("HasProperty is true for %s"), *Name);
                 return true;
             }
         }

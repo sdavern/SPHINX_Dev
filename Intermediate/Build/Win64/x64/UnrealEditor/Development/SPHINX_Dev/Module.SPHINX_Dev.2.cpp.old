@@ -32,7 +32,6 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/MainMenu.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/MyPawn.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/PlayerPawn.cpp"
-#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/PuzzleManager.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/PuzzlePoint.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/PuzzleTracker.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/Rule.cpp"
@@ -43,4 +42,3 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/SPHINX_DevCharacter.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/SPHINX_DevGameMode.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/SPHINX_DevPlayerController.cpp"
-#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/SPHINX_DevProjectile.cpp"
