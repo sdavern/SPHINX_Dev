@@ -53,7 +53,6 @@
 			"GameArea.cpp.obj",
 			"GameItem.cpp.obj",
 			"GamePuzzlePoint.cpp.obj",
-			"Generator.cpp.obj",
 			"InitNPC.cpp.obj",
 			"InitObject.cpp.obj",
 			"InitText.cpp.obj",
@@ -75,6 +74,7 @@
 			"SPHINX_DevCharacter.cpp.obj",
 			"SPHINX_DevGameMode.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj",
+			"Generator.cpp.obj",
 			"Item.cpp.obj"
 		],
 		"Module.SPHINX_Dev.3.cpp.obj": [

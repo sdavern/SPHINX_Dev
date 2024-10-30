@@ -271,7 +271,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 		UE_LOG(LogTemp, Warning, TEXT("ChosenRule is %s"), *ChosenRule->Action);
 		if (PossibleRules.Num() > 1)
 		{
-			while (CurrentPP->CurrentPuzzleRules.Contains(ChosenRule))
+			while (CurrentPP->CurrentPuzzleRules.Contains(ChosenRule)) //this is causing issues, keeps trying to reach max even if no more rules available
 			{
 				ChosenRule = PossibleRules[FMath::RandRange(0, PossibleRules.Num() - 1)];
 				UE_LOG(LogTemp, Warning, TEXT("Choosing a different rule, new chosen rule %s"), *ChosenRule->Action);
@@ -373,25 +373,25 @@ ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 	if (Item)
 	{
 		Item->ToPropPtrs();
-		UE_LOG(LogTemp, Display, TEXT("Item has %d properties"), Item->Properties.Num());
+		//UE_LOG(LogTemp, Display, TEXT("Item has %d properties"), Item->Properties.Num());
 		TArray<ASpawnPoint*> AllSPs = GetAllSpawnPoints();
 		TArray<ASpawnPoint*> FoundSPs;
 		for (UItemProperty* Prop : Item->Properties)
 		{
 			if (Prop)
 			{
-				UE_LOG(LogTemp, Warning, TEXT("Property of %s in GetSpawnPointFor for loop is %s %s"), *Item->Name, *Prop->Name, *Prop->Value);
+				//UE_LOG(LogTemp, Warning, TEXT("Property of %s in GetSpawnPointFor for loop is %s %s"), *Item->Name, *Prop->Name, *Prop->Value);
 				for (ASpawnPoint* SP : AllSPs)
 				{
 					if (SP)
 					{
-						UE_LOG(LogTemp, Error, TEXT("SP has %d Props"), SP->PropPtrs.Num());
-						UE_LOG(LogTemp, Warning, TEXT("SP is valid"));
+						//UE_LOG(LogTemp, Error, TEXT("SP has %d Props"), SP->PropPtrs.Num());
+						//UE_LOG(LogTemp, Warning, TEXT("SP is valid"));
 						for (UItemProperty* SPProp : SP->PropPtrs)
 						{
 							if (SPProp && SPProp->Name == Prop->Name && SPProp->Value == Prop->Value/*  && !SP->HasSpawnedItem */)
 							{
-								UE_LOG(LogTemp, Warning, TEXT("SP added to FoundSPs"));
+								//UE_LOG(LogTemp, Warning, TEXT("SP added to FoundSPs"));
 								FoundSPs.Add(SP);
 							}
 						}
@@ -406,7 +406,7 @@ ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 			{
 				if (SP == VSP)
 				{
-					UE_LOG(LogTemp, Display, TEXT("SP removed"));
+					//UE_LOG(LogTemp, Display, TEXT("SP removed"));
 					FoundSPs.Remove(SP);
 				}
 			}
@@ -415,17 +415,17 @@ ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 		if (FoundSPs.Num() > 1)
 		{
 			int RandIndex = FMath::RandRange(0, FoundSPs.Num() - 1);
-			UE_LOG(LogTemp, Warning, TEXT("SpawnPoint chosen for item %s"), *Item->Name);
+			//UE_LOG(LogTemp, Warning, TEXT("SpawnPoint chosen for item %s"), *Item->Name);
 			return FoundSPs[RandIndex];
 		}
 		else if (FoundSPs.Num() == 1)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Sole SpawnPoint for item %s"), *Item->Name);
+			//UE_LOG(LogTemp, Warning, TEXT("Sole SpawnPoint for item %s"), *Item->Name);
 			return FoundSPs[0];
 		}
 		else 
 		{
-			UE_LOG(LogTemp, Error, TEXT("NO SPAWN POINT FOUND!!! Waiting %f seconds before trying to find new spawn point"), FindSpawnDelay);
+			UE_LOG(LogTemp, Error, TEXT("NO SPAWN POINT FOUND FOR %s!!! Waiting %f seconds before trying to find new spawn point"), *Item->Name, FindSpawnDelay);
 
 			FTimerDelegate TimerDel;
 			TimerDel.BindUFunction(this, FName("RetryGetSpawnPointFor"), Item);

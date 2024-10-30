@@ -34,14 +34,21 @@ bool UItem::PropertyExists(const FString& PropertyName) const
 
 TArray<UItemProperty*> UItem::GetPropertiesWithName(const FString& PropertyName) const
 {
+    //UE_LOG(LogTemp, Display, TEXT("GetPropertiesWithName(isa) called for %s"), *Name);
     TArray<UItemProperty*> PropertiesToReturn;
 
     for (UItemProperty* Property : Properties)
     {
-        if (Property && PropertyName.IsEmpty() && Property->Name.Equals(PropertyName, ESearchCase::IgnoreCase))
+        if (Property && !PropertyName.IsEmpty() && Property->Name.Equals(PropertyName, ESearchCase::IgnoreCase))
         {
+            //UE_LOG(LogTemp, Display, TEXT("Property %s %s added in GetPropertiesWithName for %s"), *Property->Name, *Property->Value, *Name);
             PropertiesToReturn.Add(Property);
         }
+        else
+        {
+            //UE_LOG(LogTemp, Display, TEXT("Property %s %s found  but NOT ADDED in GetPropertiesWithName for %s"), *Property->Name, *Property->Value, *Name);
+        }
+        
     }
 
     return PropertiesToReturn;
@@ -101,12 +108,14 @@ void UItem::DeleteProperty(int32 Index)
 
 TArray<FString> UItem::GetSuperTypes()
 {
+    //UE_LOG(LogTemp, Error, TEXT("GetSuperTypes Called for %s"), *Name);
     TArray<FString> Types;
     Types.Add(Name);
 
     TArray<UItemProperty*> IsaProperties = GetPropertiesWithName("isa");
     for (UItemProperty* Prop : IsaProperties)
     {
+        //UE_LOG(LogTemp, Error, TEXT("%s %s is in GetSuperTypes for %s"), *Prop->Name, *Prop->Value, *Name);
         if (Prop && !Prop->Value.IsEmpty())
         {
             Types.Add(Prop->Value);
@@ -123,7 +132,7 @@ bool UItem::Matches(UTerm* Term)
     {
         for (FString Type : GetSuperTypes())
         {
-            UE_LOG(LogTemp, Warning, TEXT("%s type in SuperTypes of %s"), *Type, *Name);
+            //UE_LOG(LogTemp, Warning, TEXT("%s type in SuperTypes of %s"), *Type, *Name);
             if (Type == Term->Name)
             {
                 return true;
@@ -350,7 +359,7 @@ void UItem::ToPropPtrs()
             UItemProperty* NewProp = NewObject<UItemProperty>(this, AssetClass);
             if (NewProp)
             {
-                UE_LOG(LogTemp, Warning, TEXT("For Item %s, prop %s added THIS IS FROM THE ITEM SCRIPT"), *Name, *NewProp->Name);
+                UE_LOG(LogTemp, Warning, TEXT("For Item %s, prop %s %s added THIS IS FROM THE ITEM SCRIPT"), *Name, *NewProp->Name, *NewProp->Value);
                 Properties.Add(NewProp);
             }
         }
