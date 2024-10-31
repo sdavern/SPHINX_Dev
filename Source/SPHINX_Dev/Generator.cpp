@@ -237,16 +237,25 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	TArray<URule*> PossibleRules;
 	
 	TArray<URule*> AllRules = GInstance->PMInstance->GetRulePointers();
-	//UE_LOG(LogTemp, Error, TEXT("GETTING ALL RULES, no of rules = %d"), AllRules.Num());
+	UE_LOG(LogTemp, Error, TEXT("GETTING ALL RULES, no of rules = %d"), AllRules.Num());
 	for (URule* Rule : AllRules)
 	{	
+		UE_LOG(LogTemp, Display, TEXT("AllRulesLoop: %s"), *Rule->Action);
+		if (Rule->Action.IsEmpty())
+		{
+			break;
+		}
 		//Rule->ToOutputsPtr();
 		//Rule->ToInputsPtr();
 		if (Rule->Outputs[0])
 		{
-			//UE_LOG(LogTemp, Error, TEXT("Output[0] is %s"), *Rule->Outputs[0]->Name);
+			UE_LOG(LogTemp, Error, TEXT("Rule %s Output[0] is %s"), *Rule->Action, *Rule->Outputs[0]->Name);
 		}
-		//UE_LOG(LogTemp, Error, TEXT("%s is in AllRules and StartTerm is %s"), *Rule->Action, *StartTerm->Name);
+		else
+		{
+			UE_LOG(LogTemp, Display, TEXT("Rule %s has no Output[0]"), *Rule->Action);
+		}
+		UE_LOG(LogTemp, Error, TEXT("%s is in AllRules and StartTerm is %s"), *Rule->Action, *StartTerm->Name);
 		if (Rule != nullptr && Rule->MainOutputIs(StartTerm))
 		{
 			if (StartTerm->DbItem)

@@ -60,6 +60,7 @@
 			"InventoryButton.cpp.obj",
 			"InventoryManager.cpp.obj",
 			"InventoryMenu.cpp.obj",
+			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
 			"MainMenu.cpp.obj",
 			"MyPawn.cpp.obj",
@@ -67,7 +68,6 @@
 			"PuzzleManager.cpp.obj",
 			"PuzzlePoint.cpp.obj",
 			"PuzzleTracker.cpp.obj",
-			"Rule.cpp.obj",
 			"SpawnPoint.cpp.obj",
 			"SphinxActor.cpp.obj",
 			"SPHINXHUD.cpp.obj",
@@ -75,7 +75,7 @@
 			"SPHINX_DevCharacter.cpp.obj",
 			"SPHINX_DevGameMode.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj",
-			"Item.cpp.obj"
+			"Rule.cpp.obj"
 		],
 		"Module.SPHINX_Dev.3.cpp.obj": [
 			"SPHINX_DevProjectile.cpp.obj",

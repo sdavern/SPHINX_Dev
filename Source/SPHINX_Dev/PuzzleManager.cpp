@@ -558,7 +558,7 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                         PlayerController->OnExitButtonClicked();
                     }
                 } 
-                if (OwningGPP)
+                if (OwningGPP) //implement thanks dialogue and NPC despawning here
                 {
                     UE_LOG(LogTemp, Display, TEXT("OwningGPP is valid"));
                     DeactivatePuzzlePoint(OwningGPP);
