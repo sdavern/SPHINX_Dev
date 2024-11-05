@@ -620,6 +620,13 @@ void APuzzleManager::FindLeaves(URule* Parent, UPuzzlePoint* PP)
     else
     {
         UE_LOG(LogTemp, Error, TEXT("Rule %s has %d children"), *Parent->ToString(), Parent->Children.Num());
+        for (URule* Child : Parent->Children)
+        {
+            if (Child)
+            {
+                UE_LOG(LogTemp, Display, TEXT("%s is a child of %s"), *Child->ToString(), *Parent->ToString());
+            }
+        }
         FRulesStruct* FoundRulesStruct = Leaves.Find(PP);
         if (FoundRulesStruct && !FoundRulesStruct->RulesArray.Contains(Parent))
         {
@@ -722,7 +729,7 @@ TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*>
         }
         else
         {
-            UE_LOG(LogTemp, Display, TEXT("DbItem: '%s'  does not match term '%s'"), *DbItem->Name, *Term->Name);
+            //UE_LOG(LogTemp, Display, TEXT("DbItem: '%s'  does not match term '%s'"), *DbItem->Name, *Term->Name);
         }
         
         if (DbItem && DbItem->Matches(Term) && DbItem->IsAccessible(AccessiblePPs, ItemsInLevel))

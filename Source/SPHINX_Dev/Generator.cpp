@@ -262,8 +262,16 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 			{
 				//UE_LOG(LogTemp, Display, TEXT("Found matching rule %s with output DbItem: %s"), *Rule->Action, *StartTerm->DbItem->Name);
 			}
+			if (Rule != ParentRule)
+			{
+				PossibleRules.Add(Rule);
+			}
+			else 
+			{
+				UE_LOG(LogTemp, Display, TEXT("Rule is same as ParentRule, not added to PossibleRules"));
+			}
 			//UE_LOG(LogTemp, Error, TEXT("Adding rule %s"), *Rule->Action);
-			PossibleRules.Add(Rule);
+			
 			//UE_LOG(LogTemp, Display, TEXT("Rule[0] is %s, and depth is %d"), *PossibleRules[0]->Action, Depth);
 		}
 	}
@@ -290,6 +298,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 		ChosenRule->Outputs[0]->DbItem = StartTerm->DbItem;
 		ChosenRule->Parent = ParentRule;
 		ParentRule->AddChildRule(ChosenRule);
+
 		CurrentPP->CurrentPuzzleRules.Add(ChosenRule);
 		UE_LOG(LogTemp, Warning, TEXT("ChosenRule %s has %d inputs"), *ChosenRule->Action, ChosenRule->Inputs.Num());
 		UE_LOG(LogTemp, Error, TEXT("ChosenRule as string: %s"), *ChosenRule->ToString());

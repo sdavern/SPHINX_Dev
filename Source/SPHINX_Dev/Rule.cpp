@@ -97,17 +97,17 @@ void URule::RemoveLastAddedRule()
 
 bool URule::MainOutputIs(UTerm* Term) const 
 {
-    UE_LOG(LogTemp, Display, TEXT("MainOutputIs called for Rule %s"), *Action);
-    UE_LOG(LogTemp, Display, TEXT("Rule %s has %d Outputs"), *Action, Outputs.Num());
+    //UE_LOG(LogTemp, Display, TEXT("MainOutputIs called for Rule %s"), *Action);
+    //UE_LOG(LogTemp, Display, TEXT("Rule %s has %d Outputs"), *Action, Outputs.Num());
     if (Term->DbItem)
     {
-        UE_LOG(LogTemp, Warning, TEXT("From GenerateInputs: Term->DbItem = %s"), *Term->DbItem->Name);
+        //UE_LOG(LogTemp, Warning, TEXT("From GenerateInputs: Term->DbItem = %s"), *Term->DbItem->Name);
         if(Term->DbItem->Name != Outputs[0]->Name)
         {
-            UE_LOG(LogTemp, Warning, TEXT("Term->DbItem->Name '%s' doesn't equal Outputs[0]->Name '%s'"), *Term->DbItem->Name, *Outputs[0]->Name);
+            //UE_LOG(LogTemp, Warning, TEXT("Term->DbItem->Name '%s' doesn't equal Outputs[0]->Name '%s'"), *Term->DbItem->Name, *Outputs[0]->Name);
             if (!Term->DbItem->GetSuperTypes().Contains(Outputs[0]->Name))
             {
-                UE_LOG(LogTemp, Display, TEXT("Supertypes for Term->DbItem %s does not contain %s"), *Term->Name, *Outputs[0]->Name);
+                //UE_LOG(LogTemp, Display, TEXT("Supertypes for Term->DbItem %s does not contain %s"), *Term->Name, *Outputs[0]->Name);
                 return false;
             }
         }
@@ -115,10 +115,10 @@ bool URule::MainOutputIs(UTerm* Term) const
         {
             if (Term->Name != Outputs[0]->Name)
             {
-                UE_LOG(LogTemp, Display, TEXT("Term->Name %s does not equal Outputs[0]->Name"));
+                //UE_LOG(LogTemp, Display, TEXT("Term->Name %s does not equal Outputs[0]->Name"));
                 if (!Term->GetSuperTypes().Contains(Outputs[0]->Name))
                 {
-                    UE_LOG(LogTemp, Display, TEXT("Supertypes for Term %s does not contain %s"), *Term->Name, *Outputs[0]->Name);
+                    //UE_LOG(LogTemp, Display, TEXT("Supertypes for Term %s does not contain %s"), *Term->Name, *Outputs[0]->Name);
                     return false;
                 }
             }
@@ -127,7 +127,7 @@ bool URule::MainOutputIs(UTerm* Term) const
 
     for (UItemProperty* RuleOutProp : Outputs[0]->Properties)
     {
-        UE_LOG(LogTemp, Display, TEXT("Outputs[0]->Properties has %d properties"), Outputs[0]->Properties.Num());
+        //UE_LOG(LogTemp, Display, TEXT("Outputs[0]->Properties has %d properties"), Outputs[0]->Properties.Num());
         bool Found = false;
         for (UItemProperty* TermProperty : Term->Properties)
         {

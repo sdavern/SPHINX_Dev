@@ -66,7 +66,6 @@
 			"PlayerPawn.cpp.obj",
 			"PuzzlePoint.cpp.obj",
 			"PuzzleTracker.cpp.obj",
-			"Rule.cpp.obj",
 			"SpawnPoint.cpp.obj",
 			"SphinxActor.cpp.obj",
 			"SPHINXHUD.cpp.obj",
@@ -75,7 +74,8 @@
 			"SPHINX_DevGameMode.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj",
 			"Generator.cpp.obj",
-			"PuzzleManager.cpp.obj"
+			"PuzzleManager.cpp.obj",
+			"Rule.cpp.obj"
 		],
 		"Module.SPHINX_Dev.3.cpp.obj": [
 			"SPHINX_DevProjectile.cpp.obj",
