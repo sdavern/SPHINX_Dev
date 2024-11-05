@@ -560,17 +560,53 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                 } 
                 if (OwningGPP) //implement thanks dialogue and NPC despawning here
                 {
-                    UE_LOG(LogTemp, Display, TEXT("OwningGPP is valid"));
-                    DeactivatePuzzlePoint(OwningGPP);
-                    RulePPs.Remove(Rule->ToPMString());
-                    --ActiveGeneratedPuzzles;
-                    UE_LOG(LogTemp, Display, TEXT("ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
+                    GPPToFind = OwningGPP;
+                    RuleToFind = Rule;
+
+                    PlayerController->DialogueBox = CreateWidget<UDialogueBox>(PlayerController, PlayerController->DialogueBoxClass);
+                    if (PlayerController->DialogueBox)
+                    {
+                        PlayerController->DialogueBox->AddToViewport(0);
+                        PlayerController->DialogueBox->SetVisibility(ESlateVisibility::Visible);
+                        PlayerController->DialogueBox->ChangeInspectText(PlayerController->DialogueBox->InspectText, OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue);
+                        FTimerDelegate TimerDel;
+			            TimerDel.BindUFunction(this, FName("DestroyDialogue"), PlayerController->DialogueBox);
+			            FTimerHandle TimerHandle;
+			            GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
+                    }
+
+                    if (!IsGPPInViewport())
+                    {
+                        UE_LOG(LogTemp, Display, TEXT("OwningGPP is valid"));
+                        DeactivatePuzzlePoint(OwningGPP);
+                        RulePPs.Remove(Rule->ToPMString());
+                        --ActiveGeneratedPuzzles;
+                        GPPToFind = nullptr;
+                        RuleToFind = nullptr;
+                        UE_LOG(LogTemp, Display, TEXT("ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
+                    }
+                    else
+                    {
+                        FTimerDelegate TimerDel;
+			            TimerDel.BindUFunction(this, FName("RetryIsGPPInViewPort"), OwningGPP);
+			            FTimerHandle TimerHandle;
+			            GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
+                    }
                 }
                 break;
             }
         }
          
     } 
+}
+
+void APuzzleManager::DestroyDialogue()
+{
+    if (PlayerController->DialogueBox)
+    {
+        PlayerController->DialogueBox->RemoveFromParent();
+        PlayerController->DialogueBox = nullptr;
+    }
 }
 
 void APuzzleManager::FindLeaves(URule* Parent, UPuzzlePoint* PP)
@@ -1295,12 +1331,121 @@ TArray<URule*> APuzzleManager::GetRulePointers()
 }
 
 
+TArray<AGamePuzzlePoint*> APuzzleManager::GetGPPsInViewport()
+{
+    TArray<AGamePuzzlePoint*> FoundGPPs;
+    UWorld* World = GetWorld();
+    if (!World)
+    {
+        UE_LOG(LogTemp, Error, TEXT("World is null"));
+        return FoundGPPs;
+    }
 
+    APlayerController* NPlayerController = World->GetFirstPlayerController();
+    if (!NPlayerController)
+    {
+        UE_LOG(LogTemp, Error, TEXT("PlayerController is null"));
+        return FoundGPPs;
+    }
 
+    FVector CameraLocation;
+    FRotator CameraRotation;
+    NPlayerController->GetPlayerViewPoint(CameraLocation, CameraRotation);
 
+    int32 ViewportSizeX, ViewportSizeY;
+    NPlayerController->GetViewportSize(ViewportSizeX, ViewportSizeY);
 
+    FSceneViewFamily::ConstructionValues ViewFamilyInit(
+        NPlayerController->GetLocalPlayer()->ViewportClient->Viewport,
+        World->Scene,
+        NPlayerController->GetLocalPlayer()->ViewportClient->EngineShowFlags);
 
+    FSceneViewFamilyContext ViewFamily(ViewFamilyInit);
 
+    FSceneViewInitOptions ViewInitOptions;
+    ViewInitOptions.SetViewRectangle(FIntRect(0, 0, ViewportSizeX, ViewportSizeY));
+    ViewInitOptions.ViewFamily = &ViewFamily;
+    ViewInitOptions.ViewOrigin = CameraLocation;
+    ViewInitOptions.ViewRotationMatrix = FInverseRotationMatrix(CameraRotation) * FMatrix(FPlane(0, 0, 1, 0), FPlane(1, 0, 0, 0), FPlane(0, 1, 0, 0), FPlane(0, 0, 0, 1));
+    ViewInitOptions.ProjectionMatrix = FReversedZPerspectiveMatrix(
+        FMath::Max(0.001f, NPlayerController->PlayerCameraManager->GetFOVAngle()),
+        1.0f,
+        GNearClippingPlane,
+        GNearClippingPlane);
+
+    FSceneView* View = new FSceneView(ViewInitOptions);
+
+    FConvexVolume ViewFrustum;
+    GetViewFrustumBounds(ViewFrustum, View->ViewMatrices.GetViewProjectionMatrix(), true);
+
+    for (TActorIterator<AGamePuzzlePoint> ActorItr(World); ActorItr; ++ActorItr)
+    {
+        AGamePuzzlePoint* Actor = *ActorItr;
+        if (IsValid(Actor))
+        {
+            const FBoxSphereBounds Bounds = Actor->GetComponentsBoundingBox();
+            if (ViewFrustum.IntersectBox(Bounds.Origin, Bounds.BoxExtent))
+            {
+                FHitResult HitResult;
+                FCollisionQueryParams Params;
+                Params.AddIgnoredActor(PlayerController->GetPawn());
+                Params.AddIgnoredActor(Actor);
+
+                World->LineTraceSingleByChannel(
+                    HitResult,
+                    CameraLocation,
+                    Actor->GetActorLocation(),
+                    ECC_Visibility,
+                    Params
+                );
+
+                if (!HitResult.bBlockingHit || HitResult.GetActor() == Actor)
+                {
+                    FoundGPPs.Add(Actor);
+                }
+            }
+        }
+    }
+	UE_LOG(LogTemp, Warning, TEXT("%d SPAWN POINTS ARE VISIBLE IN THE VIEWPORT"), FoundGPPs.Num());
+    return FoundGPPs;
+}
+
+bool APuzzleManager::IsGPPInViewport()
+{
+    TArray<AGamePuzzlePoint*> FoundGPPs;
+    FoundGPPs = GetGPPsInViewport();
+    for (AGamePuzzlePoint* GPP : FoundGPPs)
+    {
+        if (GPP && GPPToFind)
+        {
+            if (GPP->Name == GPPToFind->Name)
+            return true;
+        }
+    }
+    return false;
+}
+
+void APuzzleManager::RetryIsGPPInViewport()
+{
+    if (!IsGPPInViewport())
+    {
+        UE_LOG(LogTemp, Display, TEXT("GPPToFind is valid"));
+        DeactivatePuzzlePoint(GPPToFind);
+        RulePPs.Remove(RuleToFind->ToPMString());
+        --ActiveGeneratedPuzzles;
+        UE_LOG(LogTemp, Display, TEXT("ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
+        GPPToFind = nullptr;
+        RuleToFind = nullptr;
+    }
+    else
+    {
+        FTimerDelegate TimerDel;
+		TimerDel.BindUFunction(this, FName("RetryIsGPPInViewport"), GPPToFind);
+		FTimerHandle TimerHandle;
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
+    }
+    
+}
 
 
 

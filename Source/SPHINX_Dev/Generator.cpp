@@ -211,7 +211,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 
 bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel, AGenerator* GInstance)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Calling FindDbItemsFor"));
+	UE_LOG(LogTemp, Warning, TEXT("GenerateInputs for ParentRule: %s called"), *ParentRule->ToString());
 	TArray<UItem*> MatchingItems = GInstance->PMInstance->FindDbItemsFor(StartTerm, NewAccessiblePPs, ItemsInLevel); 
 
 	if (MatchingItems.Num() == 0)
@@ -225,7 +225,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	else if (StartTerm->DbItem == nullptr)
 	{
 		StartTerm->DbItem = MatchingItems[FMath::RandRange(0, MatchingItems.Num() - 1)];
-		UE_LOG(LogTemp, Warning, TEXT("StartTerm is %s and DbItem is %s"), *StartTerm->Name, *StartTerm->DbItem->Name);
+		//UE_LOG(LogTemp, Warning, TEXT("StartTerm is %s and DbItem is %s"), *StartTerm->Name, *StartTerm->DbItem->Name);
 		//UE_LOG(LogTemp, Error, TEXT("DbItem %s has %d property %s %s"), *StartTerm->DbItem->Name, StartTerm->DbItem->Properties.Num(), *StartTerm->DbItem->Properties[0]->Name, *StartTerm->DbItem->Properties[0]->Value);
 		if (ItemsInLevel.Contains(StartTerm->DbItem))
 		{
@@ -237,10 +237,10 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	TArray<URule*> PossibleRules;
 	
 	TArray<URule*> AllRules = GInstance->PMInstance->GetRulePointers();
-	UE_LOG(LogTemp, Error, TEXT("GETTING ALL RULES, no of rules = %d"), AllRules.Num());
+	//UE_LOG(LogTemp, Error, TEXT("GETTING ALL RULES, no of rules = %d"), AllRules.Num());
 	for (URule* Rule : AllRules)
 	{	
-		UE_LOG(LogTemp, Display, TEXT("AllRulesLoop: %s"), *Rule->Action);
+		//UE_LOG(LogTemp, Display, TEXT("AllRulesLoop: %s"), *Rule->Action);
 		if (Rule->Action.IsEmpty())
 		{
 			break;
@@ -249,26 +249,26 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 		//Rule->ToInputsPtr();
 		if (Rule->Outputs[0])
 		{
-			UE_LOG(LogTemp, Error, TEXT("Rule %s Output[0] is %s"), *Rule->Action, *Rule->Outputs[0]->Name);
+			//UE_LOG(LogTemp, Error, TEXT("Rule %s Output[0] is %s"), *Rule->Action, *Rule->Outputs[0]->Name);
 		}
 		else
 		{
-			UE_LOG(LogTemp, Display, TEXT("Rule %s has no Output[0]"), *Rule->Action);
+			//UE_LOG(LogTemp, Display, TEXT("Rule %s has no Output[0]"), *Rule->Action);
 		}
-		UE_LOG(LogTemp, Error, TEXT("%s is in AllRules and StartTerm is %s"), *Rule->Action, *StartTerm->Name);
+		//UE_LOG(LogTemp, Error, TEXT("%s is in AllRules and StartTerm is %s"), *Rule->Action, *StartTerm->Name);
 		if (Rule != nullptr && Rule->MainOutputIs(StartTerm))
 		{
 			if (StartTerm->DbItem)
 			{
-				UE_LOG(LogTemp, Display, TEXT("Found matching rule %s with output DbItem: %s"), *Rule->Action, *StartTerm->DbItem->Name);
+				//UE_LOG(LogTemp, Display, TEXT("Found matching rule %s with output DbItem: %s"), *Rule->Action, *StartTerm->DbItem->Name);
 			}
-			UE_LOG(LogTemp, Error, TEXT("Adding rule %s"), *Rule->Action);
+			//UE_LOG(LogTemp, Error, TEXT("Adding rule %s"), *Rule->Action);
 			PossibleRules.Add(Rule);
-			UE_LOG(LogTemp, Display, TEXT("Rule[0] is %s, and depth is %d"), *PossibleRules[0]->Action, Depth);
+			//UE_LOG(LogTemp, Display, TEXT("Rule[0] is %s, and depth is %d"), *PossibleRules[0]->Action, Depth);
 		}
 	}
 	
-	UE_LOG(LogTemp, Display, TEXT("Number of possible rules: %d"), PossibleRules.Num());
+	UE_LOG(LogTemp, Error, TEXT("Number of possible rules: %d"), PossibleRules.Num());
 	
 
 
@@ -564,7 +564,84 @@ TArray<ASpawnPoint*> AGenerator::GetSPsInViewport()
     return FoundSPs;
 }
 
+/* TArray<AGamePuzzlePoint*> AGenerator::GetGPPsInViewport()
+{
+    TArray<AGamePuzzlePoint*> FoundGPPs;
+    UWorld* World = GetWorld();
+    if (!World)
+    {
+        UE_LOG(LogTemp, Error, TEXT("World is null"));
+        return FoundGPPs;
+    }
 
+    APlayerController* PlayerController = World->GetFirstPlayerController();
+    if (!PlayerController)
+    {
+        UE_LOG(LogTemp, Error, TEXT("PlayerController is null"));
+        return FoundGPPs;
+    }
+
+    FVector CameraLocation;
+    FRotator CameraRotation;
+    PlayerController->GetPlayerViewPoint(CameraLocation, CameraRotation);
+
+    int32 ViewportSizeX, ViewportSizeY;
+    PlayerController->GetViewportSize(ViewportSizeX, ViewportSizeY);
+
+    FSceneViewFamily::ConstructionValues ViewFamilyInit(
+        PlayerController->GetLocalPlayer()->ViewportClient->Viewport,
+        World->Scene,
+        PlayerController->GetLocalPlayer()->ViewportClient->EngineShowFlags);
+
+    FSceneViewFamilyContext ViewFamily(ViewFamilyInit);
+
+    FSceneViewInitOptions ViewInitOptions;
+    ViewInitOptions.SetViewRectangle(FIntRect(0, 0, ViewportSizeX, ViewportSizeY));
+    ViewInitOptions.ViewFamily = &ViewFamily;
+    ViewInitOptions.ViewOrigin = CameraLocation;
+    ViewInitOptions.ViewRotationMatrix = FInverseRotationMatrix(CameraRotation) * FMatrix(FPlane(0, 0, 1, 0), FPlane(1, 0, 0, 0), FPlane(0, 1, 0, 0), FPlane(0, 0, 0, 1));
+    ViewInitOptions.ProjectionMatrix = FReversedZPerspectiveMatrix(
+        FMath::Max(0.001f, PlayerController->PlayerCameraManager->GetFOVAngle()),
+        1.0f,
+        GNearClippingPlane,
+        GNearClippingPlane);
+
+    FSceneView* View = new FSceneView(ViewInitOptions);
+
+    FConvexVolume ViewFrustum;
+    GetViewFrustumBounds(ViewFrustum, View->ViewMatrices.GetViewProjectionMatrix(), true);
+
+    for (TActorIterator<AGamePuzzlePoint> ActorItr(World); ActorItr; ++ActorItr)
+    {
+        ASpawnPoint* Actor = *ActorItr;
+        if (IsValid(Actor))
+        {
+            const FBoxSphereBounds Bounds = Actor->GetComponentsBoundingBox();
+            if (ViewFrustum.IntersectBox(Bounds.Origin, Bounds.BoxExtent))
+            {
+                FHitResult HitResult;
+                FCollisionQueryParams Params;
+                Params.AddIgnoredActor(PlayerController->GetPawn());
+                Params.AddIgnoredActor(Actor);
+
+                World->LineTraceSingleByChannel(
+                    HitResult,
+                    CameraLocation,
+                    Actor->GetActorLocation(),
+                    ECC_Visibility,
+                    Params
+                );
+
+                if (!HitResult.bBlockingHit || HitResult.GetActor() == Actor)
+                {
+                    FoundGPPs.Add(Actor);
+                }
+            }
+        }
+    }
+	UE_LOG(LogTemp, Warning, TEXT("%d SPAWN POINTS ARE VISIBLE IN THE VIEWPORT"), FoundSPs.Num());
+    return FoundGPPs;
+} */
 
 /* UGameArea* AGenerator::FindGameArea(UArea* Area)
 { 

@@ -259,6 +259,13 @@ public:
 
 	TArray<URule*> GetRulePointers();
 
+	TArray<AGamePuzzlePoint*> GetGPPsInViewport();
+
+	bool IsGPPInViewport();
+
+	void RetryIsGPPInViewport();
+
+	void DestroyDialogue();
 
 protected:
 	// Called when the game starts or when spawned
@@ -301,6 +308,10 @@ private:
 	bool ItemsLoaded = false;
 	
 	bool RulesLoaded = false;
+
+	AGamePuzzlePoint* GPPToFind;
+
+	URule* RuleToFind;
 
 public:	
 	// Called every frame
