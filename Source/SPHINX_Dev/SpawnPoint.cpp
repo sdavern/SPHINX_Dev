@@ -54,7 +54,7 @@ void ASpawnPoint::ToSpawnPropPtrs()
             if (PropPtr)
             {
                 PropPtrs.Add(PropPtr);
-                UE_LOG(LogTemp, Error, TEXT("PropPtr %s %s added"), *PropPtr->Name, *PropPtr->Value);
+                //UE_LOG(LogTemp, Error, TEXT("PropPtr %s %s added"), *PropPtr->Name, *PropPtr->Value);
             }
             
         }

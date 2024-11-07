@@ -97,53 +97,68 @@ void URule::RemoveLastAddedRule()
 
 bool URule::MainOutputIs(UTerm* Term) const 
 {
-    //UE_LOG(LogTemp, Display, TEXT("MainOutputIs called for Rule %s"), *Action);
-    //UE_LOG(LogTemp, Display, TEXT("Rule %s has %d Outputs"), *Action, Outputs.Num());
-    if (Term->DbItem)
+    //UE_LOG(LogTemp, Display, TEXT("MainOutput is %s and Term is %s"), *Outputs[0]->Name, *Term->Name);
+
+    bool Found = false;
+
+    Term->ToPropPtrs();
+
+    for (UItemProperty* TermProp : Term->Properties)
     {
-        //UE_LOG(LogTemp, Warning, TEXT("From GenerateInputs: Term->DbItem = %s"), *Term->DbItem->Name);
-        if(Term->DbItem->Name != Outputs[0]->Name)
+        if (!TermProp)
         {
-            //UE_LOG(LogTemp, Warning, TEXT("Term->DbItem->Name '%s' doesn't equal Outputs[0]->Name '%s'"), *Term->DbItem->Name, *Outputs[0]->Name);
-            if (!Term->DbItem->GetSuperTypes().Contains(Outputs[0]->Name))
-            {
-                //UE_LOG(LogTemp, Display, TEXT("Supertypes for Term->DbItem %s does not contain %s"), *Term->Name, *Outputs[0]->Name);
-                return false;
-            }
+            //UE_LOG(LogTemp, Display, TEXT("TermProp for %s is null"), *Term->Name);
         }
-        else 
+        else
         {
-            if (Term->Name != Outputs[0]->Name)
+            //UE_LOG(LogTemp, Display, TEXT("TermProp for %s is valid"), *Term->Name);
+        }
+
+        
+    
+        //UE_LOG(LogTemp, Display, TEXT("Outputs[0] has %d properties"), Outputs[0]->Properties.Num());
+        Outputs[0]->ToPropPtrs();
+        for (UItemProperty* OutputProp : Outputs[0]->Properties)
+        {
+            if (OutputProp)
             {
-                //UE_LOG(LogTemp, Display, TEXT("Term->Name %s does not equal Outputs[0]->Name"));
-                if (!Term->GetSuperTypes().Contains(Outputs[0]->Name))
+                //UE_LOG(LogTemp, Display, TEXT("OutputProp is valid for %s"), *Outputs[0]->Name);
+            }
+            else
+            {
+                //UE_LOG(LogTemp, Display, TEXT("OutputProp is null for %s"), *Outputs[0]->Name);
+            }
+            if (OutputProp && TermProp)
+            {
+                //UE_LOG(LogTemp, Display, TEXT("OutputProp is %s %s and TermProp is %s %s"), *OutputProp->Name, *OutputProp->Value, *TermProp->Name, *TermProp->Value);
+                if (Term->Name == Outputs[0]->Name && OutputProp->Name == TermProp->Name && OutputProp->Value == TermProp->Value)
                 {
-                    //UE_LOG(LogTemp, Display, TEXT("Supertypes for Term %s does not contain %s"), *Term->Name, *Outputs[0]->Name);
-                    return false;
+                    UE_LOG(LogTemp, Error, TEXT("MainOutput is %s and Term is %s MainOutputIs: Found = true, OutputProp is %s %s and TermProp is %s %s"),*Outputs[0]->Name, *Term->Name, *OutputProp->Name, *OutputProp->Value, *TermProp->Name, *TermProp->Value);
+                    Found = true;
+                    break;
+                }
+                else if (Term->DbItem->Name == Outputs[0]->Name && OutputProp->Name == TermProp->Name && OutputProp->Value == TermProp->Value)
+                {
+                    UE_LOG(LogTemp, Error, TEXT("MainOutput is %s and Term is %s MainOutputIs: Found = true, OutputProp is %s %s and TermProp is %s %s"),*Outputs[0]->Name, *Term->Name, *OutputProp->Name, *OutputProp->Value, *TermProp->Name, *TermProp->Value);
+                    Found = true;
+                    break;
+                }
+                else
+                {
+                    //UE_LOG(LogTemp, Display, TEXT("MainOutputIs: Found = false"));
+                    Found = false;
+                    break;
                 }
             }
-        }
-    }
-
-    for (UItemProperty* RuleOutProp : Outputs[0]->Properties)
-    {
-        //UE_LOG(LogTemp, Display, TEXT("Outputs[0]->Properties has %d properties"), Outputs[0]->Properties.Num());
-        bool Found = false;
-        for (UItemProperty* TermProperty : Term->Properties)
-        {
-            if (TermProperty->Equals(RuleOutProp))
+            else
             {
-                Found = true;
-                break;
+                //UE_LOG(LogTemp, Display, TEXT("OutputProp and TermProp null for some reason"));
             }
         }
-        if (!Found)
-        {
-            return false;
-        }
     }
 
-    return true;
+    return Found;
+
 }
 
 bool URule::HasPlayerInput()

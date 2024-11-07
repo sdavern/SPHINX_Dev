@@ -136,7 +136,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 		{
 			if (ExistingGameItems[i] != nullptr)
 			{
-				UE_LOG(LogTemp, Display, TEXT("Existing GameItems: %s"), *ExistingGameItems[i]->Name);
+				//UE_LOG(LogTemp, Display, TEXT("Existing GameItems: %s"), *ExistingGameItems[i]->Name);
 				ItemsInLevel.Add(ExistingGameItems[i]->DbItem);
 			}
 		}
@@ -283,7 +283,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 
 	if (PossibleRules.Num() > 0 && Depth < CurrentPP->MaxDepth) //Need to verify below !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	{
-		UE_LOG(LogTemp, Warning, TEXT("PossibleRules > 0 (possible rule 1 is %s) && Depth < MaxDepth (%d)"), *PossibleRules[0]->Action, CurrentPP->MaxDepth);
+		UE_LOG(LogTemp, Warning, TEXT("PossibleRules > 0 (possible rule 1 is %s) && Depth %d < MaxDepth (%d)"), *PossibleRules[0]->Action, Depth, CurrentPP->MaxDepth);
 		URule* ChosenRule = PossibleRules[FMath::RandRange(0, PossibleRules.Num() - 1)];
 		UE_LOG(LogTemp, Warning, TEXT("ChosenRule is %s"), *ChosenRule->Action);
 		if (PossibleRules.Num() > 1)

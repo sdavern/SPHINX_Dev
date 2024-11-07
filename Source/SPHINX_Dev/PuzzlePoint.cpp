@@ -21,7 +21,7 @@ void UPuzzlePoint::ToPuzzleGoalPtrs()
             if (GoalPtr)
             {
                 PuzzleGoalsPtrs.Add(GoalPtr);
-                UE_LOG(LogTemp, Error, TEXT("GoalPtr added"));
+                //UE_LOG(LogTemp, Error, TEXT("GoalPtr added"));
             }
             
         }

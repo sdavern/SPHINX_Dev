@@ -216,17 +216,17 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
 
         for (UPuzzlePoint* PP : PuzzlePointPtrs)
         {
-            UE_LOG(LogTemp, Error, TEXT("CHECKING IF PP IS NOT NULL"));
+            //UE_LOG(LogTemp, Error, TEXT("CHECKING IF PP IS NOT NULL"));
             AGamePuzzlePoint* OwningGPP = nullptr;
             for (TActorIterator<AGamePuzzlePoint> It(PP->GetWorld()); It; ++It)
             {
-                UE_LOG(LogTemp, Display, TEXT("Iterating through GamePuzzlePoints"));
+                //UE_LOG(LogTemp, Display, TEXT("Iterating through GamePuzzlePoints"));
                 AGamePuzzlePoint* GPP = *It;
-                UE_LOG(LogTemp, Display, TEXT("PP name: %s, GPP name: %s"), *PP->Name, *GPP->Name);
+                //UE_LOG(LogTemp, Display, TEXT("PP name: %s, GPP name: %s"), *PP->Name, *GPP->Name);
                 if (GPP && GPP->Name == PP->Name)  
                 {
                     OwningGPP = GPP;
-                    UE_LOG(LogTemp, Display, TEXT("OwningGPP = GPP"));
+                    //UE_LOG(LogTemp, Display, TEXT("OwningGPP = GPP"));
                     break;
                 }
             }       
@@ -237,7 +237,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                 URule* Root = Generator->GeneratePuzzleStartingFrom(PP, AccessiblePPs, 0);
                 if (Root)
                 {
-                    UE_LOG(LogTemp, Error, TEXT("Root is VALID"));
+                    //UE_LOG(LogTemp, Error, TEXT("Root is VALID"));
                     UE_LOG(LogTemp, Error, TEXT("ROOT is %s"), *Root->Action);	
                     UE_LOG(LogTemp, Display, TEXT("PP is %s"), *PP->Name);
                     FRulesStruct NewRules;

@@ -359,7 +359,7 @@ void UItem::ToPropPtrs()
             UItemProperty* NewProp = NewObject<UItemProperty>(this, AssetClass);
             if (NewProp)
             {
-                UE_LOG(LogTemp, Warning, TEXT("For Item %s, prop %s %s added THIS IS FROM THE ITEM SCRIPT"), *Name, *NewProp->Name, *NewProp->Value);
+                //UE_LOG(LogTemp, Warning, TEXT("For Item %s, prop %s %s added THIS IS FROM THE ITEM SCRIPT"), *Name, *NewProp->Name, *NewProp->Value);
                 Properties.Add(NewProp);
             }
         }
