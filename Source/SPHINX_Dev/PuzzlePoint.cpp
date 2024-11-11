@@ -36,7 +36,7 @@ UTerm* UPuzzlePoint::PickGoal()
     {
         UE_LOG(LogTemp, Display, TEXT("RandGoal is valid"));
         MainGoal = RandGoal;
-        UE_LOG(LogTemp, Display, TEXT("Main goal = randgoal"));
+        UE_LOG(LogTemp, Display, TEXT("Main goal dialogue: %s"), *MainGoal->GoalDialogue);
         SetInitType();
         return MainGoal;
     }

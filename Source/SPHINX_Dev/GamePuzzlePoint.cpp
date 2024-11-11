@@ -74,6 +74,7 @@ void AGamePuzzlePoint::SpawnInit()
 				int32 i = FMath::RandRange(0, InitNPCs.Num() - 1);
 				InitNPC = GetWorld()->SpawnActor<AInitNPC>(InitNPCs[i], PointTransform, SpawnParams);
 				InitNPC->OwningPP = PuzzlePointPtr;
+				InitNPC->OwningPP->GoalDialogue = PuzzlePointPtr->GoalDialogue;
 				UE_LOG(LogTemp, Display, TEXT("InitNPC spawned."));
 				InitSpawned = true;
 			}

@@ -521,6 +521,10 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
                         {
                             UE_LOG(LogTemp, Display, TEXT("GoalDialogue is not valid"));
                         }
+                    }
+                    else
+                    {
+                        UE_LOG(LogTemp, Display, TEXT("MAINGOAL FROM OWNINGPP IS NOT VALID!!!"));
                     } 
                 }
                 else
@@ -547,7 +551,16 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
             DialogueBox->RemoveFromParent();
             DialogueBox = nullptr;
             InspectOpen = false;
-            ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Inspect"));
+
+            if (HitGameItem->IsNPC || NPCIsHit)
+            {
+                ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Talk"));
+            }
+            else
+            {
+                ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Inspect"));
+            }
+
             FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f)); 
             ActionMenu->ExitText->SetColorAndOpacity(NewColor);
             ActionMenu->ExitButton->SetIsEnabled(true);
@@ -638,6 +651,20 @@ void ASPHINX_DevPlayerController::OpenInventoryMenu()
             UE_LOG(LogTemp, Display, TEXT("Opening inventory menu with %d items, AllImages has %d elements."), InventoryManager->Inventory.Num(), InventoryMenu->AllImages.Num());
             SetupUISprites();
             
+        }
+        for (UPuzzlePoint* PP : PMInstance->AccessiblePPs)
+        {
+            if (PP)
+            {
+                if (!PP->GoalDialogue.IsEmpty())
+                {
+                    UE_LOG(LogTemp, Display, TEXT("MainGoal dialogue is: %s"), *PP->GoalDialogue);
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Display, TEXT("Goal dialogue is empty in OpenInventoryMenu for PP %s"), *PP->Name);
+                }
+            }
         }
 }
 

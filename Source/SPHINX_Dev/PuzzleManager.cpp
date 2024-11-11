@@ -369,7 +369,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
                     if (IsValid(Rule) && Rule && Rule->Inputs.Num() > 0)
                     {
                         AddApplicableRule(Rule, GameItem, Rules);
-                        UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found and added to RulesArray"), *Rule->Action);
+                        UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found and added to RulesArray from Leaves"), *Rule->Action);
                         //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Rule added from RulesFor: %s"), *Rule->Action));
                     }    
                     else
@@ -395,7 +395,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         
     }
     
-    if (GameItem && GameItem->DbItem)
+  /*   if (GameItem && GameItem->DbItem)
     {
         DbRules = GetRulesWithInput(GameItem->DbItem);
     }
@@ -418,7 +418,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
                 Rules.Add(DbRules[i]);
             }
         }
-    } 
+    }  */
     if (Rules.Num() > 0)
     {
         UE_LOG(LogTemp, Display, TEXT("Returning Rules with %s"), *Rules[0]->Action);
@@ -451,8 +451,10 @@ UItem* APuzzleManager::GetObject(FString ItemName)
 
 void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules)
 {
+    UE_LOG(LogTemp, Display, TEXT("AddApplicableRule: %s is Rule. %s is GameItem."), *Rule->ToString(), *GameItem->Name);
     if (Rule && Rule->Inputs.Num() > 0 && Rule->Inputs[0] != nullptr)
     {
+        UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[0] is %s and GameItem is %s"), *Rule->Inputs[0]->Name, *GameItem->Name);
         if (Rule->Inputs[0]->Name == GameItem->Name)
         {
             if (!Rules.Contains(Rule))
@@ -763,6 +765,7 @@ TArray<URule*> APuzzleManager::GetRulesWithInput(UItem* DbItem)
     else
     {
         UE_LOG(LogTemp, Display, TEXT("DbItem in GetRulesWithInput is not null and is %s"), *DbItem->Name);
+        DbItem->ToPropPtrs();
     }
 
     for (URule* RuleToCheck : RulePointers)

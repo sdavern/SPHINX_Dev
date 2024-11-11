@@ -164,8 +164,8 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 
 				if (!Goal->GoalDialogue.IsEmpty())
 				{
-					UE_LOG(LogTemp, Display, TEXT("GoalDialogue is %s"), *Goal->GoalDialogue);
 					PP->GoalDialogue = Goal->GoalDialogue;
+					UE_LOG(LogTemp, Display, TEXT("GoalDialogue is %s"), *PP->GoalDialogue);
 				} 
 				else
 				{
