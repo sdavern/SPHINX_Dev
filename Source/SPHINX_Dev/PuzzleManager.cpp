@@ -139,7 +139,7 @@ void APuzzleManager::ActivateMaxPuzzlePoints()
         RandPP->PuzzlePointPtr = RandPP->PPToPtr();
         if (RandPP->PuzzlePointPtr)
         {
-            UE_LOG(LogTemp, Error, TEXT("PuzzlePointPtr is valid"));
+            UE_LOG(LogTemp, Error, TEXT("PuzzlePointPtr is valid for %s and %s"), *RandPP->Name, *RandPP->PuzzlePointPtr->Name);
         }
         if (RandPP != nullptr && !RandPP->IsActive && !RandPP->InitSpawned && RandPP->PuzzlePointPtr)
         {
@@ -225,6 +225,8 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                 //UE_LOG(LogTemp, Display, TEXT("PP name: %s, GPP name: %s"), *PP->Name, *GPP->Name);
                 if (GPP && GPP->Name == PP->Name)  
                 {
+                    GPP->PuzzlePointPtr = nullptr;
+                    GPP->PuzzlePointPtr = PP;
                     OwningGPP = GPP;
                     //UE_LOG(LogTemp, Display, TEXT("OwningGPP = GPP"));
                     break;
@@ -1301,7 +1303,7 @@ void APuzzleManager::InitialisePPPtrs()
             if (Pointer)
             {
                 PuzzlePointPtrs.Add(Pointer);
-                UE_LOG(LogTemp, Display, TEXT("PP pointer %s initialised"), *Pointer->Name);
+                UE_LOG(LogTemp, Display, TEXT("PP pointer %s initialised, has %d goals"), *Pointer->Name, Pointer->PuzzleGoalsPtrs.Num());
             }
             else
             {

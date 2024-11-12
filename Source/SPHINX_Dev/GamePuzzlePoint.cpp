@@ -41,7 +41,6 @@ void AGamePuzzlePoint::Tick(float DeltaTime)
 		SpawnInit();
 		InitSpawned = true;
 	}
-
 }
 
 UPuzzlePoint* AGamePuzzlePoint::PPToPtr()
@@ -51,7 +50,8 @@ UPuzzlePoint* AGamePuzzlePoint::PPToPtr()
 		UPuzzlePoint* Ptr = NewObject<UPuzzlePoint>(this, PuzzlePointBP);
 		if (Ptr)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Ptr CREATED"));
+			Ptr->ToPuzzleGoalPtrs();
+			UE_LOG(LogTemp, Error, TEXT("Ptr CREATED. goals is %d"), Ptr->PuzzleGoalsPtrs.Num());
 			return Ptr;
 		}
 		

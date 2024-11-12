@@ -13,6 +13,11 @@ UPuzzlePoint::UPuzzlePoint()
 
 void UPuzzlePoint::ToPuzzleGoalPtrs()
 {
+    if (PuzzleGoalsPtrs.Num() > 0)
+    {
+        PuzzleGoalsPtrs.Empty();
+    }
+
     for (TSubclassOf<UTerm> Goal : PuzzleGoals)
     {
         if (Goal)
@@ -38,6 +43,7 @@ UTerm* UPuzzlePoint::PickGoal()
         MainGoal = RandGoal;
         UE_LOG(LogTemp, Display, TEXT("Main goal dialogue: %s"), *MainGoal->GoalDialogue);
         SetInitType();
+        //GoalDialogue = MainGoal->GoalDialogue;
         return MainGoal;
     }
     return nullptr;

@@ -511,7 +511,7 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
                     UE_LOG(LogTemp, Display, TEXT("HitInitNPC is valid"));
                     if (HitInitNPC->OwningPP)
                     {
-                        UE_LOG(LogTemp, Display, TEXT("HitInitNPC->OwningPP is valid"));
+                        UE_LOG(LogTemp, Display, TEXT("HitInitNPC->OwningPP is valid, has %d GoalBPs"), HitInitNPC->OwningPP->PuzzleGoals.Num());
                         if (!HitInitNPC->OwningPP->GoalDialogue.IsEmpty())
                         {
                             UE_LOG(LogTemp, Display, TEXT("GoalDialogue is valid"));
@@ -521,6 +521,7 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
                         {
                             UE_LOG(LogTemp, Display, TEXT("GoalDialogue is not valid"));
                         }
+                    
                     }
                     else
                     {
@@ -656,16 +657,14 @@ void ASPHINX_DevPlayerController::OpenInventoryMenu()
         {
             if (PP)
             {
-                if (!PP->GoalDialogue.IsEmpty())
+                if (PP->MainGoal)
                 {
-                    UE_LOG(LogTemp, Display, TEXT("MainGoal dialogue is: %s"), *PP->GoalDialogue);
+                    UE_LOG(LogTemp, Display, TEXT("MainGoal is %s"), *PP->MainGoal->GoalDialogue);
                 }
-                else
-                {
-                    UE_LOG(LogTemp, Display, TEXT("Goal dialogue is empty in OpenInventoryMenu for PP %s"), *PP->Name);
-                }
+                
             }
         }
+    UE_LOG(LogTemp, Display, TEXT("OpenInventory finished"));
 }
 
 void ASPHINX_DevPlayerController::CloseInventoryMenu()
