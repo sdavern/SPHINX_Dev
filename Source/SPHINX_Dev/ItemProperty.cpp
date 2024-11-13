@@ -21,11 +21,11 @@ bool UItemProperty::Equals(UItemProperty* OtherProperty)
 {
     if (OtherProperty->Name == this->Name && OtherProperty->Value == this->Value)
     {
-        UE_LOG(LogTemp, Warning, TEXT("%s %s equals %s %s"), *OtherProperty->Name, *this->Name, *OtherProperty->Value, *this->Value);
+        UE_LOG(LogTemp, Warning, TEXT("%s %s equals %s %s"), *OtherProperty->Name, *OtherProperty->Value, *this->Name, *this->Value);
         return true;
     }
 
-    UE_LOG(LogTemp, Warning, TEXT("%s %s does not equal %s %s"), *OtherProperty->Name, *this->Name, *OtherProperty->Value, *this->Value);
+    UE_LOG(LogTemp, Warning, TEXT("%s %s does not equal %s %s"), *OtherProperty->Name, *OtherProperty->Value, *this->Name, *this->Value);
     return false;
 }
 

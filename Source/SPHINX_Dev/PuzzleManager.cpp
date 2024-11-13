@@ -370,8 +370,9 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
                 {
                     if (IsValid(Rule) && Rule && Rule->Inputs.Num() > 0)
                     {
+                        UE_LOG(LogTemp, Warning, TEXT("Rule %s passed to AddApplicableRule from RulesFor"), *Rule->Action);
                         AddApplicableRule(Rule, GameItem, Rules);
-                        UE_LOG(LogTemp, Warning, TEXT("Rule %s in RulesFor found and added to RulesArray from Leaves"), *Rule->Action);
+                        Rules.Add(Rule);
                         //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Rule added from RulesFor: %s"), *Rule->Action));
                     }    
                     else
@@ -397,7 +398,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
         
     }
     
-  /*   if (GameItem && GameItem->DbItem)
+    /* if (GameItem && GameItem->DbItem)
     {
         DbRules = GetRulesWithInput(GameItem->DbItem);
     }
@@ -420,7 +421,7 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
                 Rules.Add(DbRules[i]);
             }
         }
-    }  */
+    }   */
     if (Rules.Num() > 0)
     {
         UE_LOG(LogTemp, Display, TEXT("Returning Rules with %s"), *Rules[0]->Action);
@@ -453,7 +454,7 @@ UItem* APuzzleManager::GetObject(FString ItemName)
 
 void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules)
 {
-    UE_LOG(LogTemp, Display, TEXT("AddApplicableRule: %s is Rule. %s is GameItem."), *Rule->ToString(), *GameItem->Name);
+    UE_LOG(LogTemp, Display, TEXT("AddApplicableRule: %s is Rule. %s is GameItem. Rule has %d inputs"), *Rule->ToString(), *GameItem->Name, Rule->Inputs.Num());
     if (Rule && Rule->Inputs.Num() > 0 && Rule->Inputs[0] != nullptr)
     {
         UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[0] is %s and GameItem is %s"), *Rule->Inputs[0]->Name, *GameItem->Name);
@@ -466,8 +467,35 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
                 UE_LOG(LogTemp, Error, TEXT("GameItem is %s"), *GameItem->Name);
 
                 Rules.Add(Rule);
+                UE_LOG(LogTemp, Display, TEXT("Rule %s should be added to Rules in AddApplicableRule, Rules has %d rules in it"), *Rule->ToString(), Rules.Num());
+            }
+            else
+            {
+                UE_LOG(LogTemp, Display, TEXT("Input[0] in AddApplicableRule !Contain Rule"));
             }
         }
+        else
+        {
+            UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[0] %s does not equal GameItem %s"), *Rule->Inputs[0]->Name, *GameItem->Name);
+            UE_LOG(LogTemp, Display, TEXT("Rules in AddApplicableRule has %d rules"), Rules.Num());
+        }
+
+        /* if (Rule->Inputs[1] && Rule->Inputs[1]->Name == GameItem->Name)
+        {
+            UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[1] is %s and GameItem is %s"), *Rule->Inputs[1]->Name, *GameItem->Name);
+            if (!Rules.Contains(Rule))
+            {
+                UE_LOG(LogTemp, Display, TEXT("Found: %s %s"), *GameItem->Name, *Rule->Action);
+                Rule->Inputs[1]->GameItem = GameItem;
+                UE_LOG(LogTemp, Error, TEXT("GameItem is %s"), *GameItem->Name);
+
+                Rules.Add(Rule);
+            }
+            else
+            {
+                UE_LOG(LogTemp, Display, TEXT("Input[1] in AddApplicableRule !Contain Rule"));
+            }
+        } */
     }
 }
 

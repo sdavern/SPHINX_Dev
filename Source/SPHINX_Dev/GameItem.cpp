@@ -465,6 +465,11 @@ bool UGameItem::RuleFulfilled(URule* Rule)
         return false;
     }
 
+	for (UTerm* Input : Rule->Inputs)
+	{
+		Input->ToPropPtrs();
+	}
+
     UGameItem* SelectedItem = InventoryManager->GetSelectedItem(); //gets held gameitem
 	UGameItem* HitGameItem = InventoryManager->HitGameItem; //gets item hit by geosweep
 

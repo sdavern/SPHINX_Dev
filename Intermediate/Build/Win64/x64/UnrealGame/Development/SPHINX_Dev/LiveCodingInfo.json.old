@@ -64,7 +64,7 @@
 			"MainMenu.cpp.obj",
 			"MyPawn.cpp.obj",
 			"PlayerPawn.cpp.obj",
-			"PuzzleManager.cpp.obj",
+			"PuzzlePoint.cpp.obj",
 			"PuzzleTracker.cpp.obj",
 			"Rule.cpp.obj",
 			"SpawnPoint.cpp.obj",
@@ -73,9 +73,9 @@
 			"SPHINX_Dev.cpp.obj",
 			"SPHINX_DevCharacter.cpp.obj",
 			"SPHINX_DevGameMode.cpp.obj",
+			"SPHINX_DevPlayerController.cpp.obj",
 			"Generator.cpp.obj",
-			"PuzzlePoint.cpp.obj",
-			"SPHINX_DevPlayerController.cpp.obj"
+			"PuzzleManager.cpp.obj"
 		],
 		"Module.SPHINX_Dev.3.cpp.obj": [
 			"SPHINX_DevProjectile.cpp.obj",

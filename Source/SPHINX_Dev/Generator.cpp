@@ -80,15 +80,36 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
 {
 	bool Found = false;
     TArray<UGameItem*> ItemsInWorld = PMInstance->GetGameItemsInWorld();
-
+	//Item->ToPropPtrs();
     for (int32 i = 0; i < ItemsInWorld.Num(); i++)
     {
+		//ItemsInWorld[i]->DbItem->ToPropPtrs();
         if (ItemsInWorld[i] != nullptr && ItemsInWorld[i]->Name == Item->Name)
         {
             ItemsInWorld[i]->Setup(Item->Name, Item);
             Found = true;
             //ItemsInWorld[i]->Name = TEXT(" ");
         }
+
+
+		/* for (FString Type : ItemsInWorld[i]->DbItem->GetSuperTypes())
+		{
+			if (!Type.IsEmpty())
+			{
+				for (FString ItemType : Item->GetSuperTypes())
+				{
+					if (!ItemType.IsEmpty())
+					{
+						if (ItemType == Type)
+						{
+							Found = true;
+							break;
+						}
+					}
+				}
+			}
+		} */
+		
     }
 
 	if (!Found)
