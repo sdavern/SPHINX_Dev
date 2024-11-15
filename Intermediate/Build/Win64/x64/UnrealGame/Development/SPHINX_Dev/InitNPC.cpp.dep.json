@@ -1,0 +1,21 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\initnpc.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\x64\\sphinx_dev\\development\\engine\\sharedpch.engine.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\x64\\unrealgame\\development\\sphinx_dev\\definitions.sphinx_dev.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\initnpc.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\puzzlepoint.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\term.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\itemproperty.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\itemproperty.generated.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\term.generated.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\puzzlepoint.generated.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\initnpc.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

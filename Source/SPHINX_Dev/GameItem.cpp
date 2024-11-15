@@ -119,6 +119,16 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
 	
 	APuzzleManager* Instance = APuzzleManager::GetInstance();
 	TArray<URule*> ButtonRules;
+
+	DbItem->ToPropPtrs();
+
+	for (UItemProperty* Property : DbItem->Properties)
+	{
+		if (Property)
+		{
+			UE_LOG(LogTemp, Display, TEXT("%s %s is a property of %s"), *Property->Name, *Property->Value, *Name);
+		}
+	}
 	
 	if (Instance)
 	{
@@ -515,7 +525,7 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 	{
 		bool SelectedItemFulfilled = false;
     	bool ClickedItemFulfilled = false;
-
+		SelectedItem->DbItem->ToPropPtrs();
     	for (UTerm* Input : Rule->Inputs)
     	{
         	if (SelectedItem) //&& (SelectedItem->Name == Input->Name || SelectedItem->DbItem->GetSuperTypes().Contains(Input->Name)))
@@ -526,7 +536,15 @@ bool UGameItem::RuleFulfilled(URule* Rule)
                 	SelectedItemFulfilled = true;
                 	break;
             	}
+				else 
+				{
+					UE_LOG(LogTemp, Display, TEXT("SelectedItem %s does not fulfil property of %s"), *SelectedItem->Name, *Input->Name);
+				}
         	}
+			else
+			{
+				UE_LOG(LogTemp, Display, TEXT("SelectedItem is null"));
+			}
 		
     	}
 
@@ -535,16 +553,16 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 			UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s and Input is %s"), *HitGameItem->Name, *Input->Name);
         	if (HitGameItem) //&& (HitGameItem->Name == Input->Name || HitGameItem->DbItem->GetSuperTypes().Contains(Input->Name)))
         	{
-				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 succeeded"));
+				UE_LOG(LogTemp, Display, TEXT("HitGameItem is valid"));
             	if (HitGameItem->FulfillsProperties(Input))
             	{
                 	ClickedItemFulfilled = true;
-					UE_LOG(LogTemp, Display, TEXT("HitGameItem check 2 succeeded"));
+					UE_LOG(LogTemp, Display, TEXT("HitGameItem %s fulfils input %s"), *HitGameItem->Name, *Input->Name);
                 	break;
             	}
 				else
 				{
-					UE_LOG(LogTemp, Display, TEXT("HitGameItem check 2 failed"));
+					UE_LOG(LogTemp, Display, TEXT("HitGameItem %s does not fulfil input %s"), *HitGameItem->Name, *Input->Name);
 				}
         	}
 			else
@@ -567,10 +585,14 @@ bool UGameItem::FulfillsProperties(UTerm* Input)
 {
 	for (UItemProperty* Property : Input->Properties)
 	{
-		if(!HasProperty(Property))
+		if (Property)
 		{
-			return false;
+			if(!HasProperty(Property))
+			{
+				return false;
+			}
 		}
+		
 	}
 	return true;
 }
@@ -578,12 +600,16 @@ bool UGameItem::FulfillsProperties(UTerm* Input)
 bool UGameItem::HasProperty(UItemProperty* PropertyToCheck)
 {
 	UE_LOG(LogTemp, Display, TEXT("HasProperty called for %s %s"), *PropertyToCheck->Name, *PropertyToCheck->Value);
-	for (UItemProperty* Property : Properties)
+	for (UItemProperty* Property : DbItem->Properties)
 	{
-		if (Property->Equals(PropertyToCheck))
+		if (Property)
 		{
-			return true;
+			if (Property->Equals(PropertyToCheck))
+			{
+				return true;
+			}
 		}
+		
 	}
 	return false;
 }

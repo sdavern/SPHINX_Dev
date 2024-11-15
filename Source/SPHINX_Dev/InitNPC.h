@@ -30,4 +30,10 @@ public:
 	UPROPERTY()
 	UPuzzlePoint* OwningPP;
 
+	/* UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Name;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UGameItem* GameItem; */
+
 };

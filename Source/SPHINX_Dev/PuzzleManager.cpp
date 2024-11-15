@@ -560,75 +560,77 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                         break;
                     } 
                 }
-            
-                UE_LOG(LogTemp, Display, TEXT("Puzzle for PP: %s completed!"), *FoundPP->Name);
-                ++CompletedPuzzles;
-                if (PuzzleTracker)
+
+                if (FoundLeavesRules->RulesArray.Num() == 0)
                 {
-                    PuzzleTracker->UpdateText(CompletedPuzzles); //need to expose to BPs
-                }
-                if (SolvedSoundCue)
-                {
-                    FVector Location = FVector(0.0f, 0.0f, 0.0f);
-                    UGameplayStatics::PlaySoundAtLocation(this, SolvedSoundCue, Location);
-                }
-                if (PlayerController)
-                {
-                    if (Player->IsHoldingItem)
+                    UE_LOG(LogTemp, Display, TEXT("Puzzle for PP: %s completed!"), *FoundPP->Name);
+                    ++CompletedPuzzles;
+                    if (PuzzleTracker)
                     {
-                        if (Player->HeldGameItem)
+                        PuzzleTracker->UpdateText(CompletedPuzzles); //need to expose to BPs
+                    }
+                    if (SolvedSoundCue)
+                    {
+                        FVector Location = FVector(0.0f, 0.0f, 0.0f);
+                        UGameplayStatics::PlaySoundAtLocation(this, SolvedSoundCue, Location);
+                    }
+                    if (PlayerController)
+                    {
+                        if (Player->IsHoldingItem)
                         {
-                            PlayerController->DropGameItem(Player->HeldGameItem);
+                            if (Player->HeldGameItem)
+                            {
+                                PlayerController->DropGameItem(Player->HeldGameItem);
+                            }
+                            if (PlayerController->ActionMenu)
+                            {
+                                PlayerController->OnExitButtonClicked();
+                            }
                         }
-                        if (PlayerController->ActionMenu)
+                        else
                         {
                             PlayerController->OnExitButtonClicked();
                         }
-                    }
-                    else
+                    }    
+                    if (OwningGPP) //implement thanks dialogue and NPC despawning here
                     {
-                        PlayerController->OnExitButtonClicked();
+                        GPPToFind = OwningGPP;
+                        RuleToFind = Rule;
+
+                        PlayerController->DialogueBox = CreateWidget<UDialogueBox>(PlayerController, PlayerController->DialogueBoxClass);
+                        if (PlayerController->DialogueBox)
+                        {
+                            PlayerController->DialogueBox->AddToViewport(0);
+                            PlayerController->DialogueBox->SetVisibility(ESlateVisibility::Visible);
+                            PlayerController->DialogueBox->ChangeInspectText(PlayerController->DialogueBox->InspectText, OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue);
+                            FTimerDelegate TimerDel;
+			                TimerDel.BindUFunction(this, FName("DestroyDialogue"), PlayerController->DialogueBox);
+			                FTimerHandle TimerHandle;
+			                GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
+                        }
+
+                        if (!IsGPPInViewport())
+                        {
+                            UE_LOG(LogTemp, Display, TEXT("OwningGPP is valid"));
+                            DeactivatePuzzlePoint(OwningGPP);
+                            RulePPs.Remove(Rule->ToPMString());
+                            --ActiveGeneratedPuzzles;
+                            GPPToFind = nullptr;
+                            RuleToFind = nullptr;
+                            UE_LOG(LogTemp, Display, TEXT("ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
+                        }
+                        else
+                        {
+                            FTimerDelegate TimerDel;
+			                TimerDel.BindUFunction(this, FName("RetryIsGPPInViewPort"), OwningGPP);
+			                FTimerHandle TimerHandle;
+			                GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
+                        }
                     }
+                    break;
                 } 
-                if (OwningGPP) //implement thanks dialogue and NPC despawning here
-                {
-                    GPPToFind = OwningGPP;
-                    RuleToFind = Rule;
-
-                    PlayerController->DialogueBox = CreateWidget<UDialogueBox>(PlayerController, PlayerController->DialogueBoxClass);
-                    if (PlayerController->DialogueBox)
-                    {
-                        PlayerController->DialogueBox->AddToViewport(0);
-                        PlayerController->DialogueBox->SetVisibility(ESlateVisibility::Visible);
-                        PlayerController->DialogueBox->ChangeInspectText(PlayerController->DialogueBox->InspectText, OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue);
-                        FTimerDelegate TimerDel;
-			            TimerDel.BindUFunction(this, FName("DestroyDialogue"), PlayerController->DialogueBox);
-			            FTimerHandle TimerHandle;
-			            GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
-                    }
-
-                    if (!IsGPPInViewport())
-                    {
-                        UE_LOG(LogTemp, Display, TEXT("OwningGPP is valid"));
-                        DeactivatePuzzlePoint(OwningGPP);
-                        RulePPs.Remove(Rule->ToPMString());
-                        --ActiveGeneratedPuzzles;
-                        GPPToFind = nullptr;
-                        RuleToFind = nullptr;
-                        UE_LOG(LogTemp, Display, TEXT("ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
-                    }
-                    else
-                    {
-                        FTimerDelegate TimerDel;
-			            TimerDel.BindUFunction(this, FName("RetryIsGPPInViewPort"), OwningGPP);
-			            FTimerHandle TimerHandle;
-			            GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
-                    }
-                }
-                break;
             }
-        }
-         
+        }       
     } 
 }
 
