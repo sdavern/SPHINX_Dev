@@ -9,6 +9,8 @@
 #include "InitNPC.h"
 #include "InitText.h"
 #include "InitObject.h"
+#include "Rule.h"
+#include "GameItem.h"
 #include "GamePuzzlePoint.generated.h"
 
 UCLASS()
@@ -47,6 +49,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool InitSpawned = false;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool InitInitalised = false;
+
 	FTransform PointTransform;
 
 	UPROPERTY(VisibleAnywhere)
@@ -69,6 +74,11 @@ public:
 
 	void DespawnInit();
 
+	void AssignInitNPCProperties(UPuzzlePoint* PP);
+
+	void SetupInitNPCGameItem();
+
+	void InitialiseInitNPC();
 
 
 protected:

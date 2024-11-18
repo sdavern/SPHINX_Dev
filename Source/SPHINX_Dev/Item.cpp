@@ -39,18 +39,19 @@ TArray<UItemProperty*> UItem::GetPropertiesWithName(const FString& PropertyName)
 
     for (UItemProperty* Property : Properties)
     {
-        if (Property && !PropertyName.IsEmpty() && Property->Name.Equals(PropertyName, ESearchCase::IgnoreCase))
+        if (Property)
         {
-            //UE_LOG(LogTemp, Display, TEXT("Property %s %s added in GetPropertiesWithName for %s"), *Property->Name, *Property->Value, *Name);
-            PropertiesToReturn.Add(Property);
-        }
-        else
-        {
-            //UE_LOG(LogTemp, Display, TEXT("Property %s %s found  but NOT ADDED in GetPropertiesWithName for %s"), *Property->Name, *Property->Value, *Name);
-        }
-        
+            if (Property && !PropertyName.IsEmpty() && Property->Name.Equals(PropertyName, ESearchCase::IgnoreCase))
+            {
+                //UE_LOG(LogTemp, Display, TEXT("Property %s %s added in GetPropertiesWithName for %s"), *Property->Name, *Property->Value, *Name);
+                PropertiesToReturn.Add(Property);
+            }
+            else
+            {
+                //UE_LOG(LogTemp, Display, TEXT("Property %s %s found  but NOT ADDED in GetPropertiesWithName for %s"), *Property->Name, *Property->Value, *Name);
+            }
+        }     
     }
-
     return PropertiesToReturn;
 }
 
@@ -110,8 +111,12 @@ TArray<FString> UItem::GetSuperTypes()
 {
     //UE_LOG(LogTemp, Error, TEXT("GetSuperTypes Called for %s"), *Name);
     TArray<FString> Types;
-    Types.Add(Name);
-
+    if(!Name.IsEmpty())
+    {
+        Types.Add(Name);
+    }
+    
+    //ToPropPtrs();
     TArray<UItemProperty*> IsaProperties = GetPropertiesWithName("isa");
     for (UItemProperty* Prop : IsaProperties)
     {

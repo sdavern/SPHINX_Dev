@@ -289,6 +289,11 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                     {
                         OwningGPP->InitNPC->OwningPP = PP;
                         UE_LOG(LogTemp, Error, TEXT("OwningGPP has set OwningPP for InitNPC"));
+                        OwningGPP->InitialiseInitNPC();
+                    }
+                    else
+                    {
+                        UE_LOG(LogTemp, Display, TEXT("PM: OwningGPP->InitNPC is not valid"));
                     }
 
                     ++ActiveGeneratedPuzzles;
@@ -348,15 +353,15 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
     for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
     {
         FRulesStruct* FoundLeavesRules = &Pair.Value;
-        UE_LOG(LogTemp, Warning, TEXT("RulesArray size for PP %p is %d"), Pair.Key, FoundLeavesRules->RulesArray.Num());
+        //UE_LOG(LogTemp, Warning, TEXT("RulesArray size for PP %p is %d"), Pair.Key, FoundLeavesRules->RulesArray.Num());
         UPuzzlePoint* PP = Pair.Key;
         if (PP)
         {
-            UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is valid"));
+            //UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is valid"));
         }
         else
         {
-            UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is null"));
+            //UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is null"));
             continue;
         }
 
@@ -454,7 +459,7 @@ UItem* APuzzleManager::GetObject(FString ItemName)
 
 void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules)
 {
-    UE_LOG(LogTemp, Display, TEXT("AddApplicableRule: %s is Rule. %s is GameItem. Rule has %d inputs"), *Rule->ToString(), *GameItem->Name, Rule->Inputs.Num());
+    //UE_LOG(LogTemp, Display, TEXT("AddApplicableRule: %s is Rule. %s is GameItem. Rule has %d inputs"), *Rule->ToString(), *GameItem->Name, Rule->Inputs.Num());
     if (Rule && Rule->Inputs.Num() > 0 && Rule->Inputs[0] != nullptr)
     {
         UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[0] is %s and GameItem is %s"), *Rule->Inputs[0]->Name, *GameItem->Name);
@@ -462,9 +467,9 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
         {
             if (!Rules.Contains(Rule))
             {
-                UE_LOG(LogTemp, Display, TEXT("Found: %s %s"), *GameItem->Name, *Rule->Action);
+                //UE_LOG(LogTemp, Display, TEXT("Found: %s %s"), *GameItem->Name, *Rule->Action);
                 Rule->Inputs[0]->GameItem = GameItem;
-                UE_LOG(LogTemp, Error, TEXT("GameItem is %s"), *GameItem->Name);
+                //UE_LOG(LogTemp, Error, TEXT("GameItem is %s"), *GameItem->Name);
 
                 Rules.Add(Rule);
                 UE_LOG(LogTemp, Display, TEXT("Rule %s should be added to Rules in AddApplicableRule, Rules has %d rules in it"), *Rule->ToString(), Rules.Num());
@@ -476,26 +481,29 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
         }
         else
         {
-            UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[0] %s does not equal GameItem %s"), *Rule->Inputs[0]->Name, *GameItem->Name);
-            UE_LOG(LogTemp, Display, TEXT("Rules in AddApplicableRule has %d rules"), Rules.Num());
+            //UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[0] %s does not equal GameItem %s"), *Rule->Inputs[0]->Name, *GameItem->Name);
+            //UE_LOG(LogTemp, Display, TEXT("Rules in AddApplicableRule has %d rules"), Rules.Num());
         }
-
-        /* if (Rule->Inputs[1] && Rule->Inputs[1]->Name == GameItem->Name)
+    }
+    else if (Rule->Inputs[1] && Rule->Inputs[1]->Name == GameItem->Name)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[1] is %s and GameItem is %s"), *Rule->Inputs[1]->Name, *GameItem->Name);
+        if (!Rules.Contains(Rule))
         {
-            UE_LOG(LogTemp, Display, TEXT("Rule->Inputs[1] is %s and GameItem is %s"), *Rule->Inputs[1]->Name, *GameItem->Name);
-            if (!Rules.Contains(Rule))
-            {
-                UE_LOG(LogTemp, Display, TEXT("Found: %s %s"), *GameItem->Name, *Rule->Action);
-                Rule->Inputs[1]->GameItem = GameItem;
-                UE_LOG(LogTemp, Error, TEXT("GameItem is %s"), *GameItem->Name);
+            UE_LOG(LogTemp, Display, TEXT("Found: %s %s"), *GameItem->Name, *Rule->Action);
+            Rule->Inputs[1]->GameItem = GameItem;
+            UE_LOG(LogTemp, Error, TEXT("GameItem is %s"), *GameItem->Name);
 
-                Rules.Add(Rule);
-            }
-            else
-            {
-                UE_LOG(LogTemp, Display, TEXT("Input[1] in AddApplicableRule !Contain Rule"));
-            }
-        } */
+            Rules.Add(Rule);
+        }
+        else
+        {
+            UE_LOG(LogTemp, Display, TEXT("Input[1] in AddApplicableRule !Contain Rule"));
+        }
+    }
+    else
+    {
+        UE_LOG(LogTemp, Display, TEXT("Inputs in AddApplicableRule are null"));
     }
 }
 
@@ -561,7 +569,7 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                     } 
                 }
 
-                if (FoundLeavesRules->RulesArray.Num() == 0)
+                if (FoundLeavesRules->RulesArray.Num() <= 1)
                 {
                     UE_LOG(LogTemp, Display, TEXT("Puzzle for PP: %s completed!"), *FoundPP->Name);
                     ++CompletedPuzzles;
@@ -628,7 +636,11 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                         }
                     }
                     break;
-                } 
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Display, TEXT("PUZZLE STILL HAS RULES LEFT!!!"));
+                }
             }
         }       
     } 

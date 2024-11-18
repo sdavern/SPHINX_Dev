@@ -91,24 +91,34 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
             //ItemsInWorld[i]->Name = TEXT(" ");
         }
 
-
-		/* for (FString Type : ItemsInWorld[i]->DbItem->GetSuperTypes())
+		if (ItemsInWorld[i]->DbItem)
 		{
-			if (!Type.IsEmpty())
+			ItemsInWorld[i]->DbItem->ToPropPtrs();
+			//UE_LOG(LogTemp, Display, TEXT("ItemsInWorld[%d]->DbItem is %s and has %d properties"), i, *ItemsInWorld[i]->DbItem->Name, ItemsInWorld[i]->DbItem->Properties.Num());
+			for (FString Type : ItemsInWorld[i]->DbItem->GetSuperTypes())
 			{
-				for (FString ItemType : Item->GetSuperTypes())
+				if (!Type.IsEmpty())
 				{
-					if (!ItemType.IsEmpty())
+					for (FString ItemType : Item->GetSuperTypes())
 					{
-						if (ItemType == Type)
+						if (!ItemType.IsEmpty())
 						{
-							Found = true;
-							break;
+							if (ItemType == Type)
+							{
+								Found = true;
+								break;
+							}
 						}
 					}
 				}
 			}
-		} */
+		}
+		else
+		{
+			UE_LOG(LogTemp, Display, TEXT("ItemsInWorld[%d]->DbItem is null"), i);
+		}
+		
+		 
 		
     }
 
@@ -393,6 +403,17 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	UWorld* World = GetWorld();
 	Spawn(World, StartTerm->DbItem, ParentRule, CurrentPP);
 	UE_LOG(LogTemp, Display, TEXT("DbItem added to spawn list: %s"), *StartTerm->DbItem->Name);
+
+	for (int32 i = 0; i < CurrentPP->CurrentPuzzleRules.Num(); i++)
+	{
+		if (CurrentPP->CurrentPuzzleRules[i])
+		{
+			UE_LOG(LogTemp, Display, TEXT("CurrentPuzzleRules[%d] for PP: %s is %s"), i, *CurrentPP->Name, *CurrentPP->CurrentPuzzleRules[i]->ToString());
+		}
+	}
+
+
+
 	return true;
 }
 
@@ -428,7 +449,7 @@ ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 						//UE_LOG(LogTemp, Warning, TEXT("SP is valid"));
 						for (UItemProperty* SPProp : SP->PropPtrs)
 						{
-							if (SPProp && SPProp->Name == Prop->Name && SPProp->Value == Prop->Value/*  && !SP->HasSpawnedItem */)
+							if (SPProp && SPProp->Name == Prop->Name && SPProp->Value == Prop->Value && !SP->HasSpawnedItem)
 							{
 								//UE_LOG(LogTemp, Warning, TEXT("SP added to FoundSPs"));
 								FoundSPs.Add(SP);
@@ -450,6 +471,7 @@ ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 				}
 			}
 		} 
+		
 
 		if (FoundSPs.Num() > 1)
 		{

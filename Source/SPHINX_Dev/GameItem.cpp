@@ -133,7 +133,7 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
 	if (Instance)
 	{
 		Instance->ReturnLeaves();
-		UE_LOG(LogTemp, Warning, TEXT("OnGameItemClicked PM instance is valid, this is %s"), *this->Name);
+		//UE_LOG(LogTemp, Warning, TEXT("OnGameItemClicked PM instance is valid, this is %s"), *this->Name);
 
 		TArray<URule*> Rules = Instance->RulesFor(this);
 		if (Rules.Num() > 0)
@@ -578,6 +578,7 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 		UE_LOG(LogTemp, Display, TEXT("SelectedItem check is false"));
         return false;
     } */
+
    return false;
 }
 

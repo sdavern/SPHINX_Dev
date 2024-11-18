@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "PuzzlePoint.h"
+#include "GameItem.h"
 #include "InitNPC.generated.h"
 
 UCLASS()
@@ -30,10 +31,10 @@ public:
 	UPROPERTY()
 	UPuzzlePoint* OwningPP;
 
-	/* UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Name;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UGameItem* GameItem; */
+	UGameItem* GameItem;
 
 };

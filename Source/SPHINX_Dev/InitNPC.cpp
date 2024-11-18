@@ -9,12 +9,17 @@ AInitNPC::AInitNPC()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	GameItem = CreateDefaultSubobject<UGameItem>(TEXT("GameItem"));
+
 }
 
 // Called when the game starts or when spawned
 void AInitNPC::BeginPlay()
 {
 	Super::BeginPlay();
+	//GameItem->Name = Name;
+	UE_LOG(LogTemp, Display, TEXT("InitNPC GameItem is named: %s"), *GameItem->Name);
+	
 	
 }
 
