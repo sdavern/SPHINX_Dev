@@ -10,10 +10,10 @@ AInitNPC::AInitNPC()
 	PrimaryActorTick.bCanEverTick = true;
 	
 	GameItem = CreateDefaultSubobject<UGameItem>(TEXT("GameItem"));
-	GameItem->RegisterComponent();
+	//GameItem->RegisterComponent();
 	
 	//GameItem->Name = Name;
-	GameItem->IsInitNPC = true;
+	
 
 }
 
@@ -21,6 +21,7 @@ AInitNPC::AInitNPC()
 void AInitNPC::BeginPlay()
 {
 	Super::BeginPlay();
+	GameItem->IsInitNPC = true;
 	//GameItem->Name = Name;
 	//UE_LOG(LogTemp, Display, TEXT("InitNPC GameItem is named: %s"), *GameItem->Name);
 	

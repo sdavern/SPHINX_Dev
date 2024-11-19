@@ -509,7 +509,7 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
 
 void APuzzleManager::ExecuteRule(URule* Rule)
 {
-    UE_LOG(LogTemp, Display, TEXT("PMInstance->ExecuteRule called"));
+    UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: PMInstance->ExecuteRule called"));
     UWorld* World = GetWorld();
     UPuzzlePoint* FoundPP = nullptr;
     UPuzzlePoint** FoundPuzzlePoint = RulePPs.Find(Rule->ToPMString()); 
@@ -521,7 +521,7 @@ void APuzzleManager::ExecuteRule(URule* Rule)
     AGamePuzzlePoint* OwningGPP = nullptr;
     if (FoundPP)
     {
-        UE_LOG(LogTemp, Error, TEXT("FoundPP %s is valid for Rule %s"), *FoundPP->Name, *Rule->Action);
+        UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: FoundPP %s is valid for Rule %s"), *FoundPP->Name, *Rule->Action);
     }
     for (TActorIterator<AGamePuzzlePoint> It(World); It; ++It)
     {
@@ -531,7 +531,7 @@ void APuzzleManager::ExecuteRule(URule* Rule)
             if (GPP && GPP->Name == FoundPP->Name)  
             {
                 OwningGPP = GPP;
-                UE_LOG(LogTemp, Display, TEXT("OwningGPP = GPP"));
+                UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: OwningGPP = GPP"));
                 break;
             }
         }
@@ -541,10 +541,10 @@ void APuzzleManager::ExecuteRule(URule* Rule)
     FRulesStruct* FoundLeavesRules = Leaves.Find(FoundPP);
     if (FoundLeavesRules)
     {
-        UE_LOG(LogTemp, Display, TEXT("Main Rule is %s"), *Rule->Action);
+        UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Main Rule is %s"), *Rule->Action);
         for (URule* FRule : FoundLeavesRules->RulesArray)
         {
-            UE_LOG(LogTemp, Error, TEXT("Rule %s is in RulesArray"), *FRule->Action);
+            UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: Rule %s is in RulesArray"), *FRule->Action);
         }
     }
     
@@ -556,22 +556,30 @@ void APuzzleManager::ExecuteRule(URule* Rule)
     {
         if (SRule)
         {
-            UE_LOG(LogTemp, Display, TEXT("%s has %d inputs and %d outputs"), *SRule->ToPMString(), SRule->Inputs.Num(), SRule->Outputs.Num());
+            UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: %s has %d inputs and %d outputs"), *SRule->ToPMString(), SRule->Inputs.Num(), SRule->Outputs.Num());
             if (RuleString == SRule->ToPMString())
             {
                 Rule = SRule;
+                TArray<URule*> RulesToRemove;
                 for (URule* ARule : FoundLeavesRules->RulesArray)
                 {
                     if (Rule->ToPMString() == ARule->ToPMString())
                     {
-                        FoundLeavesRules->RulesArray.Remove(ARule);
-                        break;
+                        RulesToRemove.Add(ARule);
                     } 
+                }
+
+                for (URule* BRule : RulesToRemove)
+                {
+                    if (BRule)
+                    {
+                        FoundLeavesRules->RulesArray.Remove(BRule);
+                    }
                 }
 
                 if (FoundLeavesRules->RulesArray.Num() <= 1)
                 {
-                    UE_LOG(LogTemp, Display, TEXT("Puzzle for PP: %s completed!"), *FoundPP->Name);
+                    UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Puzzle for PP: %s completed!"), *FoundPP->Name);
                     ++CompletedPuzzles;
                     if (PuzzleTracker)
                     {
@@ -625,7 +633,7 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                             --ActiveGeneratedPuzzles;
                             GPPToFind = nullptr;
                             RuleToFind = nullptr;
-                            UE_LOG(LogTemp, Display, TEXT("ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
+                            UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
                         }
                         else
                         {
@@ -639,7 +647,30 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                 }
                 else
                 {
-                    UE_LOG(LogTemp, Display, TEXT("PUZZLE STILL HAS RULES LEFT!!!"));
+                    if (SolvedSoundCue)
+                    {
+                        FVector Location = FVector(0.0f, 0.0f, 0.0f);
+                        UGameplayStatics::PlaySoundAtLocation(this, SolvedSoundCue, Location);
+                    }
+                    if (PlayerController)
+                    {
+                        if (Player->IsHoldingItem)
+                        {
+                            if (Player->HeldGameItem)
+                            {
+                                PlayerController->DropGameItem(Player->HeldGameItem);
+                            }
+                            if (PlayerController->ActionMenu)
+                            {
+                                PlayerController->OnExitButtonClicked();
+                            }
+                        }
+                        else
+                        {
+                            PlayerController->OnExitButtonClicked();
+                        }
+                    }
+                    UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: PUZZLE STILL HAS RULES LEFT!!!"));
                 }
             }
         }       

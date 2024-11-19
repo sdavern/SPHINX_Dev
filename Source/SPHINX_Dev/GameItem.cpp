@@ -261,28 +261,29 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 
 	if (!HeldItem && !HitGameItem)
 	{
-		UE_LOG(LogTemp, Display, TEXT("GameItem->ExecuteRule HeldItem && HitGameItem is not valid"));
+		UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem->ExecuteRule HeldItem && HitGameItem is not valid"));
 		return;
 	}
 	
-	//UE_LOG(LogTemp, Warning, TEXT("%s has %d properties, Rule has %d inputs"), *Rule->Inputs[0]->GameItem->Name, Rule->Inputs[0]->GameItem->Properties.Num(), Rule->Inputs.Num());
-	//UE_LOG(LogTemp, Warning, TEXT("Rules inputs are %s and %s"), *Rule->Inputs[0]->Name, *Rule->Inputs[1]->Name);
-	UE_LOG(LogTemp, Error, TEXT("HeldItem is valid, beginning ExecuteRule"));
-	//UE_LOG(LogTemp, Warning, TEXT("Input[0] is %s and has GameItem %s, the rule has %d outputs"), *Rule->Inputs[0]->Name, *Rule->Inputs[0]->GameItem->Name, Rule->Outputs.Num());
+	//UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: %s has %d properties, Rule has %d inputs"), *Rule->Inputs[0]->GameItem->Name, Rule->Inputs[0]->GameItem->Properties.Num(), Rule->Inputs.Num());
+	//UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: Rules inputs are %s and %s"), *Rule->Inputs[0]->Name, *Rule->Inputs[1]->Name);
+	UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: HeldItem is valid, beginning ExecuteRule"));
+	//UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: Input[0] is %s and has GameItem %s, the rule has %d outputs"), *Rule->Inputs[0]->Name, *Rule->Inputs[0]->GameItem->Name, Rule->Outputs.Num());
 	for (int32 i = 0; i < Rule->Inputs.Num(); i++)
 	{
-		//UE_LOG(LogTemp, Display, TEXT("Rule %s has input %s at [%d]"), *Rule->Action, *Rule->Inputs[i]->Name, i);
+		UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: For loop for inputs"));
+		//UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Rule %s has input %s at [%d]"), *Rule->Action, *Rule->Inputs[i]->Name, i);
 		bool Found = false;
 		for (UTerm* Output : Rule->Outputs)
 		{
 			if (Output && Output->Name == Rule->Inputs[i]->Name)
 			{
-				UE_LOG(LogTemp, Display, TEXT("Output equals rule input, Found = true"));
+				UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Output equals rule input, Found = true"));
 				Found = true;
 				Output->GameItem = Rule->Inputs[i]->GameItem;
 				break;
 			}
-			else if (Output->GetPropertyWithName("Contains") != nullptr)
+			/* else if (Output->GetPropertyWithName("Contains") != nullptr)
 			{
 				if (Output->GetPropertyWithName("Contains")->Value == Rule->Inputs[i]->Name)
 				{
@@ -304,14 +305,14 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					Found = true;
 					break;
 				}
-			}
+			} */
 		}
 
 		//UE_LOG(LogTemp, Display, TEXT("Input Item at %d : %s of rule %s"), i, *Rule->Inputs[i]->ToString(), *Rule->ToString());
 		
 		if (Rule)
 		{
-			//UE_LOG(LogTemp, Display, TEXT("Rule is valid"));
+			UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Rule is valid"));
 			if (Rule->Inputs[i])
 			{
 				//UE_LOG(LogTemp, Display, TEXT("Inputs are valid, input is %s"), *Rule->Inputs[i]->Name);
@@ -319,11 +320,11 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					//DbItem needs to be set for each input
 					if (Rule->Inputs[i]->GameItem)
 					{
-						UE_LOG(LogTemp, Display, TEXT("GameItem %s is valid"), *Rule->Inputs[i]->GameItem->Name);
+						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem %s is valid"), *Rule->Inputs[i]->GameItem->Name);
 					}
 					else
 					{
-						UE_LOG(LogTemp, Error, TEXT("GameItem for input %s is not valid"), *Rule->Inputs[i]->Name);
+						UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: GameItem for input %s is not valid"), *Rule->Inputs[i]->Name);
 					}
 					
 				}
@@ -332,7 +333,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 
 		if (!Found && !Rule->Inputs[i]->DbItem->IsIndestructible)
 		{
-			UE_LOG(LogTemp, Display, TEXT("Destroying: %s"), *Rule->Inputs[i]->Name);
+			UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Destroying: %s"), *Rule->Inputs[i]->Name);
 			if (Rule->Inputs.Num() < 1)
 			{
 				ObjectsToDestroy.Add(GameI->GetOwner());
@@ -344,7 +345,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 				{
 					if (Rule->Inputs[i]->Name == HeldItem->Name)
 					{
-						UE_LOG(LogTemp, Display, TEXT("Adding HeldItem to ObjectsToDestroy"));
+						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Adding HeldItem to ObjectsToDestroy"));
 						ObjectsToDestroy.Add(PMInstance->Player->HeldGameItem);
 					}
 				}
@@ -352,18 +353,18 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 
 				if (!Inventory->DeleteItemFromInventory(Rule->Inputs[i]->GameItem))
 				{
-					UE_LOG(LogTemp, Display, TEXT("Attempting to add %s to ObjectsToDestroy"), *Rule->Inputs[i]->Name);
+					UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Attempting to add %s to ObjectsToDestroy"), *Rule->Inputs[i]->Name);
 					if (Rule->Inputs[i]->GameItem)
 					{
 						ObjectsToDestroy.Add(Rule->Inputs[i]->GameItem->GetOwner());
-						UE_LOG(LogTemp, Error, TEXT("GetOwner is valid"));
+						UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: GetOwner is valid"));
 					}
 				}
 			}
 		}
 		else 
 		{
-			UE_LOG(LogTemp, Display, TEXT("Destruction sequence failed"));
+			UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Destruction sequence failed"));
 		} 
 	
 	}
@@ -375,23 +376,23 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 	
 	for (UTerm* Output : Rule->Outputs)
 	{
-		UE_LOG(LogTemp, Display, TEXT("Rule %s has %d outputs1"), *Rule->Action, Rule->Outputs.Num());
+		UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Rule %s has %d outputs1"), *Rule->Action, Rule->Outputs.Num());
 		bool Found = false;
-		UE_LOG(LogTemp, Display, TEXT("Found is false 1"));
+		UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Found is false 1"));
 		for (UTerm* Input : Rule->Inputs)
 		{
 			if (Output->Name == TEXT("Player"))
 			{
-				UE_LOG(LogTemp, Display, TEXT("Output->Name == player"));
+				UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Output->Name == player"));
 				for (UItemProperty* OutputProperty : Output->Properties)
 				{
-					UE_LOG(LogTemp, Display, TEXT("PlayerProperties being updated"));
+					UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: PlayerProperties being updated"));
 					APuzzleManager::GetInstance()->UpdatePlayerProperties(OutputProperty);
 				}
 			}
 			if (Output->Name == Input->Name)
 			{
-				UE_LOG(LogTemp, Error, TEXT("Output->Name == Input->Name"));
+				UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: Output->Name == Input->Name"));
 				Found = true;
 				for (UItemProperty* OutputProperty : Output->Properties)
 				{
@@ -399,12 +400,12 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					if (Property != nullptr && Property->Name != TEXT("Contains"))
 					{
 						Property->Value = OutputProperty->Value;
-						UE_LOG(LogTemp, Display, TEXT("Property to change: %s"), *Property->Name);
+						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Property to change: %s"), *Property->Name);
 						break;
 					}
 					else
 					{
-						UE_LOG(LogTemp, Display, TEXT("Adding OutputProperty"));
+						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Adding OutputProperty"));
 						Input->GameItem->Properties.Add(OutputProperty);
 					}
 				}
@@ -412,10 +413,10 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 		}
 		if (!Found)
 		{
-			UE_LOG(LogTemp, Display, TEXT("Found = false2"));
+			UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Found = false2"));
 			if (Output->DbItem->ItemPrefab != nullptr)
 			{
-				UE_LOG(LogTemp, Display, TEXT("DbItem %s for Output is valid"), *Output->DbItem->Name);
+				UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: DbItem %s for Output is valid"), *Output->DbItem->Name);
 				//Output DbItem needs to be initialised
     			//SpawnParams.Owner = ItemGO;
     			//SpawnParams.Instigator = ItemGO->GetInstigator();
@@ -426,7 +427,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 						GameItem = NewObject<UGameItem>(ItemGO, UGameItem::StaticClass());
 						if (GameItem)
 						{
-							UE_LOG(LogTemp, Display, TEXT("GameItem created"));
+							UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem created"));
 							GameItem->RegisterComponent();
 						}
 				}
@@ -439,7 +440,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					if (Output->DbItem->ItemPrefab && World)
 					{
 						ItemGO = World->SpawnActor<AActor>(Output->DbItem->ItemPrefab.Get(), Transform, SpawnParams);
-						UE_LOG(LogTemp, Warning, TEXT("Output %s has been spawned"), *Output->Name);
+						UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: Output %s has been spawned"), *Output->Name);
 					}
 				}
 				//GameItem->Setup(Output->DbItem->Name, Output->DbItem); need to have 
@@ -455,18 +456,20 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 			}
 			else
 			{
-				UE_LOG(LogTemp, Display, TEXT("Output DbItem is null"));
+				UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Output DbItem is null"));
 			}
 		}
 		FirstOutput = false;
 	}
 
 	PMInstance->ExecuteRule(Rule);
-	UE_LOG(LogTemp, Warning, TEXT("ObjectsToDestroy has %d actors"), ObjectsToDestroy.Num());
+	UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: ObjectsToDestroy has %d actors"), ObjectsToDestroy.Num());
 	for (AActor* GO : ObjectsToDestroy)
 	{
+		UE_LOG(LogTemp, Display, TEXT("Trying to destroy actor"));
 		if (GO)
 		{
+			UE_LOG(LogTemp, Display, TEXT("Trying to destroy actor, actor is valid"));
 			GO->Destroy();
 		}
 	}	

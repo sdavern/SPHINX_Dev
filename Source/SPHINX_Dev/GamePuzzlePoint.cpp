@@ -166,18 +166,11 @@ void AGamePuzzlePoint::AssignInitNPCProperties(UPuzzlePoint* PP)
 							{
 								if (Prop)
 								{
-									InitNPC->GameItem->Properties.Add(Prop);
-									UE_LOG(LogTemp, Warning, TEXT("Prop %s %s added to InitNPC %s GameItem"), *Prop->Name, *Prop->Value, *Name);
-									if (InitNPC->GameItem->DbItem)
+									if (!Prop->Name.IsEmpty() && !Prop->Value.IsEmpty())
 									{
-										InitNPC->GameItem->DbItem->Properties.Add(Prop);
-										UE_LOG(LogTemp, Display, TEXT("Prop %s %s added to GameItem->DbItem %s in AssignInitNPC"), *Prop->Name, *Prop->Value, *Name);
+										InitNPC->GameItem->Properties.Add(Prop);
+										UE_LOG(LogTemp, Warning, TEXT("Prop %s %s added to InitNPC %s GameItem"), *Prop->Name, *Prop->Value, *Name);
 									}
-									else
-									{
-										UE_LOG(LogTemp, Display, TEXT("DbItem in AssignInitNPC is null"));
-									}
-									
 								}
 								else
 								{
