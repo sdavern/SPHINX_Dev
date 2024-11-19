@@ -57,6 +57,11 @@ void EmptyLinkFunctionForGeneratedCodeGameItem() {}
 #endif
 		static void NewProp_IsNPC_SetBit(void* Obj);
 		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsNPC;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_IsInitNPC_MetaData[];
+#endif
+		static void NewProp_IsInitNPC_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_IsInitNPC;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -126,6 +131,17 @@ void EmptyLinkFunctionForGeneratedCodeGameItem() {}
 		((UGameItem*)Obj)->IsNPC = 1;
 	}
 	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UGameItem_Statics::NewProp_IsNPC = { "IsNPC", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UGameItem), &Z_Construct_UClass_UGameItem_Statics::NewProp_IsNPC_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UGameItem_Statics::NewProp_IsNPC_MetaData), Z_Construct_UClass_UGameItem_Statics::NewProp_IsNPC_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UGameItem_Statics::NewProp_IsInitNPC_MetaData[] = {
+		{ "Category", "GameItem" },
+		{ "ModuleRelativePath", "GameItem.h" },
+	};
+#endif
+	void Z_Construct_UClass_UGameItem_Statics::NewProp_IsInitNPC_SetBit(void* Obj)
+	{
+		((UGameItem*)Obj)->IsInitNPC = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UGameItem_Statics::NewProp_IsInitNPC = { "IsInitNPC", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UGameItem), &Z_Construct_UClass_UGameItem_Statics::NewProp_IsInitNPC_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UGameItem_Statics::NewProp_IsInitNPC_MetaData), Z_Construct_UClass_UGameItem_Statics::NewProp_IsInitNPC_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UGameItem_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameItem_Statics::NewProp_Name,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameItem_Statics::NewProp_DbItem,
@@ -134,6 +150,7 @@ void EmptyLinkFunctionForGeneratedCodeGameItem() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameItem_Statics::NewProp_ContainedValue,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameItem_Statics::NewProp_Selected,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameItem_Statics::NewProp_IsNPC,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGameItem_Statics::NewProp_IsInitNPC,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UGameItem_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UGameItem>::IsAbstract,
@@ -173,9 +190,9 @@ void EmptyLinkFunctionForGeneratedCodeGameItem() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UGameItem, UGameItem::StaticClass, TEXT("UGameItem"), &Z_Registration_Info_UClass_UGameItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGameItem), 1504731063U) },
+		{ Z_Construct_UClass_UGameItem, UGameItem::StaticClass, TEXT("UGameItem"), &Z_Registration_Info_UClass_UGameItem, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGameItem), 906369939U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_1510693102(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_2600926908(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

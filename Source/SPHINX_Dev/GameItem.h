@@ -47,6 +47,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool IsNPC = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool IsInitNPC = false;
+
 	void SetupDbItem();
 
 	void Setup(FString Name, UItem* DbItem);

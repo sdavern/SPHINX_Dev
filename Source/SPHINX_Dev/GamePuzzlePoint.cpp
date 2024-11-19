@@ -206,6 +206,18 @@ void AGamePuzzlePoint::AssignInitNPCProperties(UPuzzlePoint* PP)
 	else
 	{
 		UE_LOG(LogTemp, Display, TEXT("AssignInitNPCProperties failed for PP: %s"), *PP->Name);
+		if (!InitNPC->GameItem)
+		{
+			UE_LOG(LogTemp, Display, TEXT("InitNPC does not have valid GameItem"));
+		}
+		if (!PP)
+		{
+			UE_LOG(LogTemp, Display, TEXT("Assign: PP is null"));
+		}
+		if (!InitNPC)
+		{
+			UE_LOG(LogTemp, Display, TEXT("Assign: InitNPC is null"));
+		}
 	}
 
 }

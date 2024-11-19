@@ -116,17 +116,31 @@ void UGameItem::Spawn(UGameItem* Item)
 void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
 {
 	//bool NoAction = true;
+	UE_LOG(LogTemp, Display, TEXT("OnGameItemClicked for %s"), *Name);
 	
 	APuzzleManager* Instance = APuzzleManager::GetInstance();
 	TArray<URule*> ButtonRules;
 
-	DbItem->ToPropPtrs();
+	if (DbItem)
+	{
+		DbItem->ToPropPtrs();
+		for (UItemProperty* Property : DbItem->Properties)
+		{
+			if (Property)
+			{
+				UE_LOG(LogTemp, Display, TEXT("%s %s is a property of DbItem %s"), *Property->Name, *Property->Value, *Name);
+			}
+		}
+	}
+	
 
-	for (UItemProperty* Property : DbItem->Properties)
+	
+
+	for (UItemProperty* Property : Properties)
 	{
 		if (Property)
 		{
-			UE_LOG(LogTemp, Display, TEXT("%s %s is a property of %s"), *Property->Name, *Property->Value, *Name);
+			UE_LOG(LogTemp, Display, TEXT("%s %s is a property of GameItem %s"), *Property->Name, *Property->Value, *Name);
 		}
 	}
 	
@@ -601,6 +615,7 @@ bool UGameItem::FulfillsProperties(UTerm* Input)
 bool UGameItem::HasProperty(UItemProperty* PropertyToCheck)
 {
 	UE_LOG(LogTemp, Display, TEXT("HasProperty called for %s %s"), *PropertyToCheck->Name, *PropertyToCheck->Value);
+
 	for (UItemProperty* Property : DbItem->Properties)
 	{
 		if (Property)
@@ -610,8 +625,22 @@ bool UGameItem::HasProperty(UItemProperty* PropertyToCheck)
 				return true;
 			}
 		}
-		
 	}
+
+	if (IsInitNPC)
+	{
+		for (UItemProperty* Prop : Properties)
+		{
+			if (Prop)
+			{
+				if (Prop->Equals(PropertyToCheck))
+				{
+					return true;
+				}
+			}
+		}
+	}
+
 	return false;
 }
 
