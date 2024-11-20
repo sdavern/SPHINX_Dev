@@ -24,6 +24,14 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 		P_THIS->OnButtonClicked();
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(UActionBtn::execAddSpacesBeforeCaps)
+	{
+		P_GET_PROPERTY(FStrProperty,Z_Param_InString);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(FString*)Z_Param__Result=P_THIS->AddSpacesBeforeCaps(Z_Param_InString);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UActionBtn::execInitializeButton)
 	{
 		P_GET_OBJECT(UGameItem,Z_Param_GameItem);
@@ -37,10 +45,57 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 	{
 		UClass* Class = UActionBtn::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
+			{ "AddSpacesBeforeCaps", &UActionBtn::execAddSpacesBeforeCaps },
 			{ "InitializeButton", &UActionBtn::execInitializeButton },
 			{ "OnButtonClicked", &UActionBtn::execOnButtonClicked },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics
+	{
+		struct ActionBtn_eventAddSpacesBeforeCaps_Parms
+		{
+			FString InString;
+			FString ReturnValue;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_InString_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_InString;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::NewProp_InString_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::NewProp_InString = { "InString", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ActionBtn_eventAddSpacesBeforeCaps_Parms, InString), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::NewProp_InString_MetaData), Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::NewProp_InString_MetaData) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ActionBtn_eventAddSpacesBeforeCaps_Parms, ReturnValue), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::NewProp_InString,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "ActionBtn.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UActionBtn, nullptr, "AddSpacesBeforeCaps", nullptr, nullptr, Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::PropPointers), sizeof(Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::ActionBtn_eventAddSpacesBeforeCaps_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::Function_MetaDataParams), Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::ActionBtn_eventAddSpacesBeforeCaps_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	struct Z_Construct_UFunction_UActionBtn_InitializeButton_Statics
 	{
@@ -148,6 +203,7 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UActionBtn_Statics::DependentSingletons) < 16);
 	const FClassFunctionLinkInfo Z_Construct_UClass_UActionBtn_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_UActionBtn_AddSpacesBeforeCaps, "AddSpacesBeforeCaps" }, // 738147485
 		{ &Z_Construct_UFunction_UActionBtn_InitializeButton, "InitializeButton" }, // 3585644412
 		{ &Z_Construct_UFunction_UActionBtn_OnButtonClicked, "OnButtonClicked" }, // 3872940985
 	};
@@ -232,9 +288,9 @@ void EmptyLinkFunctionForGeneratedCodeActionBtn() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UActionBtn, UActionBtn::StaticClass, TEXT("UActionBtn"), &Z_Registration_Info_UClass_UActionBtn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionBtn), 1456513524U) },
+		{ Z_Construct_UClass_UActionBtn, UActionBtn::StaticClass, TEXT("UActionBtn"), &Z_Registration_Info_UClass_UActionBtn, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionBtn), 2134978959U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_258810521(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_2109420278(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

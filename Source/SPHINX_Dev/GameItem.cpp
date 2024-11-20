@@ -316,18 +316,35 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 			if (Rule->Inputs[i])
 			{
 				//UE_LOG(LogTemp, Display, TEXT("Inputs are valid, input is %s"), *Rule->Inputs[i]->Name);
-				{
 					//DbItem needs to be set for each input
 					if (Rule->Inputs[i]->GameItem)
 					{
 						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem %s is valid"), *Rule->Inputs[i]->GameItem->Name);
 					}
+					else if (Rule->Inputs[i]->Name == TEXT("NPC"))
+					{
+						UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: GameItem for input %s is not valid but input is NPC"), *Rule->Inputs[i]->Name);
+						if (HitGameItem)
+						{
+							Rule->Inputs[i]->GameItem = HitGameItem;
+							if (Rule->Inputs[i]->GameItem)
+							{
+								UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Now GameItem %s is valid"), *Rule->Inputs[i]->GameItem->Name);
+							}
+							else
+							{
+								UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem %s is still not valid"), *Rule->Inputs[i]->Name);
+							}
+						}
+						else
+						{
+							UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: HitGameItem is not valid"));
+						}
+					}
 					else
 					{
-						UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: GameItem for input %s is not valid"), *Rule->Inputs[i]->Name);
+						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem %s is not valid"), *Rule->Inputs[i]->Name);
 					}
-					
-				}
 			}
 		}
 
@@ -500,6 +517,14 @@ bool UGameItem::RuleFulfilled(URule* Rule)
     UGameItem* SelectedItem = InventoryManager->GetSelectedItem(); //gets held gameitem
 	UGameItem* HitGameItem = InventoryManager->HitGameItem; //gets item hit by geosweep
 
+	if (HitGameItem)
+	{
+		UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HeldItem is valid"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HeldItem is not valid"));
+	}
 	if (HitGameItem && !SelectedItem && Rule->Inputs.Num() == 1) //if item hit by geosweep is valid and player is not holding item
 	{
 		bool ClickedItemFulfilled = true;

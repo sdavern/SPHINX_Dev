@@ -95,6 +95,7 @@ public:
 	UPROPERTY()
 	UArea* StartArea;
 
+	UPROPERTY()
 	bool UseAllRules;
 
 	UPROPERTY()
@@ -136,6 +137,7 @@ public:
 	UPROPERTY()
 	TArray<TSubclassOf<URule>> RuleAssets;
 
+	UPROPERTY()
 	TArray<URule*> RulePointers;
 
 	//TArray<TSubclassOf<UArea>> AreaAssets;
@@ -157,79 +159,114 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void GenerateForActivePuzzlePoints();
 
+	UFUNCTION()
 	TArray<URule*> RulesFor(UGameItem* GameItem);
 
+	UFUNCTION()
 	void AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<URule*> Rules);
 
 	UFUNCTION(BlueprintCallable)
 	void ExecuteRule(URule* Rule);
 
+	UFUNCTION()
 	void FindLeaves(URule* Parent, UPuzzlePoint* PP);
 
+	UFUNCTION()
 	bool FindItemsForOutputs(URule* Rule);
 
+	UFUNCTION()
 	void AddPuzzle(UPuzzlePoint* PP, FString Puzzle);
 
+	UFUNCTION()
 	UItem* GetObject(FString ItemName);
 
+	UFUNCTION()
 	bool HasItemOfType(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
 
+	UFUNCTION()
 	TArray<UItem*> GetItemsOfType(FString ItemName, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
 
-	TArray<UItem*> FindDbItemsFor(UTerm*, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
+	UFUNCTION()
+	TArray<UItem*> FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
 
+	UFUNCTION()
 	TArray<URule*> GetRulesWithInput(UItem* DbItem);
 
+	UFUNCTION()
 	TArray<URule*> GetRulesWithOutput(UTerm* Term);
 
+	UFUNCTION()
 	TArray<UItem*> GetAllItems();
 
+	UFUNCTION()
 	TArray<URule*> GetAllRules();
 
+	
 	TArray<UArea*> GetAllAreas();
 
+	UFUNCTION()
 	TArray<UPuzzlePoint*> GetAllPPs();
 
+	UFUNCTION()
 	void UpdatePlayerProperties(UItemProperty* Property);
 
+	UFUNCTION()
 	UGameItem* GetPlayer();
 
+	UFUNCTION()
 	bool PuzzleContains(UItem* Item, URule* Parent);
 
+	UFUNCTION()
 	FString GetHint();
 
+	UFUNCTION()
 	FString GetObjective();
 
+	UFUNCTION()
 	FString GetCurrentAreaName();
 
+	UFUNCTION()
 	UArea* GetCurrentArea();
 
+	UFUNCTION()
 	void TriggerEnd();
 
 	TArray<TSubclassOf<UArea>> LoadAreaBPs();
 
+	UFUNCTION()
 	TArray<TSubclassOf<UPuzzlePoint>> LoadPuzzlePointBPs();
 
+	UFUNCTION()
 	TArray<TSubclassOf<UItem>> LoadItemBPs();
 
+	UFUNCTION()
 	TArray<TSubclassOf<URule>> LoadRuleBPs();
 
+	UFUNCTION()
 	TArray<UItem*> GetItemsInWorld();
 
+	UFUNCTION()
 	TArray<UGameItem*> GetGameItemsInWorld();
 
+	UFUNCTION()
 	bool CheckIfPuzzleToBeGenerated();
 
+	UFUNCTION()
 	TArray<AGamePuzzlePoint*> GetPPsInWorld();
 
+	UFUNCTION()
 	void ActivatePuzzlePoint(AGamePuzzlePoint* PP);
 
+	UFUNCTION()
 	void DeactivatePuzzlePoint(AGamePuzzlePoint* PP);
 
+	UFUNCTION()
 	void ActivateMaxPuzzlePoints();
 
+	UFUNCTION()
 	void ReturnLeaves();
 
+	UFUNCTION()
 	void ActivateProperties();
 
 	ASPHINX_DevPlayerController* ReturnPC();
@@ -247,24 +284,34 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UPuzzleTracker* PuzzleTracker;
 
+	UFUNCTION()
 	void PrintLeaves();
 
+	UFUNCTION()
 	void PopulateRulePointers();
 
+	UFUNCTION()
 	void PrintAllRules();
 
+	UFUNCTION()
 	void InitialisePPPtrs();
 
+	UFUNCTION()
 	void SetupDbItemsOnStart();
 
+	UFUNCTION()
 	TArray<URule*> GetRulePointers();
 
+	UFUNCTION()
 	TArray<AGamePuzzlePoint*> GetGPPsInViewport();
 
+	UFUNCTION(BlueprintCallable)
 	bool IsGPPInViewport();
 
+	UFUNCTION(BlueprintCallable)
 	void RetryIsGPPInViewport();
 
+	UFUNCTION(BlueprintCallable)
 	void DestroyDialogue();
 
 protected:
@@ -286,7 +333,6 @@ private:
 	TArray<AGamePuzzlePoint*> ActivePuzzlePoints;
 
 	//UPROPERTY(EditAnywhere)
-	
 
 	TMap<TSharedPtr<UPuzzlePoint>, FSharedRulesStruct> SharedLeaves;
 
@@ -297,20 +343,28 @@ private:
 	UPROPERTY(EditAnywhere)
 	int MaxActivePuzzles;
 
+	UPROPERTY()
 	int ActivePPs = 0;
 
+	UPROPERTY()
 	int ActiveGeneratedPuzzles = 0;
 
+	UFUNCTION()
 	void AssignPlayer();
 
+	UPROPERTY()
 	bool PPLoaded = false;
 
+	UPROPERTY()
 	bool ItemsLoaded = false;
-	
+
+	UPROPERTY()
 	bool RulesLoaded = false;
 
+	UPROPERTY()
 	AGamePuzzlePoint* GPPToFind;
 
+	UPROPERTY()
 	URule* RuleToFind;
 
 public:	

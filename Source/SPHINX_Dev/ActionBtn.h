@@ -30,6 +30,7 @@ public:
     UFUNCTION(BlueprintCallable)
     void InitializeButton(UGameItem* GameItem, URule* Rule);
 
+    UFUNCTION()
 	FString AddSpacesBeforeCaps(const FString& InString);
 
 private:

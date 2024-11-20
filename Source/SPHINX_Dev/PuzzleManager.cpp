@@ -587,6 +587,7 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                     }
                     if (SolvedSoundCue)
                     {
+                        UE_LOG(LogTemp, Display, TEXT("Playing completion sound"));
                         FVector Location = FVector(0.0f, 0.0f, 0.0f);
                         UGameplayStatics::PlaySoundAtLocation(this, SolvedSoundCue, Location);
                     }
