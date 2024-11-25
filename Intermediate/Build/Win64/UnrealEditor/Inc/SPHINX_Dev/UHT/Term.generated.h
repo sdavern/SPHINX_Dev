@@ -9,8 +9,6 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class UItemProperty;
-enum class EItemProperty : uint8;
 #ifdef SPHINX_DEV_Term_generated_h
 #error "Term.generated.h already included, missing '#pragma once' in Term.h"
 #endif
@@ -19,18 +17,7 @@ enum class EItemProperty : uint8;
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_18_SPARSE_DATA
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_18_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_18_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
-#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execToPropPtrs); \
-	DECLARE_FUNCTION(execToString); \
-	DECLARE_FUNCTION(execGetTermAsString); \
-	DECLARE_FUNCTION(execGetSuperTypes); \
-	DECLARE_FUNCTION(execGetPropertyWithName); \
-	DECLARE_FUNCTION(execGetPropertiesWithName); \
-	DECLARE_FUNCTION(execDeleteProperty); \
-	DECLARE_FUNCTION(execAddPropertyOfType);
-
-
+#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_18_RPC_WRAPPERS_NO_PURE_DECLS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_18_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_18_INCLASS_NO_PURE_DECLS \
 private: \

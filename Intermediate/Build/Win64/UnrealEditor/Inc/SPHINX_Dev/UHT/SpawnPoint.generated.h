@@ -19,8 +19,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SpawnPoint_h_15_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_SpawnPoint_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
  \
-	DECLARE_FUNCTION(execCheckForItem); \
-	DECLARE_FUNCTION(execToSpawnPropPtrs); \
 	DECLARE_FUNCTION(execGetLocation);
 
 

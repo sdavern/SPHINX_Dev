@@ -113,8 +113,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AInventoryManager* InventoryManager;
 
-	/* UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AActor* Everything; */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor* Everything;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AActor* StartingInventory;

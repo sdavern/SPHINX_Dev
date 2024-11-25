@@ -9,12 +9,6 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class APuzzleManager;
-class UActionMenu;
-class UGameItem;
-class UItemProperty;
-class URule;
-class UTerm;
 #ifdef SPHINX_DEV_GameItem_generated_h
 #error "GameItem.generated.h already included, missing '#pragma once' in GameItem.h"
 #endif
@@ -23,21 +17,7 @@ class UTerm;
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_26_SPARSE_DATA
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_26_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_26_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
-#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execFulfillsProperties); \
-	DECLARE_FUNCTION(execRuleFulfilled); \
-	DECLARE_FUNCTION(execSpawn); \
-	DECLARE_FUNCTION(execGetPuzzleManager); \
-	DECLARE_FUNCTION(execToString); \
-	DECLARE_FUNCTION(execIsDestructible); \
-	DECLARE_FUNCTION(execGetProperty); \
-	DECLARE_FUNCTION(execHasProperty); \
-	DECLARE_FUNCTION(execExecuteRule); \
-	DECLARE_FUNCTION(execOnGameItemClicked); \
-	DECLARE_FUNCTION(execSetupDbItem);
-
-
+#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_26_RPC_WRAPPERS_NO_PURE_DECLS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_26_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GameItem_h_26_INCLASS_NO_PURE_DECLS \
 private: \

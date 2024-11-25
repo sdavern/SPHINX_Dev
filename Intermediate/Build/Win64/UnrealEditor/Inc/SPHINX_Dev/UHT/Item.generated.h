@@ -9,12 +9,6 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class UItem;
-class UItemProperty;
-class UObject;
-class UPuzzlePoint;
-class UTerm;
-enum class EItemProperty : uint8;
 #ifdef SPHINX_DEV_Item_generated_h
 #error "Item.generated.h already included, missing '#pragma once' in Item.h"
 #endif
@@ -23,30 +17,7 @@ enum class EItemProperty : uint8;
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_18_SPARSE_DATA
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_18_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_18_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
-#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
- \
-	DECLARE_FUNCTION(execToPropPtrs); \
-	DECLARE_FUNCTION(execClone); \
-	DECLARE_FUNCTION(execPostInitProperties); \
-	DECLARE_FUNCTION(execGetNextSpawnPt); \
-	DECLARE_FUNCTION(execToString); \
-	DECLARE_FUNCTION(execIsInspectable); \
-	DECLARE_FUNCTION(execIsSpawnable); \
-	DECLARE_FUNCTION(execIsCopyable); \
-	DECLARE_FUNCTION(execIsCarryable); \
-	DECLARE_FUNCTION(execIsAccessible); \
-	DECLARE_FUNCTION(execIsOfType); \
-	DECLARE_FUNCTION(execMatches); \
-	DECLARE_FUNCTION(execEquals); \
-	DECLARE_FUNCTION(execGetSuperTypes); \
-	DECLARE_FUNCTION(execDeleteProperty); \
-	DECLARE_FUNCTION(execAddPropertyOfType); \
-	DECLARE_FUNCTION(execHasProperty); \
-	DECLARE_FUNCTION(execGetPropertyWithName); \
-	DECLARE_FUNCTION(execGetPropertiesWithName); \
-	DECLARE_FUNCTION(execPropertyExists);
-
-
+#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_18_RPC_WRAPPERS_NO_PURE_DECLS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_18_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Item_h_18_INCLASS_NO_PURE_DECLS \
 private: \

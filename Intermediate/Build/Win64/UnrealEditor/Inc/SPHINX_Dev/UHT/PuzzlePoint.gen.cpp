@@ -18,313 +18,8 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UTerm_NoRegister();
 	UPackage* Z_Construct_UPackage__Script_SPHINX_Dev();
 // End Cross Module References
-	DEFINE_FUNCTION(UPuzzlePoint::execDeleteGoal)
-	{
-		P_GET_PROPERTY(FIntProperty,Z_Param_Index);
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->DeleteGoal(Z_Param_Index);
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(UPuzzlePoint::execAddGoal)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->AddGoal();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(UPuzzlePoint::execGetObjective)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		*(FString*)Z_Param__Result=P_THIS->GetObjective();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(UPuzzlePoint::execGetHint)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		*(FString*)Z_Param__Result=P_THIS->GetHint();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(UPuzzlePoint::execGetCurrentGoal)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		*(UTerm**)Z_Param__Result=P_THIS->GetCurrentGoal();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(UPuzzlePoint::execPickGoal)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		*(UTerm**)Z_Param__Result=P_THIS->PickGoal();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(UPuzzlePoint::execSetInitType)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->SetInitType();
-		P_NATIVE_END;
-	}
-	DEFINE_FUNCTION(UPuzzlePoint::execToPuzzleGoalPtrs)
-	{
-		P_FINISH;
-		P_NATIVE_BEGIN;
-		P_THIS->ToPuzzleGoalPtrs();
-		P_NATIVE_END;
-	}
 	void UPuzzlePoint::StaticRegisterNativesUPuzzlePoint()
 	{
-		UClass* Class = UPuzzlePoint::StaticClass();
-		static const FNameNativePtrPair Funcs[] = {
-			{ "AddGoal", &UPuzzlePoint::execAddGoal },
-			{ "DeleteGoal", &UPuzzlePoint::execDeleteGoal },
-			{ "GetCurrentGoal", &UPuzzlePoint::execGetCurrentGoal },
-			{ "GetHint", &UPuzzlePoint::execGetHint },
-			{ "GetObjective", &UPuzzlePoint::execGetObjective },
-			{ "PickGoal", &UPuzzlePoint::execPickGoal },
-			{ "SetInitType", &UPuzzlePoint::execSetInitType },
-			{ "ToPuzzleGoalPtrs", &UPuzzlePoint::execToPuzzleGoalPtrs },
-		};
-		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
-	}
-	struct Z_Construct_UFunction_UPuzzlePoint_AddGoal_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPuzzlePoint_AddGoal_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "PuzzlePoint.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPuzzlePoint_AddGoal_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPuzzlePoint, nullptr, "AddGoal", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_AddGoal_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPuzzlePoint_AddGoal_Statics::Function_MetaDataParams) };
-	UFunction* Z_Construct_UFunction_UPuzzlePoint_AddGoal()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPuzzlePoint_AddGoal_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics
-	{
-		struct PuzzlePoint_eventDeleteGoal_Parms
-		{
-			int32 Index;
-		};
-		static const UECodeGen_Private::FIntPropertyParams NewProp_Index;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-	const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::NewProp_Index = { "Index", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PuzzlePoint_eventDeleteGoal_Parms, Index), METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::NewProp_Index,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "PuzzlePoint.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPuzzlePoint, nullptr, "DeleteGoal", nullptr, nullptr, Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::PropPointers), sizeof(Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::PuzzlePoint_eventDeleteGoal_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::Function_MetaDataParams) };
-	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::PropPointers) < 2048);
-	static_assert(sizeof(Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::PuzzlePoint_eventDeleteGoal_Parms) < MAX_uint16);
-	UFunction* Z_Construct_UFunction_UPuzzlePoint_DeleteGoal()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPuzzlePoint_DeleteGoal_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics
-	{
-		struct PuzzlePoint_eventGetCurrentGoal_Parms
-		{
-			UTerm* ReturnValue;
-		};
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PuzzlePoint_eventGetCurrentGoal_Parms, ReturnValue), Z_Construct_UClass_UTerm_NoRegister, METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::NewProp_ReturnValue,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "PuzzlePoint.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPuzzlePoint, nullptr, "GetCurrentGoal", nullptr, nullptr, Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::PropPointers), sizeof(Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::PuzzlePoint_eventGetCurrentGoal_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::Function_MetaDataParams) };
-	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::PropPointers) < 2048);
-	static_assert(sizeof(Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::PuzzlePoint_eventGetCurrentGoal_Parms) < MAX_uint16);
-	UFunction* Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics
-	{
-		struct PuzzlePoint_eventGetHint_Parms
-		{
-			FString ReturnValue;
-		};
-		static const UECodeGen_Private::FStrPropertyParams NewProp_ReturnValue;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PuzzlePoint_eventGetHint_Parms, ReturnValue), METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::NewProp_ReturnValue,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "PuzzlePoint.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPuzzlePoint, nullptr, "GetHint", nullptr, nullptr, Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::PropPointers), sizeof(Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::PuzzlePoint_eventGetHint_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::Function_MetaDataParams) };
-	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::PropPointers) < 2048);
-	static_assert(sizeof(Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::PuzzlePoint_eventGetHint_Parms) < MAX_uint16);
-	UFunction* Z_Construct_UFunction_UPuzzlePoint_GetHint()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPuzzlePoint_GetHint_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics
-	{
-		struct PuzzlePoint_eventGetObjective_Parms
-		{
-			FString ReturnValue;
-		};
-		static const UECodeGen_Private::FStrPropertyParams NewProp_ReturnValue;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PuzzlePoint_eventGetObjective_Parms, ReturnValue), METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::NewProp_ReturnValue,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "PuzzlePoint.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPuzzlePoint, nullptr, "GetObjective", nullptr, nullptr, Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::PropPointers), sizeof(Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::PuzzlePoint_eventGetObjective_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::Function_MetaDataParams) };
-	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::PropPointers) < 2048);
-	static_assert(sizeof(Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::PuzzlePoint_eventGetObjective_Parms) < MAX_uint16);
-	UFunction* Z_Construct_UFunction_UPuzzlePoint_GetObjective()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPuzzlePoint_GetObjective_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics
-	{
-		struct PuzzlePoint_eventPickGoal_Parms
-		{
-			UTerm* ReturnValue;
-		};
-		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
-		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PuzzlePoint_eventPickGoal_Parms, ReturnValue), Z_Construct_UClass_UTerm_NoRegister, METADATA_PARAMS(0, nullptr) };
-	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::PropPointers[] = {
-		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::NewProp_ReturnValue,
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "PuzzlePoint.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPuzzlePoint, nullptr, "PickGoal", nullptr, nullptr, Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::PropPointers), sizeof(Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::PuzzlePoint_eventPickGoal_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::Function_MetaDataParams) };
-	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::PropPointers) < 2048);
-	static_assert(sizeof(Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::PuzzlePoint_eventPickGoal_Parms) < MAX_uint16);
-	UFunction* Z_Construct_UFunction_UPuzzlePoint_PickGoal()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPuzzlePoint_PickGoal_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_UPuzzlePoint_SetInitType_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPuzzlePoint_SetInitType_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "PuzzlePoint.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPuzzlePoint_SetInitType_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPuzzlePoint, nullptr, "SetInitType", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_SetInitType_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPuzzlePoint_SetInitType_Statics::Function_MetaDataParams) };
-	UFunction* Z_Construct_UFunction_UPuzzlePoint_SetInitType()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPuzzlePoint_SetInitType_Statics::FuncParams);
-		}
-		return ReturnFunction;
-	}
-	struct Z_Construct_UFunction_UPuzzlePoint_ToPuzzleGoalPtrs_Statics
-	{
-#if WITH_METADATA
-		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
-#endif
-		static const UECodeGen_Private::FFunctionParams FuncParams;
-	};
-#if WITH_METADATA
-	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UPuzzlePoint_ToPuzzleGoalPtrs_Statics::Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "PuzzlePoint.h" },
-	};
-#endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPuzzlePoint_ToPuzzleGoalPtrs_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPuzzlePoint, nullptr, "ToPuzzleGoalPtrs", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPuzzlePoint_ToPuzzleGoalPtrs_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPuzzlePoint_ToPuzzleGoalPtrs_Statics::Function_MetaDataParams) };
-	UFunction* Z_Construct_UFunction_UPuzzlePoint_ToPuzzleGoalPtrs()
-	{
-		static UFunction* ReturnFunction = nullptr;
-		if (!ReturnFunction)
-		{
-			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPuzzlePoint_ToPuzzleGoalPtrs_Statics::FuncParams);
-		}
-		return ReturnFunction;
 	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UPuzzlePoint);
 	UClass* Z_Construct_UClass_UPuzzlePoint_NoRegister()
@@ -334,7 +29,6 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 	struct Z_Construct_UClass_UPuzzlePoint_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
-		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -397,17 +91,6 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_SPHINX_Dev,
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzlePoint_Statics::DependentSingletons) < 16);
-	const FClassFunctionLinkInfo Z_Construct_UClass_UPuzzlePoint_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UPuzzlePoint_AddGoal, "AddGoal" }, // 2860848082
-		{ &Z_Construct_UFunction_UPuzzlePoint_DeleteGoal, "DeleteGoal" }, // 1293045123
-		{ &Z_Construct_UFunction_UPuzzlePoint_GetCurrentGoal, "GetCurrentGoal" }, // 3278175775
-		{ &Z_Construct_UFunction_UPuzzlePoint_GetHint, "GetHint" }, // 3134405292
-		{ &Z_Construct_UFunction_UPuzzlePoint_GetObjective, "GetObjective" }, // 4157677956
-		{ &Z_Construct_UFunction_UPuzzlePoint_PickGoal, "PickGoal" }, // 2458136064
-		{ &Z_Construct_UFunction_UPuzzlePoint_SetInitType, "SetInitType" }, // 3859181197
-		{ &Z_Construct_UFunction_UPuzzlePoint_ToPuzzleGoalPtrs, "ToPuzzleGoalPtrs" }, // 3466911302
-	};
-	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzlePoint_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UPuzzlePoint_Statics::Class_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
@@ -537,11 +220,11 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 		nullptr,
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		FuncInfo,
+		nullptr,
 		Z_Construct_UClass_UPuzzlePoint_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
-		UE_ARRAY_COUNT(FuncInfo),
+		0,
 		UE_ARRAY_COUNT(Z_Construct_UClass_UPuzzlePoint_Statics::PropPointers),
 		0,
 		0x001000A0u,
@@ -567,9 +250,9 @@ void EmptyLinkFunctionForGeneratedCodePuzzlePoint() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UPuzzlePoint, UPuzzlePoint::StaticClass, TEXT("UPuzzlePoint"), &Z_Registration_Info_UClass_UPuzzlePoint, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPuzzlePoint), 4027560451U) },
+		{ Z_Construct_UClass_UPuzzlePoint, UPuzzlePoint::StaticClass, TEXT("UPuzzlePoint"), &Z_Registration_Info_UClass_UPuzzlePoint, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPuzzlePoint), 2700534781U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_3666178912(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_30379263(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

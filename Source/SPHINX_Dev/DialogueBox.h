@@ -22,7 +22,6 @@ public:
 
 	virtual void NativeConstruct() override;
 
-	UFUNCTION()
 	void ChangeInspectText(UTextBlock* ButtonText, const FString& NewText);
 
 	UPROPERTY(meta = (BindWidget))

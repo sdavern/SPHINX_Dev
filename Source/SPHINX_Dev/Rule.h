@@ -75,66 +75,46 @@ public:
 
 	URule(const FString& Action);
 
-	UFUNCTION()
 	bool IsEqual(const UObject* OtherObject) const;
 
-	UFUNCTION()
 	void AddOutput();
 
-	UFUNCTION()
 	void AddInput();
 
-	UFUNCTION()
 	void DeleteOutputAtIndex(int32 Index);
 
-	UFUNCTION()
 	void DeleteInputAtIndex(int32 Index);
 
-	UFUNCTION()
 	void AddChildRule(URule* Child);
 
-	UFUNCTION()
 	void RemoveLastAddedRule();
 
-	UFUNCTION()
 	bool MainOutputIs(UTerm* Term) const;
 
-	UFUNCTION()
 	bool HasPlayerInput();
 
-	UFUNCTION()
 	FString GetRuleAsString();
 
 	FString GetRuleAsString(bool Speech);
 
-	UFUNCTION()
 	FString ToString();
 
-	UFUNCTION()
 	FString ToShortString();
-
-	UFUNCTION()
+	
 	bool ContainsItem(UItem* Item);
 
-	UFUNCTION()
 	URule* Clone();
 
-	UFUNCTION()
 	void ToOutputsPtr();
 
-	UFUNCTION()
 	void ToInputsPtr();
 
-	UFUNCTION()
 	void ToChildrenPtr();
 
-	UFUNCTION()
 	FString ToPMString();
 
-	UFUNCTION()
 	void GetDbItems();
 
-	UFUNCTION()
 	void InitialiseRule();
 
 };

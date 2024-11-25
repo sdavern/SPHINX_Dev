@@ -9,14 +9,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class AGamePuzzlePoint;
-class AGenerator;
-class ASpawnPoint;
 class UItem;
-class UPuzzlePoint;
-class URule;
-class UTerm;
-class UWorld;
 #ifdef SPHINX_DEV_Generator_generated_h
 #error "Generator.generated.h already included, missing '#pragma once' in Generator.h"
 #endif
@@ -27,14 +20,7 @@ class UWorld;
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Generator_h_27_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Generator_h_27_RPC_WRAPPERS_NO_PURE_DECLS \
  \
-	DECLARE_FUNCTION(execRetryGetSpawnPointFor); \
-	DECLARE_FUNCTION(execGetSPsInViewport); \
-	DECLARE_FUNCTION(execGetAllSpawnPoints); \
-	DECLARE_FUNCTION(execGetSpawnPointFor); \
-	DECLARE_FUNCTION(execFindGamePuzzlePoint); \
-	DECLARE_FUNCTION(execGenerateInputs); \
-	DECLARE_FUNCTION(execGeneratePuzzleStartingFrom); \
-	DECLARE_FUNCTION(execSpawn);
+	DECLARE_FUNCTION(execRetryGetSpawnPointFor);
 
 
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Generator_h_27_ACCESSORS

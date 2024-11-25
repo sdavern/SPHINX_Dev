@@ -66,25 +66,18 @@ public:
 	UPROPERTY()
 	AInitObject* InitObject;
 
-	UPROPERTY()
 	bool ActivePuzzleCompleted = false;
 
-	UFUNCTION()
 	UPuzzlePoint* PPToPtr();
 
-	UFUNCTION()
 	void SpawnInit();
 
-	UFUNCTION()
 	void DespawnInit();
 
-	UFUNCTION()
 	void AssignInitNPCProperties(UPuzzlePoint* PP);
 
-	UFUNCTION()
 	void SetupInitNPCGameItem();
 
-	UFUNCTION()
 	void InitialiseInitNPC();
 
 
