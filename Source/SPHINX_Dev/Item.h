@@ -61,45 +61,65 @@ public:
 	//
 
 	//Item functions
+	UFUNCTION()
 	bool PropertyExists(const FString& PropertyName) const;
 
+	UFUNCTION()
 	TArray<UItemProperty*> GetPropertiesWithName(const FString& PropertyName) const;
 
+	UFUNCTION()
 	UItemProperty* GetPropertyWithName(const FString& PropertyName) const;
 
+	UFUNCTION()
 	bool HasProperty(UItemProperty* PropertyToCheck);
 
+	UFUNCTION()
 	void AddPropertyOfType(EItemProperty Type);
 
+	UFUNCTION()
 	void DeleteProperty(int32 Index);
 
+	UFUNCTION()
 	TArray<FString> GetSuperTypes();
 
+	UFUNCTION()
 	bool Equals(const UObject* Other) const;
 
+	UFUNCTION()
 	bool Matches(UTerm* Term);
 
+	UFUNCTION()
 	bool IsOfType(UTerm* Term);   
 
+	UFUNCTION()
 	bool IsAccessible(TArray<UPuzzlePoint*> PPs, TArray<UItem*> ItemsInScene);
 
+	UFUNCTION()
 	bool IsCarryable();
 
+	UFUNCTION()
 	bool IsCopyable();
 
+	UFUNCTION()
 	bool IsSpawnable();
 
+	UFUNCTION()
 	bool IsInspectable();
 
+	UFUNCTION()
 	FString ToString() const;
 
+	UFUNCTION()
 	FVector GetNextSpawnPt();
 
+	UFUNCTION()
 	void PostInitProperties();
 
+	UFUNCTION()
 	UItem* Clone();
 
 	//Remove if causing issues
+	UFUNCTION()
     void ToPropPtrs();
 
 

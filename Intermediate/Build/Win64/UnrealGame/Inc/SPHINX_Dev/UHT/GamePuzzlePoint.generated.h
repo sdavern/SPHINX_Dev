@@ -9,6 +9,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UPuzzlePoint;
 #ifdef SPHINX_DEV_GamePuzzlePoint_generated_h
 #error "GamePuzzlePoint.generated.h already included, missing '#pragma once' in GamePuzzlePoint.h"
 #endif
@@ -17,7 +18,16 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_19_SPARSE_DATA
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_19_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_19_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
-#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_19_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execInitialiseInitNPC); \
+	DECLARE_FUNCTION(execSetupInitNPCGameItem); \
+	DECLARE_FUNCTION(execAssignInitNPCProperties); \
+	DECLARE_FUNCTION(execDespawnInit); \
+	DECLARE_FUNCTION(execSpawnInit); \
+	DECLARE_FUNCTION(execPPToPtr);
+
+
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_19_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_GamePuzzlePoint_h_19_INCLASS_NO_PURE_DECLS \
 private: \

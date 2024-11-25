@@ -148,6 +148,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UTexture2D* DefaultSprite;
 
+	UFUNCTION()
 	void SetupUI();
 
 	

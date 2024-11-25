@@ -17,8 +17,42 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 	UMG_API UClass* Z_Construct_UClass_UUserWidget();
 	UPackage* Z_Construct_UPackage__Script_SPHINX_Dev();
 // End Cross Module References
+	DEFINE_FUNCTION(UInventoryMenu::execSetupUI)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->SetupUI();
+		P_NATIVE_END;
+	}
 	void UInventoryMenu::StaticRegisterNativesUInventoryMenu()
 	{
+		UClass* Class = UInventoryMenu::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "SetupUI", &UInventoryMenu::execSetupUI },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_UInventoryMenu_SetupUI_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryMenu_SetupUI_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "InventoryMenu.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryMenu_SetupUI_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryMenu, nullptr, "SetupUI", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryMenu_SetupUI_Statics::Function_MetaDataParams), Z_Construct_UFunction_UInventoryMenu_SetupUI_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_UInventoryMenu_SetupUI()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UInventoryMenu_SetupUI_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UInventoryMenu);
 	UClass* Z_Construct_UClass_UInventoryMenu_NoRegister()
@@ -28,6 +62,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 	struct Z_Construct_UClass_UInventoryMenu_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -182,6 +217,10 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_SPHINX_Dev,
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::DependentSingletons) < 16);
+	const FClassFunctionLinkInfo Z_Construct_UClass_UInventoryMenu_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_UInventoryMenu_SetupUI, "SetupUI" }, // 1194443716
+	};
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::Class_MetaDataParams[] = {
 #if !UE_BUILD_SHIPPING
@@ -552,11 +591,11 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		nullptr,
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_UInventoryMenu_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::PropPointers),
 		0,
 		0x00B010A0u,
@@ -582,9 +621,9 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UInventoryMenu, UInventoryMenu::StaticClass, TEXT("UInventoryMenu"), &Z_Registration_Info_UClass_UInventoryMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryMenu), 3049955974U) },
+		{ Z_Construct_UClass_UInventoryMenu, UInventoryMenu::StaticClass, TEXT("UInventoryMenu"), &Z_Registration_Info_UClass_UInventoryMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryMenu), 2370462114U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_428567575(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_253210818(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

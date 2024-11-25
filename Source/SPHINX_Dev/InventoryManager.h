@@ -25,6 +25,7 @@ public:
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
+	UFUNCTION()
 	void AssignPlayer();
 
 	UFUNCTION(BlueprintCallable)

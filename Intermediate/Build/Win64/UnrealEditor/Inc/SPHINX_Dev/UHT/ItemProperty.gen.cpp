@@ -74,8 +74,94 @@ void EmptyLinkFunctionForGeneratedCodeItemProperty() {}
 		}
 		return Z_Registration_Info_UEnum_EItemProperty.InnerSingleton;
 	}
+	DEFINE_FUNCTION(UItemProperty::execRemoveProperty)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->RemoveProperty();
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UItemProperty::execEquals)
+	{
+		P_GET_OBJECT(UItemProperty,Z_Param_OtherProperty);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(bool*)Z_Param__Result=P_THIS->Equals(Z_Param_OtherProperty);
+		P_NATIVE_END;
+	}
 	void UItemProperty::StaticRegisterNativesUItemProperty()
 	{
+		UClass* Class = UItemProperty::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "Equals", &UItemProperty::execEquals },
+			{ "RemoveProperty", &UItemProperty::execRemoveProperty },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_UItemProperty_Equals_Statics
+	{
+		struct ItemProperty_eventEquals_Parms
+		{
+			UItemProperty* OtherProperty;
+			bool ReturnValue;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_OtherProperty;
+		static void NewProp_ReturnValue_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UItemProperty_Equals_Statics::NewProp_OtherProperty = { "OtherProperty", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ItemProperty_eventEquals_Parms, OtherProperty), Z_Construct_UClass_UItemProperty_NoRegister, METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UFunction_UItemProperty_Equals_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+	{
+		((ItemProperty_eventEquals_Parms*)Obj)->ReturnValue = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UItemProperty_Equals_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ItemProperty_eventEquals_Parms), &Z_Construct_UFunction_UItemProperty_Equals_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UItemProperty_Equals_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UItemProperty_Equals_Statics::NewProp_OtherProperty,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UItemProperty_Equals_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UItemProperty_Equals_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "ItemProperty.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UItemProperty_Equals_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UItemProperty, nullptr, "Equals", nullptr, nullptr, Z_Construct_UFunction_UItemProperty_Equals_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UItemProperty_Equals_Statics::PropPointers), sizeof(Z_Construct_UFunction_UItemProperty_Equals_Statics::ItemProperty_eventEquals_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UItemProperty_Equals_Statics::Function_MetaDataParams), Z_Construct_UFunction_UItemProperty_Equals_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UItemProperty_Equals_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UFunction_UItemProperty_Equals_Statics::ItemProperty_eventEquals_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UFunction_UItemProperty_Equals()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UItemProperty_Equals_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UItemProperty_RemoveProperty_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UItemProperty_RemoveProperty_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "ItemProperty.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UItemProperty_RemoveProperty_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UItemProperty, nullptr, "RemoveProperty", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UItemProperty_RemoveProperty_Statics::Function_MetaDataParams), Z_Construct_UFunction_UItemProperty_RemoveProperty_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_UItemProperty_RemoveProperty()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UItemProperty_RemoveProperty_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UItemProperty);
 	UClass* Z_Construct_UClass_UItemProperty_NoRegister()
@@ -85,6 +171,7 @@ void EmptyLinkFunctionForGeneratedCodeItemProperty() {}
 	struct Z_Construct_UClass_UItemProperty_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -110,6 +197,11 @@ void EmptyLinkFunctionForGeneratedCodeItemProperty() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_SPHINX_Dev,
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UItemProperty_Statics::DependentSingletons) < 16);
+	const FClassFunctionLinkInfo Z_Construct_UClass_UItemProperty_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_UItemProperty_Equals, "Equals" }, // 2477735314
+		{ &Z_Construct_UFunction_UItemProperty_RemoveProperty, "RemoveProperty" }, // 2260701570
+	};
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UItemProperty_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UItemProperty_Statics::Class_MetaDataParams[] = {
 		{ "BlueprintType", "true" },
@@ -154,11 +246,11 @@ void EmptyLinkFunctionForGeneratedCodeItemProperty() {}
 		nullptr,
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_UItemProperty_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_UItemProperty_Statics::PropPointers),
 		0,
 		0x001000A0u,
@@ -188,9 +280,9 @@ void EmptyLinkFunctionForGeneratedCodeItemProperty() {}
 		{ EItemProperty_StaticEnum, TEXT("EItemProperty"), &Z_Registration_Info_UEnum_EItemProperty, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 973540946U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UItemProperty, UItemProperty::StaticClass, TEXT("UItemProperty"), &Z_Registration_Info_UClass_UItemProperty, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItemProperty), 2606022319U) },
+		{ Z_Construct_UClass_UItemProperty, UItemProperty::StaticClass, TEXT("UItemProperty"), &Z_Registration_Info_UClass_UItemProperty, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItemProperty), 613491437U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_3232482033(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_4179633278(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::EnumInfo));

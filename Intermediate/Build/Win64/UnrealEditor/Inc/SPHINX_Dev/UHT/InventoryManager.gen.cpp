@@ -79,11 +79,19 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 		P_THIS->AddItemToInventory(Z_Param_Item);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(AInventoryManager::execAssignPlayer)
+	{
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->AssignPlayer();
+		P_NATIVE_END;
+	}
 	void AInventoryManager::StaticRegisterNativesAInventoryManager()
 	{
 		UClass* Class = AInventoryManager::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "AddItemToInventory", &AInventoryManager::execAddItemToInventory },
+			{ "AssignPlayer", &AInventoryManager::execAssignPlayer },
 			{ "DeleteItemFromInventory", &AInventoryManager::execDeleteItemFromInventory },
 			{ "DeselectItemFromInventory", &AInventoryManager::execDeselectItemFromInventory },
 			{ "GetInventory", &AInventoryManager::execGetInventory },
@@ -133,6 +141,28 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AInventoryManager_AddItemToInventory_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_AInventoryManager_AssignPlayer_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_AInventoryManager_AssignPlayer_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "InventoryManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AInventoryManager_AssignPlayer_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AInventoryManager, nullptr, "AssignPlayer", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AInventoryManager_AssignPlayer_Statics::Function_MetaDataParams), Z_Construct_UFunction_AInventoryManager_AssignPlayer_Statics::Function_MetaDataParams) };
+	UFunction* Z_Construct_UFunction_AInventoryManager_AssignPlayer()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AInventoryManager_AssignPlayer_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -472,6 +502,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AInventoryManager_Statics::DependentSingletons) < 16);
 	const FClassFunctionLinkInfo Z_Construct_UClass_AInventoryManager_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_AInventoryManager_AddItemToInventory, "AddItemToInventory" }, // 4026230581
+		{ &Z_Construct_UFunction_AInventoryManager_AssignPlayer, "AssignPlayer" }, // 1632090918
 		{ &Z_Construct_UFunction_AInventoryManager_DeleteItemFromInventory, "DeleteItemFromInventory" }, // 2857641609
 		{ &Z_Construct_UFunction_AInventoryManager_DeselectItemFromInventory, "DeselectItemFromInventory" }, // 2528826733
 		{ &Z_Construct_UFunction_AInventoryManager_GetInventory, "GetInventory" }, // 1448261001
@@ -585,9 +616,9 @@ void EmptyLinkFunctionForGeneratedCodeInventoryManager() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AInventoryManager, AInventoryManager::StaticClass, TEXT("AInventoryManager"), &Z_Registration_Info_UClass_AInventoryManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AInventoryManager), 2073282286U) },
+		{ Z_Construct_UClass_AInventoryManager, AInventoryManager::StaticClass, TEXT("AInventoryManager"), &Z_Registration_Info_UClass_AInventoryManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AInventoryManager), 1214966993U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_476403957(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_3641502912(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

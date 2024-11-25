@@ -27,7 +27,8 @@ class UGameItem;
 	DECLARE_FUNCTION(execDeleteItemFromInventory); \
 	DECLARE_FUNCTION(execRemoveSelectedItemFromInventory); \
 	DECLARE_FUNCTION(execRemoveItemFromInventory); \
-	DECLARE_FUNCTION(execAddItemToInventory);
+	DECLARE_FUNCTION(execAddItemToInventory); \
+	DECLARE_FUNCTION(execAssignPlayer);
 
 
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryManager_h_20_ACCESSORS

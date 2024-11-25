@@ -26,6 +26,7 @@ public:
 
 	virtual void NativeConstruct() override;
 
+	UFUNCTION()
 	void ChangeButtonText(UTextBlock* ButtonText, const FString& NewText);
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))

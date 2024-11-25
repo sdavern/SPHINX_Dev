@@ -34,8 +34,10 @@ public:
 
 	UItemProperty(EItemProperty NewType, const FString& NewName, const FString& NewValue);
 
+	UFUNCTION()
 	bool Equals(UItemProperty* OtherProperty);
 
+	UFUNCTION()
 	void RemoveProperty();
 
 };

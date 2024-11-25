@@ -50,6 +50,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool IsInitNPC = false;
 
+	UFUNCTION()
 	void SetupDbItem();
 
 	void Setup(FString Name, UItem* DbItem);
@@ -60,20 +61,27 @@ public:
 
 	/* void OnGameItemClicked(AActor* ActionMenu, AActor* ButtonPrefab, UTextBlock* ActionHeader, UPuzzlePoint* PP, bool Inventory); */
 
+	UFUNCTION()
 	void OnGameItemClicked(UActionMenu* ActionMenu);
 
+	UFUNCTION()
 	void ExecuteRule(URule* Rule);
 
 	static void ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* GameI);
 
+	UFUNCTION()
 	bool HasProperty(UItemProperty* PropertyToCheck);
 
+	UFUNCTION()
 	UItemProperty* GetProperty(FString PropertyName);
 
+	UFUNCTION()
 	bool IsDestructible();
 
+	UFUNCTION()
 	FString ToString();
 
+	UFUNCTION()
 	APuzzleManager* GetPuzzleManager();
 
 	bool InInventory = false;
@@ -84,12 +92,16 @@ protected:
 
 private:
 
+	UPROPERTY()
 	bool PickedUp = false;
 
+	UFUNCTION()
 	void Spawn(UGameItem* Item);
 
+	UFUNCTION()
 	bool RuleFulfilled(URule* Rule);
 
+	UFUNCTION()
 	bool FulfillsProperties(UTerm* Input);
 
 public:	

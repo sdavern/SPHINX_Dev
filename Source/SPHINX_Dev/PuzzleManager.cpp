@@ -38,13 +38,13 @@ void APuzzleManager::BeginPlay()
 
     PlayerController = ReturnPC();
 
-    if (Everything != nullptr)
+    /* if (Everything != nullptr)
     {
         Everything->SetActorHiddenInGame(false);
         Everything->SetActorEnableCollision(true);
         Everything->SetActorTickEnabled(true);
         //UE_LOG(LogTemp, Display, TEXT("Everything set to Active"));
-    }
+    } */
     
     if (Player != nullptr)
     {
@@ -123,10 +123,16 @@ void APuzzleManager::AssignPlayer()
 
 void APuzzleManager::ActivateMaxPuzzlePoints()
 {
+
     int SafetyCounter = 0;
     while (ActivePPs < MaxActivePuzzles)
     {
         TArray<AGamePuzzlePoint*> PPsInWorld = GetPPsInWorld();
+        if (PPsInWorld.Num() == 0)
+        {
+            UE_LOG(LogTemp, Display, TEXT("No PPsInWorld"));
+            return;
+        }
         for (AGamePuzzlePoint* GPP : PPsInWorld)
         {
             if (!GPP->IsActive)
@@ -197,6 +203,7 @@ APuzzleManager* APuzzleManager::GetInstance()
 
         if (!Instance)
         {
+            return nullptr;
             UE_LOG(LogTemp, Error, TEXT("PuzzleManager instance not found in GetInstance."));
         }
     }
@@ -628,6 +635,7 @@ void APuzzleManager::ExecuteRule(URule* Rule)
 
                         if (!IsGPPInViewport())
                         {
+                            UE_LOG(LogTemp, Display, TEXT("GPP is not in viewport, deactivating GPP"));
                             UE_LOG(LogTemp, Display, TEXT("OwningGPP is valid"));
                             DeactivatePuzzlePoint(OwningGPP);
                             RulePPs.Remove(Rule->ToPMString());
@@ -1419,6 +1427,7 @@ TArray<URule*> APuzzleManager::GetRulePointers()
 
 TArray<AGamePuzzlePoint*> APuzzleManager::GetGPPsInViewport()
 {
+    UE_LOG(LogTemp, Display, TEXT("GetGPPsInViewport called"));
     TArray<AGamePuzzlePoint*> FoundGPPs;
     UWorld* World = GetWorld();
     if (!World)
@@ -1467,37 +1476,39 @@ TArray<AGamePuzzlePoint*> APuzzleManager::GetGPPsInViewport()
     for (TActorIterator<AGamePuzzlePoint> ActorItr(World); ActorItr; ++ActorItr)
     {
         AGamePuzzlePoint* Actor = *ActorItr;
-        if (IsValid(Actor))
+        if (!IsValid(Actor)) continue;
+
+        const FBoxSphereBounds Bounds = Actor->GetComponentsBoundingBox();
+        if (!ViewFrustum.IntersectBox(Bounds.Origin, Bounds.BoxExtent)) continue;
+
+        FHitResult HitResult;
+        FCollisionQueryParams Params(NAME_None, false, NPlayerController->GetPawn());
+
+        World->LineTraceSingleByChannel(
+            HitResult,
+            CameraLocation,
+            Actor->GetActorLocation(),
+            ECC_Visibility,
+            Params
+        );
+
+        if (HitResult.GetActor() == Actor || !HitResult.bBlockingHit)
         {
-            const FBoxSphereBounds Bounds = Actor->GetComponentsBoundingBox();
-            if (ViewFrustum.IntersectBox(Bounds.Origin, Bounds.BoxExtent))
-            {
-                FHitResult HitResult;
-                FCollisionQueryParams Params;
-                Params.AddIgnoredActor(PlayerController->GetPawn());
-                Params.AddIgnoredActor(Actor);
-
-                World->LineTraceSingleByChannel(
-                    HitResult,
-                    CameraLocation,
-                    Actor->GetActorLocation(),
-                    ECC_Visibility,
-                    Params
-                );
-
-                if (!HitResult.bBlockingHit || HitResult.GetActor() == Actor)
-                {
-                    FoundGPPs.Add(Actor);
-                }
-            }
+            FoundGPPs.Add(Actor);
+            UE_LOG(LogTemp, Display, TEXT("Actor %s added to visible list"), *Actor->GetName());
+        }
+        else
+        {
+            UE_LOG(LogTemp, Display, TEXT("Actor %s is obstructed"), *Actor->GetName());
         }
     }
-	UE_LOG(LogTemp, Warning, TEXT("%d SPAWN POINTS ARE VISIBLE IN THE VIEWPORT"), FoundGPPs.Num());
+	UE_LOG(LogTemp, Warning, TEXT("%d GAME PUZZLE POINTS ARE VISIBLE IN THE VIEWPORT"), FoundGPPs.Num());
     return FoundGPPs;
 }
 
 bool APuzzleManager::IsGPPInViewport()
 {
+    UE_LOG(LogTemp, Display, TEXT("IsGPPInViewport called"));
     TArray<AGamePuzzlePoint*> FoundGPPs;
     FoundGPPs = GetGPPsInViewport();
     for (AGamePuzzlePoint* GPP : FoundGPPs)
@@ -1505,9 +1516,14 @@ bool APuzzleManager::IsGPPInViewport()
         if (GPP && GPPToFind)
         {
             if (GPP->Name == GPPToFind->Name)
-            return true;
+            {
+                UE_LOG(LogTemp, Display, TEXT("GPP->Name %s == GPPToFind->Name %s"), *GPP->Name, *GPPToFind->Name);
+                UE_LOG(LogTemp, Display, TEXT("IsGPPInViewport returning true"));
+                return true;
+            }
         }
     }
+    UE_LOG(LogTemp, Display, TEXT("IsGPPInViewport returning false"));
     return false;
 }
 

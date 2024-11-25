@@ -18,8 +18,76 @@ void EmptyLinkFunctionForGeneratedCodeActionMenu() {}
 	UMG_API UClass* Z_Construct_UClass_UUserWidget();
 	UPackage* Z_Construct_UPackage__Script_SPHINX_Dev();
 // End Cross Module References
+	DEFINE_FUNCTION(UActionMenu::execChangeButtonText)
+	{
+		P_GET_OBJECT(UTextBlock,Z_Param_ButtonText);
+		P_GET_PROPERTY(FStrProperty,Z_Param_NewText);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->ChangeButtonText(Z_Param_ButtonText,Z_Param_NewText);
+		P_NATIVE_END;
+	}
 	void UActionMenu::StaticRegisterNativesUActionMenu()
 	{
+		UClass* Class = UActionMenu::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "ChangeButtonText", &UActionMenu::execChangeButtonText },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics
+	{
+		struct ActionMenu_eventChangeButtonText_Parms
+		{
+			UTextBlock* ButtonText;
+			FString NewText;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ButtonText_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ButtonText;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_NewText_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_NewText;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::NewProp_ButtonText_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::NewProp_ButtonText = { "ButtonText", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ActionMenu_eventChangeButtonText_Parms, ButtonText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::NewProp_ButtonText_MetaData), Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::NewProp_ButtonText_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::NewProp_NewText_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::NewProp_NewText = { "NewText", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ActionMenu_eventChangeButtonText_Parms, NewText), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::NewProp_NewText_MetaData), Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::NewProp_NewText_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::NewProp_ButtonText,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::NewProp_NewText,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "ActionMenu.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UActionMenu, nullptr, "ChangeButtonText", nullptr, nullptr, Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::PropPointers), sizeof(Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::ActionMenu_eventChangeButtonText_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::Function_MetaDataParams), Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::ActionMenu_eventChangeButtonText_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UFunction_UActionMenu_ChangeButtonText()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UActionMenu_ChangeButtonText_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UActionMenu);
 	UClass* Z_Construct_UClass_UActionMenu_NoRegister()
@@ -29,6 +97,7 @@ void EmptyLinkFunctionForGeneratedCodeActionMenu() {}
 	struct Z_Construct_UClass_UActionMenu_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -118,6 +187,10 @@ void EmptyLinkFunctionForGeneratedCodeActionMenu() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_SPHINX_Dev,
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::DependentSingletons) < 16);
+	const FClassFunctionLinkInfo Z_Construct_UClass_UActionMenu_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_UActionMenu_ChangeButtonText, "ChangeButtonText" }, // 2735802502
+	};
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UActionMenu_Statics::Class_MetaDataParams[] = {
 #if !UE_BUILD_SHIPPING
@@ -329,11 +402,11 @@ void EmptyLinkFunctionForGeneratedCodeActionMenu() {}
 		nullptr,
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_UActionMenu_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_UActionMenu_Statics::PropPointers),
 		0,
 		0x00B010A0u,
@@ -360,9 +433,9 @@ void EmptyLinkFunctionForGeneratedCodeActionMenu() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UActionMenu, UActionMenu::StaticClass, TEXT("UActionMenu"), &Z_Registration_Info_UClass_UActionMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionMenu), 3808362912U) },
+		{ Z_Construct_UClass_UActionMenu, UActionMenu::StaticClass, TEXT("UActionMenu"), &Z_Registration_Info_UClass_UActionMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UActionMenu), 311801448U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_4169164224(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_227887897(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionMenu_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -9,6 +9,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UTerm;
 #ifdef SPHINX_DEV_PuzzlePoint_generated_h
 #error "PuzzlePoint.generated.h already included, missing '#pragma once' in PuzzlePoint.h"
 #endif
@@ -17,7 +18,18 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_18_SPARSE_DATA
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_18_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_18_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
-#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_18_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execDeleteGoal); \
+	DECLARE_FUNCTION(execAddGoal); \
+	DECLARE_FUNCTION(execGetObjective); \
+	DECLARE_FUNCTION(execGetHint); \
+	DECLARE_FUNCTION(execGetCurrentGoal); \
+	DECLARE_FUNCTION(execPickGoal); \
+	DECLARE_FUNCTION(execSetInitType); \
+	DECLARE_FUNCTION(execToPuzzleGoalPtrs);
+
+
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_18_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzlePoint_h_18_INCLASS_NO_PURE_DECLS \
 private: \

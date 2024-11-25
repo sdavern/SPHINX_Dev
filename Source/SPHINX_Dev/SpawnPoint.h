@@ -35,8 +35,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void GetLocation();
 
+	UFUNCTION()
 	void ToSpawnPropPtrs();
 
+	UFUNCTION()
 	void CheckForItem();
 
 protected:

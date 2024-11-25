@@ -55,21 +55,29 @@ public:
 
 	UTerm(const UTerm& Term, const FString& Name);
 
+    UFUNCTION()
 	void AddPropertyOfType(EItemProperty Type);
 
+    UFUNCTION()
 	void DeleteProperty(int32 Index);
 
+    UFUNCTION()
     TArray<UItemProperty*> GetPropertiesWithName(const FString& PropertyName) const;
 
+    UFUNCTION()
     UItemProperty* GetPropertyWithName(const FString& PropertyName) const;
 
+    UFUNCTION()
 	TArray<FString> GetSuperTypes();
 
+    UFUNCTION()
 	FString GetTermAsString();
 
+    UFUNCTION()
 	FString ToString();
 
     //Remove if causing issues
+    UFUNCTION()
     void ToPropPtrs();
 
 

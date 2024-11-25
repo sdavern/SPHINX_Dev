@@ -1,0 +1,1024 @@
+Stats thread started at 0.277154
+ICU TimeZone Detection - Raw Offset: +0:00, Platform Override: ''
+Session CrashGUID >====================================================
+         Session CrashGUID >   UECC-Windows-62BD43724CB3DE2C2DDD6AB40F7CCD1F
+         Session CrashGUID >====================================================
+Loading Mac ini files took 0.03 seconds
+Loading Android ini files took 0.03 seconds
+Loading IOS ini files took 0.03 seconds
+Loading VulkanPC ini files took 0.03 seconds
+Loading TVOS ini files took 0.04 seconds
+Loading Unix ini files took 0.04 seconds
+Loading Windows ini files took 0.04 seconds
+Loading Linux ini files took 0.04 seconds
+Loading LinuxArm64 ini files took 0.04 seconds
+Mounting Engine plugin FastBuildController
+Mounting Engine plugin EnhancedInput
+Found config from plugin[EnhancedInput] Input
+Mounting Engine plugin MeshPainting
+Mounting Engine plugin TraceUtilities
+Mounting Engine plugin XGEController
+Mounting Engine plugin OnlineBase
+Mounting Engine plugin OnlineSubsystem
+Mounting Engine plugin OnlineServices
+Mounting Engine plugin OnlineSubsystemNull
+Mounting Engine plugin AISupport
+Mounting Engine plugin OnlineSubsystemUtils
+Mounting Engine plugin EnvironmentQueryEditor
+Mounting Engine plugin AssetManagerEditor
+Mounting Engine plugin ChangelistReview
+Mounting Engine plugin BlueprintHeaderView
+Mounting Engine plugin CurveEditorTools
+Mounting Engine plugin CryptoKeys
+Mounting Engine plugin DataValidation
+Mounting Engine plugin EngineAssetDefinitions
+Mounting Engine plugin EditorDebugTools
+Mounting Engine plugin MaterialAnalyzer
+Mounting Engine plugin GameplayTagsEditor
+Mounting Engine plugin MacGraphicsSwitching
+Mounting Engine plugin EditorScriptingUtilities
+Mounting Engine plugin PluginBrowser
+Mounting Engine plugin SpeedTreeImporter
+Mounting Engine plugin GeometryMode
+Mounting Engine plugin ActorLayerUtilities
+Mounting Engine plugin SequencerAnimTools
+Mounting Engine plugin WorldPartitionHLODUtilities
+Mounting Engine plugin UVEditor
+Mounting Engine plugin MobileLauncherProfileWizard
+Mounting Engine plugin ArchVisCharacter
+Mounting Engine plugin AssetTags
+Mounting Engine plugin AndroidPermission
+Mounting Engine plugin AppleImageUtils
+Mounting Engine plugin AudioSynesthesia
+Mounting Engine plugin CustomMeshComponent
+Mounting Engine plugin ChunkDownloader
+Mounting Engine plugin AudioCapture
+Mounting Engine plugin CableComponent
+Mounting Engine plugin AudioWidgets
+Mounting Engine plugin GeometryCache
+Mounting Engine plugin ExampleDeviceProfileSelector
+Mounting Engine plugin GeometryProcessing
+Mounting Engine plugin InputDebugging
+Found config from plugin[InputDebugging] Input
+Mounting Engine plugin LinuxDeviceProfileSelector
+Mounting Engine plugin MobilePatchingUtils
+Mounting Engine plugin Metasound
+Asset registry cache read as 28.4 MiB from ../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/CachedAssetRegistry_0.bin
+Mounting Engine plugin MeshModelingToolset
+Mounting Engine plugin MsQuic
+Mounting Engine plugin LocationServicesBPLibrary
+Mounting Engine plugin RigVM
+Mounting Engine plugin PropertyAccessEditor
+Mounting Engine plugin ResonanceAudio
+Mounting Engine plugin ProceduralMeshComponent
+Mounting Engine plugin SignificanceManager
+Mounting Engine plugin SoundFields
+Mounting Engine plugin WaveTable
+Mounting Engine plugin WebMMoviePlayer
+Mounting Engine plugin Synthesis
+Mounting Engine plugin WindowsDeviceProfileSelector
+Mounting Engine plugin WindowsMoviePlayer
+Mounting Engine plugin AlembicImporter
+Mounting Engine plugin MediaCompositing
+Mounting Engine plugin ImgMedia
+Mounting Engine plugin MediaPlate
+Mounting Engine plugin MediaPlayerEditor
+Mounting Engine plugin WmfMedia
+Mounting Engine plugin AnimationModifierLibrary
+Mounting Engine plugin WebMMedia
+Mounting Engine plugin AnimationData
+Mounting Engine plugin BlendSpaceMotionAnalysis
+Mounting Engine plugin ControlRigSpline
+Mounting Engine plugin ControlRig
+Mounting Engine plugin ACLPlugin
+Mounting Engine plugin Niagara
+Mounting Engine plugin TemplateSequence
+Mounting Engine plugin OodleNetwork
+Mounting Engine plugin SequencerScripting
+Mounting Engine plugin ActorSequence
+Mounting Engine plugin AutomationUtils
+Mounting Engine plugin LevelSequenceEditor
+Mounting Engine plugin BackChannel
+Mounting Engine plugin ChaosUserDataPT
+Mounting Engine plugin CharacterAI
+Mounting Engine plugin Dataflow
+Mounting Engine plugin LocalizableMessage
+Mounting Engine plugin MeshModelingToolsetExp
+Mounting Engine plugin OpenImageDenoise
+Mounting Engine plugin ProxyLODPlugin
+Mounting Engine plugin PlatformCrypto
+Mounting Engine plugin PythonScriptPlugin
+Mounting Engine plugin StructUtils
+Mounting Engine plugin ToolPresets
+Mounting Engine plugin SkeletalReduction
+Mounting Engine plugin InterchangeTests
+Mounting Engine plugin UdpMessaging
+Mounting Engine plugin TcpMessaging
+Mounting Engine plugin PaperZD
+Mounting Engine plugin TypewriterPlugin
+Mounting Engine plugin CameraShakePreviewer
+Mounting Engine plugin DumpGPUServices
+Mounting Engine plugin GameplayCameras
+Mounting Engine plugin EasyFileDialog
+Mounting Engine plugin KDevelopSourceCodeAccess
+Mounting Engine plugin GitSourceControl
+Mounting Engine plugin AnimationSharing
+Mounting Engine plugin PlasticSourceControl
+Mounting Engine plugin PixWinPlugin
+Mounting Engine plugin NullSourceCodeAccess
+Mounting Engine plugin PerforceSourceControl
+Mounting Engine plugin N10XSourceCodeAccess
+Mounting Engine plugin CLionSourceCodeAccess
+Mounting Engine plugin TextureFormatOodle
+Mounting Engine plugin RenderDocPlugin
+Mounting Engine plugin SubversionSourceControl
+Mounting Engine plugin PluginUtils
+Mounting Engine plugin PropertyAccessNode
+Mounting Engine plugin RiderSourceCodeAccess
+Mounting Engine plugin UObjectPlugin
+Mounting Engine plugin VisualStudioCodeSourceCodeAccess
+Mounting Engine plugin VisualStudioSourceCodeAccess
+Mounting Engine plugin CodeLiteSourceCodeAccess
+Mounting Engine plugin TraceDataFilters
+Mounting Engine plugin Interchange
+Mounting Engine plugin VariantManagerContent
+Mounting Engine plugin XCodeSourceCodeAccess
+Mounting Engine plugin GLTFExporter
+Mounting Engine plugin DatasmithContent
+Mounting Engine plugin InterchangeEditor
+Mounting Engine plugin LauncherChunkInstaller
+Mounting Engine plugin VariantManager
+Mounting Engine plugin Paper2D
+Mounting Engine plugin PortableObjectFileDataSource
+Mounting Engine plugin ContentBrowserAssetDataSource
+Mounting Engine plugin ContentBrowserClassDataSource
+Mounting Engine plugin ObjectMixer
+Mounting Engine plugin ContentBrowserFileDataSource
+Mounting Engine plugin LightMixer
+Mounting Project plugin CPPEditorUtilityPlugin
+Mounting Project plugin ItemUI
+FPackageName: Mount point added: '../../Plugins/TraceUtilities/Content/' mounted to '/TraceUtilities/'
+FPackageName: Mount point added: '../../Plugins/Editor/BlueprintHeaderView/Content/' mounted to '/BlueprintHeaderView/'
+FPackageName: Mount point added: '../../Plugins/Editor/SpeedTreeImporter/Content/' mounted to '/SpeedTreeImporter/'
+FPackageName: Mount point added: '../../Plugins/Editor/GeometryMode/Content/' mounted to '/GeometryMode/'
+FPackageName: Mount point added: '../../Plugins/Editor/UVEditor/Content/' mounted to '/UVEditor/'
+FPackageName: Mount point added: '../../Plugins/Runtime/AudioSynesthesia/Content/' mounted to '/AudioSynesthesia/'
+FPackageName: Mount point added: '../../Plugins/Runtime/AudioWidgets/Content/' mounted to '/AudioWidgets/'
+FPackageName: Mount point added: '../../Plugins/Runtime/GeometryProcessing/Content/' mounted to '/GeometryProcessing/'
+FPackageName: Mount point added: '../../Plugins/Runtime/Metasound/Content/' mounted to '/Metasound/'
+FPackageName: Mount point added: '../../Plugins/Runtime/MeshModelingToolset/Content/' mounted to '/MeshModelingToolset/'
+FPackageName: Mount point added: '../../Plugins/Runtime/RigVM/Content/' mounted to '/RigVM/'
+FPackageName: Mount point added: '../../Plugins/Runtime/ResonanceAudio/Content/' mounted to '/ResonanceAudio/'
+FPackageName: Mount point added: '../../Plugins/Runtime/WaveTable/Content/' mounted to '/WaveTable/'
+FPackageName: Mount point added: '../../Plugins/Runtime/Synthesis/Content/' mounted to '/Synthesis/'
+FPackageName: Mount point added: '../../Plugins/Media/MediaCompositing/Content/' mounted to '/MediaCompositing/'
+FPackageName: Mount point added: '../../Plugins/Media/MediaPlate/Content/' mounted to '/MediaPlate/'
+FPackageName: Mount point added: '../../Plugins/Animation/ControlRigSpline/Content/' mounted to '/ControlRigSpline/'
+FPackageName: Mount point added: '../../Plugins/Animation/ControlRig/Content/' mounted to '/ControlRig/'
+FPackageName: Mount point added: '../../Plugins/Animation/ACLPlugin/Content/' mounted to '/ACLPlugin/'
+FPackageName: Mount point added: '../../Plugins/FX/Niagara/Content/' mounted to '/Niagara/'
+FPackageName: Mount point added: '../../Plugins/MovieScene/SequencerScripting/Content/' mounted to '/SequencerScripting/'
+FPackageName: Mount point added: '../../Plugins/Experimental/Dataflow/Content/' mounted to '/Dataflow/'
+FPackageName: Mount point added: '../../Plugins/Experimental/MeshModelingToolsetExp/Content/' mounted to '/MeshModelingToolsetExp/'
+FPackageName: Mount point added: '../../Plugins/Experimental/PythonScriptPlugin/Content/' mounted to '/PythonScriptPlugin/'
+FPackageName: Mount point added: '../../Plugins/Experimental/ToolPresets/Content/' mounted to '/ToolPresets/'
+FPackageName: Mount point added: '../../Plugins/Marketplace/PaperZD/Content/' mounted to '/PaperZD/'
+FPackageName: Mount point added: '../../Plugins/Marketplace/TypewriterPlugin/Content/' mounted to '/TypewriterPlugin/'
+FPackageName: Mount point added: '../../Plugins/Marketplace/EasyFileDialog/Content/' mounted to '/EasyFileDialog/'
+FPackageName: Mount point added: '../../Plugins/Developer/AnimationSharing/Content/' mounted to '/AnimationSharing/'
+FPackageName: Mount point added: '../../Plugins/Interchange/Runtime/Content/' mounted to '/Interchange/'
+FPackageName: Mount point added: '../../Plugins/Enterprise/GLTFExporter/Content/' mounted to '/GLTFExporter/'
+FPackageName: Mount point added: '../../Plugins/Enterprise/DatasmithContent/Content/' mounted to '/DatasmithContent/'
+FPackageName: Mount point added: '../../Plugins/2D/Paper2D/Content/' mounted to '/Paper2D/'
+FPackageName: Mount point added: '../../Plugins/Editor/ObjectMixer/ObjectMixer/Content/' mounted to '/ObjectMixer/'
+FPackageName: Mount point added: '../../Plugins/Editor/ObjectMixer/LightMixer/Content/' mounted to '/LightMixer/'
+FPackageName: Mount point added: '../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Plugins/CPPEditorUtilityPlugin/Content/' mounted to '/CPPEditorUtilityPlugin/'
+Revision control is disabled
+Revision control is disabled
+Revision control is disabled
+Using libcurl 8.4.0
+ - built for Windows
+ - supports SSL with OpenSSL/1.1.1t
+ - supports HTTP deflate (compression) using libz 1.2.13
+ - other features:
+     CURL_VERSION_SSL
+     CURL_VERSION_LIBZ
+     CURL_VERSION_IPV6
+     CURL_VERSION_ASYNCHDNS
+     CURL_VERSION_LARGEFILE
+ CurlRequestOptions (configurable via config and command line):
+ - bVerifyPeer = true  - Libcurl will verify peer certificate
+ - bUseHttpProxy = false  - Libcurl will NOT use HTTP proxy
+ - bDontReuseConnections = false  - Libcurl will reuse connections
+ - MaxHostConnections = 16  - Libcurl will limit the number of connections to a host
+ - LocalHostAddr = Default
+ - BufferSize = 65536
+WinSock: version 1.1 (2.2), MaxSocks=32767, MaxUdp=65467
+OSS: Created online subsystem instance for: NULL
+OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for type [NULL]
+Failed to load 'WinPixGpuCapturer.dll' (GetLastError=126)
+File 'WinPixGpuCapturer.dll' does not exist
+PIX capture plugin failed to initialize! Check that the process is launched from PIX.
+Applying CVar settings from Section [/Script/RenderDocPlugin.RenderDocPluginSettings] File [Engine]
+RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
+ExecutableName: UnrealEditor-Cmd.exe
+Build: ++UE5+Release-5.3-CL-29314046
+Engine Version: 5.3.2-29314046+++UE5+Release-5.3
+Compatible Engine Version: 5.3.0-27405482+++UE5+Release-5.3
+Net CL: 27405482
+OS: Windows 11 (23H2) [10.0.22631.4460] (), CPU: AMD Ryzen 9 5900X 12-Core Processor            , GPU: NVIDIA GeForce RTX 3080 Ti
+Compiled (64-bit): Nov  3 2023 16:09:16
+Architecture: x64
+Compiled with Visual C++: 19.36.32537.00
+Build Configuration: Development
+Branch Name: ++UE5+Release-5.3
+Command Line:  "C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\SPHINX_Dev.uproject" -run=Cook -TargetPlatform=Windows -unversioned -fileopenlog -abslog="C:\Program Files\Epic Games\UE_5.3\Engine\Programs\AutomationTool\Saved\Cook-2024.11.25-11.40.48.txt" -stdout -CrashForUAT -unattended -NoLogTimes -UTF8Output
+Base Directory: C:/Program Files/Epic Games/UE_5.3/Engine/Binaries/Win64/
+Allocator: Mimalloc
+Installed Engine Build: 1
+This binary is optimized with LTO: no, PGO: no, instrumented for PGO data collection: no
+Number of dev versions registered: 36
+  Dev-Blueprints (B0D832E4-1F89-4F0D-ACCF-7EB736FD4AA2): 10
+  Dev-Build (E1C64328-A22C-4D53-A36C-8E866417BD8C): 0
+  Dev-Core (375EC13C-06E4-48FB-B500-84F0262A717E): 4
+  Dev-Editor (E4B068ED-F494-42E9-A231-DA0B2E46BB41): 40
+  Dev-Framework (CFFC743F-43B0-4480-9391-14DF171D2073): 37
+  Dev-Mobile (B02B49B5-BB20-44E9-A304-32B752E40360): 3
+  Dev-Networking (A4E4105C-59A1-49B5-A7C5-40C4547EDFEE): 0
+  Dev-Online (39C831C9-5AE6-47DC-9A44-9C173E1C8E7C): 0
+  Dev-Physics (78F01B33-EBEA-4F98-B9B4-84EACCB95AA2): 20
+  Dev-Platform (6631380F-2D4D-43E0-8009-CF276956A95A): 0
+  Dev-Rendering (12F88B9F-8875-4AFC-A67C-D90C383ABD29): 47
+  Dev-Sequencer (7B5AE74C-D270-4C10-A958-57980B212A5A): 13
+  Dev-VR (D7296918-1DD6-4BDD-9DE2-64A83CC13884): 3
+  Dev-LoadTimes (C2A15278-BFE7-4AFE-6C17-90FF531DF755): 1
+  Private-Geometry (6EACA3D4-40EC-4CC1-B786-8BED09428FC5): 3
+  Dev-AnimPhys (29E575DD-E0A3-4627-9D10-D276232CDCEA): 17
+  Dev-Anim (AF43A65D-7FD3-4947-9873-3E8ED9C1BB05): 15
+  Dev-ReflectionCapture (6B266CEC-1EC7-4B8F-A30B-E4D90942FC07): 1
+  Dev-Automation (0DF73D61-A23F-47EA-B727-89E90C41499A): 1
+  FortniteMain (601D1886-AC64-4F84-AA16-D3DE0DEAC7D6): 111
+  FortniteValkyrie (8DBC2C5B-54A7-43E0-A768-FCBB7DA29060): 2
+  FortniteSeason (5B4C06B7-2463-4AF8-805B-BF70CDF5D0DD): 10
+  FortniteRelease (E7086368-6B23-4C58-8439-1B7016265E91): 11
+  Dev-Enterprise (9DFFBCD6-494F-0158-E221-12823C92A888): 10
+  Dev-Niagara (F2AED0AC-9AFE-416F-8664-AA7FFA26D6FC): 1
+  Dev-Destruction (174F1F0B-B4C6-45A5-B13F-2EE8D0FB917D): 10
+  Dev-Physics-Ext (35F94A83-E258-406C-A318-09F59610247C): 41
+  Dev-PhysicsMaterial-Chaos (B68FC16E-8B1B-42E2-B453-215C058844FE): 1
+  Dev-CineCamera (B2E18506-4273-CFC2-A54E-F4BB758BBA07): 1
+  Dev-VirtualProduction (64F58936-FD1B-42BA-BA96-7289D5D0FA4E): 1
+  UE5-Main (697DD581-E64F-41AB-AA4A-51ECBEB7B628): 118
+  UE5-Release (D89B5E42-24BD-4D46-8412-ACA8DF641779): 47
+  UE5-PrivateFrosty (59DA5D52-1232-4948-B878-597870B8E98B): 8
+  UE5-Dev-Cooker (26075A32-730F-4708-88E9-8C32F1599D05): 0
+  Dev-MediaFramework (6F0ED827-A609-4895-9C91-998D90180EA4): 2
+  UE5-Dev-LWCRendering (30D58BE3-95EA-4282-A6E3-B159D8EBB06A): 1
+Presizing for max 25165824 objects, including 0 objects not considered by GC, pre-allocating 0 bytes for permanent pool.
+Object subsystem initialized
+Set CVar [[con.DebugEarlyDefault:1]]
+CVar [[con.DebugLateDefault:1]] deferred - dummy variable created
+CVar [[con.DebugLateCheat:1]] deferred - dummy variable created
+CVar [[LogNamedEventFilters:Frame *]] deferred - dummy variable created
+Set CVar [[r.setres:1280x720]]
+CVar [[framepro.ScopeMinTimeMicroseconds:10]] deferred - dummy variable created
+CVar [[fx.NiagaraAllowRuntimeScalabilityChanges:1]] deferred - dummy variable created
+CVar [[QualityLevelMapping:high]] deferred - dummy variable created
+CVar [[r.Occlusion.SingleRHIThreadStall:1]] deferred - dummy variable created
+Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
+CVar [[con.DebugLateDefault:1]] deferred - dummy variable created
+CVar [[con.DebugLateCheat:1]] deferred - dummy variable created
+CVar [[LogNamedEventFilters:Frame *]] deferred - dummy variable created
+CVar [[framepro.ScopeMinTimeMicroseconds:10]] deferred - dummy variable created
+CVar [[fx.NiagaraAllowRuntimeScalabilityChanges:1]] deferred - dummy variable created
+CVar [[QualityLevelMapping:high]] deferred - dummy variable created
+CVar [[r.Occlusion.SingleRHIThreadStall:1]] deferred - dummy variable created
+Applying CVar settings from Section [/Script/Engine.RendererSettings] File [Engine]
+CVar [[VisualizeCalibrationColorMaterialPath:/Engine/EngineMaterials/PPM_DefaultCalibrationColor.PPM_DefaultCalibrationColor]] deferred - dummy variable created
+CVar [[VisualizeCalibrationGrayscaleMaterialPath:/Engine/EngineMaterials/PPM_DefaultCalibrationGrayscale.PPM_DefaultCalibrationGrayscale]] deferred - dummy variable created
+Set CVar [[r.GPUCrashDebugging:0]]
+CVar [[MaxSkinBones:(Default=65536,PerPlatform=(("Mobile", 256)))]] deferred - dummy variable created
+Set CVar [[r.ReflectionMethod:1]]
+Set CVar [[r.GenerateMeshDistanceFields:1]]
+Set CVar [[r.DynamicGlobalIlluminationMethod:1]]
+Set CVar [[r.Mobile.EnableNoPrecomputedLightingCSMShader:1]]
+Set CVar [[r.DefaultFeature.AutoExposure.ExtendDefaultLuminanceRange:1]]
+Set CVar [[r.Shadow.Virtual.Enable:1]]
+Set CVar [[r.DefaultFeature.LocalExposure.HighlightContrastScale:0.8]]
+Set CVar [[r.DefaultFeature.LocalExposure.ShadowContrastScale:0.8]]
+Set CVar [[r.AntiAliasingMethod:0]]
+Set CVar [[r.DefaultFeature.MotionBlur:0]]
+Set CVar [[r.DefaultFeature.AutoExposure:0]]
+Set CVar [[r.DefaultFeature.AutoExposure.Method:0]]
+Set CVar [[r.Shaders.RemoveUnusedInterpolators:1]]
+Applying CVar settings from Section [/Script/Engine.RendererOverrideSettings] File [Engine]
+Applying CVar settings from Section [/Script/Engine.StreamingSettings] File [Engine]
+Set CVar [[s.MinBulkDataSizeForAsyncLoading:131072]]
+Set CVar [[s.AsyncLoadingThreadEnabled:1]]
+Set CVar [[s.EventDrivenLoaderEnabled:1]]
+Set CVar [[s.WarnIfTimeLimitExceeded:0]]
+Set CVar [[s.TimeLimitExceededMultiplier:1.5]]
+Set CVar [[s.TimeLimitExceededMinTime:0.005]]
+Set CVar [[s.UseBackgroundLevelStreaming:1]]
+Set CVar [[s.PriorityAsyncLoadingExtraTime:15.0]]
+Set CVar [[s.LevelStreamingActorsUpdateTimeLimit:5.0]]
+Set CVar [[s.PriorityLevelStreamingActorsUpdateExtraTime:5.0]]
+Set CVar [[s.LevelStreamingComponentsRegistrationGranularity:10]]
+Set CVar [[s.UnregisterComponentsTimeLimit:1.0]]
+Set CVar [[s.LevelStreamingComponentsUnregistrationGranularity:5]]
+CVar [[s.MaxPackageSummarySize:16384]] deferred - dummy variable created
+Set CVar [[s.FlushStreamingOnExit:1]]
+CVar [[FixedBootOrder:/Script/Engine/Default__SoundBase]] deferred - dummy variable created
+CVar [[FixedBootOrder:/Script/Engine/Default__MaterialInterface]] deferred - dummy variable created
+CVar [[FixedBootOrder:/Script/Engine/Default__DeviceProfileManager]] deferred - dummy variable created
+Applying CVar settings from Section [/Script/Engine.GarbageCollectionSettings] File [Engine]
+Set CVar [[gc.MaxObjectsNotConsideredByGC:1]]
+Set CVar [[gc.SizeOfPermanentObjectPool:0]]
+Set CVar [[gc.FlushStreamingOnGC:0]]
+Set CVar [[gc.NumRetriesBeforeForcingGC:10]]
+Set CVar [[gc.AllowParallelGC:1]]
+Set CVar [[gc.TimeBetweenPurgingPendingKillObjects:61.1]]
+Set CVar [[gc.MaxObjectsInEditor:25165824]]
+Set CVar [[gc.IncrementalBeginDestroyEnabled:1]]
+Set CVar [[gc.CreateGCClusters:1]]
+Set CVar [[gc.MinGCClusterSize:5]]
+Set CVar [[gc.AssetClustreringEnabled:0]]
+Set CVar [[gc.ActorClusteringEnabled:0]]
+Set CVar [[gc.UseDisregardForGCOnDedicatedServers:0]]
+Set CVar [[gc.MultithreadedDestructionEnabled:1]]
+Set CVar [[gc.VerifyUObjectsAreNotFGCObjects:0]]
+Set CVar [[gc.PendingKillEnabled:1]]
+Applying CVar settings from Section [/Script/Engine.NetworkSettings] File [Engine]
+CVar [[NetworkEmulationProfiles:(ProfileName="Average",ToolTip="Simulates average internet conditions")]] deferred - dummy variable created
+CVar [[NetworkEmulationProfiles:(ProfileName="Bad",ToolTip="Simulates laggy internet conditions")]] deferred - dummy variable created
+Applying CVar settings from Section [/Script/UnrealEd.CookerSettings] File [Engine]
+CVar [[DefaultASTCQualityBySpeed:2]] deferred - dummy variable created
+CVar [[DefaultASTCQualityBySize:3]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:WidgetBlueprint]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:GroupActor]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:MetaData]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:ObjectRedirector]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:NavMeshRenderingComponent]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:ReflectionCaptureComponent]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:TextRenderComponent]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:Font]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:InterpCurveEdSetup]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:MaterialExpression]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:NiagaraEmitter]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:NiagaraScript]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:ParticleEmitter]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:ParticleLODLevel]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:ParticleModule]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:SubUVAnimation]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:SoundNode]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedServer:GameplayEffectUIData]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedClient:WidgetBlueprint]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedClient:GroupActor]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedClient:MetaData]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedClient:ObjectRedirector]] deferred - dummy variable created
+CVar [[ClassesExcludedOnDedicatedClient:InterpCurveEdSetup]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.AllowStaticLighting]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.MaterialEditor.LWCTruncateMode]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.GBuffer]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.VelocityOutputPass]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.SelectiveBasePassOutputs]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.DBuffer]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.Shaders.Symbols]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.Shaders.GenerateSymbols]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.Shaders.WriteSymbols]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.Shaders.AllowUniqueSymbols]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.Shaders.ExtraData]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.Shaders.Optimize]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.CompileShadersForDevelopment]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.MobileHDR]] deferred - dummy variable created
+CVar [[VersionedIntRValues:r.UsePreExposure]] deferred - dummy variable created
+Applying CVar settings from Section [ViewDistanceQuality@3] File [Scalability]
+Set CVar [[r.SkeletalMeshLODBias:0]]
+Set CVar [[r.ViewDistanceScale:1.0]]
+Applying CVar settings from Section [AntiAliasingQuality@3] File [Scalability]
+Set CVar [[r.FXAA.Quality:4]]
+Set CVar [[r.TemporalAA.Quality:2]]
+Set CVar [[r.TSR.History.R11G11B10:1]]
+Set CVar [[r.TSR.History.ScreenPercentage:200]]
+Set CVar [[r.TSR.History.UpdateQuality:3]]
+Set CVar [[r.TSR.ShadingRejection.Flickering:1]]
+Set CVar [[r.TSR.ShadingRejection.TileOverscan:3]]
+CVar [[r.TSR.Velocity.Extrapolation:1]] deferred - dummy variable created
+Set CVar [[r.TSR.RejectionAntiAliasingQuality:2]]
+Applying CVar settings from Section [ShadowQuality@3] File [Scalability]
+Set CVar [[r.LightFunctionQuality:1]]
+Set CVar [[r.ShadowQuality:5]]
+Set CVar [[r.Shadow.CSM.MaxCascades:10]]
+Set CVar [[r.Shadow.MaxResolution:2048]]
+Set CVar [[r.Shadow.MaxCSMResolution:2048]]
+Set CVar [[r.Shadow.RadiusThreshold:0.01]]
+Set CVar [[r.Shadow.DistanceScale:1.0]]
+Set CVar [[r.Shadow.CSM.TransitionScale:1.0]]
+Set CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
+Set CVar [[r.DistanceFieldShadowing:1]]
+Set CVar [[r.VolumetricFog:1]]
+Set CVar [[r.VolumetricFog.GridPixelSize:8]]
+Set CVar [[r.VolumetricFog.GridSizeZ:128]]
+Set CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
+Set CVar [[r.LightMaxDrawDistanceScale:1]]
+Set CVar [[r.CapsuleShadows:1]]
+Set CVar [[r.Shadow.Virtual.MaxPhysicalPages:4096]]
+Set CVar [[r.Shadow.Virtual.ResolutionLodBiasDirectional:-1.5]]
+Set CVar [[r.Shadow.Virtual.ResolutionLodBiasDirectionalMoving:-1.5]]
+Set CVar [[r.Shadow.Virtual.ResolutionLodBiasLocal:0.0]]
+Set CVar [[r.Shadow.Virtual.ResolutionLodBiasLocalMoving:1.0]]
+Set CVar [[r.Shadow.Virtual.SMRT.RayCountDirectional:8]]
+Set CVar [[r.Shadow.Virtual.SMRT.SamplesPerRayDirectional:4]]
+Set CVar [[r.Shadow.Virtual.SMRT.RayCountLocal:8]]
+Set CVar [[r.Shadow.Virtual.SMRT.SamplesPerRayLocal:4]]
+Applying CVar settings from Section [GlobalIlluminationQuality@3] File [Scalability]
+Set CVar [[r.DistanceFieldAO:1]]
+Set CVar [[r.AOQuality:2]]
+Set CVar [[r.Lumen.DiffuseIndirect.Allow:1]]
+Set CVar [[r.LumenScene.Radiosity.ProbeSpacing:4]]
+Set CVar [[r.LumenScene.Radiosity.HemisphereProbeResolution:4]]
+Set CVar [[r.Lumen.TraceMeshSDFs.Allow:1]]
+Set CVar [[r.Lumen.ScreenProbeGather.RadianceCache.ProbeResolution:32]]
+Set CVar [[r.Lumen.ScreenProbeGather.RadianceCache.NumProbesToTraceBudget:300]]
+Set CVar [[r.Lumen.ScreenProbeGather.DownsampleFactor:16]]
+Set CVar [[r.Lumen.ScreenProbeGather.TracingOctahedronResolution:8]]
+Set CVar [[r.Lumen.ScreenProbeGather.IrradianceFormat:0]]
+Set CVar [[r.Lumen.ScreenProbeGather.StochasticInterpolation:0]]
+Set CVar [[r.Lumen.ScreenProbeGather.FullResolutionJitterWidth:1]]
+Set CVar [[r.Lumen.ScreenProbeGather.TwoSidedFoliageBackfaceDiffuse:1]]
+Set CVar [[r.Lumen.ScreenProbeGather.ScreenTraces.HZBTraversal.FullResDepth:1]]
+Set CVar [[r.Lumen.TranslucencyVolume.GridPixelSize:32]]
+Set CVar [[r.Lumen.TranslucencyVolume.TraceFromVolume:1]]
+Set CVar [[r.Lumen.TranslucencyVolume.TracingOctahedronResolution:3]]
+Set CVar [[r.Lumen.TranslucencyVolume.RadianceCache.ProbeResolution:8]]
+Set CVar [[r.Lumen.TranslucencyVolume.RadianceCache.NumProbesToTraceBudget:200]]
+Applying CVar settings from Section [ReflectionQuality@3] File [Scalability]
+Set CVar [[r.SSR.Quality:3]]
+Set CVar [[r.SSR.HalfResSceneColor:0]]
+Set CVar [[r.Lumen.Reflections.Allow:1]]
+Set CVar [[r.Lumen.Reflections.DownsampleFactor:1]]
+Set CVar [[r.Lumen.Reflections.MaxRoughnessToTraceForFoliage:0.4]]
+Set CVar [[r.Lumen.Reflections.ScreenSpaceReconstruction.TonemapStrength:0]]
+Set CVar [[r.Lumen.TranslucencyReflections.FrontLayer.Allow:1]]
+Set CVar [[r.Lumen.TranslucencyReflections.FrontLayer.Enable:0]]
+Applying CVar settings from Section [PostProcessQuality@3] File [Scalability]
+Set CVar [[r.MotionBlurQuality:4]]
+Set CVar [[r.MotionBlur.HalfResGather:0]]
+Set CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
+Set CVar [[r.AmbientOcclusionMaxQuality:100]]
+Set CVar [[r.AmbientOcclusionLevels:-1]]
+Set CVar [[r.AmbientOcclusionRadiusScale:1.0]]
+Set CVar [[r.DepthOfFieldQuality:2]]
+Set CVar [[r.RenderTargetPoolMin:400]]
+Set CVar [[r.LensFlareQuality:2]]
+Set CVar [[r.SceneColorFringeQuality:1]]
+Set CVar [[r.EyeAdaptationQuality:2]]
+Set CVar [[r.BloomQuality:5]]
+Set CVar [[r.Bloom.ScreenPercentage:50.000]]
+Set CVar [[r.FastBlurThreshold:100]]
+Set CVar [[r.Upscale.Quality:3]]
+Set CVar [[r.LightShaftQuality:1]]
+Set CVar [[r.Filter.SizeScale:1]]
+Set CVar [[r.Tonemapper.Quality:5]]
+Set CVar [[r.DOF.Gather.ResolutionDivisor:2         ; lower gathering resolution]]
+Set CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
+Set CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
+Set CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
+Set CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
+Set CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
+Set CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
+Set CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
+Set CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
+Set CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
+Set CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
+Set CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
+Set CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
+Set CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
+Applying CVar settings from Section [TextureQuality@3] File [Scalability]
+Set CVar [[r.Streaming.MipBias:0]]
+Set CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
+Set CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
+Set CVar [[r.Streaming.Boost:1]]
+Set CVar [[r.MaxAnisotropy:8]]
+Set CVar [[r.VT.MaxAnisotropy:8]]
+Set CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
+Set CVar [[r.Streaming.PoolSize:1000]]
+Set CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
+Applying CVar settings from Section [EffectsQuality@3] File [Scalability]
+Set CVar [[r.TranslucencyLightingVolumeDim:64]]
+Set CVar [[r.RefractionQuality:2]]
+Set CVar [[r.SceneColorFormat:4]]
+Set CVar [[r.DetailMode:2]]
+Set CVar [[r.TranslucencyVolumeBlur:1]]
+Set CVar [[r.MaterialQualityLevel:1 ; High quality]]
+Set CVar [[r.SSS.Scale:1]]
+Set CVar [[r.SSS.SampleSet:2]]
+Set CVar [[r.SSS.Quality:1]]
+Set CVar [[r.SSS.HalfRes:0]]
+Set CVar [[r.SSGI.Quality:3]]
+Set CVar [[r.EmitterSpawnRateScale:1.0]]
+Set CVar [[r.ParticleLightQuality:2]]
+Set CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
+Set CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountMaxPerSlice:4]]
+Set CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
+Set CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
+Set CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
+Set CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:128.0]]
+Set CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
+Set CVar [[r.SkyAtmosphere.SampleCountMax:128.0]]
+Set CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
+Set CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
+Set CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
+Set CVar [[r.SkyLight.RealTimeReflectionCapture:1]]
+CVar [[fx.Niagara.QualityLevel:3]] deferred - dummy variable created
+Set CVar [[r.Refraction.OffsetQuality:1]]
+Applying CVar settings from Section [FoliageQuality@3] File [Scalability]
+Set CVar [[foliage.DensityScale:1.0]]
+Set CVar [[grass.DensityScale:1.0]]
+Applying CVar settings from Section [ShadingQuality@3] File [Scalability]
+Set CVar [[r.HairStrands.SkyLighting.IntegrationType:2]]
+Set CVar [[r.HairStrands.SkyAO.SampleCount:4]]
+Set CVar [[r.HairStrands.Visibility.MSAA.SamplePerPixel:4]]
+Set CVar [[r.AnisotropicMaterials:1]]
+Selected Device Profile: [WindowsEditor]
+Platform has ~ 32 GB [34276220928 / 34359738368 / 32], which maps to Largest [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+Going up to parent DeviceProfile [Windows]
+Going up to parent DeviceProfile []
+Applying CVar settings from Section [Startup] File [../../../Engine/Config/ConsoleVariables.ini]
+Set CVar [[r.DumpShaderDebugInfo:2]]
+Set CVar [[p.chaos.AllowCreatePhysxBodies:1]]
+Set CVar [[fx.SkipVectorVMBackendOptimizations:1]]
+Applying CVar settings from Section [ConsoleVariables] File [Engine]
+Applying CVar settings from Section [ConsoleVariables] File [C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Saved/Config/WindowsEditor/Editor.ini]
+Computer: BINKY2
+User: valey
+CPU Page size=4096, Cores=12
+High frequency timer resolution =10.000000 MHz
+Memory total: Physical=31.9GB (32GB approx)
+Platform Memory Stats for WindowsEditor
+Process Physical Memory: 507.60 MB used, 507.60 MB peak
+Process Virtual Memory: 527.10 MB used, 527.10 MB peak
+Physical Memory: 13123.60 MB used,  19564.75 MB free, 32688.35 MB total
+Virtual Memory: 17678.34 MB used,  20642.01 MB free, 38320.35 MB total
+Metadata set : extradevelopmentmemorymb="0"
+Loaded Base TextureFormat: TextureFormatASTC
+Loaded Base TextureFormat: TextureFormatDXT
+Loaded Base TextureFormat: TextureFormatETC2
+Loaded Base TextureFormat: TextureFormatIntelISPCTexComp
+Loaded Base TextureFormat: TextureFormatUncompressed
+Oodle Texture TFO init; latest sdk version = 2.9.10
+Oodle Texture loading DLL: oo2tex_win64_2.9.5.dll
+Oodle Texture loading DLL: oo2tex_win64_2.9.6.dll
+Oodle Texture loading DLL: oo2tex_win64_2.9.7.dll
+Oodle Texture loading DLL: oo2tex_win64_2.9.8.dll
+Oodle Texture loading DLL: oo2tex_win64_2.9.9.dll
+Oodle Texture loading DLL: oo2tex_win64_2.9.10.dll
+Loaded Base TextureFormat: TextureFormatOodle
+Loaded TargetPlatform 'Android'
+Loaded TargetPlatform 'Android_ASTC'
+Loaded TargetPlatform 'Android_DXT'
+Loaded TargetPlatform 'Android_ETC2'
+Loaded TargetPlatform 'AndroidClient'
+Loaded TargetPlatform 'Android_ASTCClient'
+Loaded TargetPlatform 'Android_DXTClient'
+Loaded TargetPlatform 'Android_ETC2Client'
+Loaded TargetPlatform 'Android_Multi'
+Loaded TargetPlatform 'Android_MultiClient'
+Loaded TargetPlatform 'IOS'
+Loaded TargetPlatform 'IOSClient'
+Loaded TargetPlatform 'Linux'
+Loaded TargetPlatform 'LinuxEditor'
+Loaded TargetPlatform 'LinuxServer'
+Loaded TargetPlatform 'LinuxClient'
+Loaded TargetPlatform 'LinuxArm64'
+Loaded TargetPlatform 'LinuxArm64Server'
+Loaded TargetPlatform 'LinuxArm64Client'
+Loaded TargetPlatform 'Mac'
+Loaded TargetPlatform 'MacEditor'
+Loaded TargetPlatform 'MacServer'
+Loaded TargetPlatform 'MacClient'
+Loaded TargetPlatform 'TVOS'
+Loaded TargetPlatform 'TVOSClient'
+Loaded TargetPlatform 'Windows'
+Loaded TargetPlatform 'WindowsEditor'
+Loaded TargetPlatform 'WindowsServer'
+Loaded TargetPlatform 'WindowsClient'
+Building Assets For Windows
+Lib vorbis DLL was dynamically loaded.
+Unable to find shader format SF_METAL from hinted modules, loading all potential format modules to find it
+Loaded format module MetalShaderFormat
+  SF_METAL
+  SF_METAL_MRT
+  SF_METAL_TVOS
+  SF_METAL_MRT_TVOS
+  SF_METAL_SM5
+  SF_METAL_SM6
+  SF_METAL_SIM
+  SF_METAL_MACES3_1
+  SF_METAL_MRT_MAC
+Loaded format module ShaderFormatD3D
+  PCD3D_SM6
+  PCD3D_SM5
+  PCD3D_ES31
+Loaded format module ShaderFormatOpenGL
+  GLSL_150_ES31
+  GLSL_ES3_1_ANDROID
+Loaded format module ShaderFormatVectorVM
+  VVM_1_0
+Loaded format module VulkanShaderFormat
+  SF_VULKAN_SM5
+  SF_VULKAN_ES31_ANDROID
+  SF_VULKAN_ES31
+  SF_VULKAN_SM5_ANDROID
+  SF_VULKAN_SM6
+WindowsPlatformFeatures enabled
+Physics initialised using underlying interface: Chaos
+Using OS detected language (en-US).
+Using OS detected locale (en-IE).
+No specific localization for 'en-US' exists, so 'en' will be used for the language.
+Current RHI does not support Variable Rate Shading
+Ray tracing is disabled. Reason: disabled through project setting (r.RayTracing=0).
+Memory: Max Cache Size: -1 MB
+FDerivedDataBackendGraph: Pak pak cache file ../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/DerivedDataCache/DDC.ddp not found, will not use a pak cache.
+Unable to find inner node Pak for hierarchy Hierarchy.
+FDerivedDataBackendGraph: CompressedPak pak cache file ../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+Unable to find inner node CompressedPak for hierarchy Hierarchy.
+../../../Engine/DerivedDataCache/Compressed.ddp: Opened pak cache for reading. (2383 MiB)
+FDerivedDataBackendGraph: EnterprisePak pak cache file ../../../Enterprise/DerivedDataCache/Compressed.ddp not found, will not use a pak cache.
+Unable to find inner node EnterprisePak for hierarchy Hierarchy.
+C:/Users/valey/AppData/Local/UnrealEngine/Common/DerivedDataCache: Speed tests took 0.01 seconds.
+C:/Users/valey/AppData/Local/UnrealEngine/Common/DerivedDataCache: Performance: Latency=0.06ms. RandomReadSpeed=1000.31MBs, RandomWriteSpeed=180.75MBs. Assigned SpeedClass 'Local'
+Local: Using data cache path C:/Users/valey/AppData/Local/UnrealEngine/Common/DerivedDataCache: Writable
+Shared: Disabled because no path is configured.
+Unable to find inner node Shared for hierarchy Hierarchy.
+Cloud: Disabled because Host is set to 'None'
+Unable to find inner node Cloud for hierarchy Hierarchy.
+Guid format shader working directory is -21 characters bigger than the processId version (../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Shaders/WorkingDirectory/10268/).
+Cleaned the shader compiler working directory 'C:/Users/valey/AppData/Local/Temp/UnrealShaderWorkingDir/74DCB13742A248BF6E0157B001BED33A/'.
+Cannot use XGE Controller as Incredibuild is not installed on this machine.
+Using Local Shader Compiler with 21 workers.
+Compiling shader autogen file: ../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/ShaderAutogen/PCD3D_SM5/AutogenShaderHeaders.ush
+Autogen file is unchanged, skipping write.
+FAssetRegistry took 0.0018 seconds to start up
+AssetDataGatherer spent 0.001s loading caches ../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/CachedAssetRegistry_*.bin.
+EditorDomain is Disabled
+Deviceprofile LinuxArm64Editor not found.
+Deviceprofile LinuxArm64 not found.
+Available device profiles:
+	[0000062307911C00][0000062302D1A000 66] GlobalDefaults, 
+	[0000062307910600][0000062302D15000 66] Windows, 
+	[0000062307912000][0000062302D12800 66] WindowsEditor, 
+	[0000062307912200][0000062302D17800 66] WindowsServer, 
+	[0000062307912400][0000062302D1C800 66] WindowsClient, 
+	[0000062307912600][00000622D9F87800 66] IOS, 
+	[0000062307912800][00000622D9F8C800 66] iPadAir2, 
+	[0000062307912A00][00000622FFD2C800 66] IPadPro, 
+	[0000062307912C00][0000062307E30000 66] iPadAir3, 
+	[0000062307912E00][0000062307E32800 66] iPadAir4, 
+	[0000062307913000][0000062307E35000 66] iPadAir5, 
+	[0000062307913200][0000062307E37800 66] iPadMini4, 
+	[0000062307913400][0000062307E3A000 66] iPadMini5, 
+	[0000062307913600][0000062307E3C800 66] iPadMini6, 
+	[0000062307913800][0000062307E40000 66] iPhone6S, 
+	[0000062307913A00][0000062307E42800 66] iPhone7, 
+	[0000062307913C00][0000062307E45000 66] iPodTouch7, 
+	[0000062307913E00][0000062307E47800 66] iPhone6SPlus, 
+	[0000062307914000][0000062307E4A000 66] iPhone7Plus, 
+	[0000062307914200][0000062307E4C800 66] iPhoneSE, 
+	[0000062307914400][0000062307E50000 66] iPhone8, 
+	[0000062307914600][0000062307E52800 66] iPhone8Plus, 
+	[0000062307914800][0000062307E55000 66] iPhoneX, 
+	[0000062307914A00][0000062307E57800 66] iPhoneXS, 
+	[0000062307914C00][0000062307E5A000 66] iPhoneXSMax, 
+	[0000062307914E00][0000062307E5C800 66] iPhoneXR, 
+	[0000062307915000][0000062307E60000 66] iPhone11, 
+	[0000062307915200][0000062307E62800 66] iPhone11Pro, 
+	[0000062307915400][0000062307E65000 66] iPhone11ProMax, 
+	[0000062307915600][0000062307E67800 66] iPhoneSE2, 
+	[0000062307915800][0000062307E6A000 66] iPhone12Mini, 
+	[0000062307915A00][0000062307E6C800 66] iPhone12, 
+	[0000062307915C00][0000062307E70000 66] iPhone12Pro, 
+	[0000062307915E00][0000062307E72800 66] iPhone12ProMax, 
+	[0000062307916000][0000062307E75000 66] iPhone13Mini, 
+	[0000062307916200][0000062307E77800 66] iPhone13, 
+	[0000062307916400][0000062307E7A000 66] iPhone13Pro, 
+	[0000062307916600][0000062307E7C800 66] iPhone13ProMax, 
+	[0000062307916800][0000062307E80000 66] iPhoneSE3, 
+	[0000062307916A00][0000062307E82800 66] iPhone14, 
+	[0000062307916C00][0000062307E85000 66] iPhone14Plus, 
+	[0000062307916E00][0000062307E87800 66] iPhone14Pro, 
+	[0000062307917000][0000062307E8A000 66] iPhone14ProMax, 
+	[0000062307917200][0000062307E8C800 66] iPhone15, 
+	[0000062307917400][0000062307E90000 66] iPhone15Plus, 
+	[0000062307917600][0000062307E92800 66] iPhone15Pro, 
+	[0000062307917800][0000062307E95000 66] iPhone15ProMax, 
+	[0000062307917A00][0000062307E97800 66] iPadPro105, 
+	[0000062307917C00][0000062307E9A000 66] iPadPro129, 
+	[0000062307917E00][0000062307E9C800 66] iPadPro97, 
+	[0000062307918000][0000062307EA0000 66] iPadPro2_129, 
+	[0000062307918200][0000062307EA2800 66] iPad5, 
+	[0000062307918400][0000062307EA5000 66] iPad6, 
+	[0000062307918600][0000062307EA7800 66] iPad7, 
+	[0000062307918800][0000062307EAA000 66] iPad8, 
+	[0000062307918A00][0000062307EAC800 66] iPad9, 
+	[0000062307918C00][0000062307EB0000 66] iPad10, 
+	[0000062307918E00][0000062307EB2800 66] iPadPro11, 
+	[0000062307919000][0000062307EB5000 66] iPadPro2_11, 
+	[0000062307919200][0000062307EB7800 66] iPadPro3_11, 
+	[0000062307919400][0000062307EBA000 66] iPadPro4_11, 
+	[0000062307919600][0000062307EBC800 66] iPadPro3_129, 
+	[0000062307919800][0000062307EC0000 66] iPadPro4_129, 
+	[0000062307919A00][0000062307EC2800 66] iPadPro5_129, 
+	[0000062307919C00][0000062307EC5000 66] iPadPro6_129, 
+	[0000062307919E00][0000062307EC7800 66] AppleTV, 
+	[000006230791A000][0000062307ECA000 66] AppleTV4K, 
+	[000006230791A200][0000062307ECC800 66] AppleTV2_4K, 
+	[000006230791A400][0000062307ED0000 66] TVOS, 
+	[000006230791A600][0000062307ED2800 66] Mac, 
+	[000006230791A800][0000062307ED5000 66] MacEditor, 
+	[000006230791AA00][0000062307ED7800 66] MacClient, 
+	[000006230791AC00][0000062307EDA000 66] MacServer, 
+	[000006230791AE00][0000062307EDC800 66] Linux, 
+	[000006230791B000][0000062307EE0000 66] LinuxEditor, 
+	[000006230791B200][0000062307EE2800 66] LinuxArm64Editor, 
+	[000006230791B400][0000062307EE5000 66] LinuxArm64, 
+	[000006230791B600][0000062307EE7800 66] LinuxClient, 
+	[000006230791B800][0000062307EEA000 66] LinuxArm64Client, 
+	[000006230791BA00][0000062307EEC800 66] LinuxServer, 
+	[000006230791BC00][0000062307EF0000 66] LinuxArm64Server, 
+	[000006230791BE00][0000062307EF2800 66] Android, 
+	[000006230791C000][0000062307EF5000 66] Android_Preview_OpenGL, 
+	[000006230791C200][0000062307EF7800 66] Android_Preview_Vulkan, 
+	[000006230791C400][0000062307EFA000 66] Android_Low, 
+	[000006230791C600][0000062307EFC800 66] Android_Mid, 
+	[000006230791C800][0000062307F00000 66] Android_High, 
+	[000006230791CA00][0000062307F02800 66] Android_Default, 
+	[000006230791CC00][0000062307F05000 66] Android_Adreno4xx, 
+	[000006230791CE00][0000062307F07800 66] Android_Adreno5xx_Low, 
+	[000006230791D000][0000062307F0A000 66] Android_Adreno5xx, 
+	[000006230791D200][0000062307F0C800 66] Android_Adreno6xx, 
+	[000006230791D400][0000062307F10000 66] Android_Adreno6xx_Vulkan, 
+	[000006230791D600][0000062307F12800 66] Android_Adreno7xx, 
+	[000006230791D800][0000062307F15000 66] Android_Adreno7xx_Vulkan, 
+	[000006230791DA00][0000062307F17800 66] Android_Mali_T6xx, 
+	[000006230791DC00][0000062307F1A000 66] Android_Mali_T7xx, 
+	[000006230791DE00][0000062307F1C800 66] Android_Mali_T8xx, 
+	[000006230791E000][0000062307F20000 66] Android_Mali_G71, 
+	[000006230791E200][0000062307F22800 66] Android_Mali_G72, 
+	[000006230791E400][0000062307F25000 66] Android_Mali_G72_Vulkan, 
+	[000006230791E600][0000062307F27800 66] Android_Mali_G76, 
+	[000006230791E800][0000062307F2A000 66] Android_Mali_G76_Vulkan, 
+	[000006230791EA00][0000062307F2C800 66] Android_Mali_G77, 
+	[000006230791EC00][0000062307F30000 66] Android_Mali_G77_Vulkan, 
+	[000006230791EE00][0000062307F32800 66] Android_Mali_G78, 
+	[000006230791F000][0000062307F35000 66] Android_Mali_G78_Vulkan, 
+	[000006230791F200][0000062307F37800 66] Android_Mali_G710, 
+	[000006230791F400][0000062307F3A000 66] Android_Mali_G710_Vulkan, 
+	[000006230791F800][0000062307F3C800 66] Android_Mali_G7xx, 
+	[000006230791FA00][0000062307F40000 66] Android_Mali_G7xx_Vulkan, 
+	[000006230791FC00][0000062307F42800 66] Android_Xclipse_920, 
+	[000006230791FE00][0000062307F45000 66] Android_Xclipse_920_Vulkan, 
+	[00000622D9C9C800][0000062307F47800 66] Android_Vulkan_SM5, 
+	[0000062307F50000][0000062307F4A000 66] Android_PowerVR_G6xxx, 
+	[0000062307F50200][0000062307F4C800 66] Android_PowerVR_GT7xxx, 
+	[0000062307F50400][0000062307F60000 66] Android_PowerVR_GE8xxx, 
+	[0000062307F50600][0000062307F62800 66] Android_PowerVR_GM9xxx, 
+	[0000062307F50800][0000062307F65000 66] Android_PowerVR_GM9xxx_Vulkan, 
+	[0000062307F50A00][0000062307F67800 66] Android_TegraK1, 
+	[0000062307F50C00][0000062307F6A000 66] Android_Unknown_Vulkan, 
+	[0000062307F50E00][0000062307F6C800 66] Oculus_Quest, 
+	[0000062307F51000][0000062307F70000 66] Oculus_Quest2, 
+	[0000062307F51200][0000062307F72800 66] Meta_Quest_Pro, 
+	[0000062307F51400][0000062307F75000 66] Meta_Quest_3, 
+	[0000062307F51600][0000062307F77800 66] HoloLens, 
+	[0000062307F51800][0000062307F7A000 66] MagicLeap_Vulkan, 
+Active device profile: [0000062307912000][0000062302D12800 66] WindowsEditor
+Metadata set : deviceprofile="WindowsEditor"
+Compiling shader autogen file: ../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/ShaderAutogen/PCD3D_SM6/AutogenShaderHeaders.ush
+Autogen file is unchanged, skipping write.
+Texture Encode Speed: Final (cook).
+Oodle Texture Encode Speed settings: Fast: RDO Off Lambda=0, Effort=Normal Final: RDO Off Lambda=0, Effort=Normal
+Shared linear texture encoding: Disabled
+Using QuadricMeshReduction for automatic static mesh reduction
+Using SkeletalMeshReduction for automatic skeletal mesh reduction
+Using ProxyLODMeshReduction for automatic mesh merging
+No distributed automatic mesh merging module available
+No distributed automatic mesh merging module available
+VirtualizationSystem name found in ini file: None
+FNullVirtualizationSystem mounted, virtualization will be disabled
+Border
+BreadcrumbButton
+Brushes.Title
+Default
+Icons.Save
+Icons.Toolbar.Settings
+ListView
+SoftwareCursor_CardinalCross
+SoftwareCursor_Grab
+TableView.DarkRow
+TableView.Row
+TreeView
+FWorldPartitionClassDescRegistry::Initialize started...
+FWorldPartitionClassDescRegistry::Initialize took 1 ms
+Registering Engine Module Parameter Interfaces...
+MetaSound Engine Initialized
+Niagara Debugger Client Initialized | Session: 77D889464BEDD4054AFC48B20D8D83E3 | Instance: 2E8109DD410D5454CD73CA9B4B0783BA (BINKY2-10268).
+Using Python 3.9.7
+UAndroidPermissionCallbackProxy::GetInstance
+No Audio Capture implementations found. Audio input will be silent.
+No Audio Capture implementations found. Audio input will be silent.
+OIDN starting up
+Revision control is disabled
+Found projects:
+Revision control is disabled
+Loaded 0 collections in 0.001210 seconds
+Scanning file cache for directory 'C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Saved/Collections/' took 0.00s
+Scanning file cache for directory 'C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Developers/valey/Collections/' took 0.00s
+Scanning file cache for directory 'C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/Collections/' took 0.00s
+35520 objects as part of root set at end of initial load.
+10938528 out of 0 bytes used by permanent object pool.
+CloseDisregardForGC: 0/0 objects in disregard for GC pool
+Executing Class /Script/UnrealEd.CookCommandlet
+Initializing Editor Engine...
+Initializing Engine...
+UGameplayTagsManager::InitializeManager -  0.000 s
+Initializing FReadOnlyCVARCache
+FPhysicsSolverBase::AsyncDt:-1.000000
+Creating AISystem for world Untitled
+Set ProjectVersion to 1.0.0.0. Version Checksum will be recalculated on next use.
+Texture streaming: Disabled
+Metadata set : largeworldcoordinates="1"
+Initializing Editor Engine Completed
+New page: Editor Load
+LevelSequenceEditor subsystem initialized.
+CookProcessCount=1. CookMultiprocess is disabled and the cooker is running as a single process.
+CookSettings for Memory:
+	MemoryMaxUsedVirtual 0MiB
+	MemoryMaxUsedPhysical 0MiB
+	MemoryMinFreeVirtual 2048MiB
+	MemoryMinFreePhysical 2048MiB
+	MemoryTriggerGCAtPressureLevel None
+	UseSoftGC true (5/10)
+Waiting for Asset Registry
+Triggering cache save on discovery complete
+AssetRegistryGather time 0.2118s: AssetDataDiscovery 0.0323s, AssetDataGather 0.0465s, StoreResults 0.1330s.
+Fixed up redirectors for 0 collections in 0.000004 seconds (updated 0 objects)
+Asset registry cache written as 0.0 MiB to ../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/CachedAssetRegistry_*.bin
+Clearing all cooked content for platform Windows
+Sandbox cleanup took 0.075 seconds for platforms Windows
+Compiling global changed shaders for platform 'Windows'
+
+Shader Library 'Global' (PCD3D_SM6-PCD3D_SM6) Stats:
+=================
+Assets: 1, Unique Shadermaps: 326 (32600.00%)
+Total Shaders: 4161, Unique Shaders: 4161 (100.00%)
+Total Shader Size: 73.82mb, Unique Shaders Size: 73.82mb (100.00%)
+=== Extended info:
+Minimum number of shaders in shadermap: 1
+Median number of shaders in shadermap: 3
+Maximum number of shaders in shadermap: 264
+Number of shadermaps referencing top 10 most shared shaders:
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+Textual dump saved to '../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Saved/Shaders/PCD3D_SM6-PCD3D_SM6/ShaderDebug-Global-PCD3D_SM6-PCD3D_SM6/Dump.txt'
+=================
+
+Shader Library 'Global' (PCD3D_SM5-PCD3D_SM5) Stats:
+=================
+Assets: 1, Unique Shadermaps: 294 (29400.00%)
+Total Shaders: 3549, Unique Shaders: 3539 (99.72%)
+Total Shader Size: 11.82mb, Unique Shaders Size: 11.82mb (99.97%)
+=== Extended info:
+Minimum number of shaders in shadermap: 1
+Median number of shaders in shadermap: 3
+Maximum number of shaders in shadermap: 264
+Number of shadermaps referencing top 10 most shared shaders:
+    4, 2, 2, 2, 2, 2, 2, 2, 1, 1
+Textual dump saved to '../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Saved/Shaders/PCD3D_SM5-PCD3D_SM5/ShaderDebug-Global-PCD3D_SM5-PCD3D_SM5/Dump.txt'
+=================
+Searching using wildcard: '../../../Engine/Content/*.uasset'
+Searching using wildcard: '../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/TraceUtilities/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/2D/Paper2D/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Animation/ControlRigSpline/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Marketplace/PaperZD/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Animation/ACLPlugin/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Marketplace/EasyFileDialog/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Marketplace/TypewriterPlugin/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Animation/ControlRig/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/MovieScene/SequencerScripting/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Developer/AnimationSharing/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/AudioSynesthesia/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/AudioWidgets/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/GeometryProcessing/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/MeshModelingToolset/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/Metasound/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/ResonanceAudio/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/RigVM/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/WaveTable/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/Synthesis/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Media/MediaCompositing/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Media/MediaPlate/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Editor/BlueprintHeaderView/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Editor/GeometryMode/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Editor/SpeedTreeImporter/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Editor/UVEditor/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Experimental/Dataflow/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Experimental/MeshModelingToolsetExp/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Experimental/PythonScriptPlugin/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Experimental/ToolPresets/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Enterprise/DatasmithContent/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Enterprise/GLTFExporter/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/FX/Niagara/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Interchange/Runtime/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Editor/ObjectMixer/LightMixer/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Plugins/Editor/ObjectMixer/ObjectMixer/Content/*.uasset'
+Searching using wildcard: '../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Plugins/CPPEditorUtilityPlugin/Content/*.uasset'
+Searching using wildcard: 'C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Plugins/CPPEditorUtilityPlugin/Content/*.uasset'
+Searching using wildcard: '../../../Engine/Content/*.umap'
+Searching using wildcard: '../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/TraceUtilities/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/2D/Paper2D/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Animation/ControlRigSpline/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Marketplace/PaperZD/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Animation/ACLPlugin/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Marketplace/EasyFileDialog/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Marketplace/TypewriterPlugin/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Animation/ControlRig/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/MovieScene/SequencerScripting/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Developer/AnimationSharing/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/AudioSynesthesia/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/AudioWidgets/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/GeometryProcessing/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/MeshModelingToolset/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/Metasound/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/ResonanceAudio/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/RigVM/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/WaveTable/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Runtime/Synthesis/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Media/MediaCompositing/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Media/MediaPlate/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Editor/BlueprintHeaderView/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Editor/GeometryMode/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Editor/SpeedTreeImporter/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Editor/UVEditor/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Experimental/Dataflow/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Experimental/MeshModelingToolsetExp/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Experimental/PythonScriptPlugin/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Experimental/ToolPresets/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Enterprise/DatasmithContent/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Enterprise/GLTFExporter/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/FX/Niagara/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Interchange/Runtime/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Editor/ObjectMixer/LightMixer/Content/*.umap'
+Searching using wildcard: '../../../Engine/Plugins/Editor/ObjectMixer/ObjectMixer/Content/*.umap'
+Searching using wildcard: '../../../../../../Users/valey/Documents/Unreal Projects/SPHINX_Dev/Plugins/CPPEditorUtilityPlugin/Content/*.umap'
+Searching using wildcard: 'C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Plugins/CPPEditorUtilityPlugin/Content/*.umap'
+Discovering localized assets for cultures: en
+Cooked packages 0 Packages Remain 12958 Total 12958
+Cook Diagnostics: OpenFileHandles=220, VirtualMemory=1382MiB
+Processed 38 localized package path(s) for 1 prioritized culture(s) in 0.004636 seconds
+/Engine/EngineMaterials/Black_1x1_EXR_Texture_VT.Black_1x1_EXR_Texture_VT is marked for virtual streaming but virtual texture streaming is not available.
+/Engine/EngineMaterials/Black_1x1_EXR_Texture_VT.Black_1x1_EXR_Texture_VT is marked for virtual streaming but virtual texture streaming is not available.
+/Engine/EngineMaterials/BaseFlattenNormalMap_VT.BaseFlattenNormalMap_VT is marked for virtual streaming but virtual texture streaming is not available.
+/Engine/EngineMaterials/BaseFlattenNormalMap_VT.BaseFlattenNormalMap_VT is marked for virtual streaming but virtual texture streaming is not available.
+/Engine/EngineMaterials/BaseFlattenLinearColor_VT.BaseFlattenLinearColor_VT is marked for virtual streaming but virtual texture streaming is not available.
+/Engine/EngineMaterials/BaseFlattenLinearColor_VT.BaseFlattenLinearColor_VT is marked for virtual streaming but virtual texture streaming is not available.
+/Engine/EngineMaterials/BaseFlattenGrayscaleMap_VT.BaseFlattenGrayscaleMap_VT is marked for virtual streaming but virtual texture streaming is not available.
+/Engine/EngineMaterials/BaseFlattenGrayscaleMap_VT.BaseFlattenGrayscaleMap_VT is marked for virtual streaming but virtual texture streaming is not available.
+/Engine/EngineMaterials/BaseFlattenEmissiveMap_VT.BaseFlattenEmissiveMap_VT is marked for virtual streaming but virtual texture streaming is not available.
+/Engine/EngineMaterials/BaseFlattenEmissiveMap_VT.BaseFlattenEmissiveMap_VT is marked for virtual streaming but virtual texture streaming is not available.
+/Engine/EngineMaterials/BaseFlattenDiffuseMap_VT.BaseFlattenDiffuseMap_VT is marked for virtual streaming but virtual texture streaming is not available.
+/Engine/EngineMaterials/BaseFlattenDiffuseMap_VT.BaseFlattenDiffuseMap_VT is marked for virtual streaming but virtual texture streaming is not available.
+[AssetLog] C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Content\Tilemaps\PNGs\unnamed_TileSet.uasset: Failed to load '/Game/Tilemaps/PNGs/unnamed': Can't find file.
+[AssetLog] C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Content\Tilemaps\PNGs\unnamed_TileSet.uasset: VerifyImport: Failed to load package for import object 'Package /Game/Tilemaps/PNGs/unnamed'
+Cooked packages 1344 Packages Remain 14732 Total 16076
+Cooked packages 2512 Packages Remain 13564 Total 16076
+Cooked packages 4192 Packages Remain 11884 Total 16076
+[AssetLog] C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Content\TestArea.uasset: Failed to load '/Game/Resources/Areas/TestArea': Can't find file.
+[AssetLog] C:\Users\valey\Documents\Unreal Projects\SPHINX_Dev\Content\TestArea.uasset: VerifyImport: Failed to load package for import object 'Package /Game/Resources/Areas/TestArea'
+Cooked packages 4722 Packages Remain 11354 Total 16076
+Cooked packages 6520 Packages Remain 9556 Total 16076
+WorldGridMaterial-SM6-Default: MATSM_DA9E5626FCAE01590760E73DF088B4B4_PCD3D_SM6_1677771108__BC5N_NoCCBN_NoIris_DEV_SL_LWC2_PreExp_DBuf_UnInt_DXC0_VFO_SKYATM_SKYHF_SLWSMDLT_gs1_sdct_VT-0-0-1-0_MIN_DF_MS_T0_MS_T1_VED_Aniso-1_ComprOodle_Compr2_Lev4_ExclNonPipSh-1_LWC-2097152_4170038053_SLWDPDB6FCC63A5C44EA751315CBC3EF5DDED_Num_SM6_FL_00000005_MFA_00000008_V_B6A0A753ED62499D8F30931E61FCAB05_0_DB3E993F4E2E98B305AD13B92D8C5DA5_36197F830BB149FF750D0910175517F54887B8B4___TShadowDepthPSPixelShadowDepth_PerspectiveCorrect0_0_0BC5A599B5C56BF447371F2EEB6380AD10D05029F96C2B9176A6D727E3EB7D048398F0A8BAEA7CE1C_FLumenCardPS<false>0_0_0D25E975B63E407DD6CCDFE4BE03CD3DF848122EAFD6CA491C5FC0CE9B85ABADBBDD4912CD804C705_TShadowDepthPSPixelShadowDepth_NonPerspectiveCorrect0_0_0BC5A599B5C56BF447371F2EEB6380AD10D05029F207C1CA66ADE37BEA2C8C42C98158E8CFB62D5F7_TShadowDepthVSVertexShadowDepth_OutputDepthPositionOnly0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14BA0EA564849DFB7412ED3F04E84CCCEECFA92E196_FMicropolyRasterizeCS0_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS1_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS2_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS3_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS4_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS5_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS6_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS7_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS8_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS9_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS10_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS11_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS12_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS13_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS14_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS15_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS16_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS17_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS18_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS19_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS20_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS21_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS22_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS23_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS24_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS25_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS26_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS27_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS28_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS29_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS30_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS31_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS32_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS33_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS34_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS35_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS36_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS37_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS38_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS39_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS40_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS41_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS42_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS43_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS44_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS45_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS46_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS47_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS48_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS49_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS50_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS51_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS52_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS53_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS54_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS55_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS56_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS57_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS58_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS59_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS60_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS61_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS62_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS63_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS64_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS65_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS66_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS67_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS68_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS69_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS70_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS71_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS72_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS73_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS74_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS75_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS76_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS77_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS78_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS79_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS80_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS81_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS82_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS83_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS84_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS85_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS86_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS87_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS88_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS89_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS90_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS91_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS92_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS93_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS94_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS95_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS96_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS97_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS98_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS99_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS100_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS101_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS102_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS103_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS104_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS105_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS106_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS107_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS108_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS109_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS110_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS111_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS112_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS113_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS114_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS115_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS116_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS117_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS118_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS119_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS120_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS121_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS122_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS123_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS124_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS125_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS126_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS127_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS128_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS129_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS130_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS131_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS132_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS133_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS134_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS135_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS136_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS137_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS138_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS139_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS140_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS141_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS142_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS143_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS144_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS145_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS146_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS147_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS148_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS149_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS150_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS151_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS152_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS153_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS154_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS155_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS156_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS157_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS158_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS159_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS160_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS161_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS162_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS163_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS164_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS165_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS166_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS167_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS168_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS169_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS170_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS171_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS172_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS173_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS174_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS175_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS176_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS177_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS178_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS179_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS180_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS181_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS182_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS183_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS184_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS185_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS186_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS187_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS188_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS189_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS190_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS191_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS192_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS193_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS194_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS195_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS196_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS197_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS198_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS199_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS200_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS201_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS202_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS203_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS204_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS205_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS206_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS207_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS208_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS209_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS210_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS211_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS212_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS213_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS214_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS215_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS216_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS217_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS218_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS219_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS220_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS221_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS222_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS223_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS224_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS225_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS226_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS227_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS228_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS229_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS230_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS231_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS232_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS233_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS234_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS235_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS236_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS237_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS238_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS239_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS240_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS241_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS242_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS243_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS244_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS245_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS246_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS247_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS248_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS249_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS250_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS251_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS252_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS253_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS254_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_FMicropolyRasterizeCS255_0_03B9C1BE423719415228E53F908B915C1AA266F774B347BCED9DB5ACEE55A73161FEA9D4CBC93D281_TLightMapDensityPSTLightMapPolicyHQ0_0_0410332860002B35DEDDE2E984567E5B7F27B523A0123102E8DD30534406172E5B942BCBE24EDC0C2_TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B431675B78F8EE9F92CCEB7ED1F921EA7E6C78D7AA445_TBasePassPSTLightMapPolicyLQSkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316680648F855C3E7A46E803CBFBB9658F1376D5B34_TLightMapDensityVSFNoLightMapPolicy0_0_0410332860002B35DEDDE2E984567E5B7F27B523A6E914914834C8550D276D08BCF6ACFB95A5B6A38_TBasePassPSTDistanceFieldShadowsAndLightMapPolicyHQ0_0_067553F61B5470C464BC7EDD63DFF5C95B47B43168D85B2CAF4826288697598DF5A9C1680A45AFFF8_FHWRasterizeVS0_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS1_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS2_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS3_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS4_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS5_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS6_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS7_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS8_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS9_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS10_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS11_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS12_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS13_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS14_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS15_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS16_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS17_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS18_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS19_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS20_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS21_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS22_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS23_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS24_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS25_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS26_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS27_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS28_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS29_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS30_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS31_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS32_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS33_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS34_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS35_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS36_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS37_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS38_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS39_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS40_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS41_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS42_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS43_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS44_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS45_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS46_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS47_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS48_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS49_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS50_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS51_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS52_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS53_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS54_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS55_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS56_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS57_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS58_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS59_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS60_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS61_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS62_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHWRasterizeVS63_0_03B9C1BE423719415228E53F908B915C1AA266F77FD7BDD8BC064AEB12A23BA648A226BA672164539_FHitProxyVS0_0_035066ECBC7ACAFB429F4F029D7F02660C69AAB0A728DF0C2EB9007EDD63079E5E01B19AFFE6A9C76_FHitProxyPS0_0_0E427B9138BA536F768FD73ED5EBD629434FE712F7BAB0D7AD9EB60F446BDC42E5452966F623382EC_TBasePassPSFNoLightMapPolicy0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316B08957B08340D0A597408AF0BAAEB516E0E7CA47_FHWRasterizePS0_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS1_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS2_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS3_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS4_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS5_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS6_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS7_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS8_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS9_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS10_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS11_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS12_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS13_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS14_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS15_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS16_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS17_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS18_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS19_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS20_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS21_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS22_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS23_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS24_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS25_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS26_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS27_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS28_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS29_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS30_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS31_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS32_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS33_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS34_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS35_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS36_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS37_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS38_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS39_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS40_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS41_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS42_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS43_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS44_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS45_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS46_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS47_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS48_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS49_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS50_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS51_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS52_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS53_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS54_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS55_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS56_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS57_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS58_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS59_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS60_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS61_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS62_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS63_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS64_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS65_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS66_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS67_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS68_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS69_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS70_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS71_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS72_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS73_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS74_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS75_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS76_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS77_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS78_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS79_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS80_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS81_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS82_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS83_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS84_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS85_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS86_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS87_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS88_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS89_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS90_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS91_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS92_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS93_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS94_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS95_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS96_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS97_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS98_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS99_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS100_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS101_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS102_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS103_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS104_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS105_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS106_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS107_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS108_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS109_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS110_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS111_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS112_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS113_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS114_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS115_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS116_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS117_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS118_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS119_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS120_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS121_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS122_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS123_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS124_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS125_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS126_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS127_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS128_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS129_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS130_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS131_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS132_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS133_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS134_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS135_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS136_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS137_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS138_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS139_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS140_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS141_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS142_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS143_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS144_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS145_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS146_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS147_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS148_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS149_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS150_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS151_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS152_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS153_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS154_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS155_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS156_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS157_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS158_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS159_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS160_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS161_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS162_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS163_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS164_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS165_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS166_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS167_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS168_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS169_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS170_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS171_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS172_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS173_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS174_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS175_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS176_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS177_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS178_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS179_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS180_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS181_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS182_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS183_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS184_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS185_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS186_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS187_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS188_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS189_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS190_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS191_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS192_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS193_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS194_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS195_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS196_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS197_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS198_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS199_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS200_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS201_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS202_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS203_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS204_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS205_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS206_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS207_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS208_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS209_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS210_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS211_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS212_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS213_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS214_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS215_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS216_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS217_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS218_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS219_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS220_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS221_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS222_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS223_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS224_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS225_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS226_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS227_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS228_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS229_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS230_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS231_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS232_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS233_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS234_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS235_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS236_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS237_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS238_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS239_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS240_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS241_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS242_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS243_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS244_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS245_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS246_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS247_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS248_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS249_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS250_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS251_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS252_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS253_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS254_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_FHWRasterizePS255_0_03B9C1BE423719415228E53F908B915C1AA266F77DC9C3698A38420F0CC41556CC4FAA2A7C2D6AED9_TShadowDepthVSVertexShadowDepth_OutputDepth0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14B1D8442E48B3833C79AF4FD1A3F052FBE9A03B87B_TDepthOnlyVS<true>0_0_0A4B1DB9B93D59E72F068E9E0A27D85C1396E331AAFF1CFD347A89CD04D508E3DAE64DA25D12AAE3E_FLandscapePhysicalMaterialPS0_0_020E1030965D9050BE2F2C5A9779AD02AE39502F15D0781D81906430543D3A08B8E007AA587F4B844_TLightMapDensityVSFDummyLightMapPolicy0_0_0410332860002B35DEDDE2E984567E5B7F27B523A22B784821C1A52E1D39CC9B2F667681D0E8C30D9_FLumenCardVS0_0_06124D99229D9D82CAA55E03425A9B9C0FD582F11632C85231B3D82D6B6C7B446C0C129AA777A9AFD_TShadowDepthPSPixelShadowDepth_VirtualShadowMap0_0_0BC5A599B5C56BF447371F2EEB6380AD10D05029FC24767D5CFDF126A54DBBDB4D65E32C8EC4CFAD1_TBasePassVSFPrecomputedVolumetricLightmapLightingPolicy0_0_0F0765E97F80A58082337947551EC5C71F929BC6CEB5F03CCC9C4946C1A317EC2A8D6EF654573209D_TBasePassPSTDistanceFieldShadowsAndLightMapPolicyHQSkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316B9537AA7E9C1BAC7E89BC547783428F34909A7CE_TBasePassPSFPrecomputedVolumetricLightmapLightingPolicy0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316ABDFB573E93D58F15F7B764597285DE60F4C5399_TBasePassPSTLightMapPolicyHQ0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316E6A566381F2E0393DF280C43E992F5508BDDEF68_FLumenCardPS<true>0_0_0D25E975B63E407DD6CCDFE4BE03CD3DF848122EAF92519DC2E2EAE9C53C693DEC9B6DF4255D4EF3C_TLightMapDensityPSFDummyLightMapPolicy0_0_0410332860002B35DEDDE2E984567E5B7F27B523A916DEF590D8CBADE872CC07F841914E28CF9850A_TBasePassPSFCachedPointIndirectLightingPolicySkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B43163F34D96573A0E5CA7B1F9321F04AEE239A5A88B4_FTranslucentLightingInjectPS0_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS1_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS2_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS3_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS4_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS5_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS6_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS7_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS8_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS9_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS10_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS11_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS12_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS13_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS14_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS15_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_TBasePassVSFCachedPointIndirectLightingPolicy0_0_0F0765E97F80A58082337947551EC5C71F929BC6C54D271D0B8B781936FBC3A44FDEF70CBB2F64177_FHWRasterizeMS0_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS1_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS2_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS3_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS4_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS5_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS6_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS7_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS8_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS9_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS10_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS11_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS12_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS13_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS14_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS15_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS16_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS17_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS18_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS19_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS20_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS21_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS22_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS23_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS24_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS25_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS26_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS27_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS28_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS29_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS30_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_FHWRasterizeMS31_0_03B9C1BE423719415228E53F908B915C1AA266F770FCC8B0DE5E4363107EE434F498D873B4208CD5B_TBasePassPSFCachedPointIndirectLightingPolicy0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316BB140A6FF4233AA7B9C297D38994B96B18222600_FVelocityPS0_0_0578E1DFC040BAC3A5887E55EDAA7D7643A3C57030049112269A7BCBCC3085580059642AE0152C34F_TBasePassPSFCachedVolumeIndirectLightingPolicy0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316174C44A038F60F86DFDB113481CC8C92904F8F8E_TShadowDepthVSVertexShadowDepth_PerspectiveCorrect0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14BA4B52E903C0D5E1B50CD004E619E8D53809C21A1_TBasePassPSFCachedVolumeIndirectLightingPolicySkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316958959F36DBFD645DE2BF5E961E2BD51739D9F24_TLightMapDensityPSFNoLightMapPolicy0_0_0410332860002B35DEDDE2E984567E5B7F27B523AE364ECC8DB21C66D107C801C3B751B7ED35711A9_TLightMapDensityVSTLightMapPolicyLQ0_0_0410332860002B35DEDDE2E984567E5B7F27B523AC03721051752F1A18AEB426822B8D160987738F6_TBasePassVSTLightMapPolicyHQ0_0_0F0765E97F80A58082337947551EC5C71F929BC6CA84C809097D761E0CC162EC22C2FD3B3200A2043_FLandscapePhysicalMaterialVS0_0_020E1030965D9050BE2F2C5A9779AD02AE39502F1368C89A024A49697BAEAA7B8C1E327F411A1D023_TBasePassPSFNoLightMapPolicySkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316DA97FBAFEC1628191D52B0B69DF7AB04A796BE8D_TBasePassVSFCachedVolumeIndirectLightingPolicy0_0_0F0765E97F80A58082337947551EC5C71F929BC6CB3CC1027B7014718E74326C2EE6815FE9E04A8E3_TShadowDepthPSPixelShadowDepth_OnePassPointLight0_0_0BC5A599B5C56BF447371F2EEB6380AD10D05029FF21F308C1FBC5E8750EA694CD98FB374EC580DF8_TShadowDepthVSVertexShadowDepth_PerspectiveCorrectPositionOnly0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14B4D9654C2B539A20E73F2A4EC80A76F1E4D11CEDD_TBasePassVSTDistanceFieldShadowsAndLightMapPolicyHQ0_0_0F0765E97F80A58082337947551EC5C71F929BC6C8972F15099CD45BC399377AB13360957E7064D1F_TShadowDepthVSVertexShadowDepth_VirtualShadowMap0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14B846BEA4ABB404B6B14AD4F5DA9B249C676C953BE_TShadowDepthVSVertexShadowDepth_OnePassPointLight0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14BCAD9BCD82F7A5894F49EE527AE1D7F3519C92753_TBasePassPSTLightMapPolicyLQ0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316E824D0D863D708ADBA8282FA45C679A8AD298F39_TLightMapDensityPSTLightMapPolicyLQ0_0_0410332860002B35DEDDE2E984567E5B7F27B523ABFCF32E0E60CBE942F74AF99C064FDE10B442FD6_TBasePassVSTLightMapPolicyLQ0_0_0F0765E97F80A58082337947551EC5C71F929BC6C957A7BB573BC74E791ACB6BA2ABB5613B145E6E0_TLightMapDensityVSTLightMapPolicyHQ0_0_0410332860002B35DEDDE2E984567E5B7F27B523AC7655EF67FFA3358869D56E75271B4807C1ADE7F_TShadowDepthVSVertexShadowDepth_VirtualShadowMapPositionOnly0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14BBF6D7FC751B2FBA4D40BA6BFCA4CF0F88A09FEE1_TBasePassPSTLightMapPolicyHQSkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B431647C7EF6C65CDFEA47BE9AE8F7D71891B30EE6D8B_TDepthOnlyVS<false>0_0_0AE9B320E6FDD6F686446B30A2D13BF882DEB44F5B769868CBFF7E6463FE4FF1B7AA6E03831D1EC46_FVelocityVS0_0_0578E1DFC040BAC3A5887E55EDAA7D7643A3C5703B3B12C74A07B692B1CFE18D1E51BD8C189682129_TShadowDepthVSVertexShadowDepth_OnePassPointLightPositionOnly0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14B28B402DA4D662DB2C52782B9B8DC61F591CEB413_TBasePassVSFNoLightMapPolicy0_0_0F0765E97F80A58082337947551EC5C71F929BC6C9452CEDD58E9B10FF4177557BD2194A19C9C6C5D_DepthPosOnlyNoPixelPipelineA4B1DB9B93D59E72F068E9E0A27D85C1396E331A_VelocityPipelineDD15B90C8D28726D03CD8AD4366F13DECAE368AB_DepthNoPixelPipelineAE9B320E6FDD6F686446B30A2D13BF882DEB44F5_FGPUSpriteVertexFactory1B105ACF19156A8E47C60A6765F47C9C0E713DCE5C5BE91DA01DC2B25B1018F3EDA7A6FC7D1D30AEB9CA513CCBA4F1E3AF7D9556DD0F2FF45E951E1A_FNiagaraRibbonVertexFactoryE95E07B2B5A719DA06E8D11B2FB0CC54B6B56E76A5C2BD7C8E1CB8C2C0438E13767AF67A0D5B5966DE03DD13CEAD2D60503F2AAC85D4762994EF4025A5C2BD7C8E1CB8C2C0438E13767AF67A0D5B5966A5C2BD7C8E1CB8C2C0438E13767AF67A0D5B5966_TGPUSkinAPEXClothVertexFactoryDefaultCF64B0EF7E81EBA72A0526CEAFDC06D033915AAABBEDF5F2F99060D3A4E705A02AFC0D4CFF550703_FParticleSpriteVertexFactoryF6C8B1ED0A25136B9413B8ED0252A7B130446DF7F99E1B0FB635933CEEAC41CF9441DF5EA4A994CA9DAE5A7C55936FD50BC3B20BD063C1832A4D4247_TGPUSkinVertexFactoryUnlimitedCF64B0EF7E81EBA72A0526CEAFDC06D033915AAA180376A7171B50BD465E9983F32BCB5A07542FE7_FVectorFieldVisualizationVertexFactory8046109C676F9DB08B031AF55E8EE558AB0D6BCACC854D8E74FEAEF90804D69AF6B78BD07A141ACC_FNiagaraMeshVertexFactory1AE037326D8EB364D9247384B557B45111737DC64B3A20E0CA93D5CA5A60C16EF2EB14EA073FC9571BD81B2CBA1F364F28A837532353718EB814537B4B3A20E0CA93D5CA5A60C16EF2EB14EA073FC9574B3A20E0CA93D5CA5A60C16EF2EB14EA073FC957_FParticleBeamTrailVertexFactory40D7A56177FF0069290A4EF2E07EDCA981B1C3B4378BBDDEC2CEAC35A309C357B38D702E7981D5D3_TGPUSkinVertexFactoryDefaultCF64B0EF7E81EBA72A0526CEAFDC06D033915AAA180376A7171B50BD465E9983F32BCB5A07542FE7_TGPUSkinAPEXClothVertexFactoryUnlimitedCF64B0EF7E81EBA72A0526CEAFDC06D033915AAABBEDF5F2F99060D3A4E705A02AFC0D4CFF550703_FGeometryCollectionVertexFactoryBFCBA239089CED72643DACC7EAE4F0DD9FDED75F49D716CAD02F0AC031CC93ACB2AFCB9C42E7DC4149D716CAD02F0AC031CC93ACB2AFCB9C42E7DC4149D716CAD02F0AC031CC93ACB2AFCB9C42E7DC41_FLandscapeXYOffsetVertexFactoryF93AC2298DAB32583F62E042E13F0BF24F1C98C1B1684FBEF19B946A8709F4309D7CC4E5FC6044ADEBA49461CECB1EA5D21E2BF8918B91C7C3994DCEB1684FBEF19B946A8709F4309D7CC4E5FC6044ADB1684FBEF19B946A8709F4309D7CC4E5FC6044AD_FMeshParticleVertexFactory63D2076FC477AD68B3E41F1BA95A65FD7FBC4A2CF773920348F231C490A74B1A551F8CE3ABF04791_FInstancedStaticMeshVertexFactoryA536A59BC2FAF6BB7B735065D9A5DFE24BE34A2939A00A3AF8434811E9EA9890B934C37C364D15CD39A00A3AF8434811E9EA9890B934C37C364D15CD39A00A3AF8434811E9EA9890B934C37C364D15CD39A00A3AF8434811E9EA9890B934C37C364D15CD_FSplineMeshVertexFactoryA536A59BC2FAF6BB7B735065D9A5DFE24BE34A29A747D67BD07743C1BEA1DE549F682B82EB7B9965A747D67BD07743C1BEA1DE549F682B82EB7B9965A747D67BD07743C1BEA1DE549F682B82EB7B9965_FLocalVertexFactoryA536A59BC2FAF6BB7B735065D9A5DFE24BE34A2981418F8992AC49B8E2AFD31AF3B57530A23E085E81418F8992AC49B8E2AFD31AF3B57530A23E085E81418F8992AC49B8E2AFD31AF3B57530A23E085E_FLandscapeVertexFactoryF93AC2298DAB32583F62E042E13F0BF24F1C98C1B1684FBEF19B946A8709F4309D7CC4E5FC6044ADEBA49461CECB1EA5D21E2BF8918B91C7C3994DCEB1684FBEF19B946A8709F4309D7CC4E5FC6044ADB1684FBEF19B946A8709F4309D7CC4E5FC6044AD_FNiagaraSpriteVertexFactory2D699768682F604347476E0BAAD3E63203C9B0B35957CFEE095AEFFBA7F83F09F020F15CF6555718EFF166204144512228FF7A163011544EEF3FD2265957CFEE095AEFFBA7F83F09F020F15CF65557185957CFEE095AEFFBA7F83F09F020F15CF6555718_Nanite::FVertexFactory61FC001D468CB473F21C182F6ECFAE57E566561D_FGeometryCacheVertexVertexFactoryF7A2A7134F95BD0D46418459582942D14D992DC476143182082C57C6F98756E7AE927ED26DD4479A76143182082C57C6F98756E7AE927ED26DD4479A_FLandscapeFixedGridVertexFactoryF93AC2298DAB32583F62E042E13F0BF24F1C98C13F5F45F5620EF6411E27211E3D675CEA50B38DFBEBA49461CECB1EA5D21E2BF8918B91C7C3994DCE3F5F45F5620EF6411E27211E3D675CEA50B38DFB3F5F45F5620EF6411E27211E3D675CEA50B38DFB_FLandscapeTileVertexFactoryF93AC2298DAB32583F62E042E13F0BF24F1C98C1B1684FBEF19B946A8709F4309D7CC4E5FC6044ADEBA49461CECB1EA5D21E2BF8918B91C7C3994DCE268710141414444414441444141414141444447401010101010131454444143314010164512141414142402414141414141313304444443724144444444404444444444444444444434141414142414044444444444424341414141415101000313131312331314343414341314231214440444441313131314440310101015101010101011316165643434343411616161616166624316161616130343434441444444444141515151010300101311516161616624444444444440004040404040404040404040404043434343434444444444444444404040404040404444444440404040444444444444444434444444424144214144444442414141444144414141414141413131313131313144434444444441414141414141414141414143434344444444444443444044414141414441414141414143414141444141414144444144414141413344442444444141414323414141414131414141424123434242424242424143434341434141444141413131313432444141412441413131344444434141412121242421314444444444421222261411422101212121212434444444444440414151015101530434101331414600144444451011015151515161616161610101010101505242131616161616113131626010111004431313141314341101410101010101010101015101010101010304451011010101010101010101010101010101010101010101010600140404441404042121313134414101010101610101010101010131010002431313141616161101016164642141313131212121212121212141444444444441402444444212121212121212121212121312121212121212121212141212121212121212121434431411013131313161616161616161602314444444443414441414141424221212121212121212121312121212121212121212121212121212144444242424343434141444141414141444444444444444421442110131313131313161616160601012101010101510121014044444404342404442414131500444444444444343410131313321403040404043414443414331443341433143314341434143314133314331422141413141414134314412164444444444044464444440444044401015101510151011100010101010101010101010101010120223224241413131313030140404441404021010101011010101010101040442424141313100044444444444444444444444444444444444444444444444444444444444444444444444444444044444444443414441414141434241404012121313122222222010101010101101010101040442424141412101010101010101014141010151010101000404444445151010135040434140440404040404040404040404040404043434343434343444443434343404040404040404343434340404040444442424444344444444442422141414144444442414141434141414141414131313131313131414144434444444441414141414141414141414143434344444444444443444044414141414441414141414143414141444141414144444141414131414321444444444141214343414141314141414141224143434242424242424143434341434141444131313131314442444121414431313141444444434121212121243141414444444401015151515151515151515101010101010101010151515151010101510151015101510151015101010101010101510161510151015101510151015101510151015101510131315151515101510151015101510101510151016161444151014451010161617161434310131313131313134324221213141414101010100011000000130000001300000013000000130000001300000013000000140000000C000000090000001400000010000000100000000800000009000000080000002500000010000000100000001300000009000000080000000800000010000000100000001000000010000000100000000800000008000000080000001000000010000000D8000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000140000001000000008000000080000000800000014000000140000001300000008000000100000000800000008000000080000000800000008000000080000001300000010000000140000000800000012000000130000001300000013000000130000001300000013000000130000000D0000001300000008000000100000001100000009000000080000000900000008000000080000001700000009000000080000000900000008000000090000000800000009000000080000000C000000090000000800000009000000090000000900000009000000090000000900000009000000080000000800000008000000080000000800000013000000100000001000000010000000170000001000000010000000100000001000000009000000090000000900000009000000100000001000000010000000100000001000000010000000080000001A00000014000000280000000D000000440000000B0000000B00000013000000130000000900000009000000090000001400000008000000100000000D0000000C0000001000000008000000080000002D00000010000000100000001000000010000000100000001000000010000000090000000900000008000000080000000800000008000000130000000E0000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000C000000080000000A0000000C00000013000000100000001000000010000000100000001000000010000000100000000D0000000F00000009000000080000000900000008000000090000000C00000008000000130000001300000026000000100000000F000000140000000900000009000000090000000900000009000000100000001D000000130000001300000013000000130000001300000009000000080000000C00000008000000090000000800000009000000080000001400000014000000080000001000000009000000080000001300000008000000100000000800000008000000100000001000000041010000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000140000001000000010000000100000001000000009000000433AFC833894B7681A1D3DDBA35F7F5A9509A89900000000000000000000000000000000000000006E2AD9D86FE73F9DF5783D7E68BD0915331357DA_001_101_5;
+WorldGridMaterial-SM5-Default: MATSM_DA9E5626FCAE01590760E73DF088B4B4_PCD3D_SM5_-86156035__BC5N_NoCCBN_NoIris_DEV_SL_LWC2_PreExp_DBuf_UnInt_DXC0_VFO_SKYATM_SKYHF_SLWSMDLT_gs1_sdct_VT-0-0-1-0_MIN_DF_VED_Aniso-1_ComprOodle_Compr2_Lev4_ExclNonPipSh-1_LWC-2097152_347391141DB6FCC63A5C44EA751315CBC3EF5DDED_Num_SM5_FL_00000005_MFA_00000008_V_B6A0A753ED62499D8F30931E61FCAB05_0_DB3E993F4E2E98B305AD13B92D8C5DA5_36197F830BB149FF750D0910175517F54887B8B4___TShadowDepthPSPixelShadowDepth_PerspectiveCorrect0_0_0BC5A599B5C56BF447371F2EEB6380AD10D05029F96C2B9176A6D727E3EB7D048398F0A8BAEA7CE1C_FLumenCardPS<false>0_0_0D25E975B63E407DD6CCDFE4BE03CD3DF848122EAFD6CA491C5FC0CE9B85ABADBBDD4912CD804C705_TShadowDepthPSPixelShadowDepth_NonPerspectiveCorrect0_0_0BC5A599B5C56BF447371F2EEB6380AD10D05029F207C1CA66ADE37BEA2C8C42C98158E8CFB62D5F7_TShadowDepthVSVertexShadowDepth_OutputDepthPositionOnly0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14BA0EA564849DFB7412ED3F04E84CCCEECFA92E196_TLightMapDensityPSTLightMapPolicyHQ0_0_0410332860002B35DEDDE2E984567E5B7F27B523A0123102E8DD30534406172E5B942BCBE24EDC0C2_TBasePassPSFPrecomputedVolumetricLightmapLightingPolicySkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B431675B78F8EE9F92CCEB7ED1F921EA7E6C78D7AA445_TBasePassPSTLightMapPolicyLQSkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316680648F855C3E7A46E803CBFBB9658F1376D5B34_TLightMapDensityVSFNoLightMapPolicy0_0_0410332860002B35DEDDE2E984567E5B7F27B523A6E914914834C8550D276D08BCF6ACFB95A5B6A38_TBasePassPSTDistanceFieldShadowsAndLightMapPolicyHQ0_0_067553F61B5470C464BC7EDD63DFF5C95B47B43168D85B2CAF4826288697598DF5A9C1680A45AFFF8_FHitProxyVS0_0_035066ECBC7ACAFB429F4F029D7F02660C69AAB0A728DF0C2EB9007EDD63079E5E01B19AFFE6A9C76_FHitProxyPS0_0_0E427B9138BA536F768FD73ED5EBD629434FE712F7BAB0D7AD9EB60F446BDC42E5452966F623382EC_TBasePassPSFNoLightMapPolicy0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316B08957B08340D0A597408AF0BAAEB516E0E7CA47_TShadowDepthVSVertexShadowDepth_OutputDepth0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14B1D8442E48B3833C79AF4FD1A3F052FBE9A03B87B_TDepthOnlyVS<true>0_0_0A4B1DB9B93D59E72F068E9E0A27D85C1396E331AAFF1CFD347A89CD04D508E3DAE64DA25D12AAE3E_FLandscapePhysicalMaterialPS0_0_020E1030965D9050BE2F2C5A9779AD02AE39502F15D0781D81906430543D3A08B8E007AA587F4B844_TLightMapDensityVSFDummyLightMapPolicy0_0_0410332860002B35DEDDE2E984567E5B7F27B523A22B784821C1A52E1D39CC9B2F667681D0E8C30D9_FLumenCardVS0_0_06124D99229D9D82CAA55E03425A9B9C0FD582F11632C85231B3D82D6B6C7B446C0C129AA777A9AFD_TBasePassVSFPrecomputedVolumetricLightmapLightingPolicy0_0_0F0765E97F80A58082337947551EC5C71F929BC6CEB5F03CCC9C4946C1A317EC2A8D6EF654573209D_TBasePassPSTDistanceFieldShadowsAndLightMapPolicyHQSkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316B9537AA7E9C1BAC7E89BC547783428F34909A7CE_TBasePassPSFPrecomputedVolumetricLightmapLightingPolicy0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316ABDFB573E93D58F15F7B764597285DE60F4C5399_TBasePassPSTLightMapPolicyHQ0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316E6A566381F2E0393DF280C43E992F5508BDDEF68_TLightMapDensityPSFDummyLightMapPolicy0_0_0410332860002B35DEDDE2E984567E5B7F27B523A916DEF590D8CBADE872CC07F841914E28CF9850A_TBasePassPSFCachedPointIndirectLightingPolicySkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B43163F34D96573A0E5CA7B1F9321F04AEE239A5A88B4_FTranslucentLightingInjectPS0_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS1_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS2_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS3_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS4_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS5_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS6_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS7_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS8_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS9_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS10_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS11_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS12_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS13_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS14_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_FTranslucentLightingInjectPS15_0_0FD68CCE786C17148D325DEF35E11E46CB42B65E1719B9E131AA20B6DA68AFF17544AB6539627314C_TBasePassVSFCachedPointIndirectLightingPolicy0_0_0F0765E97F80A58082337947551EC5C71F929BC6C54D271D0B8B781936FBC3A44FDEF70CBB2F64177_TBasePassPSFCachedPointIndirectLightingPolicy0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316BB140A6FF4233AA7B9C297D38994B96B18222600_FVelocityPS0_0_0578E1DFC040BAC3A5887E55EDAA7D7643A3C57030049112269A7BCBCC3085580059642AE0152C34F_TBasePassPSFCachedVolumeIndirectLightingPolicy0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316174C44A038F60F86DFDB113481CC8C92904F8F8E_TShadowDepthVSVertexShadowDepth_PerspectiveCorrect0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14BA4B52E903C0D5E1B50CD004E619E8D53809C21A1_TBasePassPSFCachedVolumeIndirectLightingPolicySkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316958959F36DBFD645DE2BF5E961E2BD51739D9F24_TLightMapDensityPSFNoLightMapPolicy0_0_0410332860002B35DEDDE2E984567E5B7F27B523AE364ECC8DB21C66D107C801C3B751B7ED35711A9_TLightMapDensityVSTLightMapPolicyLQ0_0_0410332860002B35DEDDE2E984567E5B7F27B523AC03721051752F1A18AEB426822B8D160987738F6_TBasePassVSTLightMapPolicyHQ0_0_0F0765E97F80A58082337947551EC5C71F929BC6CA84C809097D761E0CC162EC22C2FD3B3200A2043_FLandscapePhysicalMaterialVS0_0_020E1030965D9050BE2F2C5A9779AD02AE39502F1368C89A024A49697BAEAA7B8C1E327F411A1D023_TBasePassPSFNoLightMapPolicySkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316DA97FBAFEC1628191D52B0B69DF7AB04A796BE8D_TBasePassVSFCachedVolumeIndirectLightingPolicy0_0_0F0765E97F80A58082337947551EC5C71F929BC6CB3CC1027B7014718E74326C2EE6815FE9E04A8E3_TShadowDepthPSPixelShadowDepth_OnePassPointLight0_0_0BC5A599B5C56BF447371F2EEB6380AD10D05029FF21F308C1FBC5E8750EA694CD98FB374EC580DF8_TShadowDepthVSVertexShadowDepth_PerspectiveCorrectPositionOnly0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14B4D9654C2B539A20E73F2A4EC80A76F1E4D11CEDD_TBasePassVSTDistanceFieldShadowsAndLightMapPolicyHQ0_0_0F0765E97F80A58082337947551EC5C71F929BC6C8972F15099CD45BC399377AB13360957E7064D1F_TShadowDepthVSVertexShadowDepth_OnePassPointLight0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14BCAD9BCD82F7A5894F49EE527AE1D7F3519C92753_TBasePassPSTLightMapPolicyLQ0_0_067553F61B5470C464BC7EDD63DFF5C95B47B4316E824D0D863D708ADBA8282FA45C679A8AD298F39_TLightMapDensityPSTLightMapPolicyLQ0_0_0410332860002B35DEDDE2E984567E5B7F27B523ABFCF32E0E60CBE942F74AF99C064FDE10B442FD6_TBasePassVSTLightMapPolicyLQ0_0_0F0765E97F80A58082337947551EC5C71F929BC6C957A7BB573BC74E791ACB6BA2ABB5613B145E6E0_TLightMapDensityVSTLightMapPolicyHQ0_0_0410332860002B35DEDDE2E984567E5B7F27B523AC7655EF67FFA3358869D56E75271B4807C1ADE7F_TBasePassPSTLightMapPolicyHQSkylight0_0_067553F61B5470C464BC7EDD63DFF5C95B47B431647C7EF6C65CDFEA47BE9AE8F7D71891B30EE6D8B_TDepthOnlyVS<false>0_0_0AE9B320E6FDD6F686446B30A2D13BF882DEB44F5B769868CBFF7E6463FE4FF1B7AA6E03831D1EC46_FVelocityVS0_0_0578E1DFC040BAC3A5887E55EDAA7D7643A3C5703B3B12C74A07B692B1CFE18D1E51BD8C189682129_TShadowDepthVSVertexShadowDepth_OnePassPointLightPositionOnly0_0_023B8D8A0B296C7EA81C7449673557E8484B1F14B28B402DA4D662DB2C52782B9B8DC61F591CEB413_TBasePassVSFNoLightMapPolicy0_0_0F0765E97F80A58082337947551EC5C71F929BC6C9452CEDD58E9B10FF4177557BD2194A19C9C6C5D_DepthPosOnlyNoPixelPipelineA4B1DB9B93D59E72F068E9E0A27D85C1396E331A_VelocityPipelineDD15B90C8D28726D03CD8AD4366F13DECAE368AB_DepthNoPixelPipelineAE9B320E6FDD6F686446B30A2D13BF882DEB44F5_FGPUSpriteVertexFactory1B105ACF19156A8E47C60A6765F47C9C0E713DCE5C5BE91DA01DC2B25B1018F3EDA7A6FC7D1D30AEB9CA513CCBA4F1E3AF7D9556DD0F2FF45E951E1A_FNiagaraRibbonVertexFactoryE95E07B2B5A719DA06E8D11B2FB0CC54B6B56E76A5C2BD7C8E1CB8C2C0438E13767AF67A0D5B5966DE03DD13CEAD2D60503F2AAC85D4762994EF4025A5C2BD7C8E1CB8C2C0438E13767AF67A0D5B5966A5C2BD7C8E1CB8C2C0438E13767AF67A0D5B5966_TGPUSkinAPEXClothVertexFactoryDefaultCF64B0EF7E81EBA72A0526CEAFDC06D033915AAABBEDF5F2F99060D3A4E705A02AFC0D4CFF550703_FParticleSpriteVertexFactoryF6C8B1ED0A25136B9413B8ED0252A7B130446DF7F99E1B0FB635933CEEAC41CF9441DF5EA4A994CA9DAE5A7C55936FD50BC3B20BD063C1832A4D4247_TGPUSkinVertexFactoryUnlimitedCF64B0EF7E81EBA72A0526CEAFDC06D033915AAA180376A7171B50BD465E9983F32BCB5A07542FE7_FVectorFieldVisualizationVertexFactory8046109C676F9DB08B031AF55E8EE558AB0D6BCACC854D8E74FEAEF90804D69AF6B78BD07A141ACC_FNiagaraMeshVertexFactory1AE037326D8EB364D9247384B557B45111737DC64B3A20E0CA93D5CA5A60C16EF2EB14EA073FC9571BD81B2CBA1F364F28A837532353718EB814537B4B3A20E0CA93D5CA5A60C16EF2EB14EA073FC9574B3A20E0CA93D5CA5A60C16EF2EB14EA073FC957_FParticleBeamTrailVertexFactory40D7A56177FF0069290A4EF2E07EDCA981B1C3B4378BBDDEC2CEAC35A309C357B38D702E7981D5D3_TGPUSkinVertexFactoryDefaultCF64B0EF7E81EBA72A0526CEAFDC06D033915AAA180376A7171B50BD465E9983F32BCB5A07542FE7_TGPUSkinAPEXClothVertexFactoryUnlimitedCF64B0EF7E81EBA72A0526CEAFDC06D033915AAABBEDF5F2F99060D3A4E705A02AFC0D4CFF550703_FGeometryCollectionVertexFactoryBFCBA239089CED72643DACC7EAE4F0DD9FDED75F49D716CAD02F0AC031CC93ACB2AFCB9C42E7DC4149D716CAD02F0AC031CC93ACB2AFCB9C42E7DC4149D716CAD02F0AC031CC93ACB2AFCB9C42E7DC41_FLandscapeXYOffsetVertexFactoryF93AC2298DAB32583F62E042E13F0BF24F1C98C1B1684FBEF19B946A8709F4309D7CC4E5FC6044ADEBA49461CECB1EA5D21E2BF8918B91C7C3994DCEB1684FBEF19B946A8709F4309D7CC4E5FC6044ADB1684FBEF19B946A8709F4309D7CC4E5FC6044AD_FMeshParticleVertexFactory63D2076FC477AD68B3E41F1BA95A65FD7FBC4A2CF773920348F231C490A74B1A551F8CE3ABF04791_FInstancedStaticMeshVertexFactoryA536A59BC2FAF6BB7B735065D9A5DFE24BE34A2939A00A3AF8434811E9EA9890B934C37C364D15CD39A00A3AF8434811E9EA9890B934C37C364D15CD39A00A3AF8434811E9EA9890B934C37C364D15CD39A00A3AF8434811E9EA9890B934C37C364D15CD_FSplineMeshVertexFactoryA536A59BC2FAF6BB7B735065D9A5DFE24BE34A29A747D67BD07743C1BEA1DE549F682B82EB7B9965A747D67BD07743C1BEA1DE549F682B82EB7B9965A747D67BD07743C1BEA1DE549F682B82EB7B9965_FLocalVertexFactoryA536A59BC2FAF6BB7B735065D9A5DFE24BE34A2981418F8992AC49B8E2AFD31AF3B57530A23E085E81418F8992AC49B8E2AFD31AF3B57530A23E085E81418F8992AC49B8E2AFD31AF3B57530A23E085E_FLandscapeVertexFactoryF93AC2298DAB32583F62E042E13F0BF24F1C98C1B1684FBEF19B946A8709F4309D7CC4E5FC6044ADEBA49461CECB1EA5D21E2BF8918B91C7C3994DCEB1684FBEF19B946A8709F4309D7CC4E5FC6044ADB1684FBEF19B946A8709F4309D7CC4E5FC6044AD_FNiagaraSpriteVertexFactory2D699768682F604347476E0BAAD3E63203C9B0B35957CFEE095AEFFBA7F83F09F020F15CF6555718EFF166204144512228FF7A163011544EEF3FD2265957CFEE095AEFFBA7F83F09F020F15CF65557185957CFEE095AEFFBA7F83F09F020F15CF6555718_FGeometryCacheVertexVertexFactoryF7A2A7134F95BD0D46418459582942D14D992DC476143182082C57C6F98756E7AE927ED26DD4479A76143182082C57C6F98756E7AE927ED26DD4479A_FLandscapeFixedGridVertexFactoryF93AC2298DAB32583F62E042E13F0BF24F1C98C13F5F45F5620EF6411E27211E3D675CEA50B38DFBEBA49461CECB1EA5D21E2BF8918B91C7C3994DCE3F5F45F5620EF6411E27211E3D675CEA50B38DFB3F5F45F5620EF6411E27211E3D675CEA50B38DFB_FLandscapeTileVertexFactoryF93AC2298DAB32583F62E042E13F0BF24F1C98C1B1684FBEF19B946A8709F4309D7CC4E5FC6044ADEBA49461CECB1EA5D21E2BF8918B91C7C3994DCE268710141414444414441444141414141444447401010101010131454444143314010164512141414142402414141414141313304444443724144444444404444444444444444444434141414142414044444444444424341414141415101000313131312331314343414341314231214440444441313131314440310101015101010101011316165643434343411616161616166624316161616130343434441444444444141515151010300101311516161616624444444444440004040404040404040404040404043434343434444444444444444404040404040404444444440404040444444444444444434444444424144214144444442414141444144414141414141413131313131313144434444444441414141414141414141414143434344444444444443444044414141414441414141414143414141444141414144444144414141413344442444444141414323414141414131414141424123434242424242424143434341434141444141413131313432444141412441413131344444434141412121242421314444444444421222261411422101212121212434444444444440414151015101530434101331414600144444451011015151515161616161610101010101505242131616161616113131626010111004431313141314341101410101010101010101015101010101010304451011010101010101010101010101010101010101010101010600140404441404042121313134414101010101610101010101010131010002431313141616161101016164642141313131212121212121212141444444444441402444444212121212121212121212121312121212121212121212141212121212121212121434431411013131313161616161616161602314444444443414441414141424221212121212121212121312121212121212121212121212121212144444242424343434141444141414141444444444444444421442110131313131313161616160601012101010101510121014044444404342404442414131500444444444444343410131313321403040404043414443414331443341433143314341434143314133314331422141413141414134314412164444444444044464444440444044401015101510151011100010101010101010101010101010120223224241413131313030140404441404021010101011010101010101040442424141313100044444444444444444444444444444444444444444444444444444444444444444444444444444044444444443414441414141434241404012121313122222222010101010101101010101040442424141412101010101010101014141010151010101000404444445151010135040434140440404040404040404040404040404043434343434343444443434343404040404040404343434340404040444442424444344444444442422141414144444442414141434141414141414131313131313131414144434444444441414141414141414141414143434344444444444443444044414141414441414141414143414141444141414144444141414131414321444444444141214343414141314141414141224143434242424242424143434341434141444131313131314442444121414431313141444444434121212121243141414444444401015151515151515151515101010101010101010151515151010101510151015101510151015101010101010101510161510151015101510151015101510151015101510131315151515101510151015101510101510151016161444151014451010161617161434310131313131313134324221213141414101010100011000000130000001300000013000000130000001300000013000000140000000C000000090000001400000010000000100000000800000009000000080000002500000010000000100000001300000009000000080000000800000010000000100000001000000010000000100000000800000008000000080000001000000010000000D8000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000140000001000000008000000080000000800000014000000140000001300000008000000100000000800000008000000080000000800000008000000080000001300000010000000140000000800000012000000130000001300000013000000130000001300000013000000130000000D0000001300000008000000100000001100000009000000080000000900000008000000080000001700000009000000080000000900000008000000090000000800000009000000080000000C000000090000000800000009000000090000000900000009000000090000000900000009000000080000000800000008000000080000000800000013000000100000001000000010000000170000001000000010000000100000001000000009000000090000000900000009000000100000001000000010000000100000001000000010000000080000001A00000014000000280000000D000000440000000B0000000B00000013000000130000000900000009000000090000001400000008000000100000000D0000000C0000001000000008000000080000002D00000010000000100000001000000010000000100000001000000010000000090000000900000008000000080000000800000008000000130000000E0000000900000009000000090000000900000009000000090000000900000009000000090000000900000009000000090000000C000000080000000A0000000C00000013000000100000001000000010000000100000001000000010000000100000000D0000000F00000009000000080000000900000008000000090000000C00000008000000130000001300000026000000100000000F000000140000000900000009000000090000000900000009000000100000001D000000130000001300000013000000130000001300000009000000080000000C00000008000000090000000800000009000000080000001400000014000000080000001000000009000000080000001300000008000000100000000800000008000000100000001000000041010000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000140000001000000010000000100000001000000009000000433AFC833894B7681A1D3DDBA35F7F5A9509A89900000000000000000000000000000000000000006E2AD9D86FE73F9DF5783D7E68BD0915331357DA_001_101_5;
+Cooked packages 8080 Packages Remain 7996 Total 16076
+Cooked packages 9872 Packages Remain 6204 Total 16076
+Cooked packages 11456 Packages Remain 4620 Total 16076
+Cooked packages 12448 Packages Remain 3628 Total 16076
+Cooked packages 13904 Packages Remain 2172 Total 16076
+Model /Engine/Maps/Entry.Entry:PersistentLevel.ModelComponent_4 has elements that reference missing vertices. MaxVertex=3, NumModelVertices=0
+Model /Engine/Maps/Entry.Entry:PersistentLevel.ModelComponent_5 has elements that reference missing vertices. MaxVertex=7, NumModelVertices=0
+Model /Engine/Maps/Entry.Entry:PersistentLevel.ModelComponent_5 has elements that reference missing vertices. MaxVertex=11, NumModelVertices=0
+Model /Engine/Maps/Entry.Entry:PersistentLevel.ModelComponent_5 has elements that reference missing vertices. MaxVertex=19, NumModelVertices=0
+Model /Engine/Maps/Entry.Entry:PersistentLevel.ModelComponent_6 has elements that reference missing vertices. MaxVertex=15, NumModelVertices=0
+Model /Engine/Maps/Entry.Entry:PersistentLevel.ModelComponent_7 has elements that reference missing vertices. MaxVertex=23, NumModelVertices=0
+FPhysicsSolverBase::AsyncDt:-1.000000
+Creating AISystem for world Entry
+UWorld::CleanupWorld for Entry, bSessionEnded=true, bCleanupResources=true
+Cooked packages 14080 Packages Remain 1996 Total 16076
+Cooked packages 14112 Packages Remain 1964 Total 16076
+Cooked packages 14144 Packages Remain 1932 Total 16076
+Cook Diagnostics: OpenFileHandles=14185, VirtualMemory=1831MiB
+Cooked packages 14176 Packages Remain 1900 Total 16076
+Cooked packages 14208 Packages Remain 1868 Total 16076
+Cooked packages 14240 Packages Remain 1836 Total 16076
+Cooked packages 14272 Packages Remain 1804 Total 16076

@@ -22,6 +22,7 @@ class URule;
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ActionBtn_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
  \
 	DECLARE_FUNCTION(execOnButtonClicked); \
+	DECLARE_FUNCTION(execAddSpacesBeforeCaps); \
 	DECLARE_FUNCTION(execInitializeButton);
 
 

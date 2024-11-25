@@ -55,20 +55,28 @@ public:
 	UPROPERTY()
 	FString GoalDialogue;
 
+	UFUNCTION()
 	void ToPuzzleGoalPtrs();
 
+	UFUNCTION()
 	void SetInitType();
 
+	UFUNCTION()
 	UTerm* PickGoal();
 
+	UFUNCTION()
 	UTerm* GetCurrentGoal();
 
+	UFUNCTION()
 	FString GetHint();
 
+	UFUNCTION()
 	FString GetObjective();
 
+	UFUNCTION()
 	void AddGoal();
 
+	UFUNCTION()
 	void DeleteGoal(int32 Index);
 
 

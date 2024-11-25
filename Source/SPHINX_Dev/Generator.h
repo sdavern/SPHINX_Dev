@@ -39,22 +39,29 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float FindSpawnDelay = 5.0f;
 
+	UFUNCTION()
 	void Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP);
 
+	UFUNCTION()
 	URule* GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs, int depth);
 
+	UFUNCTION()
 	bool GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel, AGenerator* GInstance);
 
+	UFUNCTION()
 	AGamePuzzlePoint* FindGamePuzzlePoint(UPuzzlePoint* PP);
 
 	void GetAllAttachedActors(AActor* ParentActor, TArray<AActor*>& OutActors);
 
 	UWorld* GetWorldForGenerator();
 
+	UFUNCTION()
 	ASpawnPoint* GetSpawnPointFor(UItem* Item);
 
+	UFUNCTION()
 	TArray<ASpawnPoint*> GetAllSpawnPoints();
 
+	UFUNCTION()
 	TArray<ASpawnPoint*> GetSPsInViewport();
 
 
@@ -62,6 +69,7 @@ public:
 	UFUNCTION()
 	void RetryGetSpawnPointFor(UItem* Item);
 
+	UPROPERTY()
 	int MAX_DEPTH = 20;
 
 	UPROPERTY()

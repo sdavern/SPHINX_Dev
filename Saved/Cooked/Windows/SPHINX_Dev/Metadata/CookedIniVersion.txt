@@ -3,7 +3,7 @@ Windows.Game:/Script/UnrealEd.ProjectPackagingSettings:bDeterministicShaderCodeO
 Windows.Game:/Script/Engine.AssetManagerSettings:PrimaryAssetTypesToScan:0=(PrimaryAssetType="Map",AssetBaseClass=/Script/Engine.World,bHasBlueprintClasses=False,bIsEditorOnly=True,Directories=((Path="/Game/Maps")),SpecificAssets=,Rules=(Priority=-1,ChunkId=-1,bApplyRecursively=True,CookRule=Unknown))
 Windows.Game:/Script/Engine.AssetManagerSettings:PrimaryAssetTypesToScan:1=(PrimaryAssetType="PrimaryAssetLabel",AssetBaseClass=/Script/Engine.PrimaryAssetLabel,bHasBlueprintClasses=False,bIsEditorOnly=True,Directories=((Path="/Game")),SpecificAssets=,Rules=(Priority=-1,ChunkId=-1,bApplyRecursively=True,CookRule=Unknown))
 Windows.Engine:/Script/EngineSettings.GameMapsSettings:GameInstanceClass:0=/Script/Engine.GameInstance
-Windows.Engine:/Script/EngineSettings.GameMapsSettings:GameDefaultMap:0=/Game/FirstPerson/Maps/ManagerLevel.ManagerLevel
+Windows.Engine:/Script/EngineSettings.GameMapsSettings:GameDefaultMap:0=/Game/FirstPerson/Maps/MainMenuLevel.MainMenuLevel
 Windows.Engine:/Script/EngineSettings.GameMapsSettings:ServerDefaultMap:0=/Engine/Maps/Entry
 Windows.Engine:/Script/EngineSettings.GameMapsSettings:GlobalDefaultGameMode:0=/Game/FirstPerson/Blueprints/BP_FirstPersonGameMode.BP_FirstPersonGameMode_C
 Windows.Engine:/Script/EngineSettings.GameMapsSettings:GlobalDefaultServerGameMode:0=None
@@ -141,7 +141,7 @@ Engine:/Script/UdpMessaging.UdpMessagingSettings:TunnelUnicastEndpoint:0=
 Engine:/Script/UdpMessaging.UdpMessagingSettings:TunnelMulticastEndpoint:0=
 Engine:/Script/EngineSettings.GameMapsSettings:GameInstanceClass:0=/Script/Engine.GameInstance
 Engine:/Script/EngineSettings.GameMapsSettings:EditorStartupMap:0=/Game/FirstPerson/Maps/ManagerLevel.ManagerLevel
-Engine:/Script/EngineSettings.GameMapsSettings:GameDefaultMap:0=/Game/FirstPerson/Maps/ManagerLevel.ManagerLevel
+Engine:/Script/EngineSettings.GameMapsSettings:GameDefaultMap:0=/Game/FirstPerson/Maps/MainMenuLevel.MainMenuLevel
 Engine:/Script/EngineSettings.GameMapsSettings:ServerDefaultMap:0=/Engine/Maps/Entry
 Engine:/Script/EngineSettings.GameMapsSettings:GlobalDefaultGameMode:0=/Game/FirstPerson/Blueprints/BP_FirstPersonGameMode.BP_FirstPersonGameMode_C
 Engine:/Script/EngineSettings.GameMapsSettings:LocalMapOptions:0=
@@ -322,7 +322,7 @@ Engine:/Script/Engine.UserInterfaceSettings:bLoadWidgetsOnDedicatedServer:0=True
 Engine:/Script/Engine.UserInterfaceSettings:bAllowHighDPIInGameMode:0=True
 Engine:/Script/Engine.UserInterfaceSettings:RenderFocusRule:0=NavigationOnly
 Engine:/Script/Engine.UserInterfaceSettings:HardwareCursors:0=()
-Engine:/Script/Engine.UserInterfaceSettings:SoftwareCursors:0=((Default, "/Game/UI/UI_BPs/CursorBP.CursorBP_C"))
+Engine:/Script/Engine.UserInterfaceSettings:SoftwareCursors:0=()
 Engine:/Script/Engine.UserInterfaceSettings:ApplicationScale:0=1.000000
 Engine:/Script/Engine.UserInterfaceSettings:CustomScalingRuleClass:0=None
 Engine:/Script/Engine.UserInterfaceSettings:DesignScreenSize:0=(X=1920,Y=1080)
