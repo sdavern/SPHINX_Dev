@@ -9,7 +9,14 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AGamePuzzlePoint;
+class UArea;
+class UGameItem;
+class UItem;
+class UItemProperty;
+class UPuzzlePoint;
 class URule;
+class UTerm;
 #ifdef SPHINX_DEV_PuzzleManager_generated_h
 #error "PuzzleManager.generated.h already included, missing '#pragma once' in PuzzleManager.h"
 #endif
@@ -34,7 +41,52 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<struct FSharedRulesStruct>
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_87_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_87_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execAssignPlayer); \
+	DECLARE_FUNCTION(execDestroyDialogue); \
+	DECLARE_FUNCTION(execRetryIsGPPInViewport); \
+	DECLARE_FUNCTION(execIsGPPInViewport); \
+	DECLARE_FUNCTION(execGetGPPsInViewport); \
+	DECLARE_FUNCTION(execGetRulePointers); \
+	DECLARE_FUNCTION(execSetupDbItemsOnStart); \
+	DECLARE_FUNCTION(execInitialisePPPtrs); \
+	DECLARE_FUNCTION(execPrintAllRules); \
+	DECLARE_FUNCTION(execPopulateRulePointers); \
+	DECLARE_FUNCTION(execPrintLeaves); \
+	DECLARE_FUNCTION(execActivateProperties); \
+	DECLARE_FUNCTION(execReturnLeaves); \
+	DECLARE_FUNCTION(execActivateMaxPuzzlePoints); \
+	DECLARE_FUNCTION(execDeactivatePuzzlePoint); \
+	DECLARE_FUNCTION(execActivatePuzzlePoint); \
+	DECLARE_FUNCTION(execGetPPsInWorld); \
+	DECLARE_FUNCTION(execCheckIfPuzzleToBeGenerated); \
+	DECLARE_FUNCTION(execGetGameItemsInWorld); \
+	DECLARE_FUNCTION(execGetItemsInWorld); \
+	DECLARE_FUNCTION(execLoadRuleBPs); \
+	DECLARE_FUNCTION(execLoadItemBPs); \
+	DECLARE_FUNCTION(execLoadPuzzlePointBPs); \
+	DECLARE_FUNCTION(execTriggerEnd); \
+	DECLARE_FUNCTION(execGetCurrentArea); \
+	DECLARE_FUNCTION(execGetCurrentAreaName); \
+	DECLARE_FUNCTION(execGetObjective); \
+	DECLARE_FUNCTION(execGetHint); \
+	DECLARE_FUNCTION(execPuzzleContains); \
+	DECLARE_FUNCTION(execGetPlayer); \
+	DECLARE_FUNCTION(execUpdatePlayerProperties); \
+	DECLARE_FUNCTION(execGetAllPPs); \
+	DECLARE_FUNCTION(execGetAllRules); \
+	DECLARE_FUNCTION(execGetAllItems); \
+	DECLARE_FUNCTION(execGetRulesWithOutput); \
+	DECLARE_FUNCTION(execGetRulesWithInput); \
+	DECLARE_FUNCTION(execFindDbItemsFor); \
+	DECLARE_FUNCTION(execGetItemsOfType); \
+	DECLARE_FUNCTION(execHasItemOfType); \
+	DECLARE_FUNCTION(execGetObject); \
+	DECLARE_FUNCTION(execAddPuzzle); \
+	DECLARE_FUNCTION(execFindItemsForOutputs); \
+	DECLARE_FUNCTION(execFindLeaves); \
 	DECLARE_FUNCTION(execExecuteRule); \
+	DECLARE_FUNCTION(execAddApplicableRule); \
+	DECLARE_FUNCTION(execRulesFor); \
 	DECLARE_FUNCTION(execGenerateForActivePuzzlePoints);
 
 

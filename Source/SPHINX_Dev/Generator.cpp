@@ -136,6 +136,15 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
 				UE_LOG(LogTemp, Error, TEXT("TRYING TO SPAWN %s"), *Item->Name);
 				AActor* ItemGO = World->SpawnActor<AActor>(Item->ItemPrefab.Get(), NextSpawnVector, FRotator::ZeroRotator);
 				NextSpawnPoint->HasSpawnedItem = true;
+
+				if (ItemGO)
+				{
+					UE_LOG(LogTemp, Display, TEXT("ItemGO spawned"));
+				}
+				else
+				{
+					UE_LOG(LogTemp, Display, TEXT("ItemGO not spawned"));
+				}
 			}
 		}
 	}
@@ -206,7 +215,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 
 				//Goal->ToPropPtrs();
         		bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, PP, NewAccessiblePPs, ItemsInLevel, Instance);
-        		if (SuccessfulInputs)
+        		if (SuccessfulInputs && !PuzzleString.IsEmpty())
         		{
             		PMInstance->AddPuzzle(PP, PuzzleString);
             		PuzzleString = TEXT("");

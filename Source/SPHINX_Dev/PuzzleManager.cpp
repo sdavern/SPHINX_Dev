@@ -26,6 +26,16 @@ APuzzleManager::APuzzleManager()
 void APuzzleManager::BeginPlay()
 {
     Super::BeginPlay();
+
+
+
+    GetWorld()->GetTimerManager().SetTimerForNextTick([this]() {
+        bIsLevelLoaded = true;
+        UE_LOG(LogTemp, Log, TEXT("Level loaded. Tick logic enabled."));
+    });
+
+
+
     Instance = GetInstance();
 
     PuzzlesGeneratedStrings.Empty();
@@ -33,7 +43,7 @@ void APuzzleManager::BeginPlay()
     RuleAssets = LoadRuleBPs();
     PPAssets = LoadPuzzlePointBPs();
     
-    ActivateMaxPuzzlePoints();
+    //ActivateMaxPuzzlePoints();
     ActivateProperties();
 
     PlayerController = ReturnPC();
@@ -90,14 +100,23 @@ void APuzzleManager::BeginPlay()
 void APuzzleManager::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
-    
+
+    if (!bIsLevelLoaded) {
+        return;
+    }
+    UE_LOG(LogTemp, Display, TEXT("TICK CALLED IN PM"));
     ActivateMaxPuzzlePoints();
-    GenerateForActivePuzzlePoints();
+    if (ActivePuzzlePoints.Num() > 0 && ActiveGeneratedPuzzles < MaxActivePuzzles)
+    {
+        GenerateForActivePuzzlePoints();
+    }
+    UE_LOG(LogTemp, Display, TEXT("TICK FINISHED IN PM"));
 }
 
 void APuzzleManager::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
     Super::EndPlay(EndPlayReason);
+    GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
     Instance = nullptr;  
 }
 
@@ -143,7 +162,9 @@ void APuzzleManager::ActivateMaxPuzzlePoints()
         }
         if (RandPP != nullptr && !RandPP->IsActive && !RandPP->InitSpawned && RandPP->PuzzlePointPtr)
         {
+            UE_LOG(LogTemp, Warning, TEXT("Attempting to activate puzzle point: %s"), *RandPP->Name);
             ActivatePuzzlePoint(RandPP);
+            UE_LOG(LogTemp, Warning, TEXT("Successfully activated puzzle point: %s"), *RandPP->Name);   
             ActivePuzzlePoints.Add(RandPP);
             AccessiblePPs.Add(RandPP->PuzzlePointPtr);
             ++ActivePPs;
@@ -294,6 +315,15 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
                     else
                     {
                         UE_LOG(LogTemp, Display, TEXT("PM: OwningGPP->InitNPC is not valid"));
+                    }
+
+                    if (PuzzleTracker)
+                    {
+                        UE_LOG(LogTemp, Display, TEXT("TEST123: PuzzleTracker is valid in PM"));
+                    }
+                    else
+                    {
+                        UE_LOG(LogTemp, Display, TEXT("TEST123: PuzzleTracker is null in PM"));
                     }
 
                     ++ActiveGeneratedPuzzles;

@@ -367,6 +367,8 @@ private:
 	UPROPERTY()
 	URule* RuleToFind;
 
+	bool bIsLevelLoaded = false;
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
