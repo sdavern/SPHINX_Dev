@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "GameItem.h"
 #include "Item.h"
+#include "PaperSpriteComponent.h"
+#include "PaperSprite.h"
 #include "ItemProperty.h"
 #include "InventoryManager.generated.h"
 

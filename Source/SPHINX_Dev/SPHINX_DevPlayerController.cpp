@@ -137,7 +137,7 @@ bool ASPHINX_DevPlayerController::PerformGeoSweep()
 
     if (bHit && HitResult.GetActor() != nullptr)
     {
-        DrawDebugSphere(GetWorld(), Start, GrabRadius, 32, FColor::Blue, false, 5.0f);
+        //DrawDebugSphere(GetWorld(), Start, GrabRadius, 32, FColor::Blue, false, 5.0f);
 
         AInitNPC* InitNPC = Cast<AInitNPC>(HitResult.GetActor());
         if (InitNPC)
@@ -260,9 +260,18 @@ void ASPHINX_DevPlayerController::DropGameItem(AActor* GameItemBP)
 
     USceneComponent* GameItemRoot = GameItemBP->GetRootComponent();
     GameItemRoot->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+
     FVector NewLocation = GameItemRoot->GetComponentLocation() + FVector(10.0f, 0.0f, 0.0f);
     NewLocation.Z = 40.0f;
-    GameItemRoot->SetWorldLocation(NewLocation);
+    GameItemBP->SetActorLocation(NewLocation);
+
+    UPaperSpriteComponent* SpriteComponent = GameItemBP->FindComponentByClass<UPaperSpriteComponent>();
+    if (SpriteComponent)
+    {
+        SpriteComponent->SetVisibility(true);
+        SpriteComponent->SetHiddenInGame(false);
+        SpriteComponent->MarkRenderStateDirty();
+    }
 
     ActivePlayer->IsHoldingItem = false;
     ActivePlayer->HeldGameItem = nullptr;
@@ -270,8 +279,6 @@ void ASPHINX_DevPlayerController::DropGameItem(AActor* GameItemBP)
     SelectedGameItem = nullptr;
 
     EnableCollisionForActor(GameItemBP);
-
-
 }
 
 void ASPHINX_DevPlayerController::EnableCollisionForActor(AActor* ActorToEnable)
@@ -418,12 +425,11 @@ void ASPHINX_DevPlayerController::OnExitButtonClicked()
 
         
         FInputModeGameOnly InputMode;
-        InputMode.SetConsumeCaptureMouseDown(false); // Ensure mouse down events are not consumed by the UI
+        InputMode.SetConsumeCaptureMouseDown(false); 
         SetInputMode(InputMode);
         ActivePlayer->EnableInput(this);
         bShowMouseCursor = true;
 
-        // Set the focus back to the game viewport
         if (APlayerController* PC = Cast<APlayerController>(this))
         {
             PC->SetIgnoreLookInput(false);
@@ -596,7 +602,7 @@ void ASPHINX_DevPlayerController::SetupInventoryButton()
             UE_LOG(LogTemp, Display, TEXT("DBItem not valid for %s"), *HitGameItem->Name);
             return;
         }
-        if (HitGameItem->DbItem->IsStationary)
+        if (HitGameItem->DbItem->IsStationary || HitGameItem->IsNPC)
         {
             ActionMenu->InventoryButton->SetIsEnabled(false);
             ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Can't add to Inventory"));
@@ -804,6 +810,7 @@ void ASPHINX_DevPlayerController::SetupSpriteButton(UInventoryButton* Button)
 
 void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UInventoryButton* Button)
 {
+    UE_LOG(LogTemp, Display, TEXT("SpriteButton clicked"));
     if (!ActionMenuOpen)
     {
         int ItemIndex = InventoryMenu->AllButtons.Find(Button);

@@ -9,6 +9,13 @@ AGamePuzzlePoint::AGamePuzzlePoint()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
+    SphereComponent->SetupAttachment(RootComponent);
+    SphereComponent->SetSphereRadius(SphereRadius);  
+    SphereComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+    SphereComponent->SetCollisionObjectType(ECollisionChannel::ECC_WorldDynamic);
+    SphereComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
+
 	//PuzzlePointPtr = this->PPToPtr();
 
 	/* if (PuzzlePointBP)

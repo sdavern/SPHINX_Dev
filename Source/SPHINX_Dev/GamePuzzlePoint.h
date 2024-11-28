@@ -11,6 +11,7 @@
 #include "InitObject.h"
 #include "Rule.h"
 #include "GameItem.h"
+#include "Components/SphereComponent.h"
 #include "GamePuzzlePoint.generated.h"
 
 UCLASS()
@@ -51,6 +52,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	bool InitInitalised = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	float SphereRadius = 30.0f;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	USphereComponent* SphereComponent;
 
 	FTransform PointTransform;
 

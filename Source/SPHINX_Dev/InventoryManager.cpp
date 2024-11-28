@@ -118,29 +118,63 @@ void AInventoryManager::AddItemToInventory(UGameItem* Item)
 
 void AInventoryManager::RemoveItemFromInventory(UGameItem* Item)
 {
+    UE_LOG(LogTemp, Display, TEXT("RemoveItemFromInventory called for %s"), *Item->Name);
+    if (Item)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Item is valid in removefrominventory"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Display, TEXT("Item is not valid"));
+    }
     for (int32 i = Inventory.Num() - 1; i >= 0; i--)
     {
         if (Inventory[i] == Item)
         {
             Inventory.RemoveAt(i);
+
             if (Item->DbItem->GetPropertyWithName("InInventory"))
             {
                 Item->DbItem->GetPropertyWithName("InInventory")->RemoveProperty();
-                if (ActivePlayer)
+            }
+
+            if (ActivePlayer)
+            {
+                FVector AvatarOffset = ActivePlayer->GetActorLocation() + FVector(25.0f, 0.0f, 0.0f);
+                AActor* OwnerActor = Item->GetOwner();
+
+                OwnerActor->SetActorHiddenInGame(false);
+                OwnerActor->SetActorEnableCollision(true);
+                OwnerActor->SetActorTickEnabled(true);
+                OwnerActor->SetActorLocation(AvatarOffset);
+
+                UPaperSpriteComponent* SpriteComponent = OwnerActor->FindComponentByClass<UPaperSpriteComponent>();
+                if (SpriteComponent)
                 {
-                    FVector AvatarOffset = ActivePlayer->GetActorLocation() + FVector(25.0f, 0.0f, 0.0f);
-                    AActor* OwnerActor = Item->GetOwner();
-                    OwnerActor->SetActorHiddenInGame(false);
-                    OwnerActor->SetActorEnableCollision(true);
-                    OwnerActor->SetActorTickEnabled(true);
-                    OwnerActor->SetActorLocation(AvatarOffset);
-                    if (Item->Selected)
-                    {
-                        Item->Selected = false;
-                        SelectedItem = nullptr;
-                    }
+                    SpriteComponent->SetVisibility(true);
+                    SpriteComponent->SetHiddenInGame(false);
+                    SpriteComponent->MarkRenderStateDirty(); 
+                    UE_LOG(LogTemp, Display, TEXT("Sprite restored for item %s"), *Item->Name);
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Warning, TEXT("Sprite component not found for item %s"), *Item->Name);
+                }
+
+                if (Item->Selected)
+                {
+                    Item->Selected = false;
+                    SelectedItem = nullptr;
                 }
             }
+            else
+            {
+                UE_LOG(LogTemp, Display, TEXT("When checking for sprite, active player is null"));
+            }
+        }
+        else
+        {
+            UE_LOG(LogTemp, Display, TEXT("i == i not working in inventory manager"));
         }
     }
 }

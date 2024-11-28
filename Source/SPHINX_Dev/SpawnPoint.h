@@ -19,7 +19,7 @@ public:
 	ASpawnPoint();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float SphereRadius = 32.0f;
+	float SphereRadius = 10.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector Location;
