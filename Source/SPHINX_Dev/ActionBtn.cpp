@@ -29,6 +29,7 @@ void UActionBtn::InitializeButton(UGameItem* GameItem, URule* Rule)
     SetIsEnabled(true);
     LinkedGameItem = GameItem;
     LinkedRule = Rule;
+    HasRuleLinked = true;
     UE_LOG(LogTemp, Warning, TEXT("ActionButton LinkedGameItem is %s and LinkedRule is %s"), *LinkedGameItem->Name, *LinkedRule->Action);
 
     this->SetRenderOpacity(1.0f);

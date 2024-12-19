@@ -33,6 +33,9 @@ public:
     UFUNCTION()
 	FString AddSpacesBeforeCaps(const FString& InString);
 
+    //UPROPERTY()
+    bool HasRuleLinked = false;
+
 private:
     UPROPERTY()
     UGameItem* LinkedGameItem;

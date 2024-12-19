@@ -545,8 +545,27 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
             }
             
             FSlateColor NewColor = FSlateColor(FLinearColor(0.652479f, 0.662771f, 0.697917f)); 
+
             ActionMenu->ExitText->SetColorAndOpacity(NewColor);
             ActionMenu->ExitButton->SetIsEnabled(false);
+
+            ActionMenu->HoldText->SetColorAndOpacity(NewColor);
+            ActionMenu->HoldButton->SetIsEnabled(false);
+
+            ActionMenu->AddText->SetColorAndOpacity(NewColor);
+            ActionMenu->InventoryButton->SetIsEnabled(false);
+
+            ActionMenu->ActionText->SetColorAndOpacity(NewColor);
+            ActionMenu->ActionButton->SetIsEnabled(false);
+
+            for (int i = 0; i <= ActionMenu->ActionButtons.Num() - 1; i++)
+            {
+                if (i > 0 && ActionMenu->ActionButtons[i] && ActionMenu->ActionButtons[i]->HasRuleLinked)
+                {
+                    ActionMenu->ActionButtons[i]->ActionText->SetColorAndOpacity(NewColor);
+                    ActionMenu->ActionButtons[i]->SetIsEnabled(false);
+                }
+            }   
             
             InspectOpen = true;
         }
@@ -569,8 +588,27 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
             }
 
             FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f)); 
+            
             ActionMenu->ExitText->SetColorAndOpacity(NewColor);
             ActionMenu->ExitButton->SetIsEnabled(true);
+
+            ActionMenu->HoldText->SetColorAndOpacity(NewColor);
+            ActionMenu->HoldButton->SetIsEnabled(true);
+
+            ActionMenu->AddText->SetColorAndOpacity(NewColor);
+            ActionMenu->InventoryButton->SetIsEnabled(true);
+
+            ActionMenu->ActionText->SetColorAndOpacity(NewColor);
+            ActionMenu->ActionButton->SetIsEnabled(true);
+
+            for (int i = 0; i <= ActionMenu->ActionButtons.Num() - 1; i++)
+            {
+                if (i > 0 && ActionMenu->ActionButtons[i] && ActionMenu->ActionButtons[i]->HasRuleLinked)
+                {
+                    ActionMenu->ActionButtons[i]->ActionText->SetColorAndOpacity(NewColor);
+                    ActionMenu->ActionButtons[i]->SetIsEnabled(true);
+                }
+            }
         }
     }
 }

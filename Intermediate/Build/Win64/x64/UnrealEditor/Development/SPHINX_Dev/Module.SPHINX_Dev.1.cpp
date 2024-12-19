@@ -9,6 +9,7 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/EndLevelGameMode.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/GameArea.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/GameItem.gen.cpp"
+#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/GamePuzzlePoint.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/Generator.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/InitNPC.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealEditor/Inc/SPHINX_Dev/UHT/InitObject.gen.cpp"
