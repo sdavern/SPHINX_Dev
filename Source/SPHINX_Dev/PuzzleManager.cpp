@@ -649,6 +649,8 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                             PlayerController->DialogueBox->AddToViewport(0);
                             PlayerController->DialogueBox->SetVisibility(ESlateVisibility::Visible);
                             PlayerController->DialogueBox->ChangeInspectText(PlayerController->DialogueBox->InspectText, OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue);
+                            OwningGPP->InitNPC->OwningPP->GoalDialogue = OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue; //remove if necessary, may not work
+                            UE_LOG(LogTemp, Display, TEXT("After puzzle completed: OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue"));
                             FTimerDelegate TimerDel;
 			                TimerDel.BindUFunction(this, FName("DestroyDialogue"), PlayerController->DialogueBox);
 			                FTimerHandle TimerHandle;

@@ -173,6 +173,7 @@ bool ASPHINX_DevPlayerController::PerformGeoSweep()
 
 void ASPHINX_DevPlayerController::GrabGameItem(UGameItem* GameItem)
 {
+    UE_LOG(LogTemp, Display, TEXT("GrabGameItemCalled"));
     if (GrabSoundCue)
     {
         FVector Location = FVector(0.0f, 0.0f, 0.0f);
@@ -203,6 +204,7 @@ void ASPHINX_DevPlayerController::GrabGameItem(UGameItem* GameItem)
             
         }
     }
+    UE_LOG(LogTemp, Display, TEXT("GrabGameItem: GameItem is not valid"));
     
 }
 
@@ -333,8 +335,18 @@ void ASPHINX_DevPlayerController::SetupHoldButton()
 
 void ASPHINX_DevPlayerController::OnHoldButtonClicked()
 {
+    UE_LOG(LogTemp, Display, TEXT("HoldButton clicked"));
+    if (HitGameItem)
+    {
+        UE_LOG(LogTemp, Display, TEXT("HoldButton: HitGameItem is valid"));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Display, TEXT("HoldButton: HitGameItem is null"));
+    }
     if (HitGameItem->IsNPC && !HitNPC)
     {
+        UE_LOG(LogTemp, Display, TEXT("HoldButton: HitGameItem->IsNPC && !HitNPC"));
         DialogueBox = CreateWidget<UDialogueBox>(this, DialogueBoxClass);
         if (DialogueBox)
         {
@@ -354,6 +366,7 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
     }
     else if (HitGameItem && HitNPC)
     {
+        UE_LOG(LogTemp, Display, TEXT("HoldButton: HitGameItem && HitNPC"));
         if (DialogueBox)
         {
             DialogueBox->RemoveFromParent();
@@ -367,7 +380,7 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
     }
     else if (ActivePlayer->IsHoldingItem && HitGameItem != SelectedGameItem)
     {
-        UE_LOG(LogTemp, Display, TEXT("Already holding item"));
+        UE_LOG(LogTemp, Display, TEXT("HoldButton: Already holding item"));
     }
 
     else if (HitGameItem && !ActivePlayer->IsHoldingItem)
@@ -454,7 +467,6 @@ void ASPHINX_DevPlayerController::OnExitButtonClicked()
 
 void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
 {
-    
     if (HitGameItem && InventoryManager)
     {
         if (!HitGameItem->InInventory && InventoryManager->Inventory.Num() <= 16)
@@ -620,6 +632,7 @@ void ASPHINX_DevPlayerController::SetupExitButton()
     {
         ActionMenu->ExitButton->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnExitButtonClicked);
         UE_LOG(LogTemp, Display, TEXT("ExitButton set up"));
+        
     }
     else
     {

@@ -26,6 +26,7 @@ void UActionMenu::NativeConstruct()
 
 void UActionMenu::ChangeButtonText(UTextBlock* ButtonText, const FString& NewText)
 {
+    UE_LOG(LogTemp, Display, TEXT("ChangeButtonText called, trying to change text to %s"), *NewText);
     if (ButtonText)
     {
         ButtonText->SetText(FText::FromString(NewText));

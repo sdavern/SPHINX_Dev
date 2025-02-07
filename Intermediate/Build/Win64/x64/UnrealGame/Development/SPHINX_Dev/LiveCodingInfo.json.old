@@ -2,6 +2,7 @@
 	"RemapUnityFiles": 
 	{
 		"Module.SPHINX_Dev.1.cpp.obj": [
+			"ActionBtn.gen.cpp.obj",
 			"ActionMenu.gen.cpp.obj",
 			"Area.gen.cpp.obj",
 			"Avatar.gen.cpp.obj",
@@ -24,8 +25,7 @@
 			"MainMenu.gen.cpp.obj",
 			"MyPawn.gen.cpp.obj",
 			"PlayerPawn.gen.cpp.obj",
-			"PuzzleManager.gen.cpp.obj",
-			"ActionBtn.gen.cpp.obj"
+			"PuzzleManager.gen.cpp.obj"
 		],
 		"Module.SPHINX_Dev.2.cpp.obj": [
 			"PuzzlePoint.gen.cpp.obj",
@@ -42,7 +42,7 @@
 			"Term.gen.cpp.obj",
 			"TP_PickUpComponent.gen.cpp.obj",
 			"TP_WeaponComponent.gen.cpp.obj",
-			"ActionMenu.cpp.obj",
+			"ActionBtn.cpp.obj",
 			"Area.cpp.obj",
 			"Avatar.cpp.obj",
 			"ConditionalObject.cpp.obj",
@@ -68,7 +68,7 @@
 			"PuzzlePoint.cpp.obj",
 			"PuzzleTracker.cpp.obj",
 			"Rule.cpp.obj",
-			"ActionBtn.cpp.obj"
+			"ActionMenu.cpp.obj"
 		],
 		"Module.SPHINX_Dev.3.cpp.obj": [
 			"SpawnPoint.cpp.obj",
