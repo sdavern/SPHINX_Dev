@@ -74,6 +74,7 @@ void AInventoryManager::AssignPlayer()
 
 void AInventoryManager::AddItemToInventory(UGameItem* Item)
 {
+    UE_LOG(LogTemp, Display, TEXT("Trying to add %s to inventory"), *Item->Name);
     if (!Item)
     {
         UE_LOG(LogTemp, Warning, TEXT("Attempted to add a null Item to inventory."));

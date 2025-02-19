@@ -165,6 +165,7 @@
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\tp_weaponcomponent.gen.cpp",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\tp_weaponcomponent.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealeditor\\inc\\sphinx_dev\\uht\\tp_weaponcomponent.generated.h",
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\actionbtn.cpp",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\actionmenu.cpp",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\area.cpp",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\gamearea.h",
@@ -253,8 +254,7 @@
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\playerpawn.cpp",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\puzzlemanager.cpp",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\puzzlepoint.cpp",
-            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\puzzletracker.cpp",
-            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\rule.cpp"
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\puzzletracker.cpp"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

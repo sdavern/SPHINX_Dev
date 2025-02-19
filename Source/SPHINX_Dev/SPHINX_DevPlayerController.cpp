@@ -69,7 +69,25 @@ void ASPHINX_DevPlayerController::SetupInputComponent()
     InputComponent->BindAction("RightClick", IE_Pressed, this, &ASPHINX_DevPlayerController::OnRightMouseDown);
 	UE_LOG(LogTemp, Display, TEXT("RightClick bound to mouse."));
 
+    InputComponent->BindAction("Space", IE_Pressed, this, &ASPHINX_DevPlayerController::OnSpaceDown);
+    UE_LOG(LogTemp, Display, TEXT("Space bound to key"));
+
+    InputComponent->BindAction("InventoryOne", IE_Pressed, this, &ASPHINX_DevPlayerController::OnOneDown);
+    UE_LOG(LogTemp, Display, TEXT("One bound to key"));
+
+
     
+}
+
+void ASPHINX_DevPlayerController::OnSpaceDown()
+{
+    UE_LOG(LogTemp, Display, TEXT("Space"));
+    
+}
+
+void ASPHINX_DevPlayerController::OnRightMouseDown()
+{
+    UE_LOG(LogTemp, Display, TEXT("Right mouse has been clicked"));
 }
 
 void ASPHINX_DevPlayerController::OnLeftMouseDown()
@@ -229,9 +247,9 @@ void ASPHINX_DevPlayerController::DisableCollisionForActor(AActor* ActorToDisabl
     }
 }
 
-void ASPHINX_DevPlayerController::OnRightMouseDown()
+void ASPHINX_DevPlayerController::OnOneDown()
 {
-    UE_LOG(LogTemp, Display, TEXT("Right mouse has been clicked!"));
+    UE_LOG(LogTemp, Display, TEXT("One key pressed!"));
     if (!ActivePlayer)
     {
         return;

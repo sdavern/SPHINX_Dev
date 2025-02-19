@@ -74,7 +74,9 @@ protected:
 
 private:
 
-	
+	void OnSpaceDown();
+
+	void OnOneDown();
 
 	void OnLeftMouseDown();
 

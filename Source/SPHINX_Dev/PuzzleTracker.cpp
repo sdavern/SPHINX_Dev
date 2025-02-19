@@ -17,15 +17,15 @@ void UPuzzleTracker::UpdateText(int PuzzleNumber)
     }
     else if (PuzzleNumber == 3)
     {
-        TrackerText->SetText(FText::FromString(TEXT("Completed Puzzles: 3")));
+        TrackerText->SetText(FText::FromString(TEXT("Go talk to the Sphinx")));
     }
-    else if (PuzzleNumber == 4)
+    /* else if (PuzzleNumber == 4)
     {
         TrackerText->SetText(FText::FromString(TEXT("Completed Puzzles: 4")));
     }
     else if (PuzzleNumber == 5)
     {
-        TrackerText->SetText(FText::FromString(TEXT("Go talk to the Sphinx")));
-    }
+        TrackerText->SetText(FText::FromString(TEXT("Go talk to the Sphinx"))); */
+    //}
 }
 
