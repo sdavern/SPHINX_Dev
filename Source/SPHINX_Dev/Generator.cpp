@@ -128,22 +128,70 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
 		if (NextSpawnPoint)
 		{
 			FVector NextSpawnVector = NextSpawnPoint->Location;
-			NextSpawnVector.Z = 40;
+			//add a debug sphere
+			NextSpawnVector.Z = 45;
+
+			//DrawDebugSphere(GetWorld(), NextSpawnVector, 20.0f, 32, FColor::Blue, true, 120.0f);
+			
 			UE_LOG(LogTemp, Display, TEXT("Spawn point: %s ( %s )"), *NextSpawnVector.ToString(), *Item->Name);
+			/* if (GEngine)
+			{
+    			FString ItemName = Item ? Item->Name : TEXT("Unknown");
+    			FString SpawnLocation = NextSpawnVector.ToString();
+
+    			// Log to Output Log
+    			UE_LOG(LogTemp, Display, TEXT("Spawn point: %s ( %s )"), *SpawnLocation, *ItemName);
+
+    			// Display on screen
+    			GEngine->AddOnScreenDebugMessage(
+        			-1, 
+        			30.0f, 
+        			FColor::Green, 
+        			FString::Printf(TEXT("Spawn point: %s ( %s )"), *SpawnLocation, *ItemName)
+    			);
+			} */
 			if (Item->ItemPrefab && World)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("ItemPrefab is valid"));
 				UE_LOG(LogTemp, Error, TEXT("TRYING TO SPAWN %s"), *Item->Name);
+				/* if (GEngine)
+				{
+    				FString ItemName = Item ? Item->Name : TEXT("Unknown");
+ 
+   					UE_LOG(LogTemp, Error, TEXT("TRYING TO SPAWN %s"), *ItemName);
+
+    				GEngine->AddOnScreenDebugMessage(
+        				-1,              
+        				30.0f,             
+        				FColor::Red,      
+        				FString::Printf(TEXT("TRYING TO SPAWN %s"), *ItemName) 
+    				);
+				} */
+
 				AActor* ItemGO = World->SpawnActor<AActor>(Item->ItemPrefab.Get(), NextSpawnVector, FRotator::ZeroRotator);
 				NextSpawnPoint->HasSpawnedItem = true;
 
 				if (ItemGO)
 				{
+					FString ItemName = Item ? Item->Name : TEXT("Unknown");
 					UE_LOG(LogTemp, Display, TEXT("ItemGO spawned"));
+					/* GEngine->AddOnScreenDebugMessage(
+						-1, 
+						30.0f, 
+						FColor::Green, 
+						FString::Printf(TEXT("ItemGO %s spawned"), *ItemName)
+					); */
 				}
 				else
 				{
+					FString ItemName = Item ? Item->Name : TEXT("Unknown");
 					UE_LOG(LogTemp, Display, TEXT("ItemGO not spawned"));
+					/* GEngine->AddOnScreenDebugMessage(
+						-1, 
+						30.0f, 
+						FColor::Green, 
+						FString::Printf(TEXT("ItemGO %s not spawned"), *ItemName)
+					); */
 				}
 			}
 		}
@@ -198,6 +246,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
     	{
 			PP->ToPuzzleGoalPtrs();
         	UTerm* Goal = PP->PickGoal();
+
 			if (Goal)
 			{
 				UE_LOG(LogTemp, Display, TEXT("PP goal: %s"), *Goal->Name);
@@ -214,10 +263,11 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 
 
 				//Goal->ToPropPtrs();
-        		bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, PP, NewAccessiblePPs, ItemsInLevel, Instance);
+        		bool SuccessfulInputs = GenerateInputs(Goal, Root, 0, PP, NewAccessiblePPs, ItemsInLevel, Instance, Goal);
         		if (SuccessfulInputs && !PuzzleString.IsEmpty())
         		{
-            		PMInstance->AddPuzzle(PP, PuzzleString);
+					FString GoalString = Goal->ToString();
+            		PMInstance->AddPuzzle(PP, PuzzleString, GoalString);
             		PuzzleString = TEXT("");
 					UE_LOG(LogTemp, Error, TEXT("SUCCESSFUL INPUTS"));
         		}
@@ -249,8 +299,9 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 	return nullptr;
 }
 
-bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel, AGenerator* GInstance)
+bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel, AGenerator* GInstance, UTerm* GoalTerm)
 {
+	UTerm* Goal = GoalTerm;
 	UE_LOG(LogTemp, Warning, TEXT("GenerateInputs for ParentRule: %s called"), *ParentRule->ToString());
 	TArray<UItem*> MatchingItems = GInstance->PMInstance->FindDbItemsFor(StartTerm, NewAccessiblePPs, ItemsInLevel); 
 
@@ -376,7 +427,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 					}
 				}
 			}
-			Result = GenerateInputs(ChosenRule->Inputs[i], ChosenRule, Depth + 1, CurrentPP, NewAccessiblePPs, ItemsInLevel, Instance);
+			Result = GenerateInputs(ChosenRule->Inputs[i], ChosenRule, Depth + 1, CurrentPP, NewAccessiblePPs, ItemsInLevel, Instance, Goal);
 			if (Result)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("Result is true"));
@@ -409,10 +460,16 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 		return false;
 	}
 
+	/* if (PMInstance->GoalsPicked.Contains(Goal))
+	{
+		UE_LOG(LogTemp, Display, TEXT("Goal has already been used"));
+		return false;
+	} */
+
 	UWorld* World = GetWorld();
 	Spawn(World, StartTerm->DbItem, ParentRule, CurrentPP);
 	UE_LOG(LogTemp, Display, TEXT("DbItem added to spawn list: %s"), *StartTerm->DbItem->Name);
-
+	
 	for (int32 i = 0; i < CurrentPP->CurrentPuzzleRules.Num(); i++)
 	{
 		if (CurrentPP->CurrentPuzzleRules[i])
@@ -623,6 +680,25 @@ TArray<ASpawnPoint*> AGenerator::GetSPsInViewport()
     }
 	UE_LOG(LogTemp, Warning, TEXT("%d SPAWN POINTS ARE VISIBLE IN THE VIEWPORT"), FoundSPs.Num());
     return FoundSPs;
+}
+
+
+UTerm* AGenerator::ChooseGoal(UPuzzlePoint* PP)
+{
+	UTerm* Goal = PP->PickGoal();
+	FString GoalString = Goal->ToString();
+
+	if (PMInstance->PickedGoalStrings.Contains(GoalString))
+	{
+		return Goal;
+	}
+	else
+	{
+		ChooseGoal(PP);
+	}
+
+	return nullptr;
+
 }
 
 /* TArray<AGamePuzzlePoint*> AGenerator::GetGPPsInViewport()

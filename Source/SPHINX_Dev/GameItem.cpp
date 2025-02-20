@@ -128,7 +128,7 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
 		{
 			if (Property)
 			{
-				UE_LOG(LogTemp, Display, TEXT("%s %s is a property of DbItem %s"), *Property->Name, *Property->Value, *Name);
+				//UE_LOG(LogTemp, Display, TEXT("%s %s is a property of DbItem %s"), *Property->Name, *Property->Value, *Name);
 			}
 		}
 	}
@@ -140,7 +140,7 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
 	{
 		if (Property)
 		{
-			UE_LOG(LogTemp, Display, TEXT("%s %s is a property of GameItem %s"), *Property->Name, *Property->Value, *Name);
+			//UE_LOG(LogTemp, Display, TEXT("%s %s is a property of GameItem %s"), *Property->Name, *Property->Value, *Name);
 		}
 	}
 	
@@ -154,7 +154,7 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
 		{
 			for (URule* PuzzleRule : Rules)
 			{
-				UE_LOG(LogTemp, Error, TEXT("Rule %s is in RulesFor(%s)"), *PuzzleRule->Action, *this->Name);
+				//UE_LOG(LogTemp, Error, TEXT("Rule %s is in RulesFor(%s)"), *PuzzleRule->Action, *this->Name);
 				UE_LOG(LogTemp, Display, TEXT("Checking Rule %s fulfilled by %s ? %s"), *PuzzleRule->ToString(), *this->Name, (RuleFulfilled(PuzzleRule) ? TEXT("True") : TEXT("False")));
 				if (PuzzleRule && RuleFulfilled(PuzzleRule))
 				{
@@ -458,6 +458,10 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					{
 						ItemGO = World->SpawnActor<AActor>(Output->DbItem->ItemPrefab.Get(), Transform, SpawnParams);
 						UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: Output %s has been spawned"), *Output->Name);
+					}
+					else
+					{
+						UE_LOG(LogTemp, Display, TEXT("OUTPUT HAS NOT BEEN SPAWNED"));
 					}
 				}
 				//GameItem->Setup(Output->DbItem->Name, Output->DbItem); need to have 

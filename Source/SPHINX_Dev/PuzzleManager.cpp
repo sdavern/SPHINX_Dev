@@ -605,8 +605,8 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                         FoundLeavesRules->RulesArray.Remove(BRule);
                     }
                 }
-
-                if (FoundLeavesRules->RulesArray.Num() <= 1)
+                //200225 addition
+                if (FoundLeavesRules->RulesArray.Num() <= 1 || FoundLeavesRules->RulesArray[1] == Rule)
                 {
                     UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Puzzle for PP: %s completed!"), *FoundPP->Name);
                     ++CompletedPuzzles;
@@ -783,10 +783,18 @@ bool APuzzleManager::FindItemsForOutputs(URule* Rule)
     return true;
 }
 
-void APuzzleManager::AddPuzzle(UPuzzlePoint* PP, FString Puzzle)
+void APuzzleManager::AddPuzzle(UPuzzlePoint* PP, FString Puzzle, FString GoalString)
 {
     PuzzlesGenerated.Add(PP, Puzzle);
     PuzzlesGeneratedStrings.Add(Puzzle);
+    
+    if (PP->MainGoal)
+    {
+        PickedGoalStrings.Add(GoalString);
+        GoalsPicked.Add(PP->MainGoal);
+        UE_LOG(LogTemp, Display, TEXT("GOAL ADDED TO PICKED GOALS"));
+    }
+    
     UE_LOG(LogTemp, Error, TEXT("Puzzle added to PuzzlesGenerated: %s"), *Puzzle);
 }
 

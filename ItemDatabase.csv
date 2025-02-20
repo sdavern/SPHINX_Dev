@@ -1,5 +1,5 @@
 Name,Description,Property 1 Type,Property 1 Name,Property 1 Value,Property 2 Type,Property 2 Name,Property 2 Value,Property 3 Type,Property 3 Name,Property 3 Value,Property 4 Type,Property 4 Name,Property 4 Value,Property 5 Type,Property 5 Name,Property 5 Value,Property 6 Type,Property 6 Name,Property 6 Value,Property 7 Type,Property 7 Name,Property 7 Value,
-Ash,It's a small pile of ash!,string,isa,Ash,,,,,,,,,,,,,,,,,,,
+Cow,Moo!,string,isa,Cow,string,isa,Animal,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,

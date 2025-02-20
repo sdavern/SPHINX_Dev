@@ -459,9 +459,10 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 	{
 		P_GET_OBJECT(UPuzzlePoint,Z_Param_PP);
 		P_GET_PROPERTY(FStrProperty,Z_Param_Puzzle);
+		P_GET_PROPERTY(FStrProperty,Z_Param_GoalString);
 		P_FINISH;
 		P_NATIVE_BEGIN;
-		P_THIS->AddPuzzle(Z_Param_PP,Z_Param_Puzzle);
+		P_THIS->AddPuzzle(Z_Param_PP,Z_Param_Puzzle,Z_Param_GoalString);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(APuzzleManager::execFindItemsForOutputs)
@@ -705,9 +706,11 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		{
 			UPuzzlePoint* PP;
 			FString Puzzle;
+			FString GoalString;
 		};
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_PP;
 		static const UECodeGen_Private::FStrPropertyParams NewProp_Puzzle;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_GoalString;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
@@ -716,9 +719,11 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 	};
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_APuzzleManager_AddPuzzle_Statics::NewProp_PP = { "PP", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PuzzleManager_eventAddPuzzle_Parms, PP), Z_Construct_UClass_UPuzzlePoint_NoRegister, METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_APuzzleManager_AddPuzzle_Statics::NewProp_Puzzle = { "Puzzle", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PuzzleManager_eventAddPuzzle_Parms, Puzzle), METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_APuzzleManager_AddPuzzle_Statics::NewProp_GoalString = { "GoalString", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PuzzleManager_eventAddPuzzle_Parms, GoalString), METADATA_PARAMS(0, nullptr) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_APuzzleManager_AddPuzzle_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APuzzleManager_AddPuzzle_Statics::NewProp_PP,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APuzzleManager_AddPuzzle_Statics::NewProp_Puzzle,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APuzzleManager_AddPuzzle_Statics::NewProp_GoalString,
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_APuzzleManager_AddPuzzle_Statics::Function_MetaDataParams[] = {
@@ -2321,6 +2326,16 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_PuzzlesGeneratedStrings_MetaData[];
 #endif
 		static const UECodeGen_Private::FArrayPropertyParams NewProp_PuzzlesGeneratedStrings;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_GoalsPicked_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_GoalsPicked_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_GoalsPicked;
+		static const UECodeGen_Private::FStrPropertyParams NewProp_PickedGoalStrings_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_PickedGoalStrings_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_PickedGoalStrings;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_CompletedPuzzles_MetaData[];
 #endif
@@ -2402,7 +2417,7 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		{ &Z_Construct_UFunction_APuzzleManager_ActivateProperties, "ActivateProperties" }, // 3294379903
 		{ &Z_Construct_UFunction_APuzzleManager_ActivatePuzzlePoint, "ActivatePuzzlePoint" }, // 3762621961
 		{ &Z_Construct_UFunction_APuzzleManager_AddApplicableRule, "AddApplicableRule" }, // 1217035004
-		{ &Z_Construct_UFunction_APuzzleManager_AddPuzzle, "AddPuzzle" }, // 1030574009
+		{ &Z_Construct_UFunction_APuzzleManager_AddPuzzle, "AddPuzzle" }, // 1281223752
 		{ &Z_Construct_UFunction_APuzzleManager_AssignPlayer, "AssignPlayer" }, // 2362844116
 		{ &Z_Construct_UFunction_APuzzleManager_CheckIfPuzzleToBeGenerated, "CheckIfPuzzleToBeGenerated" }, // 1401144944
 		{ &Z_Construct_UFunction_APuzzleManager_DeactivatePuzzlePoint, "DeactivatePuzzlePoint" }, // 1152937369
@@ -2608,6 +2623,20 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_APuzzleManager_Statics::NewProp_PuzzlesGeneratedStrings = { "PuzzlesGeneratedStrings", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APuzzleManager, PuzzlesGeneratedStrings), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APuzzleManager_Statics::NewProp_PuzzlesGeneratedStrings_MetaData), Z_Construct_UClass_APuzzleManager_Statics::NewProp_PuzzlesGeneratedStrings_MetaData) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APuzzleManager_Statics::NewProp_GoalsPicked_Inner = { "GoalsPicked", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UTerm_NoRegister, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APuzzleManager_Statics::NewProp_GoalsPicked_MetaData[] = {
+		{ "ModuleRelativePath", "PuzzleManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_APuzzleManager_Statics::NewProp_GoalsPicked = { "GoalsPicked", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APuzzleManager, GoalsPicked), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APuzzleManager_Statics::NewProp_GoalsPicked_MetaData), Z_Construct_UClass_APuzzleManager_Statics::NewProp_GoalsPicked_MetaData) };
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_APuzzleManager_Statics::NewProp_PickedGoalStrings_Inner = { "PickedGoalStrings", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APuzzleManager_Statics::NewProp_PickedGoalStrings_MetaData[] = {
+		{ "ModuleRelativePath", "PuzzleManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_APuzzleManager_Statics::NewProp_PickedGoalStrings = { "PickedGoalStrings", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APuzzleManager, PickedGoalStrings), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APuzzleManager_Statics::NewProp_PickedGoalStrings_MetaData), Z_Construct_UClass_APuzzleManager_Statics::NewProp_PickedGoalStrings_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APuzzleManager_Statics::NewProp_CompletedPuzzles_MetaData[] = {
 		{ "Category", "PuzzleManager" },
@@ -2765,6 +2794,10 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_RulePPs,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_PuzzlesGeneratedStrings_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_PuzzlesGeneratedStrings,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_GoalsPicked_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_GoalsPicked,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_PickedGoalStrings_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_PickedGoalStrings,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_CompletedPuzzles,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_MaxPuzzles,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_PuzzleTracker,
@@ -2828,9 +2861,9 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		{ FSharedRulesStruct::StaticStruct, Z_Construct_UScriptStruct_FSharedRulesStruct_Statics::NewStructOps, TEXT("SharedRulesStruct"), &Z_Registration_Info_UScriptStruct_SharedRulesStruct, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FSharedRulesStruct), 3720797568U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_APuzzleManager, APuzzleManager::StaticClass, TEXT("APuzzleManager"), &Z_Registration_Info_UClass_APuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APuzzleManager), 3588921054U) },
+		{ Z_Construct_UClass_APuzzleManager, APuzzleManager::StaticClass, TEXT("APuzzleManager"), &Z_Registration_Info_UClass_APuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APuzzleManager), 3914892081U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_3828350913(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_87984251(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ScriptStructInfo),
 		nullptr, 0);

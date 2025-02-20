@@ -43,7 +43,7 @@ public:
 
 	URule* GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs, int depth);
 
-	bool GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel, AGenerator* GInstance);
+	bool GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel, AGenerator* GInstance, UTerm* GoalTerm);
 
 	AGamePuzzlePoint* FindGamePuzzlePoint(UPuzzlePoint* PP);
 
@@ -56,6 +56,8 @@ public:
 	TArray<ASpawnPoint*> GetAllSpawnPoints();
 
 	TArray<ASpawnPoint*> GetSPsInViewport();
+
+	UTerm* ChooseGoal(UPuzzlePoint* PP);
 
 
 

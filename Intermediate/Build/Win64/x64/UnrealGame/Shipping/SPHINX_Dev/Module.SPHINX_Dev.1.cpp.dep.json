@@ -132,6 +132,10 @@
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\inittext.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\initobject.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\initobject.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\spherecomponent.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealgame\\inc\\engine\\uht\\shapecomponent.generated.h",
+            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealgame\\inc\\engine\\uht\\spherecomponent.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\gamepuzzlepoint.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\generator.gen.cpp",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\generator.h",
@@ -149,8 +153,6 @@
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\puzzletracker.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\sphinx_devplayercontroller.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\capsulecomponent.h",
-            "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
-            "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealgame\\inc\\engine\\uht\\shapecomponent.generated.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealgame\\inc\\engine\\uht\\capsulecomponent.generated.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\engine\\public\\engineutils.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\plugins\\2d\\paper2d\\source\\paper2d\\classes\\paperspritecomponent.h",
@@ -184,9 +186,7 @@
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\mypawn.generated.h",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\playerpawn.gen.cpp",
             "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\source\\sphinx_dev\\playerpawn.h",
-            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\playerpawn.generated.h",
-            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\puzzlemanager.gen.cpp",
-            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\puzzlepoint.gen.cpp"
+            "c:\\users\\valey\\documents\\unreal projects\\sphinx_dev\\intermediate\\build\\win64\\unrealgame\\inc\\sphinx_dev\\uht\\playerpawn.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

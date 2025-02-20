@@ -175,7 +175,7 @@ public:
 	bool FindItemsForOutputs(URule* Rule);
 
 	UFUNCTION()
-	void AddPuzzle(UPuzzlePoint* PP, FString Puzzle);
+	void AddPuzzle(UPuzzlePoint* PP, FString Puzzle, FString GoalString);
 
 	UFUNCTION()
 	UItem* GetObject(FString ItemName);
@@ -273,6 +273,12 @@ public:
 
 	UPROPERTY()
 	TArray<FString> PuzzlesGeneratedStrings;
+
+	UPROPERTY()
+	TArray<UTerm*> GoalsPicked;
+
+	UPROPERTY()
+	TArray<FString> PickedGoalStrings;
 
 	//For demo only
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
