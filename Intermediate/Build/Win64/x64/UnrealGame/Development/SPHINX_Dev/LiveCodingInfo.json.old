@@ -50,7 +50,6 @@
 			"DialogueBox.cpp.obj",
 			"EndLevelGameMode.cpp.obj",
 			"GameArea.cpp.obj",
-			"GameItem.cpp.obj",
 			"GamePuzzlePoint.cpp.obj",
 			"InitNPC.cpp.obj",
 			"InitObject.cpp.obj",
@@ -65,6 +64,7 @@
 			"PlayerPawn.cpp.obj",
 			"PuzzlePoint.cpp.obj",
 			"SPHINX_Dev.init.gen.cpp.obj",
+			"GameItem.cpp.obj",
 			"Generator.cpp.obj",
 			"PuzzleManager.cpp.obj"
 		],

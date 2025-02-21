@@ -22,4 +22,3 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealGame/Inc/SPHINX_Dev/UHT/MainMenu.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealGame/Inc/SPHINX_Dev/UHT/MyPawn.gen.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealGame/Inc/SPHINX_Dev/UHT/PlayerPawn.gen.cpp"
-#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Intermediate/Build/Win64/UnrealGame/Inc/SPHINX_Dev/UHT/PuzzleManager.gen.cpp"

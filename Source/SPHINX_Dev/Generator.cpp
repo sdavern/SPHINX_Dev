@@ -245,10 +245,11 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
     	if (PP != nullptr && PP->PuzzleGoals.Num() > 0)
     	{
 			PP->ToPuzzleGoalPtrs();
-        	UTerm* Goal = PP->PickGoal();
+        	UTerm* Goal = ChooseGoal(PP);
 
 			if (Goal)
 			{
+				PMInstance->GoalsPicked.Add(Goal);
 				UE_LOG(LogTemp, Display, TEXT("PP goal: %s"), *Goal->Name);
 
 				if (!Goal->GoalDialogue.IsEmpty())
@@ -686,15 +687,24 @@ TArray<ASpawnPoint*> AGenerator::GetSPsInViewport()
 UTerm* AGenerator::ChooseGoal(UPuzzlePoint* PP)
 {
 	UTerm* Goal = PP->PickGoal();
-	FString GoalString = Goal->ToString();
 
-	if (PMInstance->PickedGoalStrings.Contains(GoalString))
+	if (!Goal)
 	{
+		return nullptr;
+	}
+
+	Goal->ToPropPtrs();
+	UE_LOG(LogTemp, Display, TEXT("CHOOSEGOAL: Goal picked is %s %s %s"), *Goal->Name, *Goal->Properties[0]->Name, *Goal->Properties[0]->Value);
+
+	if (!PMInstance->GoalsPicked.Contains(Goal))
+	{
+		UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: Goal successfully picked"));
 		return Goal;
 	}
 	else
 	{
-		ChooseGoal(PP);
+		UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: Picking new goal"));
+		return ChooseGoal(PP);
 	}
 
 	return nullptr;
