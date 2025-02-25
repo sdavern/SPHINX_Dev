@@ -341,9 +341,29 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 							UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: HitGameItem is not valid"));
 						}
 					}
+					else if (Rule->Inputs[i]->Name == HitGameItem->Name) //this should be the fix
+					{
+						UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: GameItem for input %s is not valid and is not NPC"), *Rule->Inputs[i]->Name);
+						if (HitGameItem)
+						{
+							Rule->Inputs[i]->GameItem = HitGameItem;
+							if (Rule->Inputs[i]->GameItem)
+							{
+								UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Now GameItem %s is valid"), *Rule->Inputs[i]->GameItem->Name);
+							}
+							else
+							{
+								UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem %s is still not valid"), *Rule->Inputs[i]->Name);
+							}
+						}
+						else
+						{
+							UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: HitGameItem is not valid"));
+						}
+					} 
 					else
 					{
-						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem %s is not valid"), *Rule->Inputs[i]->Name);
+						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem %s is not valid"), *Rule->Inputs[i]->Name); //fault is here
 					}
 			}
 		}
@@ -373,8 +393,13 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Attempting to add %s to ObjectsToDestroy"), *Rule->Inputs[i]->Name);
 					if (Rule->Inputs[i]->GameItem)
 					{
+						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: %s should be added to ObjectsToDestroy"), *Rule->Inputs[i]->Name);
 						ObjectsToDestroy.Add(Rule->Inputs[i]->GameItem->GetOwner());
 						UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: GetOwner is valid"));
+					}
+					else
+					{
+						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: !Rule->Inputs[i]->GameItem")); //fault is here
 					}
 				}
 			}
@@ -385,7 +410,23 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 		} 
 	
 	}
-	
+//added from below
+	UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: ObjectsToDestroy has %d actors"), ObjectsToDestroy.Num());
+	for (AActor* GO : ObjectsToDestroy)
+	{
+		UE_LOG(LogTemp, Display, TEXT("Trying to destroy actor"));
+		if (GO)
+		{
+			UE_LOG(LogTemp, Display, TEXT("Trying to destroy actor, actor is valid"));
+			GO->Destroy();
+		}
+		else
+		{
+			UE_LOG(LogTemp, Display, TEXT("GO in ActorsToDestroy is not valid"));
+		}
+	}
+//added from below
+
 	//Rule->ToOutputsPtr();
 	//Rule->GetDbItems();
 	int32 SpawnIndex = 0;
@@ -484,7 +525,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 	}
 
 	PMInstance->ExecuteRule(Rule);
-	UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: ObjectsToDestroy has %d actors"), ObjectsToDestroy.Num());
+	/* UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: ObjectsToDestroy has %d actors"), ObjectsToDestroy.Num());
 	for (AActor* GO : ObjectsToDestroy)
 	{
 		UE_LOG(LogTemp, Display, TEXT("Trying to destroy actor"));
@@ -493,7 +534,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 			UE_LOG(LogTemp, Display, TEXT("Trying to destroy actor, actor is valid"));
 			GO->Destroy();
 		}
-	}	
+	} */	
 }
 
 bool UGameItem::RuleFulfilled(URule* Rule)

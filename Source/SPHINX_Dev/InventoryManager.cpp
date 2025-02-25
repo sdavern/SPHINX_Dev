@@ -196,6 +196,7 @@ bool AInventoryManager::DeleteItemFromInventory(UGameItem* Item)
             {
                 Item->Selected = false;
                 SelectedItem = nullptr;
+                UE_LOG(LogTemp, Display, TEXT("DELETEFROMINVENTORY: SelectedItem is null"));
 
             }
             return true;

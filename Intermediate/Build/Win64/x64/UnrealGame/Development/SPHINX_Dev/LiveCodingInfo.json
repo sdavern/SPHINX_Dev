@@ -51,13 +51,12 @@
 			"DialogueBox.cpp.obj",
 			"EndLevelGameMode.cpp.obj",
 			"GameArea.cpp.obj",
-			"GameItem.cpp.obj",
 			"GamePuzzlePoint.cpp.obj",
+			"Generator.cpp.obj",
 			"InitNPC.cpp.obj",
 			"InitObject.cpp.obj",
 			"InitText.cpp.obj",
 			"InventoryButton.cpp.obj",
-			"InventoryManager.cpp.obj",
 			"InventoryMenu.cpp.obj",
 			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
@@ -65,10 +64,11 @@
 			"MyPawn.cpp.obj",
 			"PlayerPawn.cpp.obj",
 			"PuzzleManager.cpp.obj",
-			"PuzzlePoint.cpp.obj",
-			"Generator.cpp.obj"
+			"GameItem.cpp.obj",
+			"InventoryManager.cpp.obj"
 		],
 		"Module.SPHINX_Dev.3.cpp.obj": [
+			"PuzzlePoint.cpp.obj",
 			"PuzzleTracker.cpp.obj",
 			"Rule.cpp.obj",
 			"SpawnPoint.cpp.obj",
