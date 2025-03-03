@@ -99,7 +99,7 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
         return;
     }
 
-    UPuzzlePoint* PP = NewObject<UPuzzlePoint>(this, UPuzzlePoint::StaticClass());
+    //UPuzzlePoint* PP = NewObject<UPuzzlePoint>(this, UPuzzlePoint::StaticClass());
 
     if (ActivePlayer->IsHoldingItem && ActivePlayer->HeldGameItem)
     {
@@ -135,6 +135,8 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
         }
         return;
     }
+
+    
 }
 
 
@@ -163,6 +165,12 @@ bool ASPHINX_DevPlayerController::PerformGeoSweep()
             UE_LOG(LogTemp, Display, TEXT("Cast to InitNPC succeeded"));
             NPCIsHit = true;
             HitGameItem = HitResult.GetActor()->FindComponentByClass<UGameItem>();
+
+            if (InitNPC->OwningPP && InitNPC->OwningPP->MainGoal)
+            {
+                UE_LOG(LogTemp, Display, TEXT("MainGoal is %s"), *InitNPC->OwningPP->MainGoal->ToString());
+            }
+
             if (HitGameItem)
             {
                 UE_LOG(LogTemp, Display, TEXT("%s clicked on!"), *HitGameItem->Name);
@@ -485,16 +493,18 @@ void ASPHINX_DevPlayerController::OnExitButtonClicked()
 
 void ASPHINX_DevPlayerController::OnInventoryButtonClicked()
 {
-    if (HitGameItem && InventoryManager)
+    if (HitGameItem && InventoryManager && !HitGameItem->IsNPC && HitGameItem->DbItem && !HitGameItem->DbItem->IsStationary)
     {
         if (!HitGameItem->InInventory && InventoryManager->Inventory.Num() <= 16)
         {
-            InventoryManager->AddItemToInventory(HitGameItem);
+            
             if (HitGameItem->GetOwner() == ActivePlayer->HeldGameItem)
             {
+                DropGameItem(ActivePlayer->HeldGameItem); //check if error
                 ActivePlayer->HeldGameItem = nullptr;
                 ActivePlayer->IsHoldingItem = false;
             }
+            InventoryManager->AddItemToInventory(HitGameItem);
             UE_LOG(LogTemp, Display, TEXT("%s added to Inventory"), *HitGameItem->Name);
             HitGameItem->InInventory = true;
             ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Remove from Inventory"));
@@ -581,7 +591,7 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
 
             ActionMenu->HoldText->SetColorAndOpacity(NewColor);
             ActionMenu->HoldButton->SetIsEnabled(false);
-
+            
             ActionMenu->AddText->SetColorAndOpacity(NewColor);
             ActionMenu->InventoryButton->SetIsEnabled(false);
 
@@ -624,6 +634,18 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
 
             ActionMenu->HoldText->SetColorAndOpacity(NewColor);
             ActionMenu->HoldButton->SetIsEnabled(true);
+
+            if (!HitGameItem->IsNPC)
+            {
+                ActionMenu->AddText->SetColorAndOpacity(NewColor);
+                ActionMenu->InventoryButton->SetIsEnabled(true);
+            }
+            else if (HitGameItem->IsNPC)
+            {
+                FSlateColor NewColor1 = FSlateColor(FLinearColor(0.652479f, 0.662771f, 0.697917f)); 
+                //ActionMenu->AddText->SetColorAndOpacity(NewColor1);
+                ActionMenu->InventoryButton->SetIsEnabled(false);
+            }
 
             ActionMenu->AddText->SetColorAndOpacity(NewColor);
             ActionMenu->InventoryButton->SetIsEnabled(true);

@@ -142,6 +142,7 @@ void AInventoryManager::RemoveItemFromInventory(UGameItem* Item)
             if (ActivePlayer)
             {
                 FVector AvatarOffset = ActivePlayer->GetActorLocation() + FVector(25.0f, 0.0f, 0.0f);
+                AvatarOffset.Z = 40.0f;
                 AActor* OwnerActor = Item->GetOwner();
 
                 OwnerActor->SetActorHiddenInGame(false);

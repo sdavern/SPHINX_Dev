@@ -240,11 +240,12 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
             AGamePuzzlePoint* OwningGPP = nullptr;
             for (TActorIterator<AGamePuzzlePoint> It(PP->GetWorld()); It; ++It)
             {
-                //UE_LOG(LogTemp, Display, TEXT("Iterating through GamePuzzlePoints"));
+                UE_LOG(LogTemp, Display, TEXT("Iterating through GamePuzzlePoints"));
                 AGamePuzzlePoint* GPP = *It;
-                //UE_LOG(LogTemp, Display, TEXT("PP name: %s, GPP name: %s"), *PP->Name, *GPP->Name);
+                UE_LOG(LogTemp, Display, TEXT("PP name: %s, GPP name: %s"), *PP->Name, *GPP->Name);
                 if (GPP && GPP->Name == PP->Name)  
                 {
+                    UE_LOG(LogTemp, Display, TEXT("GPP %s == PP %s"), *GPP->Name, *PP->Name);
                     GPP->PuzzlePointPtr = nullptr;
                     GPP->PuzzlePointPtr = PP;
                     OwningGPP = GPP;

@@ -64,6 +64,8 @@ void ASpawnPoint::ToSpawnPropPtrs()
 void ASpawnPoint::CheckForItem()
 {
     FVector SphereLocation = GetActorLocation();
+
+    SphereLocation.Z = 45.0f;
     
     TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
     ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_WorldDynamic));

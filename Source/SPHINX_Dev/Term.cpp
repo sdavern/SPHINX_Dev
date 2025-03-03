@@ -111,6 +111,7 @@ FString UTerm::GetTermAsString()
 
     if (DbItem != nullptr)
     {
+        UE_LOG(LogTemp, Display, TEXT("Dbitem valid, adding to term string"));
         TermAsString += DbItem->ToString();
     }
     else

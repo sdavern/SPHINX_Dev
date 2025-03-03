@@ -492,8 +492,39 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 
 				if (ObjectsToDestroy.Num() > SpawnIndex)
 				{
+					UE_LOG(LogTemp, Display, TEXT("ObjectsToDestroy.Num() > SpawnIndex"));
 					FTransform Transform = ObjectsToDestroy[SpawnIndex]->GetTransform();
-					Transform.SetLocation(Transform.GetLocation() + FVector (0, 0, 0));
+					FVector SpawnLocation = Transform.GetLocation();
+					FRotator SpawnRotation = Transform.GetRotation().Rotator();
+
+					// Check for nearby colliders and adjust position if necessary
+					FCollisionQueryParams QueryParams;
+					QueryParams.AddIgnoredActor(ObjectsToDestroy[SpawnIndex]);
+
+					FCollisionShape Box = FCollisionShape::MakeBox(FVector(50.0f, 50.0f, 50.0f)); // Adjust size as needed
+					TArray<FOverlapResult> OverlapResults;
+					bool bOverlap = World->OverlapMultiByChannel(OverlapResults, SpawnLocation, FQuat::Identity, ECC_WorldStatic, Box, QueryParams);
+
+					if (bOverlap)
+					{
+						// Calculate the direction vector from the detected collider to the spawn location
+						FVector Direction = FVector::ZeroVector;
+						for (const FOverlapResult& Result : OverlapResults)
+						{
+							if (Result.GetActor())
+							{
+								FVector ColliderLocation = Result.GetActor()->GetActorLocation();
+								Direction += (SpawnLocation - ColliderLocation).GetSafeNormal();
+							}
+						}
+						Direction /= OverlapResults.Num(); // Average direction
+
+						// Apply an offset in the direction of the detected collider
+						FVector AdjustedLocation = SpawnLocation + Direction * 10.0f; // Adjust offset magnitude as needed
+						Transform.SetLocation(AdjustedLocation);
+						UE_LOG(LogTemp, Display, TEXT("Item position adjusted to avoid collision"));
+					}
+
 					FActorSpawnParameters SpawnParams;
 					if (Output->DbItem->ItemPrefab && World)
 					{
@@ -504,6 +535,10 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					{
 						UE_LOG(LogTemp, Display, TEXT("OUTPUT HAS NOT BEEN SPAWNED"));
 					}
+				}
+				else //need to implement logic for rules with one input and two outputs where the input is not destroyed, for now rules 45, 54 and 55 will be removed/edited
+				{	 //may also need logic for 1 input 2 outputs where input is destroyed
+					UE_LOG(LogTemp, Display, TEXT("Spawn sequence not started for some fucking reason"));
 				}
 				//GameItem->Setup(Output->DbItem->Name, Output->DbItem); need to have 
 
@@ -539,7 +574,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 
 bool UGameItem::RuleFulfilled(URule* Rule)
 {
-	UE_LOG(LogTemp, Display, TEXT("RuleFulfilled called for %s"), *Rule->ToString());
+	UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: RuleFulfilled called for %s"), *Rule->ToString());
 	AInventoryManager* InventoryManager = AInventoryManager::GetInstance();
     
     if (!Rule) 
@@ -562,9 +597,27 @@ bool UGameItem::RuleFulfilled(URule* Rule)
     UGameItem* SelectedItem = InventoryManager->GetSelectedItem(); //gets held gameitem
 	UGameItem* HitGameItem = InventoryManager->HitGameItem; //gets item hit by geosweep
 
-	if (HitGameItem)
+	if (!HitGameItem)
 	{
-		UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HeldItem is valid"));
+		UE_LOG(LogTemp, Display, TEXT("HitGameItem is not valid for some fucking reason"));
+	}
+
+	if (HitGameItem && HitGameItem->IsInitNPC)
+	{
+		UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem is InitNPC"));
+		if (HitGameItem->GetOwner())
+		{
+			UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem owner is valid"));
+			AInitNPC* InitNPC = Cast<AInitNPC>(HitGameItem->GetOwner());
+			if (InitNPC)
+			{
+				UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: Goal of hit NPC is %s"), *InitNPC->OwningPP->MainGoal->ToString());
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItemOwner is not valid"));
+		}
 	}
 	else
 	{
@@ -573,37 +626,38 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 	if (HitGameItem && !SelectedItem && Rule->Inputs.Num() == 1) //if item hit by geosweep is valid and player is not holding item
 	{
 		bool ClickedItemFulfilled = true;
-		UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s"), *HitGameItem->Name);
+		//UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s"), *HitGameItem->Name);
 		for (UTerm* Input : Rule->Inputs)
     	{
 			if (HitGameItem->FulfillsProperties(Input))
 			{
-				UE_LOG(LogTemp, Display, TEXT("HitGameItem %s fulfills properties of rule %s"), *HitGameItem->Name, *Rule->ToString());
+				UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem %s fulfills properties of rule %s"), *HitGameItem->Name, *Rule->ToString());
 			}
-			UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s and Input is %s"), *HitGameItem->Name, *Input->Name);
+			UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem is %s and Input is %s"), *HitGameItem->Name, *Input->Name);
         	if (HitGameItem) /* && (HitGameItem->Name == Input->Name || HitGameItem->DbItem->GetSuperTypes().Contains(Input->Name)) */
         	{
-				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 succeeded"));
+				//UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 succeeded"));
             	if (!HitGameItem->FulfillsProperties(Input))
             	{
                 	ClickedItemFulfilled = false;
-					UE_LOG(LogTemp, Display, TEXT("HitGameItem check 2 succeeded"));
+					//UE_LOG(LogTemp, Display, TEXT("HitGameItem check 2 succeeded"));
                 	break;
             	}
 				else
 				{
-					UE_LOG(LogTemp, Display, TEXT("HitGameItem check 2 failed"));
+					UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem check 2 failed"));
 				}
         	}
 			else
 			{
-				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 failed"));
+				UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem check 1 failed"));
 				ClickedItemFulfilled = false;
 				break;
 			}
     	}
 		if (ClickedItemFulfilled)
 		{
+			UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: RULE %s IS FULFILLED BY %s"), *Rule->GetRuleAsString(), *HitGameItem->Name);
 			return true;
 		}
 	}
@@ -637,26 +691,31 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 
     	for (UTerm* Input : Rule->Inputs)
     	{
-			UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s and Input is %s"), *HitGameItem->Name, *Input->Name);
+			//UE_LOG(LogTemp, Display, TEXT("HitGameItem is %s and Input is %s"), *HitGameItem->Name, *Input->Name);
         	if (HitGameItem) //&& (HitGameItem->Name == Input->Name || HitGameItem->DbItem->GetSuperTypes().Contains(Input->Name)))
         	{
-				UE_LOG(LogTemp, Display, TEXT("HitGameItem is valid"));
+				//UE_LOG(LogTemp, Display, TEXT("HitGameItem is valid"));
             	if (HitGameItem->FulfillsProperties(Input))
             	{
                 	ClickedItemFulfilled = true;
-					UE_LOG(LogTemp, Display, TEXT("HitGameItem %s fulfils input %s"), *HitGameItem->Name, *Input->Name);
+					UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem %s fulfils input %s"), *HitGameItem->Name, *Input->Name);
                 	break;
             	}
 				else
 				{
-					UE_LOG(LogTemp, Display, TEXT("HitGameItem %s does not fulfil input %s"), *HitGameItem->Name, *Input->Name);
+					UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem %s does not fulfil input %s"), *HitGameItem->Name, *Input->Name);
 				}
         	}
 			else
 			{
-				UE_LOG(LogTemp, Display, TEXT("HitGameItem check 1 failed"));
+				UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem check 1 failed"));
 			}
     	}
+
+		if (SelectedItemFulfilled && ClickedItemFulfilled)
+		{
+			UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: RULE %s IS FULFILLED BY %s"), *Rule->GetRuleAsString(), *HitGameItem->Name);
+		}
 
     	return SelectedItemFulfilled && ClickedItemFulfilled;
 	}

@@ -549,6 +549,7 @@ ASpawnPoint* AGenerator::GetSpawnPointFor(UItem* Item)
 		else if (FoundSPs.Num() == 1)
 		{
 			//UE_LOG(LogTemp, Warning, TEXT("Sole SpawnPoint for item %s"), *Item->Name);
+			FoundSPs[0]->HasSpawnedItem = true;
 			return FoundSPs[0];
 		}
 		else 
@@ -694,15 +695,18 @@ UTerm* AGenerator::ChooseGoal(UPuzzlePoint* PP)
 	}
 
 	Goal->ToPropPtrs();
-	UE_LOG(LogTemp, Display, TEXT("CHOOSEGOAL: Goal picked is %s %s %s"), *Goal->Name, *Goal->Properties[0]->Name, *Goal->Properties[0]->Value);
+	UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: Random Goal picked is %s"), *Goal->ToString());
 
-	if (!PMInstance->GoalsPicked.Contains(Goal))
+	if (!PMInstance->GoalsPicked.Contains(Goal) && !PMInstance->PickedGoalStrings.Contains(GoalString))
 	{
-		UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: Goal successfully picked"));
+		UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: Goal successfully picked, %s"), *Goal->ToString());
+		PMInstance->GoalsPicked.Add(Goal);
+		PMInstance->PickedGoalStrings.Add(GoalString);
 		return Goal;
 	}
 	else
 	{
+		UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: PickedGoals already contains %s"), *Goal->ToString());
 		UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: Picking new goal"));
 		return ChooseGoal(PP);
 	}
