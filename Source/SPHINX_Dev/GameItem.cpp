@@ -155,7 +155,7 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
 			for (URule* PuzzleRule : Rules)
 			{
 				//UE_LOG(LogTemp, Error, TEXT("Rule %s is in RulesFor(%s)"), *PuzzleRule->Action, *this->Name);
-				UE_LOG(LogTemp, Display, TEXT("Checking Rule %s fulfilled by %s ? %s"), *PuzzleRule->ToString(), *this->Name, (RuleFulfilled(PuzzleRule) ? TEXT("True") : TEXT("False")));
+				//UE_LOG(LogTemp, Display, TEXT("Checking Rule %s fulfilled by %s ? %s"), *PuzzleRule->ToString(), *this->Name, (RuleFulfilled(PuzzleRule) ? TEXT("True") : TEXT("False")));
 				if (PuzzleRule && RuleFulfilled(PuzzleRule))
 				{
 					ButtonRules.Add(PuzzleRule);
@@ -259,6 +259,9 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 	UGameItem* HeldItem = Inventory->SelectedItem;
 	UGameItem* HitGameItem = Inventory->HitGameItem;
 
+	//HeldItem->SetupDbItem();
+	//HitGameItem->SetupDbItem();
+
 	if (!HeldItem && !HitGameItem)
 	{
 		UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem->ExecuteRule HeldItem && HitGameItem is not valid"));
@@ -361,8 +364,56 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 							UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: HitGameItem is not valid"));
 						}
 					} 
+					else if (HitGameItem->DbItem && HitGameItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[i]->Name))
+					{
+						UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: GameItem for input %s is not valid and is not NPC"), *Rule->Inputs[i]->Name);
+						if (HitGameItem)
+						{
+							Rule->Inputs[i]->GameItem = HitGameItem;
+							if (Rule->Inputs[i]->GameItem)
+							{
+								UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Now GameItem %s is valid and equals HitGameItem"), *Rule->Inputs[i]->GameItem->Name);
+							}
+							else
+							{
+								UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem %s is still not valid"), *Rule->Inputs[i]->Name);
+							}
+						}
+						else
+						{
+							UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: HitGameItem is not valid"));
+						}
+					}
+					else if (HeldItem->DbItem && HeldItem->DbItem->GetSuperTypes().Contains(Rule->Inputs[i]->Name))
+					{
+						UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: GameItem for input %s is not valid and is not NPC"), *Rule->Inputs[i]->Name);
+						if (HeldItem)
+						{
+							Rule->Inputs[i]->GameItem = HeldItem;
+							if (Rule->Inputs[i]->GameItem)
+							{
+								UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Now GameItem %s is valid and equals HeldItem"), *Rule->Inputs[i]->GameItem->Name);
+							}
+							else
+							{
+								UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem %s is still not valid"), *Rule->Inputs[i]->Name);
+							}
+						}
+						else
+						{
+							UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: HitGameItem is not valid"));
+						}
+					}
 					else
 					{
+						if (!HeldItem->DbItem)
+						{
+							UE_LOG(LogTemp, Display, TEXT("HeldItem DbItem is null"));
+						}
+						if (!HitGameItem->DbItem)
+						{
+							UE_LOG(LogTemp, Display, TEXT("HitGameItem DbItem is null"));
+						}
 						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: GameItem %s is not valid"), *Rule->Inputs[i]->Name); //fault is here
 					}
 			}
@@ -410,22 +461,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 		} 
 	
 	}
-//added from below
-	UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: ObjectsToDestroy has %d actors"), ObjectsToDestroy.Num());
-	for (AActor* GO : ObjectsToDestroy)
-	{
-		UE_LOG(LogTemp, Display, TEXT("Trying to destroy actor"));
-		if (GO)
-		{
-			UE_LOG(LogTemp, Display, TEXT("Trying to destroy actor, actor is valid"));
-			GO->Destroy();
-		}
-		else
-		{
-			UE_LOG(LogTemp, Display, TEXT("GO in ActorsToDestroy is not valid"));
-		}
-	}
-//added from below
+
 
 	//Rule->ToOutputsPtr();
 	//Rule->GetDbItems();
@@ -536,7 +572,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 						UE_LOG(LogTemp, Display, TEXT("OUTPUT HAS NOT BEEN SPAWNED"));
 					}
 				}
-				else //need to implement logic for rules with one input and two outputs where the input is not destroyed, for now rules 45, 54 and 55 will be removed/edited
+				else //need to implement logic for rules with one input and two outputs where the input is not destroyed, for now rules 45, 54 and 55 will be removed/edited, rule 87 edited too
 				{	 //may also need logic for 1 input 2 outputs where input is destroyed
 					UE_LOG(LogTemp, Display, TEXT("Spawn sequence not started for some fucking reason"));
 				}
@@ -559,6 +595,23 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 		FirstOutput = false;
 	}
 
+	//added from below
+	UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: ObjectsToDestroy has %d actors"), ObjectsToDestroy.Num());
+	for (AActor* GO : ObjectsToDestroy)
+	{
+		UE_LOG(LogTemp, Display, TEXT("Trying to destroy actor"));
+		if (GO)
+		{
+			UE_LOG(LogTemp, Display, TEXT("Trying to destroy actor, actor is valid"));
+			GO->Destroy();
+		}
+		else
+		{
+			UE_LOG(LogTemp, Display, TEXT("GO in ActorsToDestroy is not valid"));
+		}
+	}
+//added from below
+
 	PMInstance->ExecuteRule(Rule);
 	/* UE_LOG(LogTemp, Warning, TEXT("EXECUTERULE: ObjectsToDestroy has %d actors"), ObjectsToDestroy.Num());
 	for (AActor* GO : ObjectsToDestroy)
@@ -574,7 +627,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 
 bool UGameItem::RuleFulfilled(URule* Rule)
 {
-	UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: RuleFulfilled called for %s"), *Rule->ToString());
+	//UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: RuleFulfilled called for %s"), *Rule->ToString());
 	AInventoryManager* InventoryManager = AInventoryManager::GetInstance();
     
     if (!Rule) 
@@ -611,7 +664,7 @@ bool UGameItem::RuleFulfilled(URule* Rule)
 			AInitNPC* InitNPC = Cast<AInitNPC>(HitGameItem->GetOwner());
 			if (InitNPC)
 			{
-				UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: Goal of hit NPC is %s"), *InitNPC->OwningPP->MainGoal->ToString());
+				//UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: Goal of hit NPC is %s"), *InitNPC->OwningPP->MainGoal->ToString());
 			}
 		}
 		else
@@ -631,7 +684,7 @@ bool UGameItem::RuleFulfilled(URule* Rule)
     	{
 			if (HitGameItem->FulfillsProperties(Input))
 			{
-				UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem %s fulfills properties of rule %s"), *HitGameItem->Name, *Rule->ToString());
+				//UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem %s fulfills properties of rule %s"), *HitGameItem->Name, *Rule->ToString());
 			}
 			UE_LOG(LogTemp, Display, TEXT("RULEFULFILLED: HitGameItem is %s and Input is %s"), *HitGameItem->Name, *Input->Name);
         	if (HitGameItem) /* && (HitGameItem->Name == Input->Name || HitGameItem->DbItem->GetSuperTypes().Contains(Input->Name)) */

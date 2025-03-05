@@ -123,7 +123,8 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
     }
 
 	if (!Found)
-	{
+	{   
+		UE_LOG(LogTemp, Display, TEXT("Item %s not found in world, passing to GetSpawnPointFor"), *Item->Name);
 		ASpawnPoint* NextSpawnPoint = GetSpawnPointFor(Item);
 		if (NextSpawnPoint)
 		{
@@ -196,7 +197,7 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
 			}
 		}
 	}
-}
+} //TO DO: generate puzzle again if items not available, make sure there's enough in world for all puzzles
 
 URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs, int depth = 0)
 {
@@ -695,18 +696,19 @@ UTerm* AGenerator::ChooseGoal(UPuzzlePoint* PP)
 	}
 
 	Goal->ToPropPtrs();
-	UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: Random Goal picked is %s"), *Goal->ToString());
+	FString GoalString = Goal->ToString();
+	UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: Random Goal picked is %s"), *GoalString);
 
 	if (!PMInstance->GoalsPicked.Contains(Goal) && !PMInstance->PickedGoalStrings.Contains(GoalString))
 	{
-		UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: Goal successfully picked, %s"), *Goal->ToString());
+		UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: Goal successfully picked, %s"), *GoalString);
 		PMInstance->GoalsPicked.Add(Goal);
 		PMInstance->PickedGoalStrings.Add(GoalString);
 		return Goal;
 	}
 	else
 	{
-		UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: PickedGoals already contains %s"), *Goal->ToString());
+		UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: PickedGoals already contains %s"), *GoalString);
 		UE_LOG(LogTemp, Display, TEXT("CHOOSE GOAL: Picking new goal"));
 		return ChooseGoal(PP);
 	}
