@@ -200,7 +200,7 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
 
 }
 
-void UGameItem::ExecuteRule(URule* Rule)
+void UGameItem::ExecuteRule(URule* Rule) //need to handle spawning based on supertype
 {
 	AInventoryManager* Inventory = AInventoryManager::GetInstance();
 
