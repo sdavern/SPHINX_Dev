@@ -84,6 +84,8 @@ private:
 
 	bool PerformGeoSweep();
 
+	bool PerformCursorTrace();
+
 	UPROPERTY(EditAnywhere)
 	float MaxGrabDistance = 400;
 

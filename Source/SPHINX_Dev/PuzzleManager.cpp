@@ -797,6 +797,11 @@ void APuzzleManager::AddPuzzle(UPuzzlePoint* PP, FString Puzzle, FString GoalStr
     }
     
     UE_LOG(LogTemp, Error, TEXT("Puzzle added to PuzzlesGenerated: %s"), *Puzzle);
+
+    for (int32 i = 0; i < Generator->SpawnedItems.Num() - 1; i++)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Generator->SpawnedItems: %s"), *Generator->SpawnedItems[i]);
+    }
 }
 
 bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)

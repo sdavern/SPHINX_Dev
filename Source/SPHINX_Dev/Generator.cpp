@@ -155,6 +155,8 @@ void AGenerator::Spawn(UWorld* World, UItem* Item, URule* Rule, UPuzzlePoint* PP
 			{
 				UE_LOG(LogTemp, Warning, TEXT("ItemPrefab is valid"));
 				UE_LOG(LogTemp, Error, TEXT("TRYING TO SPAWN %s"), *Item->Name);
+				SpawnedItems.Add(Item->Name);
+
 				/* if (GEngine)
 				{
     				FString ItemName = Item ? Item->Name : TEXT("Unknown");

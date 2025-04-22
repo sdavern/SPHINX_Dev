@@ -1,7 +1,7 @@
 SPHINX_Dev/Binaries/Win64/D3D12/D3D12Core.dll	2024-08-15T11:52:33.491Z
 SPHINX_Dev/Binaries/Win64/D3D12/d3d12SDKLayers.dll	2024-08-15T11:52:33.498Z
 SPHINX_Dev/Binaries/Win64/OpenImageDenoise.dll	2024-08-15T11:56:03.125Z
-SPHINX_Dev/Binaries/Win64/SPHINX_Dev.exe	2025-03-05T10:14:29.819Z
+SPHINX_Dev/Binaries/Win64/SPHINX_Dev.exe	2025-04-22T14:27:18.616Z
 SPHINX_Dev/Binaries/Win64/tbb.dll	2024-08-15T11:52:30.725Z
 SPHINX_Dev/Binaries/Win64/tbb12.dll	2024-08-15T11:56:02.648Z
 SPHINX_Dev/Binaries/Win64/tbbmalloc.dll	2024-08-15T11:52:30.728Z
@@ -15,4 +15,4 @@ Engine/Binaries/ThirdParty/Vorbis/Win64/VS2015/libvorbisfile_64.dll	2024-08-15T1
 Engine/Binaries/ThirdParty/Windows/WinPixEventRuntime/x64/WinPixEventRuntime.dll	2024-08-15T11:52:33.503Z
 Engine/Binaries/ThirdParty/Windows/XAudio2_9/x64/xaudio2_9redist.dll	2024-08-15T11:52:33.504Z
 Engine/Content/Slate/Cursor/invisible.cur	2024-08-15T11:53:00.863Z
-SPHINX_Dev.exe	2025-03-05T15:46:54.008Z
+SPHINX_Dev.exe	2025-04-22T14:28:44.094Z

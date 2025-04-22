@@ -59,6 +59,8 @@ public:
 
 	UTerm* ChooseGoal(UPuzzlePoint* PP);
 
+	TArray<FString> SpawnedItems;
+
 
 
 	UFUNCTION()

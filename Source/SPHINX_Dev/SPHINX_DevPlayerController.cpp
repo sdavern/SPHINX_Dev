@@ -11,6 +11,7 @@
 #include "InventoryButton.h"
 #include "SpawnPoint.h"
 #include "PuzzleManager.h"
+#include "PaperTileMapActor.h"
 
 ASPHINX_DevPlayerController::ASPHINX_DevPlayerController()
 {
@@ -26,6 +27,8 @@ void ASPHINX_DevPlayerController::BeginPlay()
     bShowMouseCursor = true; 
     bEnableClickEvents = true;
     bEnableMouseOverEvents = true;
+
+    
 
 }
 
@@ -103,7 +106,7 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
 
     if (ActivePlayer->IsHoldingItem && ActivePlayer->HeldGameItem)
     {
-        if (PerformGeoSweep())
+        if (PerformCursorTrace() /* || PerformGeoSweep() */)
         {
             CreateActionMenu();
             HitGameItem->OnGameItemClicked(ActionMenu);
@@ -120,7 +123,7 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
         }
     }
 
-	else if (PerformGeoSweep())
+	else if (PerformCursorTrace() /* || PerformGeoSweep() */)
     {
         UE_LOG(LogTemp, Display, TEXT("GeoSweep = true"));
         CreateActionMenu();
@@ -190,11 +193,83 @@ bool ASPHINX_DevPlayerController::PerformGeoSweep()
                 InventoryManager->HitGameItem = HitGameItem;
                 return true;
             }
+            else
+            {
+                UE_LOG(LogTemp, Display, TEXT("HitGameItem not valid"));
+            }
         }
 
         
     }
     return false; 
+}
+
+bool ASPHINX_DevPlayerController::PerformCursorTrace()
+{
+    FVector2D MousePosition;
+    if (!GetMousePosition(MousePosition.X, MousePosition.Y)) return false;
+
+    FVector WorldLocation, WorldDirection;
+    if (DeprojectScreenPositionToWorld(MousePosition.X, MousePosition.Y, WorldLocation, WorldDirection))
+    {
+        FVector TraceStart = WorldLocation;
+        FVector TraceEnd = WorldLocation + (WorldDirection * 10000.0f);
+
+        FHitResult HitResult;
+        FCollisionQueryParams Params;
+        Params.AddIgnoredActor(ActivePlayer);
+        for (TActorIterator<APaperTileMapActor> It(GetWorld()); It; ++It)
+        {
+            Params.AddIgnoredActor(*It);
+        }
+
+        FCollisionShape Sphere = FCollisionShape::MakeSphere(5.0f);
+        bool bHit = GetWorld()->SweepSingleByChannel(HitResult, TraceStart, TraceEnd, FQuat::Identity, ECC_GameTraceChannel2, Sphere, Params);
+
+
+        //bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, TraceStart, TraceEnd, ECC_Visibility, Params);
+
+        if (bHit && HitResult.GetActor() != nullptr)
+        {
+            FString ActorName = HitResult.GetActor() ? HitResult.GetActor()->GetName() : TEXT("None");
+            UE_LOG(LogTemp, Display, TEXT("Hit Actor: %s"), *ActorName);
+
+            //DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 5.0f, 32, FColor::Blue, false, 100.0f);
+            AInitNPC* InitNPC = Cast<AInitNPC>(HitResult.GetActor());
+            if (InitNPC)
+            {
+                UE_LOG(LogTemp, Display, TEXT("Cast to InitNPC succeeded"));
+                NPCIsHit = true;
+                HitGameItem = HitResult.GetActor()->FindComponentByClass<UGameItem>();
+
+                if (InitNPC->OwningPP && InitNPC->OwningPP->MainGoal)
+                {
+                    UE_LOG(LogTemp, Display, TEXT("MainGoal is %s"), *InitNPC->OwningPP->MainGoal->ToString());
+                }
+
+                if (HitGameItem)
+                {
+                    UE_LOG(LogTemp, Display, TEXT("%s clicked on!"), *HitGameItem->Name);
+                    InventoryManager->HitGameItem = HitGameItem;
+                    HitInitNPC = InitNPC;
+                    return true;
+                }
+            }
+            else
+            {
+                UE_LOG(LogTemp, Display, TEXT("Cast to InitNPC failed"));
+                NPCIsHit = false;
+                HitGameItem = HitResult.GetActor()->FindComponentByClass<UGameItem>();
+                if (HitGameItem)
+                {
+                    UE_LOG(LogTemp, Display, TEXT("%s clicked on!"), *HitGameItem->Name);
+                    InventoryManager->HitGameItem = HitGameItem;
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
 
 void ASPHINX_DevPlayerController::GrabGameItem(UGameItem* GameItem)

@@ -436,6 +436,12 @@
 			]
 		},
 		{
+			"ShaderMapHash": "898BD3C918BEE4EC512BFDF96A6DAEB3CFEE9989",
+			"Assets": [
+				"/Game/UI/DetectiveMode"
+			]
+		},
+		{
 			"ShaderMapHash": "50C76DCBA6D7FED0DF2D3B030E81E0189C9E6243",
 			"Assets": [
 				"/Engine/EngineSky/VolumetricClouds/m_SimpleVolumetricCloud"

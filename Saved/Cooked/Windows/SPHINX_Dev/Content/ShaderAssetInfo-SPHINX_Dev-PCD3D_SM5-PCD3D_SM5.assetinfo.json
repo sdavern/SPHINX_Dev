@@ -269,6 +269,12 @@
 			]
 		},
 		{
+			"ShaderMapHash": "8E97CC71D736F49C3E40B6D811D493ED71FDEE94",
+			"Assets": [
+				"/Game/UI/DetectiveMode"
+			]
+		},
+		{
 			"ShaderMapHash": "49A3DF72ACAF7ED738391253F4381C469B76F48A",
 			"Assets": [
 				"/Game/FPWeapon/Materials/M_FPGun"

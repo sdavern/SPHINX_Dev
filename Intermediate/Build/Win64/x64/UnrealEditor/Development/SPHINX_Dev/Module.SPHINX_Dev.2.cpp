@@ -22,6 +22,7 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/DialogueBox.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/EndLevelGameMode.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/GameArea.cpp"
+#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/GameItem.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/GamePuzzlePoint.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/InitNPC.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/InitObject.cpp"
@@ -34,4 +35,3 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/MainMenu.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/MyPawn.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/PlayerPawn.cpp"
-#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/PuzzleManager.cpp"

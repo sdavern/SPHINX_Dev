@@ -64,8 +64,8 @@
 			"MainMenu.cpp.obj",
 			"MyPawn.cpp.obj",
 			"PlayerPawn.cpp.obj",
-			"PuzzleManager.cpp.obj",
-			"Generator.cpp.obj"
+			"Generator.cpp.obj",
+			"PuzzleManager.cpp.obj"
 		],
 		"Module.SPHINX_Dev.3.cpp.obj": [
 			"PuzzlePoint.cpp.obj",
