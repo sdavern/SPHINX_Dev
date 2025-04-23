@@ -578,9 +578,12 @@ void APuzzleManager::ExecuteRule(URule* Rule)
         }
     }
     
+    URule* FoundRuleOne = FoundLeavesRules->RulesArray[1]; //gets final rule in puzzle, the rule needed to get the goal. The [0] rule is always empty, [1] is the first actual rule. 
+    FString FoundRuleOneString = FoundRuleOne->ToPMString();
+
     FString RuleString = Rule->ToPMString();
 
-    UE_LOG(LogTemp, Display, TEXT("%s"), *RuleString);
+    UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: RULESTRING is %s"), *RuleString);
 
     for (URule* SRule : FoundLeavesRules->RulesArray)
     {
@@ -606,8 +609,10 @@ void APuzzleManager::ExecuteRule(URule* Rule)
                         FoundLeavesRules->RulesArray.Remove(BRule);
                     }
                 }
-                //200225 addition
-                if (FoundLeavesRules->RulesArray.Num() <= 1 || FoundLeavesRules->RulesArray[1] == Rule)
+                //230425 addition
+                //If the rule needed to reach the goal is the same as the rule that has just been executed then the puzzle is complete
+                //OR if there is only the blank rule [0] left in the array, then the puzzle is also complete. 
+                if (FoundRuleOneString == RuleString || FoundLeavesRules->RulesArray.Num() == 1)
                 {
                     UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Puzzle for PP: %s completed!"), *FoundPP->Name);
                     ++CompletedPuzzles;
