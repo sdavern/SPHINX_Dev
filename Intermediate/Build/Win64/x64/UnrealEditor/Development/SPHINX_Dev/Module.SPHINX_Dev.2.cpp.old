@@ -24,6 +24,7 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/GameArea.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/GameItem.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/GamePuzzlePoint.cpp"
+#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/Generator.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/InitNPC.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/InitObject.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/InitText.cpp"

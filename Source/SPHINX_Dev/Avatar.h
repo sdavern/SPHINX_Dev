@@ -53,7 +53,7 @@ public:
 	UPROPERTY()
 	AActor* HeldGameItem;
 
-	bool IsHoldingItem;
+	bool IsHoldingItem = false;
 	
 
 protected:

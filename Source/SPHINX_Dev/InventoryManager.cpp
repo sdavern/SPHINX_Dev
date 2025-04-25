@@ -173,6 +173,7 @@ void AInventoryManager::RemoveItemFromInventory(UGameItem* Item)
             {
                 UE_LOG(LogTemp, Display, TEXT("When checking for sprite, active player is null"));
             }
+            break;
         }
         else
         {

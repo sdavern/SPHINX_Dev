@@ -490,8 +490,11 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
         {
             InventoryManager->RemoveItemFromInventory(HitGameItem);
             HitGameItem->InInventory = false;
+            UE_LOG(LogTemp, Display, TEXT("ONHOLDBUTTONCLICKED: Calling ChangeButtonText"));
             ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Add to Inventory"));
+            UE_LOG(LogTemp, Display, TEXT("ONHOLDBUTTONCLICKED: Calling SetupUISprites"));
             SetupUISprites();
+            UE_LOG(LogTemp, Display, TEXT("ONHOLDBUTTONCLICKED: Calling CloseInventoryMenu"));
             CloseInventoryMenu();
         }
         GrabGameItem(HitGameItem);
@@ -854,7 +857,6 @@ void ASPHINX_DevPlayerController::SetupUISprites()
     if (InventoryManager && InventoryMenu)
     {
         ClearSprites();
-
         for (int i = 0; i < InventoryManager->Inventory.Num(); i++)
         {
             UGameItem* Item = InventoryManager->Inventory[i];
@@ -869,15 +871,49 @@ void ASPHINX_DevPlayerController::SetupUISprites()
                         if (InventoryMenu->AllImages.IsValidIndex(i) && InventoryMenu->AllButtons.IsValidIndex(i) && InventoryMenu->AllImages[i] && InventoryMenu->AllButtons[i])
                         {
                             InventoryMenu->AllImages[i]->SetBrushFromAtlasInterface(SpriteComponent->GetSprite());
+                            UE_LOG(LogTemp, Display, TEXT("Setting up sprite button for item %s at index %d"), *Item->Name, i);
                             SetupSpriteButton(InventoryMenu->AllButtons[i]);
                         }
+                        else
+                        {
+                            UE_LOG(LogTemp, Warning, TEXT("Invalid index or null pointer in AllImages or AllButtons at index %d"), i);
+                        }
+                    }
+                    else
+                    {
+                        UE_LOG(LogTemp, Warning, TEXT("SpriteComponent or Sprite is null for item %s"), *Item->Name);
                     }
                 }
-
+                else
+                {
+                    UE_LOG(LogTemp, Warning, TEXT("SpriteOwner is null for item %s"), *Item->Name);
+                }
+            }
+            else
+            {
+                UE_LOG(LogTemp, Warning, TEXT("Item is null at index %d"), i);
             }
         }
     }
 }
+
+void ASPHINX_DevPlayerController::SetupSpriteButton(UInventoryButton* Button)
+{
+    if (InventoryMenu && Button)
+    {
+        Button->OnInventoryButtonClicked.Clear();
+        
+        Button->OnInventoryButtonClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnSpriteButtonClicked);
+        UE_LOG(LogTemp, Display, TEXT("SpriteButton set up for button %s"), *Button->GetName());
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("SpriteButton setup failed. InventoryMenu or Button is null."));
+    }
+}
+
+
+
 
 FString ASPHINX_DevPlayerController::AddSpacesBeforeCaps(const FString& InString)
 {
@@ -961,18 +997,18 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
     
 }
 
-void ASPHINX_DevPlayerController::SetupSpriteButton(UInventoryButton* Button)
+/* void ASPHINX_DevPlayerController::SetupSpriteButton(UInventoryButton* Button)
 {
     if (InventoryMenu && Button)
     {
         Button->OnInventoryButtonClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnSpriteButtonClicked);
-        UE_LOG(LogTemp, Display, TEXT("ExitButton set up"));
+        UE_LOG(LogTemp, Display, TEXT("SpriteButton set up"));
     }
     else
     {
         UE_LOG(LogTemp, Display, TEXT("SpriteButton setup falied"));
     }
-}
+} */
 
 void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UInventoryButton* Button)
 {
@@ -1008,6 +1044,7 @@ void ASPHINX_DevPlayerController::OnSpriteButtonClicked(UInventoryButton* Button
 
 void ASPHINX_DevPlayerController::ClearSprites()
 {
+    UE_LOG(LogTemp, Display, TEXT("ClearSprites called"));
     for (UImage* Sprite : InventoryMenu->AllImages)
     {
         if (Sprite && InventoryMenu && InventoryMenu->DefaultSprite)
