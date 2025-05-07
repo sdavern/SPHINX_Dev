@@ -106,24 +106,27 @@ void ASPHINX_DevPlayerController::OnLeftMouseDown()
 
     if (ActivePlayer->IsHoldingItem && ActivePlayer->HeldGameItem)
     {
-        if (PerformCursorTrace() /* || PerformGeoSweep() */)
+        if (!InventoryOpen)
         {
-            CreateActionMenu();
-            HitGameItem->OnGameItemClicked(ActionMenu);
-            return;
-        }
-        else
-        {
-            UGameItem* GameItem = Cast<UGameItem>(ActivePlayer->HeldGameItem->GetComponentByClass(UGameItem::StaticClass()));
-            HitGameItem = GameItem;
-            CreateActionMenu();
-            HitGameItem->OnGameItemClicked(ActionMenu);
-            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Drop"));
-            return;
+            if (PerformCursorTrace())
+            {
+                CreateActionMenu();
+                HitGameItem->OnGameItemClicked(ActionMenu);
+                return;
+            }
+            else
+            {
+                UGameItem* GameItem = Cast<UGameItem>(ActivePlayer->HeldGameItem->GetComponentByClass(UGameItem::StaticClass()));
+                HitGameItem = GameItem;
+                CreateActionMenu();
+                HitGameItem->OnGameItemClicked(ActionMenu);
+                ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Drop"));
+                return;
+            }
         }
     }
 
-	else if (PerformCursorTrace() /* || PerformGeoSweep() */)
+	else if (PerformCursorTrace())
     {
         UE_LOG(LogTemp, Display, TEXT("GeoSweep = true"));
         CreateActionMenu();
@@ -341,6 +344,10 @@ void ASPHINX_DevPlayerController::OnOneDown()
     {
         return;
     }
+    else if (ExitMenuOpen)
+    {
+        return;
+    }
     else if (!InventoryOpen)
     {
         OpenInventoryMenu();
@@ -409,7 +416,7 @@ void ASPHINX_DevPlayerController::EnableCollisionForActor(AActor* ActorToEnable)
 void ASPHINX_DevPlayerController::SetupHoldButton()
 {
     if (ActionMenu && HitGameItem && ActionMenu->HoldButton)
-    {
+    {   
         ActionMenu->HoldButton->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnHoldButtonClicked);
         UE_LOG(LogTemp, Display, TEXT("HoldButton set up"));
         if (!HitGameItem->DbItem)
@@ -420,6 +427,8 @@ void ASPHINX_DevPlayerController::SetupHoldButton()
         if (HitGameItem->DbItem->IsStationary)
         {
             ActionMenu->HoldButton->SetIsEnabled(false);
+            FSlateColor NewColor = FSlateColor(FLinearColor(0.652479f, 0.662771f, 0.697917f)); 
+            ActionMenu->HoldText->SetColorAndOpacity(NewColor);
             ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Too heavy to grab!"));
 
             UE_LOG(LogTemp, Display, TEXT("IsStationary is true"));
@@ -461,6 +470,9 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
             }
             InspectOpen = true;
             FSlateColor NewColor = FSlateColor(FLinearColor(0.652479f, 0.662771f, 0.697917f)); 
+            ActionMenu->InspectButton->SetIsEnabled(false);
+            ActionMenu->InspectText->SetColorAndOpacity(NewColor);
+            ActionMenu->ExitButton->SetIsEnabled(false);
             ActionMenu->ExitText->SetColorAndOpacity(NewColor);
             HitNPC = true;
         }
@@ -474,7 +486,10 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
             DialogueBox = nullptr;
             InspectOpen = false;
             ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Hold"));
-            FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f)); 
+            FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f));
+            ActionMenu->InspectButton->SetIsEnabled(true);
+            ActionMenu->InspectText->SetColorAndOpacity(NewColor);
+            ActionMenu->ExitButton->SetIsEnabled(true); 
             ActionMenu->ExitText->SetColorAndOpacity(NewColor);
             HitNPC = false;
         }
@@ -764,6 +779,14 @@ void ASPHINX_DevPlayerController::SetupInventoryButton()
 {
     if (ActionMenu && HitGameItem && ActionMenu->InventoryButton)
     {
+        if (InventoryManager->Inventory.Num() == 16)
+        {
+            UE_LOG(LogTemp, Display, TEXT("SETUPINVENTORYBUTTON: Inventory is full"));
+            ActionMenu->InventoryButton->SetIsEnabled(false);
+            ActionMenu->ChangeButtonText(ActionMenu->AddText, TEXT("Inventory is full"));
+            return;
+        }
+
         ActionMenu->InventoryButton->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::OnInventoryButtonClicked);
         UE_LOG(LogTemp, Display, TEXT("InventoryButton set up"));
         if (!HitGameItem->DbItem)
@@ -839,6 +862,7 @@ void ASPHINX_DevPlayerController::OpenInventoryMenu()
                 
             }
         }
+
     UE_LOG(LogTemp, Display, TEXT("OpenInventory finished"));
 }
 
@@ -967,6 +991,7 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
                 {
                     FSlateColor NewColor = FSlateColor(FLinearColor(0.652479f, 0.662771f, 0.697917f)); 
                     ActionMenu->HoldText->SetColorAndOpacity(NewColor);
+                    ActionMenu->HoldButton->SetIsEnabled(false);
                     ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Your hands are full!"));
                 }
                 else

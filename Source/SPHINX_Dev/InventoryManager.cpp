@@ -81,6 +81,10 @@ void AInventoryManager::AddItemToInventory(UGameItem* Item)
         return;
     }
 
+    if (Inventory.Num() == 16)
+    {
+        return;
+    }    
     if (Inventory.Num() <= 15)
     {
         AActor* OwnerActor = Item->GetOwner();

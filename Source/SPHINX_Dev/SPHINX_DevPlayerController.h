@@ -137,10 +137,16 @@ public:
 	UPROPERTY()
 	AInitNPC* HitInitNPC;
 
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	bool InspectOpen = false;
 
+	UPROPERTY(BlueprintReadWrite, Category="Inventory")
 	bool InventoryOpen = false;
 
+	UPROPERTY(BlueprintReadWrite, Category="Inventory")
+	bool ExitMenuOpen = false;
+
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	bool ActionMenuOpen = false;
 
 	bool HitNPC = false;

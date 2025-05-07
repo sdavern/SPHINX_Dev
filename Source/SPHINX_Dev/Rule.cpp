@@ -338,22 +338,28 @@ FString URule::ToPMString()
     RuleAsString += TEXT("-->") + Action + TEXT("");
     for (UTerm* Input : Inputs)
     {
-        RuleAsString += Input->Name;
-        if (Input != nullptr && Input->Properties.Num() > 0)
+        if (Input)
         {
-            RuleAsString += TEXT("[");
-            for (int32 i = 0; i< Input->Properties.Num(); i++)
+            RuleAsString += Input->Name;
+            if (Input != nullptr && Input->Properties.Num() > 0)
             {
-                RuleAsString += Input->Properties[i]->Name + TEXT(":");
-                RuleAsString += Input->Properties[i]->Value;
-                if (i < Input->Properties.Num() - 1)
+                RuleAsString += TEXT("[");
+                for (int32 i = 0; i< Input->Properties.Num(); i++)
                 {
-                    RuleAsString += TEXT(",");
+                    if (Input->Properties[i])
+                    {
+                        RuleAsString += Input->Properties[i]->Name + TEXT(":");
+                        RuleAsString += Input->Properties[i]->Value;
+                        if (i < Input->Properties.Num() - 1)
+                        {
+                            RuleAsString += TEXT(",");
+                        }
+                    }
                 }
+                RuleAsString += TEXT("]");
             }
-            RuleAsString += TEXT("]");
+            else RuleAsString += TEXT("");
         }
-        else RuleAsString += TEXT("");
     }
     return RuleAsString;
 }

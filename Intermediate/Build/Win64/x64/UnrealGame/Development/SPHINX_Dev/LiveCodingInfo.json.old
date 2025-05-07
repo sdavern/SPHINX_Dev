@@ -34,10 +34,8 @@
 			"SpawnPoint.gen.cpp.obj",
 			"SphinxActor.gen.cpp.obj",
 			"SPHINXHUD.gen.cpp.obj",
-			"SPHINX_Dev.init.gen.cpp.obj",
 			"SPHINX_DevCharacter.gen.cpp.obj",
 			"SPHINX_DevGameMode.gen.cpp.obj",
-			"SPHINX_DevPlayerController.gen.cpp.obj",
 			"SPHINX_DevProjectile.gen.cpp.obj",
 			"Term.gen.cpp.obj",
 			"TP_PickUpComponent.gen.cpp.obj",
@@ -45,6 +43,7 @@
 			"ActionBtn.cpp.obj",
 			"ActionMenu.cpp.obj",
 			"Area.cpp.obj",
+			"Avatar.cpp.obj",
 			"ConditionalObject.cpp.obj",
 			"DatabaseBuilder.cpp.obj",
 			"DialogueBox.cpp.obj",
@@ -57,6 +56,7 @@
 			"InitObject.cpp.obj",
 			"InitText.cpp.obj",
 			"InventoryButton.cpp.obj",
+			"InventoryManager.cpp.obj",
 			"InventoryMenu.cpp.obj",
 			"Item.cpp.obj",
 			"ItemProperty.cpp.obj",
@@ -64,8 +64,8 @@
 			"MyPawn.cpp.obj",
 			"PlayerPawn.cpp.obj",
 			"PuzzleManager.cpp.obj",
-			"Avatar.cpp.obj",
-			"InventoryManager.cpp.obj"
+			"SPHINX_Dev.init.gen.cpp.obj",
+			"SPHINX_DevPlayerController.gen.cpp.obj"
 		],
 		"Module.SPHINX_Dev.3.cpp.obj": [
 			"PuzzlePoint.cpp.obj",
@@ -77,11 +77,11 @@
 			"SPHINX_Dev.cpp.obj",
 			"SPHINX_DevCharacter.cpp.obj",
 			"SPHINX_DevGameMode.cpp.obj",
-			"SPHINX_DevPlayerController.cpp.obj",
 			"SPHINX_DevProjectile.cpp.obj",
 			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
-			"TP_WeaponComponent.cpp.obj"
+			"TP_WeaponComponent.cpp.obj",
+			"SPHINX_DevPlayerController.cpp.obj"
 		]
 	}
 }
