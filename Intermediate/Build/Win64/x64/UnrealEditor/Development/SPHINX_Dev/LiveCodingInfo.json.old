@@ -70,7 +70,6 @@
 		"Module.SPHINX_Dev.3.cpp.obj": [
 			"PuzzlePoint.cpp.obj",
 			"PuzzleTracker.cpp.obj",
-			"Rule.cpp.obj",
 			"SpawnPoint.cpp.obj",
 			"SphinxActor.cpp.obj",
 			"SPHINXHUD.cpp.obj",
@@ -81,6 +80,7 @@
 			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
+			"Rule.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj"
 		]
 	}

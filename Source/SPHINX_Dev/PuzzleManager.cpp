@@ -104,7 +104,6 @@ void APuzzleManager::Tick(float DeltaTime)
     if (!bIsLevelLoaded) {
         return;
     }
-    
     ActivateMaxPuzzlePoints();
     if (ActivePuzzlePoints.Num() > 0 && ActiveGeneratedPuzzles < MaxActivePuzzles)
     {
@@ -141,6 +140,11 @@ void APuzzleManager::AssignPlayer()
 
 void APuzzleManager::ActivateMaxPuzzlePoints()
 {
+    if (CompletedPuzzles >= MaxPuzzles)
+    {
+        return;
+    }
+    
     int SafetyCounter = 0;
     while (ActivePPs < MaxActivePuzzles)
     {
@@ -1592,7 +1596,18 @@ void APuzzleManager::RetryIsGPPInViewport()
     {
         UE_LOG(LogTemp, Display, TEXT("GPPToFind is valid"));
         DeactivatePuzzlePoint(GPPToFind);
-        RulePPs.Remove(RuleToFind->ToPMString());
+
+        if (RuleToFind)
+        {
+            UE_LOG(LogTemp, Display, TEXT("RuleToFind is valid in Retry"));
+            RulePPs.Remove(RuleToFind->ToPMString());
+        }
+        else
+        {
+            UE_LOG(LogTemp, Display, TEXT("RuleToFind is null in RetryGGPInViewport"));
+        }
+
+        
         --ActiveGeneratedPuzzles;
         UE_LOG(LogTemp, Display, TEXT("ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
         GPPToFind = nullptr;
