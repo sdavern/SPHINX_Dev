@@ -153,7 +153,7 @@ void APuzzleManager::ActivateMaxPuzzlePoints()
         {
             if (!GPP->IsActive)
             {
-                UE_LOG(LogTemp, Warning, TEXT("PP %s is in world and is not active"), *GPP->Name);
+                UE_LOG(LogTemp, Warning, TEXT("PP %s is in world and is not active, SPHINX3 commit test"), *GPP->Name);
             }
         }
         int32 RandomInt = FMath::RandRange(0, PPsInWorld.Num() - 1);
