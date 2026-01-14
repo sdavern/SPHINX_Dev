@@ -105,6 +105,9 @@ public:
 	TMap<UPuzzlePoint*, FRulesStruct> Leaves;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool Debug;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	AAvatar* Player;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -184,10 +187,16 @@ public:
 	bool HasItemOfType(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
 
 	UFUNCTION()
+	bool HasItemOfTypeDebug(UTerm* Term);
+
+	UFUNCTION()
 	TArray<UItem*> GetItemsOfType(FString ItemName, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
 
 	UFUNCTION()
 	TArray<UItem*> FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel);
+
+	UFUNCTION()
+	TArray<UItem*> FindDbItemsForDebug(UTerm* Term);
 
 	UFUNCTION()
 	TArray<URule*> GetRulesWithInput(UItem* DbItem);

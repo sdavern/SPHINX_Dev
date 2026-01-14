@@ -16,6 +16,7 @@
 
 AGenerator* AGenerator::Instance = nullptr;
 FString AGenerator::PuzzleString = TEXT("");
+FString AGenerator::DebugPuzzleString = TEXT("");
 
 // Sets default values
 AGenerator::AGenerator()
@@ -61,6 +62,24 @@ void AGenerator::BeginPlay()
 	Instance = GetInstance();
 	PMInstance = APuzzleManager::GetInstance();
 	InventoryInstance = AInventoryManager::GetInstance();
+
+	if (Instance)
+	{
+		UE_LOG(LogTemp, Display, TEXT("Generator Instance is valid"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Display, TEXT("Generator instance is null"));
+	}
+
+	if (Instance->PMInstance)
+	{
+		UE_LOG(LogTemp, Display, TEXT("Generator->PMInstance is valid"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Display, TEXT("Generator->PMInstance is null"));
+	}
 }
 
 // Called every frame
@@ -717,6 +736,276 @@ UTerm* AGenerator::ChooseGoal(UPuzzlePoint* PP)
 
 	return nullptr;
 
+}
+
+
+
+//Debug Calculate Max Puzzles
+
+void AGenerator::CalculateMaxPuzzles()
+{
+	if (Instance)
+	{
+		UE_LOG(LogTemp, Display, TEXT("DEBUG: Generator Instance is valid"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Display, TEXT("DEBUG: Generator Instance is not valid"));
+	}
+	UE_LOG(LogTemp, Display, TEXT("CALCULATEMAXPUZZLES CALLED"));
+	for (TSubclassOf<UTerm> Goal : PuzzleGoalsDebug)
+    {
+        if (Goal)
+        {
+            UTerm* GoalPtr = NewObject<UTerm>(this, Goal);
+            if (GoalPtr)
+            {
+				GoalPtr->ToPropPtrs();
+                DebugPtrs.Add(GoalPtr);
+                UE_LOG(LogTemp, Error, TEXT("GoalPtr added to DebugPtrs, DebugPtrs has %d ptrs"), DebugPtrs.Num());
+            }
+        }
+    }
+
+	
+	if (DebugPtrs.Num() > 0)
+	{
+		for (UTerm* DebugGoalPtr : DebugPtrs)
+		{
+			if (DebugGoalPtr)
+			{
+				URule* NewRule = NewObject<URule>(this, URule::StaticClass());
+				NewRule = GeneratePuzzleStartingFromDebug(DebugGoalPtr, 0);
+			}
+		}
+	}
+}
+
+URule* AGenerator::GeneratePuzzleStartingFromDebug(UTerm* DebugGoal, int depth = 0)
+{
+	UE_LOG(LogTemp, Error, TEXT("GENERATEPUZZLESTARTINGFROMDEBUG CALLED"));
+	if (depth >= MAX_DEPTH)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Debug Max recursion depth reached"));
+        return nullptr;
+    }
+
+	
+	URule* Root = NewObject<URule>(this, URule::StaticClass());
+	UE_LOG(LogTemp, Display, TEXT("Root created"));
+	UE_LOG(LogTemp, Display, TEXT("Checking if Instances are valid"));
+	if (Instance->PMInstance)
+	{
+		UE_LOG(LogTemp, Display, TEXT("Instance->PMInstance is valid"));
+		if (DebugGoal)
+		{
+			UE_LOG(LogTemp, Display, TEXT("Debug goal: %s"), *DebugGoal->GoalDialogue);
+
+			/* //Goal->ToPropPtrs();
+        	bool SuccessfulInputs = GenerateInputsDebug(DebugGoal, Root, 0, Instance, DebugGoal);
+        	if (SuccessfulInputs && !DebugPuzzleString.IsEmpty())
+        	{
+				FString GoalString = DebugGoal->ToString();
+            	SuccessfulPuzzleStrings.Add(DebugPuzzleString);
+				SuccessfulPuzzles++;
+				UE_LOG(LogTemp, Display, TEXT("SuccessfulPuzzles = %d"), SuccessfulPuzzles);
+            	DebugPuzzleString = TEXT("");
+				UE_LOG(LogTemp, Error, TEXT("DEBUG SUCCESSFUL INPUTS"));
+        	}
+        	else
+        	{
+				UE_LOG(LogTemp, Error, TEXT("DEBUG NO SUCCESSFUL INPUTS"));
+				if (depth < MAX_DEPTH)
+				{
+					GeneratePuzzleStartingFromDebug(DebugGoal, depth + 1);
+				}
+				else
+				{
+					UE_LOG(LogTemp, Display, TEXT("Debug Max recursion depth reached"));
+				}
+        	} */	
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("DebugGoal is NULL"));
+			return nullptr;
+		}	
+    	return Root;
+	}
+	return nullptr;
+}
+
+bool AGenerator::GenerateInputsDebug(UTerm* StartTerm, URule* ParentRule, int32 Depth, AGenerator* GInstance, UTerm* GoalTerm)
+{
+	TArray<URule*> CurrentPuzzleRules;
+	UTerm* Goal = GoalTerm;
+	UE_LOG(LogTemp, Warning, TEXT("GenerateInputs for ParentRule: %s called"), *ParentRule->ToString());
+	TArray<UItem*> MatchingItems = GInstance->PMInstance->FindDbItemsForDebug(StartTerm); 
+
+	if (MatchingItems.Num() == 0)
+	{
+		if(!GInstance->PMInstance->HasItemOfTypeDebug(StartTerm))
+		{
+			UE_LOG(LogTemp, Warning, TEXT("GRAMMAR ERROR: Couldn't find accessible item of type: '%s'"), *StartTerm->Name);
+			return false;
+		}
+	}
+	else if (StartTerm->DbItem == nullptr)
+	{
+		StartTerm->DbItem = MatchingItems[FMath::RandRange(0, MatchingItems.Num() - 1)];
+		//UE_LOG(LogTemp, Warning, TEXT("StartTerm is %s and DbItem is %s"), *StartTerm->Name, *StartTerm->DbItem->Name);
+		//UE_LOG(LogTemp, Error, TEXT("DbItem %s has %d property %s %s"), *StartTerm->DbItem->Name, StartTerm->DbItem->Properties.Num(), *StartTerm->DbItem->Properties[0]->Name, *StartTerm->DbItem->Properties[0]->Value);
+	}
+
+	TArray<URule*> PossibleRules;
+	
+	TArray<URule*> AllRules = GInstance->PMInstance->GetRulePointers();
+	//UE_LOG(LogTemp, Error, TEXT("GETTING ALL RULES, no of rules = %d"), AllRules.Num());
+	for (URule* Rule : AllRules)
+	{	
+		//UE_LOG(LogTemp, Display, TEXT("AllRulesLoop: %s"), *Rule->Action);
+		if (Rule->Action.IsEmpty())
+		{
+			break;
+		}
+		//Rule->ToOutputsPtr();
+		//Rule->ToInputsPtr();
+		if (Rule->Outputs[0])
+		{
+			//UE_LOG(LogTemp, Error, TEXT("Rule %s Output[0] is %s"), *Rule->Action, *Rule->Outputs[0]->Name);
+		}
+		else
+		{
+			//UE_LOG(LogTemp, Display, TEXT("Rule %s has no Output[0]"), *Rule->Action);
+		}
+		//UE_LOG(LogTemp, Error, TEXT("%s is in AllRules and StartTerm is %s"), *Rule->Action, *StartTerm->Name);
+		if (Rule != nullptr && Rule->MainOutputIs(StartTerm))
+		{
+			if (StartTerm->DbItem)
+			{
+				//UE_LOG(LogTemp, Display, TEXT("Found matching rule %s with output DbItem: %s"), *Rule->Action, *StartTerm->DbItem->Name);
+			}
+			if (Rule != ParentRule)
+			{
+				PossibleRules.Add(Rule);
+			}
+			else 
+			{
+				UE_LOG(LogTemp, Display, TEXT("Rule is same as ParentRule, not added to PossibleRules"));
+			}
+			//UE_LOG(LogTemp, Error, TEXT("Adding rule %s"), *Rule->Action);
+			
+			//UE_LOG(LogTemp, Display, TEXT("Rule[0] is %s, and depth is %d"), *PossibleRules[0]->Action, Depth);
+		}
+	}
+	
+	UE_LOG(LogTemp, Error, TEXT("Number of possible rules: %d"), PossibleRules.Num());
+	
+
+
+
+	if (PossibleRules.Num() > 0 && Depth < MaxDepth) //Need to verify below !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	{
+		UE_LOG(LogTemp, Warning, TEXT("PossibleRules > 0 (possible rule 1 is %s) && Depth %d < MaxDepth (%d)"), *PossibleRules[0]->Action, Depth, MaxDepth);
+		URule* ChosenRule = PossibleRules[FMath::RandRange(0, PossibleRules.Num() - 1)];
+		UE_LOG(LogTemp, Warning, TEXT("ChosenRule is %s"), *ChosenRule->Action);
+		if (PossibleRules.Num() > 1)
+		{
+			while (CurrentPuzzleRules.Contains(ChosenRule)) //this is causing issues, keeps trying to reach max even if no more rules available
+			{
+				ChosenRule = PossibleRules[FMath::RandRange(0, PossibleRules.Num() - 1)];
+				UE_LOG(LogTemp, Warning, TEXT("Choosing a different rule, new chosen rule %s"), *ChosenRule->Action);
+			}
+		}
+
+		ChosenRule->Outputs[0]->DbItem = StartTerm->DbItem;
+		ChosenRule->Parent = ParentRule;
+		ParentRule->AddChildRule(ChosenRule);
+
+		CurrentPuzzleRules.Add(ChosenRule);
+		UE_LOG(LogTemp, Warning, TEXT("ChosenRule %s has %d inputs"), *ChosenRule->Action, ChosenRule->Inputs.Num());
+		UE_LOG(LogTemp, Error, TEXT("ChosenRule as string: %s"), *ChosenRule->ToString());
+		PuzzleString += ChosenRule->ToString() + TEXT("\n ->");
+
+
+		for (int32 i = 0; i < ChosenRule->Inputs.Num() - 1; i++)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Found = false"));
+			bool Found = false;
+			for (int32 j = 0; j < ChosenRule->Outputs.Num() - 1; j++)
+			{
+				if (ChosenRule->Inputs[j]->Name == ChosenRule->Outputs[i]->Name)
+				{
+					Found = true;
+					UE_LOG(LogTemp, Warning, TEXT("Found = true"));
+				}
+			}
+		} 
+
+		bool Result = true;
+		for (int32 i = 0; i < ChosenRule->Inputs.Num(); i++)
+		{
+			if (ChosenRule != nullptr && ChosenRule->Outputs[0]->Name == ChosenRule->Inputs[i]->Name)
+			{
+				if (StartTerm->DbItem != nullptr)
+				{
+					ChosenRule->Inputs[i]->DbItem = StartTerm->DbItem;
+				}
+				else if (StartTerm->Name != ChosenRule->Inputs[i]->Name)
+				{
+					if (StartTerm->GetSuperTypes().Contains(ChosenRule->Inputs[i]->Name))
+					{
+						ChosenRule->Inputs[i]->Name = StartTerm->Name;
+					}
+				}
+			}
+			Result = GenerateInputsDebug(ChosenRule->Inputs[i], ChosenRule, Depth + 1, Instance, Goal);
+			if (Result)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Result is true"));
+			}
+			else 
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Result is false"));
+			}
+
+
+			if (ChosenRule->Outputs[0]->Name == ChosenRule->Inputs[i]->Name)
+			{
+				UE_LOG(LogTemp, Warning, TEXT("Last bit is true"));
+				StartTerm->DbItem = ChosenRule->Inputs[i]->DbItem;
+			}
+		}
+		return Result;
+	}
+	if (StartTerm->DbItem == nullptr && StartTerm->Name != TEXT("Player"))
+	{
+		UE_LOG(LogTemp, Display, TEXT("GRAMMAR ERROR: No terminal or non-terminal match for term: %s"), *StartTerm->Name);
+		return false;
+	}
+
+	//Check if puzzle has already been generated
+	if (SuccessfulPuzzleStrings.Contains(PuzzleString))
+	{
+		UE_LOG(LogTemp, Display, TEXT("Puzzle %s has already been generated"), *PuzzleString);
+		
+		return false;
+	}
+
+	/* if (PMInstance->GoalsPicked.Contains(Goal))
+	{
+		UE_LOG(LogTemp, Display, TEXT("Goal has already been used"));
+		return false;
+	} */
+	
+	for (int32 i = 0; i < CurrentPuzzleRules.Num(); i++)
+	{
+		if (CurrentPuzzleRules[i])
+		{
+			UE_LOG(LogTemp, Display, TEXT("CurrentPuzzleRules[%d] for Puzzle No. %d: %s is %s"), i, SuccessfulPuzzles, *CurrentPuzzleRules[i]->ToString());
+		}
+	}
+	return true;
 }
 
 /* TArray<AGamePuzzlePoint*> AGenerator::GetGPPsInViewport()

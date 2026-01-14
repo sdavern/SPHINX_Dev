@@ -130,7 +130,7 @@ FString UTerm::ToString()
 void UTerm::ToPropPtrs()
 {
     Properties.Empty();
-    //UE_LOG(LogTemp, Display, TEXT("ToPropPtrs called on Term %s and PropertiesBP has %d BPs"), *Name, PropertiesBP.Num());
+    UE_LOG(LogTemp, Display, TEXT("ToPropPtrs called on Term %s and PropertiesBP has %d BPs"), *Name, PropertiesBP.Num());
     for (TSubclassOf<UItemProperty> AssetClass : PropertiesBP)
     {
         if (AssetClass != nullptr)
@@ -138,7 +138,7 @@ void UTerm::ToPropPtrs()
             UItemProperty* NewProp = NewObject<UItemProperty>(this, AssetClass);
             if (NewProp)
             {
-                //UE_LOG(LogTemp, Display, TEXT("Adding property ptr to Term %s"), *Name);
+                UE_LOG(LogTemp, Display, TEXT("Adding property ptr to Term %s"), *Name);
                 Properties.Add(NewProp);
             }
         }

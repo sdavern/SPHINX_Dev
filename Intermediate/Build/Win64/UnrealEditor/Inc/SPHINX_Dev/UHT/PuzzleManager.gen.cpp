@@ -417,6 +417,14 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		*(TArray<URule*>*)Z_Param__Result=P_THIS->GetRulesWithInput(Z_Param_DbItem);
 		P_NATIVE_END;
 	}
+	DEFINE_FUNCTION(APuzzleManager::execFindDbItemsForDebug)
+	{
+		P_GET_OBJECT(UTerm,Z_Param_Term);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(TArray<UItem*>*)Z_Param__Result=P_THIS->FindDbItemsForDebug(Z_Param_Term);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(APuzzleManager::execFindDbItemsFor)
 	{
 		P_GET_OBJECT(UTerm,Z_Param_Term);
@@ -435,6 +443,14 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		P_FINISH;
 		P_NATIVE_BEGIN;
 		*(TArray<UItem*>*)Z_Param__Result=P_THIS->GetItemsOfType(Z_Param_ItemName,Z_Param_NewAccessiblePPs,Z_Param_ItemsInLevel);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(APuzzleManager::execHasItemOfTypeDebug)
+	{
+		P_GET_OBJECT(UTerm,Z_Param_Term);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(bool*)Z_Param__Result=P_THIS->HasItemOfTypeDebug(Z_Param_Term);
 		P_NATIVE_END;
 	}
 	DEFINE_FUNCTION(APuzzleManager::execHasItemOfType)
@@ -530,6 +546,7 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 			{ "DestroyDialogue", &APuzzleManager::execDestroyDialogue },
 			{ "ExecuteRule", &APuzzleManager::execExecuteRule },
 			{ "FindDbItemsFor", &APuzzleManager::execFindDbItemsFor },
+			{ "FindDbItemsForDebug", &APuzzleManager::execFindDbItemsForDebug },
 			{ "FindItemsForOutputs", &APuzzleManager::execFindItemsForOutputs },
 			{ "FindLeaves", &APuzzleManager::execFindLeaves },
 			{ "GenerateForActivePuzzlePoints", &APuzzleManager::execGenerateForActivePuzzlePoints },
@@ -551,6 +568,7 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 			{ "GetRulesWithInput", &APuzzleManager::execGetRulesWithInput },
 			{ "GetRulesWithOutput", &APuzzleManager::execGetRulesWithOutput },
 			{ "HasItemOfType", &APuzzleManager::execHasItemOfType },
+			{ "HasItemOfTypeDebug", &APuzzleManager::execHasItemOfTypeDebug },
 			{ "InitialisePPPtrs", &APuzzleManager::execInitialisePPPtrs },
 			{ "IsGPPInViewport", &APuzzleManager::execIsGPPInViewport },
 			{ "LoadItemBPs", &APuzzleManager::execLoadItemBPs },
@@ -945,6 +963,47 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_APuzzleManager_FindDbItemsFor_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics
+	{
+		struct PuzzleManager_eventFindDbItemsForDebug_Parms
+		{
+			UTerm* Term;
+			TArray<UItem*> ReturnValue;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Term;
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue_Inner;
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::NewProp_Term = { "Term", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PuzzleManager_eventFindDbItemsForDebug_Parms, Term), Z_Construct_UClass_UTerm_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::NewProp_ReturnValue_Inner = { "ReturnValue", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UItem_NoRegister, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PuzzleManager_eventFindDbItemsForDebug_Parms, ReturnValue), EArrayPropertyFlags::None, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::NewProp_Term,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::NewProp_ReturnValue_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "PuzzleManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_APuzzleManager, nullptr, "FindDbItemsForDebug", nullptr, nullptr, Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::PropPointers), sizeof(Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::PuzzleManager_eventFindDbItemsForDebug_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::Function_MetaDataParams), Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::PuzzleManager_eventFindDbItemsForDebug_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -1765,6 +1824,49 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics
+	{
+		struct PuzzleManager_eventHasItemOfTypeDebug_Parms
+		{
+			UTerm* Term;
+			bool ReturnValue;
+		};
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_Term;
+		static void NewProp_ReturnValue_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::NewProp_Term = { "Term", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PuzzleManager_eventHasItemOfTypeDebug_Parms, Term), Z_Construct_UClass_UTerm_NoRegister, METADATA_PARAMS(0, nullptr) };
+	void Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+	{
+		((PuzzleManager_eventHasItemOfTypeDebug_Parms*)Obj)->ReturnValue = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(PuzzleManager_eventHasItemOfTypeDebug_Parms), &Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::NewProp_Term,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "PuzzleManager.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_APuzzleManager, nullptr, "HasItemOfTypeDebug", nullptr, nullptr, Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::PropPointers), sizeof(Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::PuzzleManager_eventHasItemOfTypeDebug_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::Function_MetaDataParams), Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::PuzzleManager_eventHasItemOfTypeDebug_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_APuzzleManager_InitialisePPPtrs_Statics
 	{
 #if WITH_METADATA
@@ -2253,6 +2355,11 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 #endif
 		static const UECodeGen_Private::FMapPropertyParams NewProp_Leaves;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Debug_MetaData[];
+#endif
+		static void NewProp_Debug_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_Debug;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_Player_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_Player;
@@ -2424,6 +2531,7 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		{ &Z_Construct_UFunction_APuzzleManager_DestroyDialogue, "DestroyDialogue" }, // 643231884
 		{ &Z_Construct_UFunction_APuzzleManager_ExecuteRule, "ExecuteRule" }, // 3978695043
 		{ &Z_Construct_UFunction_APuzzleManager_FindDbItemsFor, "FindDbItemsFor" }, // 4079131118
+		{ &Z_Construct_UFunction_APuzzleManager_FindDbItemsForDebug, "FindDbItemsForDebug" }, // 2212643326
 		{ &Z_Construct_UFunction_APuzzleManager_FindItemsForOutputs, "FindItemsForOutputs" }, // 3795709974
 		{ &Z_Construct_UFunction_APuzzleManager_FindLeaves, "FindLeaves" }, // 1115912063
 		{ &Z_Construct_UFunction_APuzzleManager_GenerateForActivePuzzlePoints, "GenerateForActivePuzzlePoints" }, // 3110264395
@@ -2445,6 +2553,7 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		{ &Z_Construct_UFunction_APuzzleManager_GetRulesWithInput, "GetRulesWithInput" }, // 1046896975
 		{ &Z_Construct_UFunction_APuzzleManager_GetRulesWithOutput, "GetRulesWithOutput" }, // 292368387
 		{ &Z_Construct_UFunction_APuzzleManager_HasItemOfType, "HasItemOfType" }, // 1868364753
+		{ &Z_Construct_UFunction_APuzzleManager_HasItemOfTypeDebug, "HasItemOfTypeDebug" }, // 2175566361
 		{ &Z_Construct_UFunction_APuzzleManager_InitialisePPPtrs, "InitialisePPPtrs" }, // 3493482082
 		{ &Z_Construct_UFunction_APuzzleManager_IsGPPInViewport, "IsGPPInViewport" }, // 1883914194
 		{ &Z_Construct_UFunction_APuzzleManager_LoadItemBPs, "LoadItemBPs" }, // 78148084
@@ -2498,6 +2607,17 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 	};
 #endif
 	const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_APuzzleManager_Statics::NewProp_Leaves = { "Leaves", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APuzzleManager, Leaves), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APuzzleManager_Statics::NewProp_Leaves_MetaData), Z_Construct_UClass_APuzzleManager_Statics::NewProp_Leaves_MetaData) }; // 984681485
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APuzzleManager_Statics::NewProp_Debug_MetaData[] = {
+		{ "Category", "PuzzleManager" },
+		{ "ModuleRelativePath", "PuzzleManager.h" },
+	};
+#endif
+	void Z_Construct_UClass_APuzzleManager_Statics::NewProp_Debug_SetBit(void* Obj)
+	{
+		((APuzzleManager*)Obj)->Debug = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_APuzzleManager_Statics::NewProp_Debug = { "Debug", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(APuzzleManager), &Z_Construct_UClass_APuzzleManager_Statics::NewProp_Debug_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APuzzleManager_Statics::NewProp_Debug_MetaData), Z_Construct_UClass_APuzzleManager_Statics::NewProp_Debug_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APuzzleManager_Statics::NewProp_Player_MetaData[] = {
 		{ "Category", "PuzzleManager" },
@@ -2768,6 +2888,7 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_Leaves_ValueProp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_Leaves_Key_KeyProp,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_Leaves,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_Debug,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_Player,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_Generator,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_InventoryManager,
@@ -2861,9 +2982,9 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		{ FSharedRulesStruct::StaticStruct, Z_Construct_UScriptStruct_FSharedRulesStruct_Statics::NewStructOps, TEXT("SharedRulesStruct"), &Z_Registration_Info_UScriptStruct_SharedRulesStruct, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FSharedRulesStruct), 3720797568U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_APuzzleManager, APuzzleManager::StaticClass, TEXT("APuzzleManager"), &Z_Registration_Info_UClass_APuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APuzzleManager), 3914892081U) },
+		{ Z_Construct_UClass_APuzzleManager, APuzzleManager::StaticClass, TEXT("APuzzleManager"), &Z_Registration_Info_UClass_APuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APuzzleManager), 1684197880U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_87984251(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_2405315444(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ScriptStructInfo),
 		nullptr, 0);

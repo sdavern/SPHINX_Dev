@@ -95,6 +95,11 @@ void APuzzleManager::BeginPlay()
     InitialisePPPtrs();
     PopulateRulePointers();
     SetupDbItemsOnStart();
+
+    if (Debug)
+    {
+        Generator->CalculateMaxPuzzles();
+    }
 }
 
 void APuzzleManager::Tick(float DeltaTime)
@@ -102,6 +107,10 @@ void APuzzleManager::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
 
     if (!bIsLevelLoaded) {
+        return;
+    }
+    if (Debug == true)
+    {
         return;
     }
     ActivateMaxPuzzlePoints();
@@ -829,6 +838,21 @@ bool APuzzleManager::HasItemOfType(UTerm* Term, TArray<UPuzzlePoint*> NewAccessi
     return false;
 }
 
+bool APuzzleManager::HasItemOfTypeDebug(UTerm* Term)
+{
+    for (TSubclassOf<UItem> DbItem : ItemAssets)
+    {
+        if (DbItem != nullptr)
+        {
+            UItem* DbItemPtr = NewObject<UItem>(this, DbItem);
+            if (DbItemPtr && (DbItemPtr->Name == Term->Name || DbItemPtr->GetSuperTypes().Contains(Term->Name)))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 TArray<UItem*> APuzzleManager::GetItemsOfType(FString ItemName, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel)
 {
     TArray<UItem*> MatchingItems;
@@ -865,6 +889,43 @@ TArray<UItem*> APuzzleManager::FindDbItemsFor(UTerm* Term, TArray<UPuzzlePoint*>
         }
         
         if (DbItem && DbItem->Matches(Term) && DbItem->IsAccessible(AccessiblePPs, ItemsInLevel))
+        {
+            MatchingItems.Add(DbItem);
+            UE_LOG(LogTemp, Warning, TEXT("DbItem %s is valid and matches so it should work!!!!!!!!!!!!!!!!!!!!!!!!!!!"), *DbItem->Name);
+        }
+    }
+    
+    /* TArray<UItem*> NAllItems = GetAllItems();
+
+    for (UItem* DbItem : NAllItems)
+    {
+        if (DbItem && DbItem->Matches(Term) && DbItem->IsAccessible(AccessiblePPs, ItemsInLevel))
+        {
+            MatchingItems.Add(DbItem);
+            UE_LOG(LogTemp, Warning, TEXT("DbItem %s added to MatchingItems"), *DbItem->Name);
+        }
+    } */
+    return MatchingItems;
+}
+
+TArray<UItem*> APuzzleManager::FindDbItemsForDebug(UTerm* Term)
+{
+    UE_LOG(LogTemp, Warning, TEXT("FindDbItemsFor called and AllItems has %d items"), AllItems.Num());
+    //UE_LOG(LogTemp, Display, TEXT("AllItems[0] is %s and has %d properties: %s %s"), *AllItems[0]->Name, AllItems[0]->Properties.Num(), *AllItems[0]->Properties[0]->Name, *AllItems[0]->Properties[0]->Value);
+    
+    TArray<UItem*> MatchingItems;
+    for (UItem* DbItem : AllItems)
+    {
+        if (DbItem && DbItem->Matches(Term))
+        {
+            UE_LOG(LogTemp, Display, TEXT("DbItem: '%s' matches term '%s'"), *DbItem->Name, *Term->Name);
+        }
+        else
+        {
+            //UE_LOG(LogTemp, Display, TEXT("DbItem: '%s'  does not match term '%s'"), *DbItem->Name, *Term->Name);
+        }
+        
+        if (DbItem && DbItem->Matches(Term))
         {
             MatchingItems.Add(DbItem);
             UE_LOG(LogTemp, Warning, TEXT("DbItem %s is valid and matches so it should work!!!!!!!!!!!!!!!!!!!!!!!!!!!"), *DbItem->Name);

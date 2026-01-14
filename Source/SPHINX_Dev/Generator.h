@@ -44,7 +44,7 @@ public:
 	URule* GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePoint*> NewAccessiblePPs, int depth);
 
 	bool GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth, UPuzzlePoint* CurrentPP, TArray<UPuzzlePoint*> NewAccessiblePPs, TArray<UItem*> ItemsInLevel, AGenerator* GInstance, UTerm* GoalTerm);
-
+	
 	AGamePuzzlePoint* FindGamePuzzlePoint(UPuzzlePoint* PP);
 
 	void GetAllAttachedActors(AActor* ParentActor, TArray<AActor*>& OutActors);
@@ -61,12 +61,13 @@ public:
 
 	TArray<FString> SpawnedItems;
 
-
-
 	UFUNCTION()
 	void RetryGetSpawnPointFor(UItem* Item);
 
 	int MAX_DEPTH = 20;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int MaxDepth = 10; //for debug
 
 	UPROPERTY()
 	APuzzleManager* PMInstance;
@@ -74,12 +75,30 @@ public:
 	UPROPERTY()
 	AInventoryManager* InventoryInstance;
 
+	//expressive range debug mode
+	bool GenerateInputsDebug(UTerm* StartTerm, URule* ParentRule, int32 Depth, AGenerator* GInstance, UTerm* GoalTerm);
+	
+	URule* GeneratePuzzleStartingFromDebug(UTerm* DebugGoal, int depth);
+
+	void CalculateMaxPuzzles();
+
+	int SuccessfulPuzzles = 0;
+	
+	UPROPERTY()
+	TArray<FString> SuccessfulPuzzleStrings;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<TSubclassOf<UTerm>> PuzzleGoalsDebug;
+
+	UPROPERTY()
+	TArray<UTerm*> DebugPtrs;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 private:
-
+  
 
 	static AGenerator* Instance;
 
@@ -90,6 +109,8 @@ private:
 	TArray<UGameItem*> StartingInventory;
 
 	static FString PuzzleString;
+
+	static FString DebugPuzzleString;
 
 public:	
 	// Called every frame

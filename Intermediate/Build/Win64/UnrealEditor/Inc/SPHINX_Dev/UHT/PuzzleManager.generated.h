@@ -77,8 +77,10 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<struct FSharedRulesStruct>
 	DECLARE_FUNCTION(execGetAllItems); \
 	DECLARE_FUNCTION(execGetRulesWithOutput); \
 	DECLARE_FUNCTION(execGetRulesWithInput); \
+	DECLARE_FUNCTION(execFindDbItemsForDebug); \
 	DECLARE_FUNCTION(execFindDbItemsFor); \
 	DECLARE_FUNCTION(execGetItemsOfType); \
+	DECLARE_FUNCTION(execHasItemOfTypeDebug); \
 	DECLARE_FUNCTION(execHasItemOfType); \
 	DECLARE_FUNCTION(execGetObject); \
 	DECLARE_FUNCTION(execAddPuzzle); \
