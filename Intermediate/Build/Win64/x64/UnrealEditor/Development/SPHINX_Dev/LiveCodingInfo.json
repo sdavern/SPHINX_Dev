@@ -13,19 +13,19 @@
 			"GameArea.gen.cpp.obj",
 			"GameItem.gen.cpp.obj",
 			"GamePuzzlePoint.gen.cpp.obj",
+			"Generator.gen.cpp.obj",
 			"InitNPC.gen.cpp.obj",
 			"InitObject.gen.cpp.obj",
 			"InitText.gen.cpp.obj",
 			"InventoryButton.gen.cpp.obj",
 			"InventoryManager.gen.cpp.obj",
 			"InventoryMenu.gen.cpp.obj",
-			"Item.gen.cpp.obj",
-			"ItemProperty.gen.cpp.obj",
 			"MainMenu.gen.cpp.obj",
 			"MyPawn.gen.cpp.obj",
 			"PlayerPawn.gen.cpp.obj",
-			"Generator.gen.cpp.obj",
-			"PuzzleManager.gen.cpp.obj"
+			"PuzzleManager.gen.cpp.obj",
+			"Item.gen.cpp.obj",
+			"ItemProperty.gen.cpp.obj"
 		],
 		"Module.SPHINX_Dev.2.cpp.obj": [
 			"PuzzlePoint.gen.cpp.obj",
@@ -58,19 +58,18 @@
 			"InventoryButton.cpp.obj",
 			"InventoryManager.cpp.obj",
 			"InventoryMenu.cpp.obj",
-			"Item.cpp.obj",
-			"ItemProperty.cpp.obj",
 			"MainMenu.cpp.obj",
 			"MyPawn.cpp.obj",
 			"PlayerPawn.cpp.obj",
 			"SPHINX_Dev.init.gen.cpp.obj",
+			"VectorStruct.gen.cpp.obj",
 			"Generator.cpp.obj",
+			"Item.cpp.obj",
+			"ItemProperty.cpp.obj",
 			"PuzzleManager.cpp.obj"
 		],
 		"Module.SPHINX_Dev.3.cpp.obj": [
-			"PuzzlePoint.cpp.obj",
 			"PuzzleTracker.cpp.obj",
-			"Rule.cpp.obj",
 			"SpawnPoint.cpp.obj",
 			"SphinxActor.cpp.obj",
 			"SPHINXHUD.cpp.obj",
@@ -79,9 +78,11 @@
 			"SPHINX_DevGameMode.cpp.obj",
 			"SPHINX_DevPlayerController.cpp.obj",
 			"SPHINX_DevProjectile.cpp.obj",
+			"Term.cpp.obj",
 			"TP_PickUpComponent.cpp.obj",
 			"TP_WeaponComponent.cpp.obj",
-			"Term.cpp.obj"
+			"PuzzlePoint.cpp.obj",
+			"Rule.cpp.obj"
 		]
 	}
 }

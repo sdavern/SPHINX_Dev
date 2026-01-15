@@ -8,7 +8,7 @@ UItem::UItem()
 {
     Name = TEXT("NewItem");
     //ToPropPtrs();
-    
+    TensionArray.SetNum(7);
 }
 
 bool UItem::Equals(const UObject* Other) const

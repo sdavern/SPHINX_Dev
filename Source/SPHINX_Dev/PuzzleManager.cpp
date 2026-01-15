@@ -1394,6 +1394,21 @@ void APuzzleManager::ActivateProperties()
     for (UItem* Item : AllItems)
     {
         Item->ToPropPtrs();
+       
+        if (Item->TensionArray.Num() == 7 && Item->TensionVector.Tension.Num() == 7)
+        {
+            UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: TensionArray has %d and TensionVector has %d"), Item->TensionArray.Num(), Item->TensionVector.Tension.Num());
+            for (int i = 0; i < 7; i++)
+            {
+                Item->TensionVector.Tension[i] = Item->TensionArray[i];
+                Item->TensionArray[1] = 1.0f;
+                UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: %s TensionArray[%d] is %lf"), *Item->Name, i, Item->TensionArray[i]);
+                if (Item->TensionVector.Tension[i] == Item->TensionArray[i])
+                {
+                    UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: Vector %d = Array %d"), Item->TensionVector.Tension[i], Item->TensionArray[i])
+                }
+            }
+        }
     }
 }
 

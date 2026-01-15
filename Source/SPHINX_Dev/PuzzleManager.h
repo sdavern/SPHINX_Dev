@@ -11,6 +11,7 @@
 #include "Item.h"
 #include "Rule.h"
 #include "Area.h"
+#include "VectorStruct.h"
 #include "PuzzleTracker.h"
 #include "SPHINX_DevPlayerController.h"
 #include "ConditionalObject.h"

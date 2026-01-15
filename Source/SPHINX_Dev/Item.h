@@ -4,6 +4,7 @@
 #include "UObject/Object.h"
 #include "ItemProperty.h" 
 #include "Area.h"
+#include "VectorStruct.h"
 #include "Engine/StaticMesh.h" 
 #include "Item.generated.h"
 
@@ -49,6 +50,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
 	bool IsStationary = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
+	TArray<double> TensionArray;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
+	FVector7D TensionVector;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Item")
 	bool IsIndestructible = false;

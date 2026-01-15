@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "VectorStruct.h"
 #include "UObject/Object.h"
 #include "ItemProperty.generated.h"
 
@@ -29,6 +30,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Property")
 	FString Value;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Property")
+	FVector7D TensionVector;
 
     UItemProperty();
 

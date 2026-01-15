@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
 #include "Term.h"
+#include "VectorStruct.h"
 #include "PuzzlePoint.h"
 #include "Rule.generated.h"
 

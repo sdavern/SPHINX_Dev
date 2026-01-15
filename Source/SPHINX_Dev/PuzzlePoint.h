@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
 #include "Term.h"
+#include "VectorStruct.h"
 #include "PuzzlePoint.generated.h"
 
 class AGamePuzzlePoint;

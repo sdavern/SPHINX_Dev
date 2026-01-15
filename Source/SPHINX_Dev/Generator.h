@@ -11,6 +11,7 @@
 #include "Term.h"
 #include "GameItem.h"
 #include "GameArea.h"
+#include "VectorStruct.h"
 #include "PuzzleManager.h"
 #include "InventoryManager.h"
 #include "PuzzlePoint.h"

@@ -28,10 +28,10 @@ def process_file(file_path):
     for index, row in df.iterrows():
         item_name = row['Name']
         item_description = row['Description']
-        
+
         # Define the paths
         original_item_blueprint_path = "/Game/BPsForWidgets/MyItem"
-        destination_path = "/Game/Test/NewItems/"
+        destination_path = "/Game/Test/NewItems"
         new_blueprint_name = f"{item_name}"
 
         # Load the original item blueprint
@@ -49,6 +49,37 @@ def process_file(file_path):
         # Set the Name and Description
         unreal.EditorAssetLibrary.set_editor_property(duplicated_blueprint_instance, "Name", item_name)
         unreal.EditorAssetLibrary.set_editor_property(duplicated_blueprint_instance, "Description", item_description)
+
+        tension_values = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        unreal.log_warning(f"Tension list size: {len(tension_values)}")
+
+        if pd.notna(row.get("Value")):
+            tension_values[0] = float(row.get("Value"))
+
+        if pd.notna(row.get("Strength")):
+            tension_values[1] = float(row.get("Strength"))
+
+        if pd.notna(row.get("Rarity")):
+            tension_values[2] = float(row.get("Rarity"))
+
+        if pd.notna(row.get("GoodEvil")):
+            tension_values[3] = float(row.get("GoodEvil"))
+
+        if pd.notna(row.get("Helpfulness")):
+            tension_values[4] = float(row.get("Helpfulness"))
+
+        if pd.notna(row.get("Exciting")):
+            tension_values[5] = float(row.get("Exciting"))
+
+        if pd.notna(row.get("EmotionalSig")):
+            tension_values[6] = float(row.get("EmotionalSig"))
+
+        unreal.EditorAssetLibrary.set_editor_property(
+            duplicated_blueprint_instance,
+            "TensionArray",
+            tension_values
+        )
+
 
         original_actor_path = "/Game/BPsForWidgets/MyActor"
         actor_path = "/Game/Test/NewItemsBP"
