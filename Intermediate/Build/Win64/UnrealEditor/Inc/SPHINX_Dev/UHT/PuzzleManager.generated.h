@@ -52,6 +52,8 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<struct FSharedRulesStruct>
 	DECLARE_FUNCTION(execPrintAllRules); \
 	DECLARE_FUNCTION(execPopulateRulePointers); \
 	DECLARE_FUNCTION(execPrintLeaves); \
+	DECLARE_FUNCTION(execSetupPropertyVector); \
+	DECLARE_FUNCTION(execSetupItemVector); \
 	DECLARE_FUNCTION(execActivateProperties); \
 	DECLARE_FUNCTION(execReturnLeaves); \
 	DECLARE_FUNCTION(execActivateMaxPuzzlePoints); \
@@ -61,6 +63,7 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<struct FSharedRulesStruct>
 	DECLARE_FUNCTION(execCheckIfPuzzleToBeGenerated); \
 	DECLARE_FUNCTION(execGetGameItemsInWorld); \
 	DECLARE_FUNCTION(execGetItemsInWorld); \
+	DECLARE_FUNCTION(execLoadPropBPs); \
 	DECLARE_FUNCTION(execLoadRuleBPs); \
 	DECLARE_FUNCTION(execLoadItemBPs); \
 	DECLARE_FUNCTION(execLoadPuzzlePointBPs); \
@@ -73,6 +76,7 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<struct FSharedRulesStruct>
 	DECLARE_FUNCTION(execGetPlayer); \
 	DECLARE_FUNCTION(execUpdatePlayerProperties); \
 	DECLARE_FUNCTION(execGetAllPPs); \
+	DECLARE_FUNCTION(execGetAllProps); \
 	DECLARE_FUNCTION(execGetAllRules); \
 	DECLARE_FUNCTION(execGetAllItems); \
 	DECLARE_FUNCTION(execGetRulesWithOutput); \

@@ -87,6 +87,11 @@ void EmptyLinkFunctionForGeneratedCodeGenerator() {}
 #endif
 		static const UECodeGen_Private::FFloatPropertyParams NewProp_FindSpawnDelay;
 #if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_SPHINX3Mode_MetaData[];
+#endif
+		static void NewProp_SPHINX3Mode_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_SPHINX3Mode;
+#if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_MaxDepth_MetaData[];
 #endif
 		static const UECodeGen_Private::FIntPropertyParams NewProp_MaxDepth;
@@ -113,6 +118,26 @@ void EmptyLinkFunctionForGeneratedCodeGenerator() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_DebugPtrs_MetaData[];
 #endif
 		static const UECodeGen_Private::FArrayPropertyParams NewProp_DebugPtrs;
+		static const UECodeGen_Private::FDoublePropertyParams NewProp_Arc0_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Arc0_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_Arc0;
+		static const UECodeGen_Private::FDoublePropertyParams NewProp_Arc1_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Arc1_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_Arc1;
+		static const UECodeGen_Private::FDoublePropertyParams NewProp_Arc2_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Arc2_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_Arc2;
+		static const UECodeGen_Private::FDoublePropertyParams NewProp_PuzzleArc_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_PuzzleArc_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_PuzzleArc;
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_StartingInventory_Inner;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_StartingInventory_MetaData[];
@@ -150,6 +175,17 @@ void EmptyLinkFunctionForGeneratedCodeGenerator() {}
 	};
 #endif
 	const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_FindSpawnDelay = { "FindSpawnDelay", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGenerator, FindSpawnDelay), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGenerator_Statics::NewProp_FindSpawnDelay_MetaData), Z_Construct_UClass_AGenerator_Statics::NewProp_FindSpawnDelay_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGenerator_Statics::NewProp_SPHINX3Mode_MetaData[] = {
+		{ "Category", "Generator" },
+		{ "ModuleRelativePath", "Generator.h" },
+	};
+#endif
+	void Z_Construct_UClass_AGenerator_Statics::NewProp_SPHINX3Mode_SetBit(void* Obj)
+	{
+		((AGenerator*)Obj)->SPHINX3Mode = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_SPHINX3Mode = { "SPHINX3Mode", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AGenerator), &Z_Construct_UClass_AGenerator_Statics::NewProp_SPHINX3Mode_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGenerator_Statics::NewProp_SPHINX3Mode_MetaData), Z_Construct_UClass_AGenerator_Statics::NewProp_SPHINX3Mode_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGenerator_Statics::NewProp_MaxDepth_MetaData[] = {
 		{ "Category", "Generator" },
@@ -197,6 +233,38 @@ void EmptyLinkFunctionForGeneratedCodeGenerator() {}
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_DebugPtrs = { "DebugPtrs", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGenerator, DebugPtrs), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGenerator_Statics::NewProp_DebugPtrs_MetaData), Z_Construct_UClass_AGenerator_Statics::NewProp_DebugPtrs_MetaData) };
+	const UECodeGen_Private::FDoublePropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_Arc0_Inner = { "Arc0", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Double, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGenerator_Statics::NewProp_Arc0_MetaData[] = {
+		{ "Category", "Arcs" },
+		{ "ModuleRelativePath", "Generator.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_Arc0 = { "Arc0", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGenerator, Arc0), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGenerator_Statics::NewProp_Arc0_MetaData), Z_Construct_UClass_AGenerator_Statics::NewProp_Arc0_MetaData) };
+	const UECodeGen_Private::FDoublePropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_Arc1_Inner = { "Arc1", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Double, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGenerator_Statics::NewProp_Arc1_MetaData[] = {
+		{ "Category", "Arcs" },
+		{ "ModuleRelativePath", "Generator.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_Arc1 = { "Arc1", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGenerator, Arc1), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGenerator_Statics::NewProp_Arc1_MetaData), Z_Construct_UClass_AGenerator_Statics::NewProp_Arc1_MetaData) };
+	const UECodeGen_Private::FDoublePropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_Arc2_Inner = { "Arc2", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Double, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGenerator_Statics::NewProp_Arc2_MetaData[] = {
+		{ "Category", "Arcs" },
+		{ "ModuleRelativePath", "Generator.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_Arc2 = { "Arc2", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGenerator, Arc2), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGenerator_Statics::NewProp_Arc2_MetaData), Z_Construct_UClass_AGenerator_Statics::NewProp_Arc2_MetaData) };
+	const UECodeGen_Private::FDoublePropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_PuzzleArc_Inner = { "PuzzleArc", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Double, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGenerator_Statics::NewProp_PuzzleArc_MetaData[] = {
+		{ "Category", "Arcs" },
+		{ "ModuleRelativePath", "Generator.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_PuzzleArc = { "PuzzleArc", nullptr, (EPropertyFlags)0x0010000000020015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGenerator, PuzzleArc), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGenerator_Statics::NewProp_PuzzleArc_MetaData), Z_Construct_UClass_AGenerator_Statics::NewProp_PuzzleArc_MetaData) };
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_StartingInventory_Inner = { "StartingInventory", nullptr, (EPropertyFlags)0x0000000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UGameItem_NoRegister, METADATA_PARAMS(0, nullptr) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AGenerator_Statics::NewProp_StartingInventory_MetaData[] = {
@@ -214,6 +282,7 @@ void EmptyLinkFunctionForGeneratedCodeGenerator() {}
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AGenerator_Statics::NewProp_StartingInventory = { "StartingInventory", nullptr, (EPropertyFlags)0x0040008000000009, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AGenerator, StartingInventory), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AGenerator_Statics::NewProp_StartingInventory_MetaData), Z_Construct_UClass_AGenerator_Statics::NewProp_StartingInventory_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AGenerator_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_FindSpawnDelay,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_SPHINX3Mode,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_MaxDepth,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_PMInstance,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_InventoryInstance,
@@ -223,6 +292,14 @@ void EmptyLinkFunctionForGeneratedCodeGenerator() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_PuzzleGoalsDebug,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_DebugPtrs_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_DebugPtrs,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_Arc0_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_Arc0,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_Arc1_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_Arc1,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_Arc2_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_Arc2,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_PuzzleArc_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_PuzzleArc,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_StartingInventory_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AGenerator_Statics::NewProp_StartingInventory,
 	};
@@ -264,9 +341,9 @@ void EmptyLinkFunctionForGeneratedCodeGenerator() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Generator_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_AGenerator, AGenerator::StaticClass, TEXT("AGenerator"), &Z_Registration_Info_UClass_AGenerator, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGenerator), 1346911423U) },
+		{ Z_Construct_UClass_AGenerator, AGenerator::StaticClass, TEXT("AGenerator"), &Z_Registration_Info_UClass_AGenerator, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AGenerator), 90752228U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Generator_h_2996494740(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Generator_h_3414469350(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Generator_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Generator_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

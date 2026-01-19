@@ -107,6 +107,11 @@ void EmptyLinkFunctionForGeneratedCodeItemProperty() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_TensionVector_MetaData[];
 #endif
 		static const UECodeGen_Private::FStructPropertyParams NewProp_TensionVector;
+		static const UECodeGen_Private::FDoublePropertyParams NewProp_TensionArray_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_TensionArray_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_TensionArray;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -153,12 +158,22 @@ void EmptyLinkFunctionForGeneratedCodeItemProperty() {}
 	};
 #endif
 	const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UItemProperty_Statics::NewProp_TensionVector = { "TensionVector", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UItemProperty, TensionVector), Z_Construct_UScriptStruct_FVector7D, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UItemProperty_Statics::NewProp_TensionVector_MetaData), Z_Construct_UClass_UItemProperty_Statics::NewProp_TensionVector_MetaData) }; // 2389293912
+	const UECodeGen_Private::FDoublePropertyParams Z_Construct_UClass_UItemProperty_Statics::NewProp_TensionArray_Inner = { "TensionArray", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Double, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UItemProperty_Statics::NewProp_TensionArray_MetaData[] = {
+		{ "Category", "Property" },
+		{ "ModuleRelativePath", "ItemProperty.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UItemProperty_Statics::NewProp_TensionArray = { "TensionArray", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UItemProperty, TensionArray), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UItemProperty_Statics::NewProp_TensionArray_MetaData), Z_Construct_UClass_UItemProperty_Statics::NewProp_TensionArray_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UItemProperty_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemProperty_Statics::NewProp_Type_Underlying,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemProperty_Statics::NewProp_Type,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemProperty_Statics::NewProp_Name,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemProperty_Statics::NewProp_Value,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemProperty_Statics::NewProp_TensionVector,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemProperty_Statics::NewProp_TensionArray_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UItemProperty_Statics::NewProp_TensionArray,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UItemProperty_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UItemProperty>::IsAbstract,
@@ -202,9 +217,9 @@ void EmptyLinkFunctionForGeneratedCodeItemProperty() {}
 		{ EItemProperty_StaticEnum, TEXT("EItemProperty"), &Z_Registration_Info_UEnum_EItemProperty, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 973540946U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UItemProperty, UItemProperty::StaticClass, TEXT("UItemProperty"), &Z_Registration_Info_UClass_UItemProperty, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItemProperty), 208465521U) },
+		{ Z_Construct_UClass_UItemProperty, UItemProperty::StaticClass, TEXT("UItemProperty"), &Z_Registration_Info_UClass_UItemProperty, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UItemProperty), 228225541U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_3094583835(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_2889544571(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::ClassInfo),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_ItemProperty_h_Statics::EnumInfo));

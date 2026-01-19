@@ -5,6 +5,8 @@ UItemProperty::UItemProperty()
     Type = EItemProperty::StringProperty; // Default type
     Name = TEXT("");
     Value = TEXT("");
+
+    TensionArray.SetNum(7);
 }
 
 UItemProperty::UItemProperty(EItemProperty NewType, const FString& NewName, const FString& NewValue)

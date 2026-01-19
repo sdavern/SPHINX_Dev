@@ -483,6 +483,12 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 		return false;
 	}
 
+	if (SPHINX3Mode && MannWhitney(Arc0, PuzzleArc))
+	{
+		return false;
+	}
+	
+
 	/* if (PMInstance->GoalsPicked.Contains(Goal))
 	{
 		UE_LOG(LogTemp, Display, TEXT("Goal has already been used"));
@@ -1006,6 +1012,87 @@ bool AGenerator::GenerateInputsDebug(UTerm* StartTerm, URule* ParentRule, int32 
 		}
 	}
 	return true;
+}
+
+bool AGenerator::MannWhitney(const TArray<double>& Arc, const TArray<double>& Puzzle)
+{
+	struct FRankedValue {
+        double Value;
+        int32 GroupID;
+        float Rank;
+    };
+
+	float Result;
+    int32 n1 = Arc.Num();
+    int32 n2 = Puzzle.Num();
+    TArray<FRankedValue> Combined;
+
+    for (double Val : Arc) Combined.Add({Val, 1, 0.0f});
+    for (double Val : Puzzle) Combined.Add({Val, 2, 0.0f});
+
+    Combined.Sort([](const FRankedValue& A, const FRankedValue& B) {
+        return A.Value < B.Value;
+    });
+
+    for (int32 i = 0; i < Combined.Num(); )
+    {
+        int32 j = i;
+        while (j < Combined.Num() && Combined[j].Value == Combined[i].Value) {
+            j++;
+        }
+        
+        float AvgRank = (float)(i + 1 + j) / 2.0f;
+        for (int32 k = i; k < j; k++) {
+            Combined[k].Rank = AvgRank;
+        }
+        i = j;
+    }
+
+    float R1 = 0.0f;
+    for (const auto& Item : Combined) {
+        if (Item.GroupID == 1) R1 += Item.Rank;
+    }
+
+
+    float U1 = (float)(n1 * n2) + (float)(n1 * (n1 + 1)) / 2.0f - R1;
+    float U2 = (float)(n1 * n2) - U1;
+
+    Result = FMath::Min(U1, U2);
+	int32 CriticalValue = GetCriticalValue(n1, n2);
+
+	if (Result <= CriticalValue)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+int32 AGenerator::GetCriticalValue(int32 A, int32 B)
+{
+	//Assuming all ground truth arcs have 8 points in the array, will need to be manually hardcoded for different number
+	//Puzzles can have max 20 rules, else new functionality will need to be added
+	if (A == 8 && B == 2) return 0;
+	if (A == 8 && B == 3) return 2;
+	if (A == 8 && B == 4) return 4;
+	if (A == 8 && B == 5) return 6;
+	if (A == 8 && B == 6) return 8;
+	if (A == 8 && B == 7) return 10;
+	if (A == 8 && B == 8) return 13;
+	if (A == 8 && B == 9) return 15;
+	if (A == 8 && B == 10) return 17;
+	if (A == 8 && B == 11) return 19;
+	if (A == 8 && B == 12) return 22;
+	if (A == 8 && B == 13) return 24;
+	if (A == 8 && B == 14) return 26;
+	if (A == 8 && B == 15) return 29;
+	if (A == 8 && B == 16) return 31;
+	if (A == 8 && B == 17) return 34;
+	if (A == 8 && B == 18) return 36;
+	if (A == 8 && B == 19) return 38;
+	if (A == 8 && B == 20) return 41;
+
+	return -1;
 }
 
 /* TArray<AGamePuzzlePoint*> AGenerator::GetGPPsInViewport()

@@ -35,12 +35,12 @@ public:
 	//Magnitude
 	double Size() const
 	{
-		double Size;
+		double SumSqrs = 0.0;
 		for (int i = 0; i < 7; i++)
 		{
-			Size += Tension[i] * Tension[i];
+			SumSqrs += Tension[i] * Tension[i];
 		}
-		return FMath::Sqrt(Size);
+		return FMath::Sqrt(SumSqrs);
 	}
 
 	//Direction

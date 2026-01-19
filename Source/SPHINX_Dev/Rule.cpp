@@ -395,4 +395,30 @@ void URule::InitialiseRule()
     ToInputsPtr();
     ToOutputsPtr();
     GetDbItems();
+    CalcCosineSim();
+}
+
+double URule::CalcCosineSim()
+{
+    APuzzleManager* PMInstance = APuzzleManager::GetInstance();
+
+    //for each input, add vector to InputsVector
+    //for each prop of input, check if prop is in list of vector props, if true, add to InputsVector
+
+    //for each output, add vector to OutputsVector
+    //for each prop of output, check if prop is in list of vector props, if true, add to OutputsProp
+    
+    for (UTerm* Input : Inputs)
+    {
+        InputsVector = InputsVector + Input->DbItem->TensionVector;
+    }
+
+    for (UTerm* Output : Outputs)
+    {
+        OutputsVector = OutputsVector + Output->DbItem->TensionVector;
+    }
+
+    Similarity = FVector7D::CosineSim(InputsVector, OutputsVector);
+
+    return Similarity;
 }

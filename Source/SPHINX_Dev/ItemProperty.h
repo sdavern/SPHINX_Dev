@@ -34,6 +34,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Property")
 	FVector7D TensionVector;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Property")
+	TArray<double> TensionArray;
+
     UItemProperty();
 
 	UItemProperty(EItemProperty NewType, const FString& NewName, const FString& NewValue);

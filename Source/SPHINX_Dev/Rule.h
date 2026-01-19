@@ -36,6 +36,15 @@ public:
 	UPROPERTY()
 	TArray<UTerm*> Inputs;
 
+	UPROPERTY()
+	FVector7D InputsVector;
+
+	UPROPERTY()
+	FVector7D OutputsVector;
+
+	UPROPERTY()
+	double Similarity = 0.0f;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Action;
 
@@ -76,46 +85,69 @@ public:
 
 	URule(const FString& Action);
 
+	UFUNCTION()
 	bool IsEqual(const UObject* OtherObject) const;
 
+	UFUNCTION()
 	void AddOutput();
 
+	UFUNCTION()
 	void AddInput();
 
+	UFUNCTION()
 	void DeleteOutputAtIndex(int32 Index);
 
+	UFUNCTION()
 	void DeleteInputAtIndex(int32 Index);
 
+	UFUNCTION()
 	void AddChildRule(URule* Child);
 
+	UFUNCTION()
 	void RemoveLastAddedRule();
 
+	UFUNCTION()
 	bool MainOutputIs(UTerm* Term) const;
 
+	UFUNCTION()
 	bool HasPlayerInput();
 
+	UFUNCTION()
 	FString GetRuleAsString();
 
 	FString GetRuleAsString(bool Speech);
 
+	UFUNCTION()
 	FString ToString();
 
+	UFUNCTION()
 	FString ToShortString();
 	
+	UFUNCTION()
 	bool ContainsItem(UItem* Item);
 
+	UFUNCTION()
 	URule* Clone();
 
+	UFUNCTION()
 	void ToOutputsPtr();
 
+	UFUNCTION()
 	void ToInputsPtr();
 
+	UFUNCTION()
 	void ToChildrenPtr();
 
+	UFUNCTION()
 	FString ToPMString();
 
+	UFUNCTION()
 	void GetDbItems();
 
+	UFUNCTION()
 	void InitialiseRule();
+
+	UFUNCTION()
+	double CalcCosineSim();
 
 };

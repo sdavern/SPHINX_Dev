@@ -60,6 +60,13 @@ public:
 
 	UTerm* ChooseGoal(UPuzzlePoint* PP);
 
+	bool MannWhitney(const TArray<double>& Arc, const TArray<double>& Puzzle);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool SPHINX3Mode = true;
+
+	int32 GetCriticalValue(int32 A, int32 B);
+
 	TArray<FString> SpawnedItems;
 
 	UFUNCTION()
@@ -93,6 +100,18 @@ public:
 
 	UPROPERTY()
 	TArray<UTerm*> DebugPtrs;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Arcs")
+	TArray<double> Arc0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Arcs")
+	TArray<double> Arc1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Arcs")
+	TArray<double> Arc2;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Arcs")
+	TArray<double> PuzzleArc;
 
 protected:
 	// Called when the game starts or when spawned

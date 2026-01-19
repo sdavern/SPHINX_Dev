@@ -42,6 +42,7 @@ void APuzzleManager::BeginPlay()
     ItemAssets = LoadItemBPs();
     RuleAssets = LoadRuleBPs();
     PPAssets = LoadPuzzlePointBPs();
+    PropAssets = LoadPropBPs();
     
     //ActivateMaxPuzzlePoints();
     ActivateProperties();
@@ -1064,7 +1065,22 @@ TArray<URule*> APuzzleManager::GetAllRules()
     return Objects;
 }
 
-
+TArray<UItemProperty*> APuzzleManager::GetAllProps()
+{
+    TArray<UItemProperty*> Objects;
+    for (TSubclassOf<UItemProperty> AssetClass : PropAssets)
+    {
+        if (AssetClass != nullptr)
+        {
+            UItemProperty* NewProp = NewObject<UItemProperty>(this, AssetClass);
+            if (NewProp)
+            {
+                Objects.Add(NewProp);
+            }
+        }
+    }
+    return Objects;
+}
 
 TArray<UPuzzlePoint*> APuzzleManager::GetAllPPs()
 {
@@ -1082,7 +1098,6 @@ TArray<UPuzzlePoint*> APuzzleManager::GetAllPPs()
     }
     return Objects;
 }
-
 
 void APuzzleManager::UpdatePlayerProperties(UItemProperty* Property)
 {
@@ -1305,6 +1320,41 @@ TArray<TSubclassOf<URule>> APuzzleManager::LoadRuleBPs()
     
 }
 
+TArray<TSubclassOf<UItemProperty>> APuzzleManager::LoadPropBPs()
+{
+    TArray<TSubclassOf<UItemProperty>> LoadedPropClasses;
+
+    // Initialize the Asset Registry Module
+    FAssetRegistryModule& AssetRegistryModule = FModuleManager::LoadModuleChecked<FAssetRegistryModule>("AssetRegistry");
+    FARFilter Filter;
+    Filter.bRecursivePaths = true;
+    Filter.PackagePaths.Add("/Game/Resources/VectorProperties");
+
+    // Query the Asset Registry
+    TArray<FAssetData> AssetData;
+    AssetRegistryModule.Get().GetAssets(Filter, AssetData);
+    UE_LOG(LogTemp, Warning, TEXT("Found %d VECTORPROP assets."), AssetData.Num());
+
+    // Load each asset class
+    for (const FAssetData& Asset : AssetData)
+    {
+        // Get the generated class from the blueprint asset
+        const FString GeneratedClassPath = Asset.GetTagValueRef<FString>(FName("GeneratedClass"));
+        if (!GeneratedClassPath.IsEmpty())
+        {
+            UClass* AssetClass = Cast<UClass>(StaticLoadObject(UClass::StaticClass(), nullptr, *GeneratedClassPath));
+            if (AssetClass && AssetClass->IsChildOf(URule::StaticClass()))
+            {
+                LoadedPropClasses.Add(AssetClass);
+                UE_LOG(LogTemp, Display, TEXT("VectorProp '%s' loaded from database."), *AssetClass->GetName());
+            }
+        }
+    }
+
+    PropsLoaded = true;
+    return LoadedPropClasses;
+}
+
 TArray<UItem*> APuzzleManager::GetItemsInWorld()
 {
     UWorld* World = GetWorld();
@@ -1394,7 +1444,20 @@ void APuzzleManager::ActivateProperties()
     for (UItem* Item : AllItems)
     {
         Item->ToPropPtrs();
-       
+        SetupItemVector(Item); 
+    }
+
+    AllProps = GetAllProps();
+    for (UItemProperty* Prop : AllProps)
+    {
+        SetupPropertyVector(Prop);
+    }
+}
+
+void APuzzleManager::SetupItemVector(UItem* Item)
+{
+    if (Item)
+    {
         if (Item->TensionArray.Num() == 7 && Item->TensionVector.Tension.Num() == 7)
         {
             UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: TensionArray has %d and TensionVector has %d"), Item->TensionArray.Num(), Item->TensionVector.Tension.Num());
@@ -1405,7 +1468,36 @@ void APuzzleManager::ActivateProperties()
                 UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: %s TensionArray[%d] is %lf"), *Item->Name, i, Item->TensionArray[i]);
                 if (Item->TensionVector.Tension[i] == Item->TensionArray[i])
                 {
-                    UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: Vector %d = Array %d"), Item->TensionVector.Tension[i], Item->TensionArray[i])
+                    UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: %s Vector %lf = Array %lf"), *Item->Name, Item->TensionVector.Tension[i], Item->TensionArray[i])
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: %s Vector %lf != Array %lf"), *Item->Name, Item->TensionVector.Tension[i], Item->TensionArray[i])
+                }
+            }
+        }
+    } 
+}
+
+void APuzzleManager::SetupPropertyVector(UItemProperty* Prop)
+{
+    if (Prop)
+    {
+        if (Prop->TensionArray.Num() == 7 && Prop->TensionVector.Tension.Num() == 7)
+        {
+            UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: TensionArray has %d and TensionVector has %d"), Prop->TensionArray.Num(), Prop->TensionVector.Tension.Num());
+            for (int i = 0; i < 7; i++)
+            {
+                Prop->TensionVector.Tension[i] = Prop->TensionArray[i];
+                Prop->TensionArray[1] = 1.0f;
+                UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: %s %s TensionArray[%d] is %lf"), *Prop->Name, *Prop->Value, i, Prop->TensionArray[i]);
+                if (Prop->TensionVector.Tension[i] == Prop->TensionArray[i])
+                {
+                    UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: %s %s Vector %lf = Array %lf"), *Prop->Name, *Prop->Value, Prop->TensionVector.Tension[i], Prop->TensionArray[i])
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Display, TEXT("TENSIONTEST: %s %s Vector %lf != Array %lf"), *Prop->Name, *Prop->Value, Prop->TensionVector.Tension[i], Prop->TensionArray[i])
                 }
             }
         }

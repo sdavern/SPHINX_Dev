@@ -144,6 +144,12 @@ public:
 	UPROPERTY()
 	TArray<URule*> RulePointers;
 
+	UPROPERTY()
+	TArray<TSubclassOf<UItemProperty>> PropAssets; //Props with associated vector values only
+
+	UPROPERTY()
+	TArray<UItemProperty*> AllProps; //Props with associated vector values only
+
 	//TArray<TSubclassOf<UArea>> AreaAssets;
 
 	UPROPERTY()
@@ -211,6 +217,9 @@ public:
 	UFUNCTION()
 	TArray<URule*> GetAllRules();
 
+	UFUNCTION()
+	TArray<UItemProperty*> GetAllProps();
+
 	
 	TArray<UArea*> GetAllAreas();
 
@@ -253,6 +262,9 @@ public:
 	TArray<TSubclassOf<URule>> LoadRuleBPs();
 
 	UFUNCTION()
+	TArray<TSubclassOf<UItemProperty>> LoadPropBPs();
+
+	UFUNCTION()
 	TArray<UItem*> GetItemsInWorld();
 
 	UFUNCTION()
@@ -278,6 +290,12 @@ public:
 
 	UFUNCTION()
 	void ActivateProperties();
+
+	UFUNCTION()
+	void SetupItemVector(UItem* Item);
+
+	UFUNCTION()
+	void SetupPropertyVector(UItemProperty* Prop);
 
 	ASPHINX_DevPlayerController* ReturnPC();
 
@@ -376,6 +394,9 @@ private:
 
 	UPROPERTY()
 	bool RulesLoaded = false;
+
+	UPROPERTY()
+	bool PropsLoaded = false;
 
 	UPROPERTY()
 	AGamePuzzlePoint* GPPToFind;

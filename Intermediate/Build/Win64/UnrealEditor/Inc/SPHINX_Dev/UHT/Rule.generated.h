@@ -9,6 +9,10 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UItem;
+class UObject;
+class URule;
+class UTerm;
 #ifdef SPHINX_DEV_Rule_generated_h
 #error "Rule.generated.h already included, missing '#pragma once' in Rule.h"
 #endif
@@ -17,7 +21,31 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_20_SPARSE_DATA
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_20_SPARSE_DATA_PROPERTY_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_20_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
-#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_20_RPC_WRAPPERS_NO_PURE_DECLS
+#define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execCalcCosineSim); \
+	DECLARE_FUNCTION(execInitialiseRule); \
+	DECLARE_FUNCTION(execGetDbItems); \
+	DECLARE_FUNCTION(execToPMString); \
+	DECLARE_FUNCTION(execToChildrenPtr); \
+	DECLARE_FUNCTION(execToInputsPtr); \
+	DECLARE_FUNCTION(execToOutputsPtr); \
+	DECLARE_FUNCTION(execClone); \
+	DECLARE_FUNCTION(execContainsItem); \
+	DECLARE_FUNCTION(execToShortString); \
+	DECLARE_FUNCTION(execToString); \
+	DECLARE_FUNCTION(execGetRuleAsString); \
+	DECLARE_FUNCTION(execHasPlayerInput); \
+	DECLARE_FUNCTION(execMainOutputIs); \
+	DECLARE_FUNCTION(execRemoveLastAddedRule); \
+	DECLARE_FUNCTION(execAddChildRule); \
+	DECLARE_FUNCTION(execDeleteInputAtIndex); \
+	DECLARE_FUNCTION(execDeleteOutputAtIndex); \
+	DECLARE_FUNCTION(execAddInput); \
+	DECLARE_FUNCTION(execAddOutput); \
+	DECLARE_FUNCTION(execIsEqual);
+
+
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_20_ACCESSORS
 #define FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Rule_h_20_INCLASS_NO_PURE_DECLS \
 private: \
