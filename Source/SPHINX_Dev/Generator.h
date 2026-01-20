@@ -63,7 +63,7 @@ public:
 	bool MannWhitney(const TArray<double>& Arc, const TArray<double>& Puzzle);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool SPHINX3Mode = true;
+	bool SPHINX3Mode = false;
 
 	int32 GetCriticalValue(int32 A, int32 B);
 

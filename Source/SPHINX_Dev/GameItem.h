@@ -18,6 +18,7 @@ class UActionMenu;
 class ASpawnPoint;
 class AAvatar;
 class APuzzleManager;
+class AGenerator;
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -77,6 +78,9 @@ public:
 	APuzzleManager* GetPuzzleManager();
 
 	bool InInventory = false;
+
+	UFUNCTION()
+	static bool RespawnItem(UGameItem* GameItem, URule* Rule, APuzzleManager* PMInstance);
 
 protected:
 	

@@ -262,6 +262,26 @@ bool URule::ContainsItem(UItem* Item)
     return false;
 }
 
+bool URule::ContainsItemRespawn(UItem* Item)
+{
+    FString ItemName = Item->Name;
+    for (UTerm* T : Inputs)
+    {
+        if (T != nullptr && T->Name == ItemName)
+        {
+            return true;
+        }
+    }
+    for (UTerm* T : Outputs)
+    {
+        if (T != nullptr && T->Name == ItemName)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 URule* URule::Clone()
 {
     URule* ClonedRule = NewObject<URule>(GetOuter(), GetClass());
@@ -402,20 +422,52 @@ double URule::CalcCosineSim()
 {
     APuzzleManager* PMInstance = APuzzleManager::GetInstance();
 
+    if (PMInstance->SPHINX3Mode == false) return Similarity;
+
     //for each input, add vector to InputsVector
     //for each prop of input, check if prop is in list of vector props, if true, add to InputsVector
 
     //for each output, add vector to OutputsVector
     //for each prop of output, check if prop is in list of vector props, if true, add to OutputsProp
+
+    //might need something to check for supertypes in prop sections
     
     for (UTerm* Input : Inputs)
-    {
-        InputsVector = InputsVector + Input->DbItem->TensionVector;
+    { 
+        if (Input && Input->DbItem)
+        {
+            InputsVector = InputsVector + Input->DbItem->TensionVector;
+
+            for (UItemProperty* Prop : PMInstance->AllProps)
+            {
+                if (Prop)
+                {
+                    if (Input->DbItem->HasProperty(Prop))
+                    {
+                        InputsVector = InputsVector + Prop->TensionVector;
+                    }
+                }
+            }
+        }
     }
 
     for (UTerm* Output : Outputs)
     {
-        OutputsVector = OutputsVector + Output->DbItem->TensionVector;
+        if (Output && Output->DbItem)
+        {
+            OutputsVector = OutputsVector + Output->DbItem->TensionVector;
+        
+            for (UItemProperty* Prop : PMInstance->AllProps)
+            {
+                if (Prop)
+                {
+                    if (Output->DbItem->HasProperty(Prop))
+                    {
+                        OutputsVector = OutputsVector + Prop->TensionVector;
+                    }
+                }
+            }
+        }
     }
 
     Similarity = FVector7D::CosineSim(InputsVector, OutputsVector);

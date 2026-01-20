@@ -15,3 +15,4 @@ class SPHINX_DEV_API AEndLevelGameMode : public AGameModeBase
 	GENERATED_BODY()
 	
 };
+

@@ -127,6 +127,9 @@ public:
 	bool ContainsItem(UItem* Item);
 
 	UFUNCTION()
+	bool ContainsItemRespawn(UItem* Item);
+
+	UFUNCTION()
 	URule* Clone();
 
 	UFUNCTION()

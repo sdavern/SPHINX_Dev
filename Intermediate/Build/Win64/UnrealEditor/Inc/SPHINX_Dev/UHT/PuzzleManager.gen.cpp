@@ -2563,6 +2563,11 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_SolvedSoundCue_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_SolvedSoundCue;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_SPHINX3Mode_MetaData[];
+#endif
+		static void NewProp_SPHINX3Mode_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_SPHINX3Mode;
 		static const UECodeGen_Private::FClassPropertyParams NewProp_ItemAssets_Inner;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ItemAssets_MetaData[];
@@ -2862,6 +2867,17 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_APuzzleManager_Statics::NewProp_SolvedSoundCue = { "SolvedSoundCue", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(APuzzleManager, SolvedSoundCue), Z_Construct_UClass_USoundCue_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APuzzleManager_Statics::NewProp_SolvedSoundCue_MetaData), Z_Construct_UClass_APuzzleManager_Statics::NewProp_SolvedSoundCue_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APuzzleManager_Statics::NewProp_SPHINX3Mode_MetaData[] = {
+		{ "Category", "PuzzleManager" },
+		{ "ModuleRelativePath", "PuzzleManager.h" },
+	};
+#endif
+	void Z_Construct_UClass_APuzzleManager_Statics::NewProp_SPHINX3Mode_SetBit(void* Obj)
+	{
+		((APuzzleManager*)Obj)->SPHINX3Mode = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_APuzzleManager_Statics::NewProp_SPHINX3Mode = { "SPHINX3Mode", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(APuzzleManager), &Z_Construct_UClass_APuzzleManager_Statics::NewProp_SPHINX3Mode_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_APuzzleManager_Statics::NewProp_SPHINX3Mode_MetaData), Z_Construct_UClass_APuzzleManager_Statics::NewProp_SPHINX3Mode_MetaData) };
 	const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_APuzzleManager_Statics::NewProp_ItemAssets_Inner = { "ItemAssets", nullptr, (EPropertyFlags)0x0004000000000000, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UClass, Z_Construct_UClass_UItem_NoRegister, METADATA_PARAMS(0, nullptr) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APuzzleManager_Statics::NewProp_ItemAssets_MetaData[] = {
@@ -3121,6 +3137,7 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_StartingInventory,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_FinalFade,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_SolvedSoundCue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_SPHINX3Mode,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_ItemAssets_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_ItemAssets,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APuzzleManager_Statics::NewProp_AllItems_Inner,
@@ -3212,9 +3229,9 @@ template<> SPHINX_DEV_API UScriptStruct* StaticStruct<FSharedRulesStruct>()
 		{ FSharedRulesStruct::StaticStruct, Z_Construct_UScriptStruct_FSharedRulesStruct_Statics::NewStructOps, TEXT("SharedRulesStruct"), &Z_Registration_Info_UScriptStruct_SharedRulesStruct, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FSharedRulesStruct), 3720797568U) },
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_APuzzleManager, APuzzleManager::StaticClass, TEXT("APuzzleManager"), &Z_Registration_Info_UClass_APuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APuzzleManager), 3899496328U) },
+		{ Z_Construct_UClass_APuzzleManager, APuzzleManager::StaticClass, TEXT("APuzzleManager"), &Z_Registration_Info_UClass_APuzzleManager, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(APuzzleManager), 3122349471U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_3906593776(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_677673851(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ClassInfo),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_PuzzleManager_h_Statics::ScriptStructInfo),
 		nullptr, 0);

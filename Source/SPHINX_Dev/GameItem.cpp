@@ -10,6 +10,7 @@
 #include "SpawnPoint.h"
 #include "Avatar.h"
 #include "PuzzleManager.h"
+#include "Generator.h"
 // Sets default values
 UGameItem::UGameItem()
 {
@@ -119,46 +120,24 @@ void UGameItem::OnGameItemClicked(UActionMenu* ActionMenu)
 	UE_LOG(LogTemp, Display, TEXT("OnGameItemClicked for %s"), *Name);
 	
 	APuzzleManager* Instance = APuzzleManager::GetInstance();
+
 	TArray<URule*> ButtonRules;
-
-	if (DbItem)
-	{
-		DbItem->ToPropPtrs();
-		for (UItemProperty* Property : DbItem->Properties)
-		{
-			if (Property)
-			{
-				//UE_LOG(LogTemp, Display, TEXT("%s %s is a property of DbItem %s"), *Property->Name, *Property->Value, *Name);
-			}
-		}
-	}
-	
-
-	
-
-	for (UItemProperty* Property : Properties)
-	{
-		if (Property)
-		{
-			//UE_LOG(LogTemp, Display, TEXT("%s %s is a property of GameItem %s"), *Property->Name, *Property->Value, *Name);
-		}
-	}
 	
 	if (Instance)
 	{
 		Instance->ReturnLeaves();
 		//UE_LOG(LogTemp, Warning, TEXT("OnGameItemClicked PM instance is valid, this is %s"), *this->Name);
 
-		TArray<URule*> Rules = Instance->RulesFor(this);
+		TArray<URule*> Rules = Instance->RulesFor(this); //returns all rules (SPHINX3Mode) or rules for active puzzles (!SPHINX3Mode)
 		if (Rules.Num() > 0)
 		{
 			for (URule* PuzzleRule : Rules)
 			{
 				//UE_LOG(LogTemp, Error, TEXT("Rule %s is in RulesFor(%s)"), *PuzzleRule->Action, *this->Name);
 				//UE_LOG(LogTemp, Display, TEXT("Checking Rule %s fulfilled by %s ? %s"), *PuzzleRule->ToString(), *this->Name, (RuleFulfilled(PuzzleRule) ? TEXT("True") : TEXT("False")));
-				if (PuzzleRule && RuleFulfilled(PuzzleRule))
+				if (PuzzleRule && RuleFulfilled(PuzzleRule)) //checks if gameitem fulfills rule from list of rules from active puzzles
 				{
-					ButtonRules.Add(PuzzleRule);
+					ButtonRules.Add(PuzzleRule); //if in SPHINX3Mode, will add all rules relevant to gameitem
             	}
 			}
 
@@ -204,7 +183,7 @@ void UGameItem::ExecuteRule(URule* Rule) //need to handle spawning based on supe
 {
 	AInventoryManager* Inventory = AInventoryManager::GetInstance();
 
-	//Inpspect logic requires statistics class
+	//Inspect logic requires statistics class
 
 
 	if (Rule->Action == TEXT("PickUp"))
@@ -248,8 +227,10 @@ void UGameItem::ExecuteRule(URule* Rule) //need to handle spawning based on supe
 void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* GameI)
 {
 	TArray<AActor*> ObjectsToDestroy;
+	TArray<UGameItem*> ItemsToDestroy;
 	AInventoryManager* Inventory = AInventoryManager::GetInstance();
 	APuzzleManager* PMInstance = APuzzleManager::GetInstance();
+	
 	//Rule->ToInputsPtr();
 	//Rule->ToOutputsPtr();
 	//Rule->GetDbItems();
@@ -425,6 +406,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 			if (Rule->Inputs.Num() < 1)
 			{
 				ObjectsToDestroy.Add(GameI->GetOwner());
+				ItemsToDestroy.Add(GameI);
 				UE_LOG(LogTemp, Warning, TEXT("i == 0"));
 			}  
 			else
@@ -435,6 +417,8 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					{
 						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Adding HeldItem to ObjectsToDestroy"));
 						ObjectsToDestroy.Add(PMInstance->Player->HeldGameItem);
+						ItemsToDestroy.Add(HeldItem);
+
 					}
 				}
 				
@@ -446,6 +430,7 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					{
 						UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: %s should be added to ObjectsToDestroy"), *Rule->Inputs[i]->Name);
 						ObjectsToDestroy.Add(Rule->Inputs[i]->GameItem->GetOwner());
+						ItemsToDestroy.Add(Rule->Inputs[i]->GameItem);
 						UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: GetOwner is valid"));
 					}
 					else
@@ -610,6 +595,18 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 			UE_LOG(LogTemp, Display, TEXT("GO in ActorsToDestroy is not valid"));
 		}
 	}
+
+	for (UGameItem* GI : ItemsToDestroy)
+	{
+		if (PMInstance->SPHINX3Mode && RespawnItem(GI, Rule, PMInstance))
+		{
+			AGenerator* Gen = AGenerator::GetInstance();
+			UPuzzlePoint* NewPP = nullptr;
+			URule* NewRule = nullptr;
+			Gen->Spawn(World, GI->DbItem, NewRule, NewPP);
+		}
+	}
+	
 //added from below
 
 	PMInstance->ExecuteRule(Rule);
@@ -623,6 +620,45 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 			GO->Destroy();
 		}
 	} */	
+}
+
+bool UGameItem::RespawnItem(UGameItem* GameItem, URule* Rule, APuzzleManager* PMInstance)
+{
+	TArray<URule*> ActiveRules;
+	for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : PMInstance->Leaves)
+	{
+		FRulesStruct* FoundLeavesRules = &Pair.Value;
+        UPuzzlePoint* PP = Pair.Key;
+        if (FoundLeavesRules)
+        {
+            if (FoundLeavesRules->RulesArray.Num() > 0)
+            {
+                for (URule* NewRule: FoundLeavesRules->RulesArray) 
+                {
+                    if (IsValid(NewRule) && NewRule && NewRule->Inputs.Num() > 0)
+                    {
+                        ActiveRules.Add(NewRule);
+                    }    
+                }
+            } 
+        }
+	}
+
+	if (ActiveRules.Contains(Rule)) return false;
+
+	for (URule* AR : ActiveRules)
+	{
+		if (AR)
+		{
+			if (AR->ContainsItemRespawn(GameItem->DbItem)) return true; //&& if gameitem is not in world
+		}
+	}
+	return false;
+	//get active puzzle rules, new PM function
+	//if (!ActiveRules.Contains(Rule))
+	//check if input is part of any active rules inputs or outputs
+	//if yes, check if at least one of item is in world
+	//if no, spawn item
 }
 
 bool UGameItem::RuleFulfilled(URule* Rule)

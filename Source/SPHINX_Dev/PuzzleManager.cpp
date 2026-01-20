@@ -368,7 +368,7 @@ void APuzzleManager::GenerateForActivePuzzlePoints()
     }
 }
 
-TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
+TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem) //returns rules from generated puzzles
 {
     TArray<URule*> Rules;
     TArray<URule*> DbRules;
@@ -394,58 +394,88 @@ TArray<URule*> APuzzleManager::RulesFor(UGameItem* GameItem)
             UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is null"));
             continue;
         } */
-    for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
+
+    if (SPHINX3Mode) //returns every rule in rulespointers if in SPHINX3Mode
     {
-        FRulesStruct* FoundLeavesRules = &Pair.Value;
-        //UE_LOG(LogTemp, Warning, TEXT("RulesArray size for PP %p is %d"), Pair.Key, FoundLeavesRules->RulesArray.Num());
-        UPuzzlePoint* PP = Pair.Key;
-        if (PP)
+        if (RulePointers.Num() > 0)
         {
-            //UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is valid"));
+            for (URule* Rule : RulePointers)
+            {
+                if (IsValid(Rule) && Rule && Rule->Inputs.Num() > 0)
+                {
+                    UE_LOG(LogTemp, Warning, TEXT("SPHINX3: Rule %s passed to AddApplicableRule from RulesFor"), *Rule->Action);
+                    AddApplicableRule(Rule, GameItem, Rules);
+                    Rules.Add(Rule);
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Display, TEXT("SPHINX3: Rule in RulesPointers is not valid"));
+                }  
+            }
+            
         }
         else
         {
-            //UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is null"));
-            continue;
+            UE_LOG(LogTemp, Display, TEXT("SPHINX3: RulePointers is empty"));
         }
+    }
 
-
-        
-        if (FoundLeavesRules)
+    else //returns rules only for active puzzles if not in SPHINX3Mode
+    {
+        for (TPair<UPuzzlePoint*, FRulesStruct>& Pair : Leaves)
         {
-            if (FoundLeavesRules->RulesArray.Num() > 0)
+            FRulesStruct* FoundLeavesRules = &Pair.Value;
+            //UE_LOG(LogTemp, Warning, TEXT("RulesArray size for PP %p is %d"), Pair.Key, FoundLeavesRules->RulesArray.Num());
+            UPuzzlePoint* PP = Pair.Key;
+            if (PP)
             {
-                for (URule* Rule: FoundLeavesRules->RulesArray) 
-                {
-                    if (IsValid(Rule) && Rule && Rule->Inputs.Num() > 0)
-                    {
-                        UE_LOG(LogTemp, Warning, TEXT("Rule %s passed to AddApplicableRule from RulesFor"), *Rule->Action);
-                        AddApplicableRule(Rule, GameItem, Rules);
-                        Rules.Add(Rule);
-                        //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Rule added from RulesFor: %s"), *Rule->Action));
-                    }    
-                    else
-                    {
-                        UE_LOG(LogTemp, Warning, TEXT("RulesFor called but no rules found"));
-                    } 
-                }
+                //UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is valid"));
             }
             else
             {
-                UE_LOG(LogTemp, Display, TEXT("FoundLeavesRules->RulesArray.Num() is 0"));
+                //UE_LOG(LogTemp, Warning, TEXT("PP in RulesFor is null"));
+                continue;
             }
-            
-            //UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid and is %s"), *FoundLeavesRules->RulesArray[1]->Action);
-           
-        }    
-        else
-        {
-            UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is null"));
-            //RulesFor(GameItem);
-            continue;
-        }
+
+
         
+            if (FoundLeavesRules)
+            {
+                if (FoundLeavesRules->RulesArray.Num() > 0)
+                {
+                    for (URule* Rule: FoundLeavesRules->RulesArray) 
+                    {
+                        if (IsValid(Rule) && Rule && Rule->Inputs.Num() > 0)
+                        {
+                            UE_LOG(LogTemp, Warning, TEXT("Rule %s passed to AddApplicableRule from RulesFor"), *Rule->Action);
+                            AddApplicableRule(Rule, GameItem, Rules);
+                            Rules.Add(Rule);
+                            //GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Rule added from RulesFor: %s"), *Rule->Action));
+                        }    
+                        else
+                        {
+                            UE_LOG(LogTemp, Warning, TEXT("RulesFor called but no rules found"));
+                        } 
+                    }
+                }
+                else
+                {
+                    UE_LOG(LogTemp, Display, TEXT("FoundLeavesRules->RulesArray.Num() is 0"));
+                }
+            
+                //UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is valid and is %s"), *FoundLeavesRules->RulesArray[1]->Action);
+           
+            }    
+            else
+            {
+                UE_LOG(LogTemp, Warning, TEXT("FoundLeavesRules in RulesFor is null"));
+                //RulesFor(GameItem);
+                continue;
+            }
+        
+        }
     }
+    
     
     /* if (GameItem && GameItem->DbItem)
     {
@@ -551,7 +581,7 @@ void APuzzleManager::AddApplicableRule(URule* Rule, UGameItem* GameItem, TArray<
     }
 }
 
-void APuzzleManager::ExecuteRule(URule* Rule)
+void APuzzleManager::ExecuteRule(URule* Rule) //needs to be updated to accomodate removal of interaction gating 
 {
     UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: PMInstance->ExecuteRule called"));
     UWorld* World = GetWorld();
@@ -561,171 +591,176 @@ void APuzzleManager::ExecuteRule(URule* Rule)
     {
         FoundPP = *FoundPuzzlePoint;
     }
-
-    AGamePuzzlePoint* OwningGPP = nullptr;
-    if (FoundPP)
+    else
     {
+        FoundPP = nullptr;
+        UE_LOG(LogTemp, Display, TEXT("SPHINX3: ExecuteRule called on rule that's not part of a puzzle"));
+    }
+
+    if (FoundPP) //ie. if the execruted rule was part of an active puzzle
+    {
+        AGamePuzzlePoint* OwningGPP = nullptr;
         UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: FoundPP %s is valid for Rule %s"), *FoundPP->Name, *Rule->Action);
-    }
-    for (TActorIterator<AGamePuzzlePoint> It(World); It; ++It)
-    {
-        AGamePuzzlePoint* GPP = *It;
-        if (GPP && FoundPP)
+        for (TActorIterator<AGamePuzzlePoint> It(World); It; ++It)
         {
-            if (GPP && GPP->Name == FoundPP->Name)  
+            AGamePuzzlePoint* GPP = *It;
+            if (GPP && FoundPP)
             {
-                OwningGPP = GPP;
-                UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: OwningGPP = GPP"));
-                break;
-            }
-        }
-        
-    } 
-
-    FRulesStruct* FoundLeavesRules = Leaves.Find(FoundPP);
-    if (FoundLeavesRules)
-    {
-        UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Main Rule is %s"), *Rule->Action);
-        for (URule* FRule : FoundLeavesRules->RulesArray)
-        {
-            UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: Rule %s is in RulesArray"), *FRule->Action);
-        }
-    }
-    
-    URule* FoundRuleOne = FoundLeavesRules->RulesArray[1]; //gets final rule in puzzle, the rule needed to get the goal. The [0] rule is always empty, [1] is the first actual rule. 
-    FString FoundRuleOneString = FoundRuleOne->ToPMString();
-
-    FString RuleString = Rule->ToPMString();
-
-    UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: RULESTRING is %s"), *RuleString);
-
-    for (URule* SRule : FoundLeavesRules->RulesArray)
-    {
-        if (SRule)
-        {
-            UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: %s has %d inputs and %d outputs"), *SRule->ToPMString(), SRule->Inputs.Num(), SRule->Outputs.Num());
-            if (RuleString == SRule->ToPMString())
-            {
-                Rule = SRule;
-                TArray<URule*> RulesToRemove;
-                for (URule* ARule : FoundLeavesRules->RulesArray)
+                if (GPP && GPP->Name == FoundPP->Name)  
                 {
-                    if (Rule->ToPMString() == ARule->ToPMString())
-                    {
-                        RulesToRemove.Add(ARule);
-                    } 
-                }
-
-                for (URule* BRule : RulesToRemove)
-                {
-                    if (BRule)
-                    {
-                        FoundLeavesRules->RulesArray.Remove(BRule);
-                    }
-                }
-                //230425 addition
-                //If the rule needed to reach the goal is the same as the rule that has just been executed then the puzzle is complete
-                //OR if there is only the blank rule [0] left in the array, then the puzzle is also complete. 
-                if (FoundRuleOneString == RuleString || FoundLeavesRules->RulesArray.Num() == 1)
-                {
-                    UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Puzzle for PP: %s completed!"), *FoundPP->Name);
-                    ++CompletedPuzzles;
-                    if (PuzzleTracker)
-                    {
-                        PuzzleTracker->UpdateText(CompletedPuzzles); //need to expose to BPs
-                    }
-                    if (SolvedSoundCue)
-                    {
-                        UE_LOG(LogTemp, Display, TEXT("Playing completion sound"));
-                        FVector Location = FVector(0.0f, 0.0f, 0.0f);
-                        UGameplayStatics::PlaySoundAtLocation(this, SolvedSoundCue, Location);
-                    }
-                    if (PlayerController)
-                    {
-                        if (Player->IsHoldingItem)
-                        {
-                            if (Player->HeldGameItem)
-                            {
-                                PlayerController->DropGameItem(Player->HeldGameItem);
-                            }
-                            if (PlayerController->ActionMenu)
-                            {
-                                PlayerController->OnExitButtonClicked();
-                            }
-                        }
-                        else
-                        {
-                            PlayerController->OnExitButtonClicked();
-                        }
-                    }    
-                    if (OwningGPP) //implement thanks dialogue and NPC despawning here
-                    {
-                        GPPToFind = OwningGPP;
-                        RuleToFind = Rule;
-
-                        PlayerController->DialogueBox = CreateWidget<UDialogueBox>(PlayerController, PlayerController->DialogueBoxClass);
-                        if (PlayerController->DialogueBox)
-                        {
-                            PlayerController->DialogueBox->AddToViewport(0);
-                            PlayerController->DialogueBox->SetVisibility(ESlateVisibility::Visible);
-                            PlayerController->DialogueBox->ChangeInspectText(PlayerController->DialogueBox->InspectText, OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue);
-                            OwningGPP->InitNPC->OwningPP->GoalDialogue = OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue; //remove if necessary, may not work
-                            UE_LOG(LogTemp, Display, TEXT("After puzzle completed: OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue"));
-                            FTimerDelegate TimerDel;
-			                TimerDel.BindUFunction(this, FName("DestroyDialogue"), PlayerController->DialogueBox);
-			                FTimerHandle TimerHandle;
-			                GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
-                        }
-
-                        if (!IsGPPInViewport())
-                        {
-                            UE_LOG(LogTemp, Display, TEXT("GPP is not in viewport, OwningGPP is valid"));
-                            DeactivatePuzzlePoint(OwningGPP);
-                            RulePPs.Remove(Rule->ToPMString());
-                            --ActiveGeneratedPuzzles;
-                            GPPToFind = nullptr;
-                            RuleToFind = nullptr;
-                            UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
-                        }
-                        else
-                        {
-                            FTimerDelegate TimerDel;
-			                TimerDel.BindUFunction(this, FName("RetryIsGPPInViewPort"), OwningGPP);
-			                FTimerHandle TimerHandle;
-			                GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
-                        }
-                    }
+                    OwningGPP = GPP;
+                    UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: OwningGPP = GPP"));
                     break;
                 }
-                else
+            }
+        
+        } 
+    
+        FRulesStruct* FoundLeavesRules = Leaves.Find(FoundPP);
+        if (FoundLeavesRules)
+        {
+            UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Main Rule is %s"), *Rule->Action);
+            for (URule* FRule : FoundLeavesRules->RulesArray)
+            {
+                UE_LOG(LogTemp, Error, TEXT("EXECUTERULE: Rule %s is in RulesArray"), *FRule->Action);
+            }
+        }
+    
+        URule* FoundRuleOne = FoundLeavesRules->RulesArray[1]; //gets final rule in puzzle, the rule needed to get the goal. The [0] rule is always empty, [1] is the first actual rule. 
+        FString FoundRuleOneString = FoundRuleOne->ToPMString();
+
+        FString RuleString = Rule->ToPMString();
+
+        UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: RULESTRING is %s"), *RuleString);
+
+        for (URule* SRule : FoundLeavesRules->RulesArray)
+        {
+            if (SRule)
+            {
+                UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: %s has %d inputs and %d outputs"), *SRule->ToPMString(), SRule->Inputs.Num(), SRule->Outputs.Num());
+                if (RuleString == SRule->ToPMString())
                 {
-                    if (SolvedSoundCue)
+                    Rule = SRule;
+                    TArray<URule*> RulesToRemove;
+                    for (URule* ARule : FoundLeavesRules->RulesArray)
                     {
-                        FVector Location = FVector(0.0f, 0.0f, 0.0f);
-                        UGameplayStatics::PlaySoundAtLocation(this, SolvedSoundCue, Location);
-                    }
-                    if (PlayerController)
-                    {
-                        if (Player->IsHoldingItem)
+                        if (Rule->ToPMString() == ARule->ToPMString())
                         {
-                            if (Player->HeldGameItem)
+                            RulesToRemove.Add(ARule);
+                        } 
+                    }
+
+                    for (URule* BRule : RulesToRemove)
+                    {
+                        if (BRule)
+                        {
+                            FoundLeavesRules->RulesArray.Remove(BRule);
+                        }
+                    }
+                    //230425 addition
+                    //If the rule needed to reach the goal is the same as the rule that has just been executed then the puzzle is complete
+                    //OR if there is only the blank rule [0] left in the array, then the puzzle is also complete. 
+                    if (FoundRuleOneString == RuleString || FoundLeavesRules->RulesArray.Num() == 1)
+                    {
+                        UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: Puzzle for PP: %s completed!"), *FoundPP->Name);
+                        ++CompletedPuzzles;
+                        if (PuzzleTracker)
+                        {
+                            PuzzleTracker->UpdateText(CompletedPuzzles); //need to expose to BPs
+                        }
+                        if (SolvedSoundCue)
+                        {
+                            UE_LOG(LogTemp, Display, TEXT("Playing completion sound"));
+                            FVector Location = FVector(0.0f, 0.0f, 0.0f);
+                            UGameplayStatics::PlaySoundAtLocation(this, SolvedSoundCue, Location);
+                        }
+                        if (PlayerController)
+                        {
+                            if (Player->IsHoldingItem)
                             {
-                                PlayerController->DropGameItem(Player->HeldGameItem);
+                                if (Player->HeldGameItem)
+                                {
+                                    PlayerController->DropGameItem(Player->HeldGameItem);
+                                }
+                                if (PlayerController->ActionMenu)
+                                {
+                                    PlayerController->OnExitButtonClicked();
+                                }
                             }
-                            if (PlayerController->ActionMenu)
+                            else
+                            {
+                                PlayerController->OnExitButtonClicked();
+                            }
+                        }       
+                        if (OwningGPP) //implement thanks dialogue and NPC despawning here
+                        {
+                            GPPToFind = OwningGPP;
+                            RuleToFind = Rule;
+
+                            PlayerController->DialogueBox = CreateWidget<UDialogueBox>(PlayerController, PlayerController->DialogueBoxClass);
+                            if (PlayerController->DialogueBox)
+                            {
+                                PlayerController->DialogueBox->AddToViewport(0);
+                                PlayerController->DialogueBox->SetVisibility(ESlateVisibility::Visible);
+                                PlayerController->DialogueBox->ChangeInspectText(PlayerController->DialogueBox->InspectText, OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue);
+                                OwningGPP->InitNPC->OwningPP->GoalDialogue = OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue; //remove if necessary, may not work
+                                UE_LOG(LogTemp, Display, TEXT("After puzzle completed: OwningGPP->PuzzlePointPtr->MainGoal->ThanksDialogue"));
+                                FTimerDelegate TimerDel;
+			                    TimerDel.BindUFunction(this, FName("DestroyDialogue"), PlayerController->DialogueBox);
+			                    FTimerHandle TimerHandle;
+			                    GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
+                            }   
+
+                            if (!IsGPPInViewport())
+                            {
+                                UE_LOG(LogTemp, Display, TEXT("GPP is not in viewport, OwningGPP is valid"));
+                                DeactivatePuzzlePoint(OwningGPP);
+                                RulePPs.Remove(Rule->ToPMString());
+                                --ActiveGeneratedPuzzles;
+                                GPPToFind = nullptr;
+                                RuleToFind = nullptr;
+                                UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: ActiveGeneratedPuzzles is %d"), ActiveGeneratedPuzzles);
+                            }
+                            else
+                            {
+                                FTimerDelegate TimerDel;
+			                    TimerDel.BindUFunction(this, FName("RetryIsGPPInViewPort"), OwningGPP);
+			                    FTimerHandle TimerHandle;
+			                    GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDel, 5.0f, false);
+                            }
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        if (SolvedSoundCue)
+                        {
+                            FVector Location = FVector(0.0f, 0.0f, 0.0f);
+                            UGameplayStatics::PlaySoundAtLocation(this, SolvedSoundCue, Location);
+                        }
+                        if (PlayerController)
+                        {
+                            if (Player->IsHoldingItem)
+                            {
+                                if (Player->HeldGameItem)
+                                {
+                                    PlayerController->DropGameItem(Player->HeldGameItem);
+                                }
+                                if (PlayerController->ActionMenu)
+                                {
+                                    PlayerController->OnExitButtonClicked();
+                                }
+                            }
+                            else
                             {
                                 PlayerController->OnExitButtonClicked();
                             }
                         }
-                        else
-                        {
-                            PlayerController->OnExitButtonClicked();
-                        }
+                        UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: PUZZLE STILL HAS RULES LEFT!!!"));
                     }
-                    UE_LOG(LogTemp, Display, TEXT("EXECUTERULE: PUZZLE STILL HAS RULES LEFT!!!"));
                 }
-            }
-        }       
+            }       
+        }
     } 
 }
 

@@ -31,6 +31,7 @@ class UTerm;
 	DECLARE_FUNCTION(execToInputsPtr); \
 	DECLARE_FUNCTION(execToOutputsPtr); \
 	DECLARE_FUNCTION(execClone); \
+	DECLARE_FUNCTION(execContainsItemRespawn); \
 	DECLARE_FUNCTION(execContainsItem); \
 	DECLARE_FUNCTION(execToShortString); \
 	DECLARE_FUNCTION(execToString); \

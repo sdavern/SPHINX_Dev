@@ -231,6 +231,7 @@ URule* AGenerator::GeneratePuzzleStartingFrom(UPuzzlePoint* PP, TArray<UPuzzlePo
 	UE_LOG(LogTemp, Error, TEXT("GENERATEPUZZLESTARTINGFROM CALLED"));
     URule* Root = NewObject<URule>(this, URule::StaticClass());
     TArray<UItem*> ItemsInLevel;
+	PP->CurrentPuzzleRules.Empty();
 
 	if (!Instance->InventoryInstance)
 	{
@@ -326,7 +327,7 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 {
 	UTerm* Goal = GoalTerm;
 	UE_LOG(LogTemp, Warning, TEXT("GenerateInputs for ParentRule: %s called"), *ParentRule->ToString());
-	TArray<UItem*> MatchingItems = GInstance->PMInstance->FindDbItemsFor(StartTerm, NewAccessiblePPs, ItemsInLevel); 
+	TArray<UItem*> MatchingItems = GInstance->PMInstance->FindDbItemsFor(StartTerm, NewAccessiblePPs, ItemsInLevel); //finds matching item for StartTerm in item database
 
 	if (MatchingItems.Num() == 0)
 	{
@@ -469,6 +470,17 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 		}
 		return Result;
 	}
+
+	PuzzleArc.SetNum(CurrentPP->CurrentPuzzleRules.Num());
+	for (int i = 0; i < PuzzleArc.Num(); i++)
+	{
+		if (CurrentPP && CurrentPP->CurrentPuzzleRules[i])
+		{
+			PuzzleArc[i] = CurrentPP->CurrentPuzzleRules[i]->Similarity;
+		}
+	}
+
+
 	if (StartTerm->DbItem == nullptr && StartTerm->Name != TEXT("Player"))
 	{
 		UE_LOG(LogTemp, Display, TEXT("GRAMMAR ERROR: No terminal or non-terminal match for term: %s"), *StartTerm->Name);
@@ -479,7 +491,6 @@ bool AGenerator::GenerateInputs(UTerm* StartTerm, URule* ParentRule, int32 Depth
 	if (PMInstance->PuzzlesGeneratedStrings.Contains(PuzzleString))
 	{
 		UE_LOG(LogTemp, Display, TEXT("Puzzle %s has already been generated"), *PuzzleString);
-		
 		return false;
 	}
 

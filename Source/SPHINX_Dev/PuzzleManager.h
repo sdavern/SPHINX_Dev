@@ -129,6 +129,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Audio")
 	USoundCue* SolvedSoundCue;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool SPHINX3Mode = false;
+
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	//AActor* Statistics;
 
