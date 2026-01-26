@@ -35,6 +35,9 @@ public:
 	AInventoryManager* InventoryManager;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UTextBlock* LowerText;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UInventoryButton* IB1;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
@@ -149,6 +152,9 @@ public:
 	UTexture2D* DefaultSprite;
 
 	void SetupUI();
+
+	UFUNCTION()
+	void ChangeLowerText(const FString& NewText);
 
 	
 };

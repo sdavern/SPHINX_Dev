@@ -31,13 +31,14 @@ def process_terms(file_path):
         term_data = parse_term(row.get('Goal', ''))
         goal_dialogue = row.get('GoalDialogue', '')
         thanks_dialogue = row.get('ThanksDialogue', '')
+        follow_up_dialogue = row.get('FollowUpDialogue', '')
         
         if not term_data:
             continue
         
-        create_term_blueprint(term_data, goal_dialogue, thanks_dialogue)
+        create_term_blueprint(term_data, goal_dialogue, thanks_dialogue, follow_up_dialogue)
 
-def create_term_blueprint(term, goal_dialogue, thanks_dialogue):
+def create_term_blueprint(term, goal_dialogue, thanks_dialogue, follow_up_dialogue):
     asset_tools = unreal.AssetToolsHelpers.get_asset_tools()
 
     property_str = "_".join([f"{prop['name']}_{prop['value']}" for prop in term['properties']])
@@ -63,6 +64,9 @@ def create_term_blueprint(term, goal_dialogue, thanks_dialogue):
 
     if thanks_dialogue:
         unreal.EditorAssetLibrary.set_editor_property(duplicated_term_blueprint_instance, "ThanksDialogue", thanks_dialogue)
+    
+    if follow_up_dialogue:
+        unreal.EditorAssetLibrary.set_editor_property(duplicated_term_blueprint_instance, "FollowUpDialogue", follow_up_dialogue)
 
     properties_array = unreal.EditorAssetLibrary.get_editor_property(duplicated_term_blueprint_instance, "PropertiesBP")
     if properties_array is None:

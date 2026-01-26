@@ -167,6 +167,9 @@ public:
 	UPROPERTY()
 	TMap<FString, UPuzzlePoint*> RulePPs;
 
+	UPROPERTY()
+	UItemProperty* DeadProp;
+
 	static APuzzleManager* GetInstance();
 
 	UFUNCTION(BlueprintCallable)

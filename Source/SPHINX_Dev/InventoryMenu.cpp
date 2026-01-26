@@ -68,3 +68,11 @@ void UInventoryMenu::SetupUI()
     AllImages[15] = IB16_Image;
 
 }
+
+void UInventoryMenu::ChangeLowerText(const FString& NewText)
+{
+    if (LowerText)
+    {
+        LowerText->SetText(FText::FromString(NewText));
+    }
+}

@@ -137,6 +137,9 @@ public:
 	UPROPERTY()
 	AInitNPC* HitInitNPC;
 
+	UPROPERTY()
+	bool CombineMode = false;
+
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	bool InspectOpen = false;
 

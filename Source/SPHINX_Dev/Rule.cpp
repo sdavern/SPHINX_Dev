@@ -272,13 +272,13 @@ bool URule::ContainsItemRespawn(UItem* Item)
             return true;
         }
     }
-    for (UTerm* T : Outputs)
+    /* for (UTerm* T : Outputs)
     {
         if (T != nullptr && T->Name == ItemName)
         {
             return true;
         }
-    }
+    } */
     return false;
 }
 

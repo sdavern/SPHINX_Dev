@@ -14,11 +14,67 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryMenu();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryMenu_NoRegister();
 	UMG_API UClass* Z_Construct_UClass_UImage_NoRegister();
+	UMG_API UClass* Z_Construct_UClass_UTextBlock_NoRegister();
 	UMG_API UClass* Z_Construct_UClass_UUserWidget();
 	UPackage* Z_Construct_UPackage__Script_SPHINX_Dev();
 // End Cross Module References
+	DEFINE_FUNCTION(UInventoryMenu::execChangeLowerText)
+	{
+		P_GET_PROPERTY(FStrProperty,Z_Param_NewText);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->ChangeLowerText(Z_Param_NewText);
+		P_NATIVE_END;
+	}
 	void UInventoryMenu::StaticRegisterNativesUInventoryMenu()
 	{
+		UClass* Class = UInventoryMenu::StaticClass();
+		static const FNameNativePtrPair Funcs[] = {
+			{ "ChangeLowerText", &UInventoryMenu::execChangeLowerText },
+		};
+		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
+	}
+	struct Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics
+	{
+		struct InventoryMenu_eventChangeLowerText_Parms
+		{
+			FString NewText;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_NewText_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_NewText;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::NewProp_NewText_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::NewProp_NewText = { "NewText", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryMenu_eventChangeLowerText_Parms, NewText), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::NewProp_NewText_MetaData), Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::NewProp_NewText_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::NewProp_NewText,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "InventoryMenu.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryMenu, nullptr, "ChangeLowerText", nullptr, nullptr, Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::PropPointers), sizeof(Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::InventoryMenu_eventChangeLowerText_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::Function_MetaDataParams), Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::InventoryMenu_eventChangeLowerText_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UFunction_UInventoryMenu_ChangeLowerText()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UInventoryMenu_ChangeLowerText_Statics::FuncParams);
+		}
+		return ReturnFunction;
 	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UInventoryMenu);
 	UClass* Z_Construct_UClass_UInventoryMenu_NoRegister()
@@ -28,6 +84,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 	struct Z_Construct_UClass_UInventoryMenu_Statics
 	{
 		static UObject* (*const DependentSingletons[])();
+		static const FClassFunctionLinkInfo FuncInfo[];
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
@@ -41,6 +98,10 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_AllImages_MetaData[];
 #endif
 		static const UECodeGen_Private::FArrayPropertyParams NewProp_AllImages;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_LowerText_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_LowerText;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_IB1_MetaData[];
 #endif
@@ -182,6 +243,10 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_SPHINX_Dev,
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::DependentSingletons) < 16);
+	const FClassFunctionLinkInfo Z_Construct_UClass_UInventoryMenu_Statics::FuncInfo[] = {
+		{ &Z_Construct_UFunction_UInventoryMenu_ChangeLowerText, "ChangeLowerText" }, // 3282152601
+	};
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::Class_MetaDataParams[] = {
 #if !UE_BUILD_SHIPPING
@@ -210,6 +275,15 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 	};
 #endif
 	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllImages = { "AllImages", nullptr, (EPropertyFlags)0x001000800002000d, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, AllImages), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllImages_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllImages_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_LowerText_MetaData[] = {
+		{ "BindWidget", "" },
+		{ "Category", "InventoryMenu" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "InventoryMenu.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_LowerText = { "LowerText", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, LowerText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_LowerText_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_LowerText_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1_MetaData[] = {
 		{ "BindWidget", "" },
@@ -510,6 +584,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllButtons,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllImages_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllImages,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_LowerText,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1_Image,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB2,
@@ -552,11 +627,11 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		nullptr,
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
-		nullptr,
+		FuncInfo,
 		Z_Construct_UClass_UInventoryMenu_Statics::PropPointers,
 		nullptr,
 		UE_ARRAY_COUNT(DependentSingletons),
-		0,
+		UE_ARRAY_COUNT(FuncInfo),
 		UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::PropPointers),
 		0,
 		0x00B010A0u,
@@ -582,9 +657,9 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UInventoryMenu, UInventoryMenu::StaticClass, TEXT("UInventoryMenu"), &Z_Registration_Info_UClass_UInventoryMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryMenu), 3049955974U) },
+		{ Z_Construct_UClass_UInventoryMenu, UInventoryMenu::StaticClass, TEXT("UInventoryMenu"), &Z_Registration_Info_UClass_UInventoryMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryMenu), 1728867698U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_428567575(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_1710585213(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

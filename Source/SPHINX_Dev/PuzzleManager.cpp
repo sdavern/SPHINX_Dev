@@ -101,6 +101,12 @@ void APuzzleManager::BeginPlay()
     {
         Generator->CalculateMaxPuzzles();
     }
+
+    if (DeadProp)
+    {
+        DeadProp->Name = "is";
+        DeadProp->Value = "Dead";
+    }
 }
 
 void APuzzleManager::Tick(float DeltaTime)

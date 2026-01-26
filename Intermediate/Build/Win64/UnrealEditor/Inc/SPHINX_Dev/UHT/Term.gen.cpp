@@ -74,6 +74,10 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_ThanksDialogue_MetaData[];
 #endif
 		static const UECodeGen_Private::FStrPropertyParams NewProp_ThanksDialogue;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_FollowUpDialogue_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_FollowUpDialogue;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -163,6 +167,13 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 	};
 #endif
 	const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UTerm_Statics::NewProp_ThanksDialogue = { "ThanksDialogue", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTerm, ThanksDialogue), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UTerm_Statics::NewProp_ThanksDialogue_MetaData), Z_Construct_UClass_UTerm_Statics::NewProp_ThanksDialogue_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UTerm_Statics::NewProp_FollowUpDialogue_MetaData[] = {
+		{ "Category", "Term" },
+		{ "ModuleRelativePath", "Term.h" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UTerm_Statics::NewProp_FollowUpDialogue = { "FollowUpDialogue", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UTerm, FollowUpDialogue), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UTerm_Statics::NewProp_FollowUpDialogue_MetaData), Z_Construct_UClass_UTerm_Statics::NewProp_FollowUpDialogue_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UTerm_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_Name,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_PropertiesBP_Inner,
@@ -176,6 +187,7 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_InitPointType,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_GoalDialogue,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_ThanksDialogue,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UTerm_Statics::NewProp_FollowUpDialogue,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UTerm_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UTerm>::IsAbstract,
@@ -215,9 +227,9 @@ void EmptyLinkFunctionForGeneratedCodeTerm() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UTerm, UTerm::StaticClass, TEXT("UTerm"), &Z_Registration_Info_UClass_UTerm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTerm), 2687132698U) },
+		{ Z_Construct_UClass_UTerm, UTerm::StaticClass, TEXT("UTerm"), &Z_Registration_Info_UClass_UTerm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UTerm), 2502558681U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_4273106188(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_582333575(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_Term_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

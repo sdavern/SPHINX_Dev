@@ -50,6 +50,9 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     FString ThanksDialogue;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    FString FollowUpDialogue;
+
 
 	UTerm(const FString& Name);
 

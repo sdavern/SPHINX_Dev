@@ -489,6 +489,11 @@ void UGameItem::ExecuteRule(UWorld* World, URule* Rule, bool Full, UGameItem* Ga
 					}
 				}
 			}
+
+			if (Output->DbItem->HasProperty(PMInstance->DeadProp))
+			{
+				ObjectsToDestroy.Add(Output->GameItem->GetOwner());
+			}
 		}
 		if (!Found)
 		{
@@ -644,7 +649,13 @@ bool UGameItem::RespawnItem(UGameItem* GameItem, URule* Rule, APuzzleManager* PM
         }
 	}
 
-	if (ActiveRules.Contains(Rule)) return false;
+	if (Rule)
+	{
+		if (ActiveRules.Contains(Rule))
+		{
+			ActiveRules.Remove(Rule);
+		}
+	}
 
 	for (URule* AR : ActiveRules)
 	{

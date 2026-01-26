@@ -445,6 +445,7 @@ void ASPHINX_DevPlayerController::SetupHoldButton()
 
 void ASPHINX_DevPlayerController::OnHoldButtonClicked()
 {
+    
     UE_LOG(LogTemp, Display, TEXT("HoldButton clicked"));
     if (HitGameItem)
     {
@@ -454,13 +455,18 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
     {
         UE_LOG(LogTemp, Display, TEXT("HoldButton: HitGameItem is null"));
     }
-    if (HitGameItem->IsNPC && !HitNPC)
+
+
+
+
+    /* if (HitGameItem->IsNPC && !HitNPC)
     {
+        //needs to create action buttons
         UE_LOG(LogTemp, Display, TEXT("HoldButton: HitGameItem->IsNPC && !HitNPC"));
         DialogueBox = CreateWidget<UDialogueBox>(this, DialogueBoxClass);
         if (DialogueBox)
         {
-            DialogueBox->AddToViewport(0);
+            DialogueBox->AddToViewport(1);
             DialogueBox->SetVisibility(ESlateVisibility::Visible);
             ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Apologise"));
 
@@ -485,7 +491,7 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
             DialogueBox->RemoveFromParent();
             DialogueBox = nullptr;
             InspectOpen = false;
-            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Hold"));
+            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Interact"));
             FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f));
             ActionMenu->InspectButton->SetIsEnabled(true);
             ActionMenu->InspectText->SetColorAndOpacity(NewColor);
@@ -497,11 +503,21 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
     else if (ActivePlayer->IsHoldingItem && HitGameItem != SelectedGameItem)
     {
         UE_LOG(LogTemp, Display, TEXT("HoldButton: Already holding item"));
-    }
+    } */
 
-    else if (HitGameItem && !ActivePlayer->IsHoldingItem)
+    if (HitGameItem && !ActivePlayer->IsHoldingItem)
     {
-        if (HitGameItem->InInventory && InventoryManager && InventoryMenu)
+        CombineMode = true;
+        OpenInventoryMenu();
+        if (InventoryMenu)
+        {
+            InventoryMenu->ChangeLowerText(TEXT("Click on item to check for possible interactions"));
+        }
+        
+
+
+
+        /* if (HitGameItem->InInventory && InventoryManager && InventoryMenu)
         {
             InventoryManager->RemoveItemFromInventory(HitGameItem);
             HitGameItem->InInventory = false;
@@ -511,24 +527,26 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
             SetupUISprites();
             UE_LOG(LogTemp, Display, TEXT("ONHOLDBUTTONCLICKED: Calling CloseInventoryMenu"));
             CloseInventoryMenu();
-        }
-        GrabGameItem(HitGameItem);
-        UE_LOG(LogTemp, Display, TEXT("%s grabbed!"), *HitGameItem->Name);
-        if (ActivePlayer->IsHoldingItem && ActionMenu) 
+        } */
+        /* GrabGameItem(HitGameItem);
+        UE_LOG(LogTemp, Display, TEXT("%s grabbed!"), *HitGameItem->Name); */
+        if (/*ActivePlayer->IsHoldingItem &&*/ ActionMenu) 
         {
             FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f)); 
             ActionMenu->HoldText->SetColorAndOpacity(NewColor);
-            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Drop"));
+            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Close Inventory"));
         }
     }
-    else if (HitGameItem && ActivePlayer->HeldGameItem)
+    else if (HitGameItem /*&& ActivePlayer->HeldGameItem*/)
     {
-        DropGameItem(ActivePlayer->HeldGameItem);
-        UE_LOG(LogTemp, Display, TEXT("%s dropped!"), *HitGameItem->Name);
-        if (!ActivePlayer->IsHoldingItem && ActionMenu) 
+        //DropGameItem(ActivePlayer->HeldGameItem);
+        //UE_LOG(LogTemp, Display, TEXT("%s dropped!"), *HitGameItem->Name);
+        if (/*!ActivePlayer->IsHoldingItem &&*/ ActionMenu) 
         {
-            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Hold"));
+            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Combine"));
         }
+        CloseInventoryMenu();
+        CombineMode = false;
     }
     else
     {
@@ -635,7 +653,7 @@ void ASPHINX_DevPlayerController::OnInspectButtonClicked()
         DialogueBox = CreateWidget<UDialogueBox>(this, DialogueBoxClass);
         if (DialogueBox)
         {
-            DialogueBox->AddToViewport(0);
+            DialogueBox->AddToViewport(1);
             DialogueBox->SetVisibility(ESlateVisibility::Visible);
             ActionMenu->ChangeButtonText(ActionMenu->InspectText, TEXT("Exit Inspect"));
             if (HitGameItem->IsNPC || NPCIsHit)
@@ -844,14 +862,14 @@ void ASPHINX_DevPlayerController::OpenInventoryMenu()
 
         if (InventoryMenu)
         {
-            InventoryMenu->AddToViewport(0);
+            InventoryMenu->AddToViewport(1);
             InventoryMenu->SetVisibility(ESlateVisibility::Visible);
             InventoryOpen = true;
             UE_LOG(LogTemp, Display, TEXT("Opening inventory menu with %d items, AllImages has %d elements."), InventoryManager->Inventory.Num(), InventoryMenu->AllImages.Num());
             SetupUISprites();
             
         }
-        for (UPuzzlePoint* PP : PMInstance->AccessiblePPs)
+        /* for (UPuzzlePoint* PP : PMInstance->AccessiblePPs)
         {
             if (PP)
             {
@@ -861,7 +879,7 @@ void ASPHINX_DevPlayerController::OpenInventoryMenu()
                 }
                 
             }
-        }
+        } */
 
     UE_LOG(LogTemp, Display, TEXT("OpenInventory finished"));
 }
@@ -966,7 +984,7 @@ void ASPHINX_DevPlayerController::CreateActionMenu()
         if (ActionMenu)
         {
             UE_LOG(LogTemp, Display, TEXT("ActionMenu is valid"));
-            ActionMenu->AddToViewport(1);
+            ActionMenu->AddToViewport(0);
             ActionMenu->SetVisibility(ESlateVisibility::Visible);
             SetupActionMenuButtons();
             FInputModeUIOnly InputMode;

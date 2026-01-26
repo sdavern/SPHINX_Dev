@@ -20,5 +20,7 @@
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/ConditionalObject.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/DatabaseBuilder.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/DialogueBox.cpp"
+#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/EndLevelGameMode.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/GameArea.cpp"
 #include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/GamePuzzlePoint.cpp"
+#include "C:/Users/valey/Documents/Unreal Projects/SPHINX_Dev/Source/SPHINX_Dev/Generator.cpp"
