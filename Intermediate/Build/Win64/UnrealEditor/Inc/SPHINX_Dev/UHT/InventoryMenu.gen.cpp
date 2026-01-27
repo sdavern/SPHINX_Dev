@@ -13,11 +13,20 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryButton_NoRegister();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryMenu();
 	SPHINX_DEV_API UClass* Z_Construct_UClass_UInventoryMenu_NoRegister();
+	UMG_API UClass* Z_Construct_UClass_UButton_NoRegister();
 	UMG_API UClass* Z_Construct_UClass_UImage_NoRegister();
 	UMG_API UClass* Z_Construct_UClass_UTextBlock_NoRegister();
 	UMG_API UClass* Z_Construct_UClass_UUserWidget();
 	UPackage* Z_Construct_UPackage__Script_SPHINX_Dev();
 // End Cross Module References
+	DEFINE_FUNCTION(UInventoryMenu::execChangeUpperText)
+	{
+		P_GET_PROPERTY(FStrProperty,Z_Param_NewText);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		P_THIS->ChangeUpperText(Z_Param_NewText);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UInventoryMenu::execChangeLowerText)
 	{
 		P_GET_PROPERTY(FStrProperty,Z_Param_NewText);
@@ -31,6 +40,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		UClass* Class = UInventoryMenu::StaticClass();
 		static const FNameNativePtrPair Funcs[] = {
 			{ "ChangeLowerText", &UInventoryMenu::execChangeLowerText },
+			{ "ChangeUpperText", &UInventoryMenu::execChangeUpperText },
 		};
 		FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 	}
@@ -76,6 +86,48 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics
+	{
+		struct InventoryMenu_eventChangeUpperText_Parms
+		{
+			FString NewText;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_NewText_MetaData[];
+#endif
+		static const UECodeGen_Private::FStrPropertyParams NewProp_NewText;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::NewProp_NewText_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::NewProp_NewText = { "NewText", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(InventoryMenu_eventChangeUpperText_Parms, NewText), METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::NewProp_NewText_MetaData), Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::NewProp_NewText_MetaData) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::NewProp_NewText,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "InventoryMenu.h" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UInventoryMenu, nullptr, "ChangeUpperText", nullptr, nullptr, Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::PropPointers), sizeof(Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::InventoryMenu_eventChangeUpperText_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::Function_MetaDataParams), Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::Function_MetaDataParams) };
+	static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::PropPointers) < 2048);
+	static_assert(sizeof(Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::InventoryMenu_eventChangeUpperText_Parms) < MAX_uint16);
+	UFunction* Z_Construct_UFunction_UInventoryMenu_ChangeUpperText()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UInventoryMenu_ChangeUpperText_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UInventoryMenu);
 	UClass* Z_Construct_UClass_UInventoryMenu_NoRegister()
 	{
@@ -102,6 +154,10 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_LowerText_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_LowerText;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UpperText_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_UpperText;
 #if WITH_METADATA
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_IB1_MetaData[];
 #endif
@@ -234,6 +290,10 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		static const UECodeGen_Private::FMetaDataPairParam NewProp_DefaultSprite_MetaData[];
 #endif
 		static const UECodeGen_Private::FObjectPropertyParams NewProp_DefaultSprite;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_ExitButton_MetaData[];
+#endif
+		static const UECodeGen_Private::FObjectPropertyParams NewProp_ExitButton;
 		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UECodeGen_Private::FClassParams ClassParams;
@@ -245,6 +305,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::DependentSingletons) < 16);
 	const FClassFunctionLinkInfo Z_Construct_UClass_UInventoryMenu_Statics::FuncInfo[] = {
 		{ &Z_Construct_UFunction_UInventoryMenu_ChangeLowerText, "ChangeLowerText" }, // 3282152601
+		{ &Z_Construct_UFunction_UInventoryMenu_ChangeUpperText, "ChangeUpperText" }, // 2523909348
 	};
 	static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::FuncInfo) < 2048);
 #if WITH_METADATA
@@ -284,6 +345,15 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_LowerText = { "LowerText", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, LowerText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_LowerText_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_LowerText_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_UpperText_MetaData[] = {
+		{ "BindWidget", "" },
+		{ "Category", "InventoryMenu" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "InventoryMenu.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_UpperText = { "UpperText", nullptr, (EPropertyFlags)0x001000000008000c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, UpperText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_UpperText_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_UpperText_MetaData) };
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1_MetaData[] = {
 		{ "BindWidget", "" },
@@ -579,12 +649,22 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 	};
 #endif
 	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_DefaultSprite = { "DefaultSprite", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, DefaultSprite), Z_Construct_UClass_UTexture2D_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_DefaultSprite_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_DefaultSprite_MetaData) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UInventoryMenu_Statics::NewProp_ExitButton_MetaData[] = {
+		{ "BindWidget", "" },
+		{ "Category", "InventoryMenu" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "InventoryMenu.h" },
+	};
+#endif
+	const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UInventoryMenu_Statics::NewProp_ExitButton = { "ExitButton", nullptr, (EPropertyFlags)0x0010000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UInventoryMenu, ExitButton), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UInventoryMenu_Statics::NewProp_ExitButton_MetaData), Z_Construct_UClass_UInventoryMenu_Statics::NewProp_ExitButton_MetaData) };
 	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UInventoryMenu_Statics::PropPointers[] = {
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllButtons_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllButtons,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllImages_Inner,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_AllImages,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_LowerText,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_UpperText,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB1_Image,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB2,
@@ -618,6 +698,7 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_IB16_Image,
 		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_DefaultSprite,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UInventoryMenu_Statics::NewProp_ExitButton,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_UInventoryMenu_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UInventoryMenu>::IsAbstract,
@@ -657,9 +738,9 @@ void EmptyLinkFunctionForGeneratedCodeInventoryMenu() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UInventoryMenu, UInventoryMenu::StaticClass, TEXT("UInventoryMenu"), &Z_Registration_Info_UClass_UInventoryMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryMenu), 1728867698U) },
+		{ Z_Construct_UClass_UInventoryMenu, UInventoryMenu::StaticClass, TEXT("UInventoryMenu"), &Z_Registration_Info_UClass_UInventoryMenu, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UInventoryMenu), 780891649U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_1710585213(TEXT("/Script/SPHINX_Dev"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_31769204(TEXT("/Script/SPHINX_Dev"),
 		Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Users_valey_Documents_Unreal_Projects_SPHINX_Dev_Source_SPHINX_Dev_InventoryMenu_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -38,6 +38,9 @@ public:
     UTextBlock* LowerText;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+    UTextBlock* UpperText;
+
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	UInventoryButton* IB1;
 
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
@@ -151,10 +154,16 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UTexture2D* DefaultSprite;
 
+	UPROPERTY(EditAnywhere, meta = (BindWidget))
+	UButton* ExitButton;
+
 	void SetupUI();
 
 	UFUNCTION()
 	void ChangeLowerText(const FString& NewText);
+
+	UFUNCTION()
+	void ChangeUpperText(const FString& NewText);
 
 	
 };

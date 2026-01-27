@@ -76,3 +76,11 @@ void UInventoryMenu::ChangeLowerText(const FString& NewText)
         LowerText->SetText(FText::FromString(NewText));
     }
 }
+
+void UInventoryMenu::ChangeUpperText(const FString& NewText)
+{
+    if (UpperText)
+    {
+        UpperText->SetText(FText::FromString(NewText));
+    }
+}

@@ -511,7 +511,11 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
         OpenInventoryMenu();
         if (InventoryMenu)
         {
-            InventoryMenu->ChangeLowerText(TEXT("Click on item to check for possible interactions"));
+            InventoryMenu->ChangeLowerText(TEXT("Choose item to interact with."));
+            FSlateColor NewColor = FSlateColor(FLinearColor(0.652479f, 0.662771f, 0.697917f)); 
+            ActionMenu->HoldText->SetColorAndOpacity(NewColor);
+            InventoryMenu->ChangeUpperText(TEXT("Exit to Action Menu >>>"));
+            InventoryMenu->ChangeLowerText(TEXT("Click item to interact."));
         }
         
 
@@ -532,9 +536,8 @@ void ASPHINX_DevPlayerController::OnHoldButtonClicked()
         UE_LOG(LogTemp, Display, TEXT("%s grabbed!"), *HitGameItem->Name); */
         if (/*ActivePlayer->IsHoldingItem &&*/ ActionMenu) 
         {
-            FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f)); 
-            ActionMenu->HoldText->SetColorAndOpacity(NewColor);
-            ActionMenu->ChangeButtonText(ActionMenu->HoldText, TEXT("Close Inventory"));
+            //FSlateColor NewColor = FSlateColor(FLinearColor(0.0f, 0.011612f, 0.051269f)); 
+            //ActionMenu->HoldText->SetColorAndOpacity(NewColor);
         }
     }
     else if (HitGameItem /*&& ActivePlayer->HeldGameItem*/)
@@ -898,6 +901,8 @@ void ASPHINX_DevPlayerController::SetupUISprites()
 {
     if (InventoryManager && InventoryMenu)
     {
+        InventoryMenu->ExitButton->OnClicked.Clear();
+        InventoryMenu->ExitButton->OnClicked.AddDynamic(this, &ASPHINX_DevPlayerController::CloseInventoryMenu);
         ClearSprites();
         for (int i = 0; i < InventoryManager->Inventory.Num(); i++)
         {
